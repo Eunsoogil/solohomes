@@ -80,4 +80,5 @@ public class BoardController {
 		command.execute(model);
 		return "board/deleteOk";
 	}
+
 }
