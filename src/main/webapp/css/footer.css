@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
+
+*{
+   margin:0;
+   padding:0;
+   font-family:'Noto Sans KR', sans-serif;
+   color:#333;
+}
+
+li{
+   list-style-type:none;
+}
+
+footer{
+	width:100%;
+	background: #eee;
+	padding:20px;
+	display: flex;
+	overflow:hidden;
+}
+
+.f_box1{
+	display: flex;
+	flex:2;
+	float:left;
+}
+.f_box2{
+	flex:1;
+	float:left;
+}
+.footer1{
+	flex:1;
+	float:left;
+}
