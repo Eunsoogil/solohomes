@@ -33,6 +33,11 @@
 		<beans:property name="password" value="1234"/>
 	</beans:bean>
 	
+	<!-- JdbcTemplate -->
+	<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
 	<!-- Transaction -->
 	<beans:bean name="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -47,7 +52,7 @@
 	<!-- MyBatis 설정 -->
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="mapperLocations" value="classpath:com/lec/sts15_mybatis/mapper/*.xml"/>
+		<beans:property name="mapperLocations" value="classpath:com/ateam/solohomes/mapper/*.xml"/>
 	</beans:bean>
 	
 	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
