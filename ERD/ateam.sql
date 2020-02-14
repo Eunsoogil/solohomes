@@ -281,3 +281,4 @@ CREATE TABLE test_ticket
 );
 
 select wr_viewcnt from test_write;
+
