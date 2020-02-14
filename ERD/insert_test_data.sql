@@ -34,18 +34,101 @@ SELECT * FROM MEMBER;
 INSERT INTO goods 
 	(g_uid, g_type, g_name, g_img, g_size, g_price)
 VALUES 
-	()
+	(101, 1, '미엘갤러리 쿠션침대K', 'bed1_1.jpg', '1560*2130*1088', 1120000),
+	(102, 1, '다나', 'bed2_1.jpg', '2400~2600*1251*720', 2500000),
+	(103, 1, '그라운드', 'bed3_1.jpg', '1110*2220*505(100)', 970000),
+	(104, 1, '어바니', 'bed4_1.jpg', '1260*2130*1088', 1670000),
+	(105, 1, '이카리아', 'bed5_1.jpg', '1808*2204*800(300)', 1830000),
+	(106, 1, '아르지안', 'bed6_1.jpg', '1808*2204*800(300)', 2580000),
+	(107, 1, '미엘갤러리', 'bed7_1.jpg', '1858*2155*1116', 2700000),
+	(108, 1, '어바니 ', 'bed8_1.jpg', '1690*2089*1120', 1350000),
+	(109, 1, '쿠오', 'bed9_1.jpg', '1545*2112*930(340)', 2800000),
+	(110, 1, '시엘', 'bed10_1.jpg', '1563*2112*890 ', 2800000)
 ;
 INSERT INTO goods_info 
-	(g_uid, in_color, in_img, in_inv)
+	(in_uid, g_uid, in_color, in_img, in_inv)
 VALUES
-	()
+	(1011, 101, 'CCLBG', 'bed1_1.jpg', 15),
+	(1012, 101, 'FIVGY', 'bed1_2.jpg', 20),
+	(1021, 102, 'NCCGU', 'bed2_1.jpg', 7),
+	(1031, 103, 'CCLBG', 'bed3_1.jpg', 25),
+	(1041, 104, 'LD', 'bed4_1.jpg', 10),
+	(1042, 104, 'GYM', 'bed4_2.jpg', 19),
+	(1051, 105, 'FIVGY', 'bed5_1.jpg', 30),
+	(1061, 106, 'GYM', 'bed6_1.jpg', 40),
+	(1062, 106, 'LD', 'bed6_2.jpg', 43),
+	(1071, 107, 'CCLBG', 'bed7_1.jpg', 33),
+	(1081, 108, 'NCCGU', 'bed8_1.jpg', 29),
+	(1091, 109, 'CCLBG', 'bed9_1.jpg', 14),
+	(1101, 110, 'GYM', 'bed10_1.jpg', 18)
 ;
 -- g_type 2 : 화장대
--- todo
-
+INSERT INTO goods 
+	(g_uid, g_type, g_name, g_img, g_size, g_price)
+VALUES 
+	(201, 2, '미엘갤러리 화장대 800폭', 'dressingTable1_1.jpg', '800*450*1086', 473000),
+	(202, 2, '다나 화장대', 'dressingTable2_1.jpg', '600*520*750', 219000),
+	(203, 2, '미엘 화장대', 'dressingTable3_1.jpg', '800*450*721', 262000),
+	(204, 2, '메이 라이트 화장대', 'dressingTable4_1.jpg', '800*521*745', 146000),
+	(205, 2, '쿠오 화장대 600폭', 'dressingTable5_1.jpg', '580*520*750(1160)', 328000),
+	(206, 2, '어바니 화장대(확장형)', 'dressingTable6_1.jpg', '988~1788*441.5*1100', 485000),
+	(207, 2, '쿠오 3단 서랍장 세트(H)', 'dressingTable7_1.jpg', '1002*522*1440', 500000),
+	(208, 2, '쿠오 3단 서랍장 세트(L)', 'dressingTable8_1.jpg', '1002*522*1440', 626000),
+	(209, 2, '어바니 멀티테스크', 'dressingTable9_1.jpg', '988~1788*441.5*746.5', 590000),
+	(210, 2, '공용화장대 화장대 일반형', 'dressingTable10_1.jpg', '580*520*750(1160)', 328000)
+;
+INSERT INTO goods_info 
+	(in_uid, g_uid, in_color, in_img, in_inv)
+VALUES
+	(2011, 201, 'CCLBG', 'dressingTable1_1.jpg', 50),
+	(2012, 201, 'FIVGY', 'dressingTable1_2.jpg', 60),
+	(2021, 202, 'GU', 'dressingTable2_1.jpg', 46),
+	(2022, 202, 'NCC', 'dressingTable2_2.jpg', 20),
+	(2031, 203, 'CCBGM', 'dressingTable3_1.jpg', 43),
+	(2032, 203, 'FIVGY', 'dressingTable3_2.jpg', 77),
+	(2041, 204, 'NCC', 'dressingTable4_1.jpg', 51),
+	(2051, 205, 'CCLBG', 'dressingTable5_1.jpg', 66),
+	(2061, 206, 'CGDIO', 'dressingTable6_1.jpg', 28),
+	(2062, 206, 'NCC', 'dressingTable6_2.jpg', 32),
+	(2071, 207, 'CCBGM', 'dressingTable7_1.jpg', 15),
+	(2081, 208, 'FIVIV', 'dressingTable8_1.jpg', 26),
+	(2091, 209, 'CCBGM', 'dressingTable9_1.jpg', 9),
+	(2092, 209, 'NCC', 'dressingTable9_2.jpg', 30),
+	(2101, 210, 'FIVBG', 'dressingTable10_1.jpg', 49),
+	(2102, 210, 'FIVIV', 'dressingTable10_2.jpg', 41)
+;
 -- g_type 3 : 서랍장
--- todo
+INSERT INTO goods 
+	(g_uid, g_type, g_name, g_img, g_size, g_price)
+VALUES 
+	(301, 3, '미엘 아일랜드장 600폭', 'drawer1_1.jpg', '590*450*934', 331000),
+	(302, 3, '미엘 5단 서랍장 600폭', 'drawer2_1.jpg', '590*450*1086', 249000),
+	(303, 3, '메이 4단 서랍장', 'drawer3_1.jpg', '800*521*1020', 349000),
+	(304, 3, '쿠시노 4단 서랍장', 'drawer4_1.jpg', '1025*537*1001.5', 371000),
+	(305, 3, '시엘 라이트 4단 서랍장', 'drawer5_1.jpg', '1002*541*1020', 469000),
+	(306, 3, '아르지안 4단 서랍장', 'drawer6_1.jpg', '1000*520*1026', 612000),
+	(307, 3, '아르지안 5단 서랍장', 'drawer7_1.jpg', ' 590*450*934', 509000),
+	(308, 3, '이카리아 1000폭 4단 서랍장 ', 'drawer8_1.jpg', '1000*520*1026', 326000),
+	(309, 3, '쿠오 4단 서랍장 1000폭', 'drawer9_1.jpg', '1002*522*1014', 399000),
+	(310, 3, '어바니 4단 서랍장 1000폭', 'drawer10_1.jpg', '1002*520*1020', 491000)
+;
+INSERT INTO goods_info 
+	(in_uid, g_uid, in_color, in_img, in_inv)
+VALUES
+	(3011, 301, 'CCLBG', 'drawer1_1.jpg', 61),
+	(3012, 301, 'FIVGY', 'drawer1_2.jpg', 44),
+	(3021, 302, 'CCLBG', 'drawer2_1.jpg', 53),
+	(3022, 302, 'FIVGY', 'drawer2_2.jpg', 64),
+	(3031, 303, 'CCBGM', 'drawer3_1.jpg', 21),
+	(3041, 304, 'NCC', 'drawer4_1.jpg', 30),
+	(3051, 305, 'CGDIO', 'drawer5_1.jpg', 17),
+	(3061, 306, 'CCLBG', 'drawer6_1.jpg', 80),
+	(3071, 307, 'NCC', 'drawer7_1.jpg', 62),
+	(3081, 308, 'CGDIO', 'drawer8_1.jpg', 11),
+	(3091, 309, 'FIVIV', 'drawer9_1.jpg', 50),
+	(3101, 310, 'CGYM', 'drawer10_1.jpg', 67),
+	(3102, 310, 'NCC', 'drawer10_2.jpg', 46)
+;
 
 -- g_type 4 : 소파
 INSERT INTO goods
