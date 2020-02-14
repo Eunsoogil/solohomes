@@ -12,6 +12,12 @@ $(function(){
 	    }
 	  });
 	
+	$(window).width(function() {
+		var winWidth = $(window).width();
+		if(winWidth > 600){
+			$(".mo_menu").removeClass("show");
+		}
+	})
 
 	// Get the modal
 	var modal = document.getElementById('myModal');
@@ -51,6 +57,7 @@ $(function(){
 	window.onclick = function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
+			$(".mo_menu").removeClass("show")
 		}
 	}
 });

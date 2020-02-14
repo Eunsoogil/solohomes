@@ -36,4 +36,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/common/menu")
+	public String menu() {
+		return "common/menu";
+	}
+	
+	@RequestMapping(value = "/common/footer")
+	public String footer() {
+		return "common/footer";
+	}
 }

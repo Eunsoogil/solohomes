@@ -6,7 +6,6 @@
    margin:0;
    padding:0;
    font-family:'Noto Sans KR', sans-serif;
-   color:#333;
 }
 
 li{
@@ -15,22 +14,55 @@ li{
 
 footer{
 	width:100%;
-	background: #eee;
-	padding:20px;
-	display: flex;
-	overflow:hidden;
+	background: #fafafa;
+	padding:10px;
 }
-
-.f_box1{
-	display: flex;
-	flex:2;
-	float:left;
-}
-.f_box2{
-	flex:1;
-	float:left;
+.footerbox{
+	width:100%;
+	text-align:center;
+	display:flex;
+	color:#666;
 }
 .footer1{
 	flex:1;
-	float:left;
+}
+.footer1 h4{
+	font-size:0.98em;
+}
+.footer1 li{
+	font-size:0.9em;
+}
+.footerbox h3:last-child{
+	border-left:1px solid #666;
+}
+
+@media screen and (min-width:500px) and (max-width:700px){
+.footerbox h3:last-child{
+	display:none;
+}
+
+}
+
+
+@media screen and (max-width:499px){
+footer{
+	display:block;
+	width:100%;
+	min-width:200px;
+	padding:10px;
+}
+
+.footerbox h3:last-child{
+	display:none;
+}
+
+.footer1 h3{
+	font-size:0.95em !important;
+}
+.footer1 h4{
+	font-size:0.88em;
+}
+.footer1 li{
+	font-size:0.8em;
+}
 }
