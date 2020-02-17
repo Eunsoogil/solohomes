@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+td.userColumnOfCheckBox, td.adminColumnOfCheckBox, th.userColumnOfCheckBox, th.adminColumnOfCheckBox {
+	display:none;
+}
+
+button#userDeleteOk, button#adminDeleteOk {
+	display:none;
+}
+
+button.prevPage, button.nextPage {
+	padding-left:9px;
+}
