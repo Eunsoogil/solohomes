@@ -1,32 +1,32 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
-*{
-   margin:0;
-   padding:0;
-   font-family:'Noto Sans KR', sans-serif;
-   color:#333;
-}
 
-a{
+header a{
    text-decoration:none;
    color:inherit;
    cursor: pointer;
 }
 
-li{
+header li, .mo_menu li, .menu li{
    list-style-type:none;
 }
 
 header{
+	margin:0;
+  	padding:0;
+  	font-family:'Noto Sans KR', sans-serif;
+   	color:#333;
 	width:100%;
-	padding:10px 0;
+	padding:5px 0;
 	position: fixed;
+	z-index: 99;
 }
 header > .container{
 	position:relative;
-	padding:0 10%;
+	padding:0 5%;
 	min-width:720px;
+	margin-bottom:0 !important;
 	display:flex;
 }
 header > .container > li{
@@ -34,9 +34,13 @@ header > .container > li{
 }
 header i{
 	color:#888;
+	padding:10px;
 }
 header i:hover{
-	color:#e60012;
+	color:#A91F24;
+}
+header img{
+	width:65px;
 }
 
 #brand{
@@ -47,7 +51,7 @@ header i:hover{
 	display:block;
 }
 #brand span{
-	color:#e60012;
+	color:#A91F24;
 	font-family: inherit;
 	font-weight:inherit;
 }
@@ -55,9 +59,10 @@ header i:hover{
 #login{
 	text-align: right;
 	display:block;
+	padding-top:7px;
 }
 #login:hover{
-	color:#e60012;
+	color:#A91F24;
 }
 
 .pc{
@@ -75,12 +80,13 @@ header i:hover{
 	height:290px;
 	top:50%;
 	margin-top:-160px;
+	z-index:99;
 }
 .modal-content i{
 	color:#888;
 }
 .modal-content i:hover{
-	color:#e60012;
+	color:#A91F24;
 }
 .modal-content ul{
 	flex:1;
@@ -96,7 +102,7 @@ header i:hover{
 	font-size:0.9em;
 }
 .modal-content li:hover{
-	color:#e60012;
+	color:#A91F24;
 	font-weight:500;
 }
 
@@ -127,7 +133,7 @@ header i:hover{
 }
 
 .bg_white{
-	background: rgba(255,255,255,0.5);
+	background: rgba(255,255,255,1);
 }
 
 .show{
@@ -149,7 +155,7 @@ header i:hover{
 	font-weight:500;
 }
 .mo_menu li:hover{
-	color:#e60012;
+	color:#A91F24;
 }
 
 .f_sub, .my_sub{
@@ -157,7 +163,6 @@ header i:hover{
 	background:#fafafa;
 	font-weight:300;
 }
-
 
 @media screen and (min-width:600px) and (max-width:900px){
 header > .container{

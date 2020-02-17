@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>solohomes</title>
+<title>HoloHomes</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,7 +14,7 @@
 	<header class="header">
 		<ul class="container">
 			<li><a class="pc" id="menuBtn"><i class="fas fa-bars"></i></a></li>
-			<li><a class="pc" id="brand" href="#">Holo<span>Homes</span></a></li>
+			<li><a class="pc" id="brand" href="main.do"><img src="../img/logo.png"></a></li>
 			<li class="mo_none"><a class="pc" id="login" href="#">로그인</a></li>
 		</ul>
 	</header>
