@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <jsp:include page="/common/menu" />
 <html lang="ko">
@@ -44,47 +46,34 @@
 	<div class="goto-here"></div>
 	
 	<!-- 시리즈 -->
-	<section class="ftco-section ftco-product">
+	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center mb-3 pb-3">
 				<div class="col-md-12 heading-section text-center ftco-animate">
 					<h1 class="big">Series</h1>
-					<h2 class="mb-4">Series</h2>
+					<h2>Series</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="product-slider owl-carousel ftco-animate">
-						<div class="item">
-							<div class="product">
-								<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-									<span class="status">30%</span> 
-								</a>
-								<div class="text pt-3 px-3">
-									<h3><a href="#">Young Woman Wearing Dress</a></h3>
-									<div class="d-flex">
-										<div class="pricing">
-											<p class="price">
-												<span class="mr-2 price-dc">$120.00</span>
-												<span class="price-sale">$80.00</span>
-											</p>
-										</div>
-										<div class="rating">
-											<p class="text-right">
-												<span class="ion-ios-star-outline"></span>
-												<span class="ion-ios-star-outline"></span>
-												<span class="ion-ios-star-outline"></span>
-												<span class="ion-ios-star-outline"></span>
-												<span class="ion-ios-star-outline"></span>
-											</p>
-										</div>
-									</div>
+			<div class="row d-flex">
+			<c:forEach var="dto" items="${seriese }" begin="0" end="3">
+				<div class="col-sm col-md-6 col-lg ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="${dto.sr_img }"></a>
+						<div class="text py-3 px-3">
+							<h3><a href="#">${dto.sr_subject }</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span>${dto.sr_regdate }</span>
+									</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</c:forEach>
 			</div>
+		</div>
 	</section>
 
 	<!-- 신상품 -->
@@ -98,40 +87,13 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm col-md-6 col-lg ftco-animate">
-					<div class="product">
-						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template"></a>
-						<div class="text py-3 px-3">
-							<h3><a href="#">Young Woman Wearing Dress</a></h3>
-							<div class="d-flex">
-								<div class="pricing">
-									<p class="price">
-										<span>$120.00</span>
-									</p>
-								</div>
-								<div class="rating">
-									<p class="text-right">
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-									</p>
-								</div>
-							</div>
-							<hr>
-							<p class="bottom-area d-flex">
-								<a href="#" class="add-to-cart"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></a> 
-								<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
-							</p>
-						</div>
-					</div>
-				</div>
+			<div class="row d-flex">
+	
 			</div>
 		</div>
 	</section>
 
+	<!-- 베스트상품 -->
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center mb-3 pb-3">
@@ -141,35 +103,23 @@
 				</div>
 			</div>
 			<div class="row d-flex">
+				<c:forEach var="dto" items="${best }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
-						<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template"></a>
+						<a href="#" class="img-prod"><img class="img-fluid" src="${dto.g_img }"></a>
 						<div class="text py-3 px-3">
-							<h3><a href="#">Young Woman Wearing Dress</a></h3>
+							<h3><a href="#">${dto.g_name }</a></h3>
 							<div class="d-flex">
 								<div class="pricing">
 									<p class="price">
-										<span>$120.00</span>
-									</p>
-								</div>
-								<div class="rating">
-									<p class="text-right">
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
-										<span class="ion-ios-star-outline"></span>
+										<span>${dto.g_price }원</span>
 									</p>
 								</div>
 							</div>
-							<hr>
-							<p class="bottom-area d-flex">
-								<a href="#" class="add-to-cart"><span>Add to cart<i class="ion-ios-add ml-1"></i></span></a> 
-								<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
-							</p>
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>

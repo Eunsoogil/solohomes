@@ -7,10 +7,9 @@ footer li{
 }
 
 footer{
-	argin:0;
-   padding:0;
-   font-family:'Noto Sans KR', sans-serif;
-	width:100%;
+	margin:0;
+   	padding:0;
+   	font-family:'Noto Sans KR', sans-serif;
 	background: #f8f9fa;
 	padding:10px;
 }
@@ -22,9 +21,12 @@ footer{
 }
 .footer1{
 	flex:1;
+	color:#aaa !important;
+	padding:0 !important;
 }
 .footer1 h4{
 	font-size:0.98em;
+	margin-bottom:0 !important;
 }
 .footer1 li{
 	font-size:0.9em;
@@ -49,11 +51,7 @@ footer{
 	padding:10px;
 }
 
-.footerbox h3:last-child{
-	display:none;
-}
-
-.footer1 h3{
+.footerbox h3{
 	font-size:0.95em !important;
 }
 .footer1 h4{
