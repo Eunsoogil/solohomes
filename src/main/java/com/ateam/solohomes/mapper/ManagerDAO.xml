@@ -3,7 +3,194 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ateam.solohomes.beans.ManagerDAO">
-
+<mapper namespace="com.ateam.solohomes.beans.manager.ManagerDAO">
+	<select id="selectAllUserByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+			FROM
+				member mb
+				LEFT OUTER JOIN 
+					(
+						SELECT
+							co.co_uid co_uid, co.mb_uid mb_uid, count(cr.re_uid) reportedNum
+						FROM
+							comment co
+						LEFT OUTER JOIN
+							co_report cr
+							ON co.co_uid = cr.co_uid
+						GROUP BY co.co_uid
+					) re 
+				ON mb.mb_uid = re.mb_uid
+			WHERE
+				mb.mb_level = 1
+			GROUP BY
+				mb.mb_uid
+			ORDER BY
+				mb.mb_uid
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>	
+	<select id="selectAllUserByRowReportedNum" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+			FROM
+				member mb
+				LEFT OUTER JOIN 
+					(
+						SELECT
+							co.co_uid co_uid, co.mb_uid mb_uid, count(cr.re_uid) reportedNum
+						FROM
+							comment co
+						LEFT OUTER JOIN
+							co_report cr
+							ON co.co_uid = cr.co_uid
+						GROUP BY co.co_uid
+					) re 
+				ON mb.mb_uid = re.mb_uid
+			WHERE
+				mb.mb_level = 1
+			GROUP BY
+				mb.mb_uid
+			ORDER BY
+				reportedNum DESC
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>
+	<select id="selectAllUserByRowRegdate" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+			FROM
+				member mb
+				LEFT OUTER JOIN 
+					(
+						SELECT
+							co.co_uid co_uid, co.mb_uid mb_uid, count(cr.re_uid) reportedNum
+						FROM
+							comment co
+						LEFT OUTER JOIN
+							co_report cr
+							ON co.co_uid = cr.co_uid
+						GROUP BY co.co_uid
+					) re 
+				ON mb.mb_uid = re.mb_uid
+			WHERE
+				mb.mb_level = 1
+			GROUP BY
+				mb.mb_uid
+			ORDER BY
+				mb.mb_regdate DESC
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>
+	<select id="selectAllUserByRowId" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+			FROM
+				member mb
+				LEFT OUTER JOIN 
+					(
+						SELECT
+							co.co_uid co_uid, co.mb_uid mb_uid, count(cr.re_uid) reportedNum
+						FROM
+							comment co
+						LEFT OUTER JOIN
+							co_report cr
+							ON co.co_uid = cr.co_uid
+						GROUP BY co.co_uid
+					) re 
+				ON mb.mb_uid = re.mb_uid
+			WHERE
+				mb.mb_level = 1
+			GROUP BY
+				mb.mb_uid
+			ORDER BY
+				mb.mb_id ASC
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>
+	<select id="selectAllUserByRowNN" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+			FROM
+				member mb
+				LEFT OUTER JOIN 
+					(
+						SELECT
+							co.co_uid co_uid, co.mb_uid mb_uid, count(cr.re_uid) reportedNum
+						FROM
+							comment co
+						LEFT OUTER JOIN
+							co_report cr
+							ON co.co_uid = cr.co_uid
+						GROUP BY co.co_uid
+					) re 
+				ON mb.mb_uid = re.mb_uid
+			WHERE
+				mb.mb_level = 1
+			GROUP BY
+				mb.mb_uid
+			ORDER BY
+				mb.mb_nn ASC
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>
+	<select id="selectAllAdminByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
+				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
+				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
+				mb.mb_regdate regdate, mb.mb_level level
+			FROM
+				member mb
+			WHERE
+				mb.mb_level = 2
+			ORDER BY
+				mb.mb_uid
+			LIMIT
+				#{startRow}, #{listPage}
+			;
+		]]>
+	</select>
+	
+	<delete id="deleteMembersByUid" flushCache="true">
+		DELETE FROM
+			member
+		WHERE
+			mb_uid IN
+		<foreach item="uid" index="index" collection="uidList" open="(" separator="," close=")">
+			#{uid}
+		</foreach>
+	</delete>
 </mapper>    
     

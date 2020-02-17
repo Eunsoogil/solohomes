@@ -144,13 +144,12 @@ ALTER TABLE cart
     ADD CONSTRAINT FK_cart_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
         REFERENCES goods_info (in_uid) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
 -- member Table Create SQL
 CREATE TABLE payment
 (
     `py_uid`      INT             NOT NULL    AUTO_INCREMENT COMMENT '구매uid', 
-    `mb_uid`      INT             NOT NULL    COMMENT '맴버uid', 
-    `in_uid`      INT             NOT NULL    COMMENT '가구상세uid', 
+    `mb_uid`      INT             NULL    COMMENT '맴버uid' DEFAULT 0, 
+    `in_uid`      INT             NULL    COMMENT '가구상세uid' DEFAULT 0, 
     `py_amount`   INT             NOT NULL    COMMENT '구매수량', 
     `py_confirm`  INT             NOT NULL    DEFAULT 0 COMMENT '구매확정', 
     `py_regdate`  DATETIME        NOT NULL    DEFAULT now() COMMENT '구매일', 
@@ -164,12 +163,11 @@ ALTER TABLE payment COMMENT '구매목록';
 
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
-        REFERENCES member (mb_uid) ON DELETE NO ACTION ON UPDATE NO ACTION;
+        REFERENCES member (mb_uid) ON DELETE SET NULL ON UPDATE CASCADE;
 
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
-        REFERENCES goods_info (in_uid) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+        REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- member Table Create SQL
 CREATE TABLE co_report
@@ -232,3 +230,15 @@ ALTER TABLE request
         REFERENCES member (mb_uid) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- test cord
+
+-- 제약 조건 수정 2020-02-16 NO ACTION --> SET NULL;
+ALTER TABLE payment DROP FOREIGN KEY FK_payment_mb_uid_member_mb_uid;
+ALTER TABLE payment DROP FOREIGN KEY FK_payment_in_uid_goods_info_in_uid;
+
+ALTER TABLE payment
+    ADD CONSTRAINT FK_payment_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
+        REFERENCES member (mb_uid) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE payment
+    ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
+        REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;

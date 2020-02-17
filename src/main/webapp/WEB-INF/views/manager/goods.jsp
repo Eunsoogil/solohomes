@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SoloHomes Manager</title>
+<title>Insert title here</title>
 </head>
 <body>
 
