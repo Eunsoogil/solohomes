@@ -18,6 +18,7 @@
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/admin/**" location="/admin/" />
 
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -56,7 +57,7 @@
 	<!-- MyBatis 설정 -->
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="mapperLocations" value="classpath:com/ateam/solohomes/mapper/*.xml"/>
+		<beans:property name="mapperLocations" value="classpath*:com/ateam/solohomes/mapper/*.xml"/>
 	</beans:bean>
 	
 	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
