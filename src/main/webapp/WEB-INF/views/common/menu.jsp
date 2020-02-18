@@ -49,6 +49,7 @@
 			<li><a href="#">회원정보수정</a></li>
 		</ul>
 		<li><a href="#">로그인</a></li>
+		<li><a href="#">검색</a></li>
 	</ul>
 
 	<div class="menu" id="myModal">

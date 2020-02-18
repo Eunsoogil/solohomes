@@ -156,12 +156,15 @@ header img{
 }
 .mo_menu{
 	display:none;
-	position:absolute;
+	position:fixed;
 	top:49px;
 	left:0;
 	width:100%;
 	background: white;
 	text-align: center;
+	z-index:99;
+	padding:0;
+	color:#808080 !important;
 }
 .mo_menu li{
 	border-top:1px solid #eee;

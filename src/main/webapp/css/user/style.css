@@ -470,7 +470,6 @@ pre {
       max-width: 1140px; } }
 
 .container-fluid {
-  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -5100,7 +5099,10 @@ button.bg-dark:focus {
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
-  display: flex !important; }
+  display: flex !important; 
+  max-width: 1500px;
+  margin:0 auto;
+  }
 
 .d-inline-flex {
   display: -webkit-inline-box !important;
@@ -7564,7 +7566,7 @@ h1, h2, h3, h4, h5,
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 8em;
+  bottom: 18em;
   z-index: 99; }
 
 .mouse-icon {
@@ -9065,3 +9067,8 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+/*
+@media screen and (max-width:599px){
+	.mouse{bottom:13em;}
+}    
+*/
