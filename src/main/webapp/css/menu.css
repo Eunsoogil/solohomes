@@ -1,86 +1,107 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
-*{
-   margin:0;
-   padding:0;
-   font-family:'Noto Sans KR', sans-serif;
-   color:#333;
-}
 
-a{
+header a{
    text-decoration:none;
    color:inherit;
    cursor: pointer;
 }
 
-li{
+.mo_menu li, .menu li{
    list-style-type:none;
 }
 
 header{
+	margin:0;
+  	padding:0;
+  	font-family:'Noto Sans KR', sans-serif;
+   	color:#333;
 	width:100%;
-	padding:10px 0;
+	padding:5px 0;
 	position: fixed;
+	z-index: 99;
 }
 header > .container{
 	position:relative;
-	padding:0 10%;
+	padding:0 5%;
 	min-width:720px;
+	margin-bottom:0 !important;
 	display:flex;
 }
-header > .container > li{
-	flex:1;
-}
+
 header i{
 	color:#888;
+	padding:10px;
 }
 header i:hover{
-	color:#e60012;
+	color:#A91F24;
 }
-
-#brand{
-	font-family:'Montserrat' !important;
-	font-size:1.5em;
-	font-weight:100;
-	text-align: center;
-	display:block;
-}
-#brand span{
-	color:#e60012;
-	font-family: inherit;
-	font-weight:inherit;
-}
-
-#login{
-	text-align: right;
-	display:block;
-}
-#login:hover{
-	color:#e60012;
+header img{
+	width:65px;
 }
 
 .pc{
-	width:100%;
+	flex:1;
+}
+.pc form{
+	border-bottom:1px solid #A91F24;
+	position:relative;
+}
+.pc input{
+	border:none;
+	background: none;
+	width:90%;
+}
+.pc input:focus {outline:none;}
+
+.searchBtn{
+	border:none;
+	background:none;
+	position: absolute;
+	right:0;
+	cursor: pointer;
+}
+#login{
+	text-align: right;
+	display:block;
+	padding-top:5px;
+	font-weight:bold;
+}
+#login:hover{
+	color:#A91F24;
 }
 
+
 .modal-content{
-	display: flex;
+	display: flex !important;
 	background: white;
 	margin:0 auto;
 	position:relative;
 	padding:25px;
 	text-align: center;
-	width:500px;
+	width:500px !important;
 	height:290px;
 	top:50%;
 	margin-top:-160px;
+	z-index:99;
+}
+.modal-content a{
+	color:#888;
+}
+.modal-content a:hover{
+	color:#A91F24;
+}
+.modal-content ul{
+	padding-left:0;
+	line-height: 1.6;
 }
 .modal-content i{
 	color:#888;
+	font-size:0.8em;
 }
 .modal-content i:hover{
-	color:#e60012;
+	color:#A91F24;
 }
 .modal-content ul{
 	flex:1;
@@ -96,13 +117,13 @@ header i:hover{
 	font-size:0.9em;
 }
 .modal-content li:hover{
-	color:#e60012;
+	color:#A91F24;
 	font-weight:500;
 }
 
 .close{
 	position:absolute;
-	top:5px;
+	top:3px;
 	right:7px;
 }
 
@@ -127,7 +148,7 @@ header i:hover{
 }
 
 .bg_white{
-	background: rgba(255,255,255,0.5);
+	background: rgba(255,255,255,1);
 }
 
 .show{
@@ -149,7 +170,7 @@ header i:hover{
 	font-weight:500;
 }
 .mo_menu li:hover{
-	color:#e60012;
+	color:#A91F24;
 }
 
 .f_sub, .my_sub{
@@ -157,7 +178,6 @@ header i:hover{
 	background:#fafafa;
 	font-weight:300;
 }
-
 
 @media screen and (min-width:600px) and (max-width:900px){
 header > .container{
@@ -182,6 +202,12 @@ header > .container{
 #menuBtn{
 	position:absolute;
 	top:3px; left:5px;
+}
+#brand{
+	margin:0 auto;
+	width:65px;
+	display:block;
+	text-align: center;
 }
 .mo_none{
 	display:none !important;

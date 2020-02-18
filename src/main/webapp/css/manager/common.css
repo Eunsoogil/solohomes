@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+td.ColumnOfCheckBox, td.ColumnOfCheckBox {
+	display:none;
+}
+
+button[id*="DeleteOk"] {
+	display:none;
+}
+
+button.prevPage, button.nextPage {
+	padding-left:9px;
+}

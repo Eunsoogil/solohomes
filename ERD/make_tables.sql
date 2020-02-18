@@ -1,4 +1,19 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+-- member Table Create SQL
+
+/* Drop Tables */
+DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS payment;
+DROP TABLE IF EXISTS request;
+DROP TABLE IF EXISTS series_goods;
+DROP TABLE IF EXISTS series;
+DROP TABLE IF EXISTS g_like;
+DROP TABLE IF EXISTS co_report;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS goods_info;
+DROP TABLE IF EXISTS goods;
+DROP TABLE IF EXISTS member;
+
 
 -- member Table Create SQL
 CREATE TABLE member
@@ -41,7 +56,9 @@ CREATE TABLE goods
     `g_img`      VARCHAR(45)    NOT NULL    COMMENT '대표이미지', 
     `g_size`     VARCHAR(45)    NULL        COMMENT '가구크기', 
     `g_price`    INT            NOT NULL    COMMENT '가구가격', 
+    `g_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '가구등록일', 
     `g_likecnt`  INT            NOT NULL    DEFAULT 0 COMMENT '좋아요개수', 
+    `g_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '등록일', 
     PRIMARY KEY (g_uid)
 );
 
@@ -93,7 +110,7 @@ ALTER TABLE comment
 CREATE TABLE series
 (
     `sr_uid`      INT            NOT NULL    AUTO_INCREMENT COMMENT '시리즈uid', 
-    `sr_subject`  INT            NOT NULL    COMMENT '시리즈제목', 
+    `sr_subject`  VARCHAR(45)    NOT NULL    COMMENT '시리즈제목', 
     `sr_img`      VARCHAR(45)    NOT NULL    COMMENT '시리즈이미지', 
     `sr_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '시리즈등록일', 
     PRIMARY KEY (sr_uid)
