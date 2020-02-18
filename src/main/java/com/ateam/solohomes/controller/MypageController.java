@@ -15,7 +15,7 @@ import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.AjaxPurchaseList;
 import com.ateam.solohomes.beans.MemberDTO;
 import com.ateam.solohomes.beans.MypageDAO;
-import com.ateam.solohomes.beans.PaymentDTO;
+import com.ateam.solohomes.beans.PurchaseDTO;
 import com.ateam.solohomes.commnad.MypageMemberCheckCommand;
 import com.ateam.solohomes.commnad.MypageMemberInfoCommand;
 import com.ateam.solohomes.commnad.MypageMemberUpdateCommand;
@@ -46,7 +46,7 @@ public class MypageController {
 	public AjaxPurchaseList memberPurchaseList(@PathVariable("mb_uid") int mb_uid, @PathVariable("writePages") int writePages, @PathVariable("page") int page){
 	
 		AjaxPurchaseList result = new AjaxPurchaseList();
-		ArrayList<PaymentDTO> list = null;
+		ArrayList<PurchaseDTO> list = null;
 		
 		// 페이징처리 결과를 리스트로 
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);

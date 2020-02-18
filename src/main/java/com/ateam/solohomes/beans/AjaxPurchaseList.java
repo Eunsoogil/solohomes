@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AjaxPurchaseList {
 	int count; // 데이터 개수
 	String status; // 처리 결과
-	ArrayList<PaymentDTO> list; // 데이터
+	ArrayList<PurchaseDTO> list; // 데이터
 	
 	
 	public AjaxPurchaseList() {
@@ -13,7 +13,7 @@ public class AjaxPurchaseList {
 	}
 
 
-	public AjaxPurchaseList(int count, String status, ArrayList<PaymentDTO> list) {
+	public AjaxPurchaseList(int count, String status, ArrayList<PurchaseDTO> list) {
 		super();
 		this.count = count;
 		this.status = status;
@@ -41,12 +41,12 @@ public class AjaxPurchaseList {
 	}
 
 
-	public ArrayList<PaymentDTO> getList() {
+	public ArrayList<PurchaseDTO> getList() {
 		return list;
 	}
 
 
-	public void setList(ArrayList<PaymentDTO> list) {
+	public void setList(ArrayList<PurchaseDTO> list) {
 		this.list = list;
 	}
 	
