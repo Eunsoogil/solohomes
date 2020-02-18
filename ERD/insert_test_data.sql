@@ -403,9 +403,7 @@ VALUES
 INSERT INTO series
 	(sr_subject, sr_img)
 VALUES
-	('비비', 's1.jpg'),
-	('어마니', 's2.jpg'),
-	('이타카네오', 's3.jpg')
+	()
 ;
 
 -- SERIES_GOODS TABLE
