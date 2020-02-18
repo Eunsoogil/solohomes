@@ -88,7 +88,23 @@
 		</div>
 		<div class="container-fluid">
 			<div class="row d-flex">
-	
+				<c:forEach var="dto" items="${new }" begin="0" end="3">
+				<div class="col-sm col-md-6 col-lg ftco-animate">
+					<div class="product">
+						<a href="#" class="img-prod"><img class="img-fluid" src="${dto.g_img }"></a>
+						<div class="text py-3 px-3">
+							<h3><a href="#">${dto.g_name }</a></h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span>${dto.g_price }원</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
