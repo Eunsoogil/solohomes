@@ -156,12 +156,14 @@ header img{
 }
 .mo_menu{
 	display:none;
-	position:absolute;
+	position:fixed;
 	top:49px;
 	left:0;
 	width:100%;
 	background: white;
 	text-align: center;
+	z-index:99;
+	padding:0;
 }
 .mo_menu li{
 	border-top:1px solid #eee;
@@ -170,9 +172,16 @@ header img{
 	font-weight:500;
 }
 .mo_menu li:hover{
-	color:#A91F24;
+	color:#A91F24 !important;
 }
 
+.mo_menu a{
+	color:#808080 !important;
+	cursor: pointer;
+}
+.mo_menu a:hover{
+	color:#A91F24;
+}
 .f_sub, .my_sub{
 	display:none;
 	background:#fafafa;
@@ -205,7 +214,7 @@ header > .container{
 }
 #brand{
 	margin:0 auto;
-	width:65px;
+	width:100%;
 	display:block;
 	text-align: center;
 }

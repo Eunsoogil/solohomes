@@ -12,7 +12,7 @@ public class ListCommand implements Command {
 		// MyBatis 사용
 		ListDAO dao = C.sqlSession.getMapper(ListDAO.class);
 		model.addAttribute("seriese", dao.selectSeries());
-		model.addAttribute("new", dao.selectNew());
+		model.addAttribute("newProduct", dao.selectNew());
 		model.addAttribute("best", dao.selectBest());
 	}
 
