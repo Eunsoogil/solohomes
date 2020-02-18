@@ -43,9 +43,6 @@ public class MainController {
 		command = new ListCommand();
 		command.execute(model);
 		return "user/main";
-<<<<<<< HEAD
-	}	
-=======
 	}
 	@RequestMapping("/search.do")
 	public String search(Model model) {
@@ -112,5 +109,4 @@ public class MainController {
 	public String detail(Model model) {
 		return "user/search/detail";
 	}
->>>>>>> branch 'master' of https://github.com/Eunsoogil/solohomes.git
 }
