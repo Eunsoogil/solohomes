@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +9,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="../css/menu.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+function sendKeyword(){
+	var userKeyword = document.getElementById("userKeyword").value;
+	if(userKeyword == ""){
+		hide();
+		return;
+	}
+	var params = "userKeyword=" + userKeyword;
+	$.ajax({
+		url : "${pageContext.request.contextPath}/searchAJAX/searchOk.ajax?" + params,		
+		type : "GET",
+		cache : false,
+		success : function(data, status) {
+			if(status == "success"){
+				displaySuggest(data);
+			}
+		}
+	});
+}
 
+function displaySuggest(data){
+	var resultText = data;
+	var resultArray = resultText.split("|");
+	var count = parseInt(resultArray[0]);
+	var keywordList = null;
+	var start = document.getElementById("userKeyword").value;
+	if(count > 0){
+		keywordList = resultArray[1].split(",");
+		var html = "";
+		for (var i = 0; i < keywordList.length; i+=2) {
+			if(keywordList[i] == ""){
+				break;
+			}
+			if(1 <= parseInt(keywordList[i+1]) && parseInt(keywordList[i+1]) <= 10){
+				html += "<a style='text-decoration: none' href='category.do?g_uid=" +
+				keywordList[i+1] + "'>" +
+				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
+				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
+				"/카테고리" + "</b></span>" + "</a><br>";				
+			} else {
+				html += "<a style='text-decoration: none' href='detail.do?g_uid=" +
+				keywordList[i+1] + "'>" +
+				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
+				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
+				"</b></span>" + "</a><br>";	
+			}
+		}
+		var suggestListDiv = document.getElementById("suggestListDiv");
+		suggestListDiv.innerHTML = html;
+		show();
+	} else {
+		hide();
+	}
+}
+
+
+function select(selectKeyword){
+	document.myFrom.userKeyword.value = selectKeyword;
+	hide();
+}
+
+function show(){
+	var suggetDiv = document.getElementById("suggestDiv");
+	suggestDiv.style.display = "block";
+}
+
+function hide(){
+	var suggetDiv = document.getElementById("suggestDiv");
+	suggestDiv.style.display = "none";
+}
+	
+</script>
 </head>
 <body>
 	<header class="header">
@@ -18,9 +91,12 @@
 				<a id="brand" href="main.do"><img src="../img/logo.png"></a>
 			</div>
 			<div class="pc mo_none">
-				<form>
-					<input type="text" class="searchTxt">
+				<form action="searchOk.do" name="myForm" method="POST" autocomplete="off">
+					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();" autocomplete="off"/>
 					<button type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
+					<div id="suggestDiv" class="suggest">
+						<div id="suggestListDiv"></div>
+					</div>
 				</form>
 			</div>
 			<div class="pc mo_none"><a id="login" href="#">로그인</a></div>
