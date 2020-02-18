@@ -16,5 +16,6 @@ public interface MypageDAO {
 	
 	public int updateMemberInfo(@Param("dto") MemberDTO dto);
 	
+	public ArrayList<PaymentDTO> selectPurchaseListByUid(@Param("mb_uid") int mb_uid, @Param("fromRow") int fromRow, @Param("writePages")int writePages);
 	
 }
