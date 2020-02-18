@@ -25,7 +25,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-	<link href="${pageContext.request.contextPath}/css/manager/member.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/manager/common.css" rel="stylesheet">
 	<title>Member Management</title>
 </head>
 	<!-- jQuery -->
@@ -121,7 +121,7 @@
 	                                <table class="table" id="userTable">
 	                                    <thead>
 	                                        <tr>
-	                                            <th class='userColumnOfCheckBox'>선택</th>
+	                                            <th class='user ColumnOfCheckBox'>선택</th>
 	                                            <th>아이디</th>
 	                                            <th>닉네임</th>
 	                                            <th>이메일</th>
@@ -156,7 +156,7 @@
 	                                <table class="table" id="adminTable">
 	                                    <thead>
 	                                        <tr>
-	                                            <th class='adminColumnOfCheckBox'>선택</th>
+	                                            <th class='admin ColumnOfCheckBox'>선택</th>
 	                                            <th>아이디</th>
 	                                            <th>닉네임</th>
 	                                            <th>이메일</th>

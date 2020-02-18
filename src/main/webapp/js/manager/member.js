@@ -9,8 +9,8 @@ $(document).ready(function(){
 	
 	// checkbox toggle
 	$("button#userCheckBoxToggle").click(function(){
-		$("td.userColumnOfCheckBox").toggle();
-		$("th.userColumnOfCheckBox").toggle();
+		$("td.user.ColumnOfCheckBox").toggle();
+		$("th.user.ColumnOfCheckBox").toggle();
 		$("button#userDeleteOk").toggle();
 		
 		if ($(this).html() == "선택탈퇴") {
@@ -20,8 +20,8 @@ $(document).ready(function(){
 		}
 	});
 	$("button#adminCheckBoxToggle").click(function(){
-		$("td.adminColumnOfCheckBox").toggle();
-		$("th.adminColumnOfCheckBox").toggle();
+		$("td.admin.ColumnOfCheckBox").toggle();
+		$("th.admin.ColumnOfCheckBox").toggle();
 		$("button#adminDeleteOk").toggle();
 		
 		if ($(this).html() == "선택탈퇴") {
@@ -99,7 +99,7 @@ function updateUserTable(jsonObj) {
 		var items = jsonObj.list;
 		for (i = 0; i < count; i ++) {
 			result += "<tr>\n";
-			result += "<td class='userColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
+			result += "<td class='user ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
 			result += "<td>" + items[i].id + "</td>\n";
 			result += "<td>" + items[i].nn + "</td>\n";
 			result += "<td>" + items[i].email + "</td>\n";
@@ -130,7 +130,7 @@ function updateAdminTable(jsonObj) {
 		var items = jsonObj.list;
 		for (i = 0; i < count; i ++) {
 			result += "<tr>\n";
-			result += "<td class='adminColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
+			result += "<td class='admin ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
 			result += "<td>" + items[i].id + "</td>\n";
 			result += "<td>" + items[i].nn + "</td>\n";
 			result += "<td>" + items[i].email + "</td>\n";
@@ -145,7 +145,7 @@ function updateAdminTable(jsonObj) {
 		$("table#adminTable tbody").html(result);
 		return true;
 	} else {
-		alert("마지막 페이지 입니다.");
+		alert("내용이 없습니다.");
 		return false;
 	}
 	return false;
@@ -193,5 +193,3 @@ function chkDelete(type) {
 		}
 	}
 }
-
-
