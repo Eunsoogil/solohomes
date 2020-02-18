@@ -35,5 +35,5 @@ public class MainController {
 		command = new ListCommand();
 		command.execute(model);
 		return "user/main";
-	}
+	}	
 }
