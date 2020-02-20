@@ -2,6 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:choose>
+<c:when test="${empty dto }">
+	<script>
+		alert("해당 상품은 품절처리되었거나 삭제된 상품입니다.");
+		history.back();
+	</script>
+</c:when>
+<c:otherwise>
+
 <!DOCTYPE html>
 <jsp:include page="/common/menu"/>
 <html lang="ko">
@@ -90,3 +99,6 @@
 </body>
 </html>
 <jsp:include page="/common/footer" />
+
+</c:otherwise>
+</c:choose>
