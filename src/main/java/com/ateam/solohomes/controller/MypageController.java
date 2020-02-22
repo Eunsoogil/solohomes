@@ -35,38 +35,7 @@ public class MypageController {
 		C.sqlSession = sqlSession;
 	}
 	
-		
-	@RequestMapping("/index.do")
-	public String home(Model model){
-		return "user/index";
-	}
-
 	
-	@RequestMapping("/memberPurchaseList/{mb_uid}/{writePages}/{page}")
-	public AjaxPurchaseList memberPurchaseList(@PathVariable("mb_uid") int mb_uid, @PathVariable("writePages") int writePages, @PathVariable("page") int page){
-	
-		AjaxPurchaseList result = new AjaxPurchaseList();
-		ArrayList<PurchaseDTO> list = null;
-		
-		// 페이징처리 결과를 리스트로 
-		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
-		list = dao.selectPurchaseListByUid(mb_uid, (page - 1) * writePages, writePages);
-			
-		result.setList(list);
-	
-		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
-		if(list != null && list.size() > 0){ 
-			result.setStatus("OK");
-			result.setCount(list.size());
-		}else {
-			result.setStatus("FAIL");
-		}
-	
-		return result;
-	}
-	
-
-		
 	@RequestMapping("/memberCheck.do/{mb_uid}")
 	public String memberCheck(@PathVariable("mb_uid") int mb_uid, Model model){
 		model.addAttribute("mb_uid", mb_uid);

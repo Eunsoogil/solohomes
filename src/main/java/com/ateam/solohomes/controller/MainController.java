@@ -109,4 +109,9 @@ public class MainController {
 	public String detail(Model model) {
 		return "user/search/detail";
 	}
+	
+	@RequestMapping("/purchaselist.do")
+	public String purchaseList(Model model) {
+		return "user/mypage/purchaselist";
+	}
 }
