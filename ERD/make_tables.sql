@@ -58,7 +58,6 @@ CREATE TABLE goods
     `g_price`    INT            NOT NULL    COMMENT '가구가격', 
     `g_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '가구등록일', 
     `g_likecnt`  INT            NOT NULL    DEFAULT 0 COMMENT '좋아요개수', 
-    `g_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '등록일', 
     PRIMARY KEY (g_uid)
 );
 

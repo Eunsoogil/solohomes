@@ -91,8 +91,8 @@ function hide(){
 				<a id="brand" href="main.do"><img src="../img/logo.png"></a>
 			</div>
 			<div class="pc mo_none">
-				<form action="searchOk.do" name="myForm" method="POST">
-					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();"/>
+				<form action="searchOk.do" name="myForm" method="POST" autocomplete="off">
+					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();" autocomplete="off"/>
 					<button type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
 					<div id="suggestDiv" class="suggest">
 						<div id="suggestListDiv"></div>

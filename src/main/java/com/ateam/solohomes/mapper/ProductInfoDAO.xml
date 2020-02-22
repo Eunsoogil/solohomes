@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ateam.solohomes.user.main.ProductInfoDTO">
+	<select id="selectByUid" resultType="com.ateam.solohomes.user.main.ProductInfoDTO">
+		SELECT * FROM goods_info
+		WHERE g_uid = #{g_uid} 
+	</select>
+	
+	<insert id="likeInsert" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
+		INSERT INTO g_like
+			(gl_uid, mb_uid, g_uid)
+		VALUES
+			(#{gl_uid}, #{mb_uid}, #{g_uid});
+	</insert>
+	
+	<delete id="likeDelete" flushCache="true">
+		DELETE FROM g_like WHERE gl_uid = #{gl_uid}
+	</delete>
+	
+	<insert id="cartInsert" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
+		INSERT INTO g_like
+			(cr_uid, mb_uid, in_uid, cr_amount)
+		VALUES
+			(#{cr_uid}, #{mb_uid}, #{in_uid}, #{cr_amount});
+	</insert>
+</mapper>
