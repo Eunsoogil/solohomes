@@ -17,7 +17,15 @@ public interface ManagerDAO {
 	public ArrayList<MemberRenumDTO> selectAllUserByRowNN(@Param("startRow") int startRow, @Param("listPage") int listPage);
 	// select all admins
 	public ArrayList<MemberRenumDTO> selectAllAdminByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
-	
 	// delete cehecked members
 	public int deleteMembersByUid(@Param("uidList") int[] list);
+	// select all requests
+	public ArrayList<RequestDTO> selectAllRequestByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
+	// select all no response requests 
+	public ArrayList<RequestDTO> selectAllRequestNoResponseByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
+	// select request by uid
+	public ArrayList<RequestDTO> selectRequestByUid(@Param("uid") int uid);
+	// update response first
+	public int updateRequestByUid(@Param("uid") int uid, @Param("response") String response);
+	
 }

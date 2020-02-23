@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
 import com.ateam.solohomes.beans.manager.AjaxMemberList;
+import com.ateam.solohomes.beans.manager.AjaxRequestList;
 import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
+import com.ateam.solohomes.beans.manager.RequestDTO;
 
 @RestController
 @RequestMapping("/managerAjax")
@@ -87,6 +89,80 @@ public class ManagerRestController {
 			result.setStatus("SUCCESS");
 		} else {
 			result.setCount(cnt);
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/request.ajax/{sortType}/{listPages}/{page}")
+	public AjaxRequestList requestList(@PathVariable("sortType") String sortType, @PathVariable("listPages") int listPages, @PathVariable("page") int page) {
+		AjaxRequestList result = new AjaxRequestList();
+		ArrayList<RequestDTO> list = null;
+		int s_type = Integer.parseInt(sortType);
+		String sortColumn = "";
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		switch(s_type) {
+		case 0: 
+			sortColumn = "regdate DESC";
+			list = dao.selectAllRequestByRow((page - 1) * listPages, listPages);
+			break;
+		case 1: 
+			sortColumn = "no response";
+			list = dao.selectAllRequestNoResponseByRow((page - 1) * listPages, listPages);
+			break;
+		default: 
+		}
+		result.setList(list);
+		result.setSortColumn(sortColumn);
+		
+		if (list != null && list.size() > 0) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("request.ajax/{uid}")
+	public AjaxRequestList selectRequest(@PathVariable("uid") String uid) {
+		AjaxRequestList result = new AjaxRequestList();
+		ArrayList<RequestDTO> list = null;
+		
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		int intUid = Integer.parseInt(uid);
+		list = dao.selectRequestByUid(intUid);
+		
+		result.setList(list);
+		
+		if (list != null && list.size() == 1) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/responseWriteOk.do", method = RequestMethod.POST)
+	public AjaxManagerQryResult writeResponse(int uid, String response) {
+		AjaxManagerQryResult result = new AjaxManagerQryResult();
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		int cnt = 0;
+		cnt = dao.updateRequestByUid(uid, response);
+		result.setCount(cnt);
+		if (cnt != 1) {
+			result.setStatus("SUCCESS");
+		} else {
 			result.setStatus("FAIL");
 		}
 		

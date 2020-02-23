@@ -33,7 +33,6 @@
 				mb.mb_uid
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>	
 	<select id="selectAllUserByRowReportedNum" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
@@ -65,7 +64,6 @@
 				reportedNum DESC
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>
 	<select id="selectAllUserByRowRegdate" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
@@ -97,7 +95,6 @@
 				mb.mb_regdate DESC
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>
 	<select id="selectAllUserByRowId" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
@@ -129,7 +126,6 @@
 				mb.mb_id ASC
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>
 	<select id="selectAllUserByRowNN" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
@@ -161,7 +157,6 @@
 				mb.mb_nn ASC
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>
 	<select id="selectAllAdminByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
@@ -179,7 +174,6 @@
 				mb.mb_uid
 			LIMIT
 				#{startRow}, #{listPage}
-			;
 		]]>
 	</select>
 	
@@ -192,5 +186,59 @@
 			#{uid}
 		</foreach>
 	</delete>
-</mapper>    
+	
+	<select id="selectAllRequestByRow" resultType="com.ateam.solohomes.beans.manager.RequestDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_id id, rq.rq_uid uid,
+				rq.rq_type 'type', rq.rq_subject subject, rq.rq_content content,  
+				rq.rq_response response, rq.rq_regdate regdate
+			FROM member mb 
+				JOIN request rq 
+				ON rq.mb_uid = mb.mb_uid
+			ORDER BY 
+				rq.rq_regdate DESC
+			LIMIT 
+				#{startRow}, #{listPage}
+		]]>
+	</select>
+	<select id="selectAllRequestNoResponseByRow" resultType="com.ateam.solohomes.beans.manager.RequestDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_id id, rq.rq_uid uid,
+				rq.rq_type 'type', rq.rq_subject subject, rq.rq_content content,  
+				rq.rq_response response, rq.rq_regdate regdate
+			FROM member mb 
+				JOIN request rq 
+				ON rq.mb_uid = mb.mb_uid
+			WHERE 
+				rq.rq_response IS NULL
+			ORDER BY 
+				rq.rq_regdate ASC
+			LIMIT 
+				#{startRow}, #{listPage}
+		]]>
+	</select>
+	<select id="selectRequestByUid" resultType="com.ateam.solohomes.beans.manager.RequestDTO">
+		<![CDATA[
+			SELECT 
+				mb.mb_id id, rq.rq_uid uid,
+				rq.rq_type 'type', rq.rq_subject subject, rq.rq_content content,  
+				rq.rq_response response, rq.rq_regdate regdate
+			FROM member mb 
+				JOIN request rq 
+				ON rq.mb_uid = mb.mb_uid
+			WHERE 
+				rq.rq_uid = #{uid}
+		]]>
+	</select>
+	<update id="updateRequestByUid" flushCache="true">
+		UPDATE
+			request 
+		SET 
+			rq_response = #{response}
+		WHERE
+			rq_uid = #{uid}
+	</update>
+</mapper>       
     

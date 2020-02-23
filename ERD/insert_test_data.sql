@@ -485,7 +485,9 @@ VALUES
 INSERT INTO request
 	(mb_uid, rq_type, rq_subject, rq_content, rq_response)
 VALUES
-	(2, 1, '배송문의', '보통 배송에는 얼마나 걸리나요?', null)
+	(2, '1', '배송문의', '보통 배송에는 얼마나 걸리나요?', null)
+	, (4, '1', '배송문의입니당', '보통 배송에는 얼마나 걸리나요?', null)
+	, (3, '1', '배송문의', '어제그제 주문했는데 가구가 안와요 ㅠㅠ', '금방가요')
 ;
 
 -- test cord
