@@ -17,6 +17,7 @@ import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.search.SearchDAO;
 import com.ateam.solohomes.beans.search.SearchDTO;
 import com.ateam.solohomes.commnad.Command;
+import com.ateam.solohomes.commnad.InfoViewCommand;
 import com.ateam.solohomes.commnad.ListCommand;
 
 @Controller
@@ -108,5 +109,12 @@ public class MainController {
 	@RequestMapping("/detail.do")
 	public String detail(Model model) {
 		return "user/search/detail";
+	}
+	
+	@RequestMapping("/productInfo.do")
+	public String productInfo(int g_uid, Model model) {
+		model.addAttribute("g_uid", g_uid); 
+		new InfoViewCommand().execute(model);
+		return "user/productInfo";
 	}
 }

@@ -1,0 +1,23 @@
+.subImgbox{
+	margin:0;
+	padding:0;
+	margin-top:10px;
+	overflow: hidden;
+}
+
+.subImg{
+	padding:0;
+	width:100px;
+	heigth:100px;
+	float:left;
+	margin-left:10px;
+	cursor: pointer;
+	list-style: none;
+}
+.subImg:nth-child(1){
+	margin-left:0;
+}
+.subImg img{
+	width:100px;
+	heigth:100px;
+}

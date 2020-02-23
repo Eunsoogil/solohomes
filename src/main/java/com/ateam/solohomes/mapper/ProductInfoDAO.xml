@@ -5,7 +5,7 @@
 
 <mapper namespace="com.ateam.solohomes.user.main.ProductInfoDAO">
 	<select id="selectByUid" resultType="com.ateam.solohomes.user.main.ProductInfoDTO">
-		SELECT * FROM goods_info
+		SELECT * FROM goods
 		WHERE g_uid = #{g_uid} 
 	</select>
 	
