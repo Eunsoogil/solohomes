@@ -29,12 +29,12 @@ $(document).ready(function(){
 			alert("첫 페이지 입니다.");
 			return;
 		}
-		loadMemberTable(currequestPage - 1);
+		loadRequestTable(currequestPage - 1);
 	});
 	// nextPage
 	$("button#requestNextPage").click(function(){
 		var currequestPage = parseInt($("input#requestPage").val());
-		loadMemberTable(currequestPage + 1);
+		loadRequestTable(currequestPage + 1);
 	});
 	
 	// sortSelect
@@ -201,7 +201,7 @@ function updateRequestTable(jsonObj) {
 			} else {
 				result += "<td><button type='button' class='btn btn-info btn-sm modalResponse' id='modalResponse" + items[i].uid + "' onclick='modalOpen(" + items[i].uid + ", " + view + ")'>답변확인</button></td>";
 			}
-			result += "</tr>\n"
+			result += "</tr>\n";
 		}
 		$("table#requestTable tbody").html("");
 		$("table#requestTable tbody").html(result);
@@ -211,4 +211,37 @@ function updateRequestTable(jsonObj) {
 		return false;
 	}
 	return false;
+}
+
+//delete ajax
+function chkDelete() {
+	var curPage = parseInt($("input#requestPage").val());
+	var uids = [];
+	$("#frmDelete input[name=uid]").each(function(){
+		if ($(this).is(":checked")) {
+			uids.push(parseInt($(this).val()));
+		}
+	});
+	
+	if (uids.length == 0) {
+		alert("문의를 하나 이상 선택해 주세요");
+	} else {
+		var confirmResult = confirm("정말 삭제하겠습니까?");
+		if (confirmResult) {
+			$.ajax({
+				url : "../managerAjax/request/deleteOk.do"
+				, type : "POST"
+				, cache : false
+				, data : {
+					uids : JSON.stringify(uids).slice(1).slice(0, -1)
+				}
+				, success : function(data, status) {
+					if (status == "success") {
+						alert(data.count + "개의 문의 삭제 성공");
+						loadRequestTable(curPage);
+					}
+				}
+			});
+		}
+	}
 }

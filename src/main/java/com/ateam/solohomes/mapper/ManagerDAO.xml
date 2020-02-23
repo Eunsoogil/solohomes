@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ateam.solohomes.beans.manager.ManagerDAO">
+	<!-- member -->
 	<select id="selectAllUserByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
 		<![CDATA[
 			SELECT 
@@ -187,6 +188,7 @@
 		</foreach>
 	</delete>
 	
+	<!-- Request -->
 	<select id="selectAllRequestByRow" resultType="com.ateam.solohomes.beans.manager.RequestDTO">
 		<![CDATA[
 			SELECT 
@@ -240,5 +242,81 @@
 		WHERE
 			rq_uid = #{uid}
 	</update>
+	<delete id="deleteRequestsByUids" flushCache="true">
+		DELETE FROM
+			request
+		WHERE
+			rq_uid IN
+		<foreach item="uid" index="index" collection="uidList" open="(" separator="," close=")">
+			#{uid}
+		</foreach>
+	</delete>
+	
+	<!-- Comment -->
+	<select id="selectAllCommentByRow" resultType="com.ateam.solohomes.beans.manager.CommentRenumDTO">
+		<![CDATA[
+			SELECT 
+				co.co_uid co_uid, co.mb_uid mb_uid, co.g_uid g_uid, 
+				 co.co_subject subject, co.co_content content, co.co_regdate regdate, 
+				 count(re.re_uid) reportedNum,
+				 mb.mb_id mb_id, g.g_name g_name
+			FROM comment co
+				LEFT OUTER JOIN co_report re ON co.co_uid = re.co_uid
+				JOIN member mb ON co.mb_uid = mb.mb_uid
+				JOIN goods g ON co.g_uid = g.g_uid
+			GROUP BY 
+				co.co_uid
+			ORDER BY 
+				co.co_regdate DESC
+			LIMIT 
+				#{startRow}, #{listPage}
+			;
+		]]>	
+	</select>
+	<select id="selectAllCommenType1" resultType="com.ateam.solohomes.beans.manager.CommentRenumDTO">
+		<![CDATA[
+			SELECT 
+				co.co_uid co_uid, co.mb_uid mb_uid, co.g_uid g_uid, 
+				 co.co_subject subject, co.co_content content, co.co_regdate regdate, 
+				 count(re.re_uid) reportedNum,
+				 mb.mb_id mb_id, g.g_name g_name
+			FROM comment co
+				LEFT OUTER JOIN co_report re ON co.co_uid = re.co_uid
+				JOIN member mb ON co.mb_uid = mb.mb_uid
+				JOIN goods g ON co.g_uid = g.g_uid
+			GROUP BY 
+				co.co_uid
+			ORDER BY 
+				reportedNum DESC, co.co_regdate DESC
+			LIMIT 
+				#{startRow}, #{listPage}
+		]]>	
+	</select>
+	<select id="selectCommentByUid" resultType="com.ateam.solohomes.beans.manager.CommentRenumDTO">
+		<![CDATA[
+			SELECT 
+				co.co_uid co_uid, co.mb_uid mb_uid, co.g_uid g_uid, 
+				 co.co_subject subject, co.co_content content, co.co_regdate regdate, 
+				 count(re.re_uid) reportedNum,
+				 mb.mb_id mb_id, g.g_name g_name
+			FROM comment co
+				LEFT OUTER JOIN co_report re ON co.co_uid = re.co_uid
+				JOIN member mb ON co.mb_uid = mb.mb_uid
+				JOIN goods g ON co.g_uid = g.g_uid
+			WHERE 
+				co.co_uid = #{uid}
+			GROUP BY 
+				co.co_uid
+		]]>	
+	</select>
+	<delete id="deleteCommentsByUids" flushCache="true">
+		DELETE FROM
+			comment
+		WHERE
+			co_uid IN
+		<foreach item="uid" index="index" collection="uidList" open="(" separator="," close=")">
+			#{uid}
+		</foreach>
+	</delete>
 </mapper>       
     

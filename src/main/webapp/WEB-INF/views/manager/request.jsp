@@ -107,7 +107,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">일반 회원
+                            <h3 class="box-title">문의리스트
                             	<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
                                     <select class="form-control pull-right row b-none" id="sortSelect">
                                         <option value="0">최근문의</option>
@@ -115,7 +115,7 @@
                                     </select>
                                 </div>
                             </h3>
-                            <form name="frmUserDelete" id="frmUserDelete" onsubmit="return chkDelete('user')">
+                            <form name="frmDelete" id="frmDelete" onsubmit="return chkDelete()">
 	                            <div class="table-responsive">
 	                                <table class="table" id="requestTable">
 	                                    <thead>

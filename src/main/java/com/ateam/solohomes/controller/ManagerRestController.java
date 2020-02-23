@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.solohomes.C;
+import com.ateam.solohomes.beans.manager.AjaxCommentList;
 import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
 import com.ateam.solohomes.beans.manager.AjaxMemberList;
 import com.ateam.solohomes.beans.manager.AjaxRequestList;
+import com.ateam.solohomes.beans.manager.CommentRenumDTO;
 import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
 import com.ateam.solohomes.beans.manager.RequestDTO;
@@ -113,7 +115,7 @@ public class ManagerRestController {
 			sortColumn = "no response";
 			list = dao.selectAllRequestNoResponseByRow((page - 1) * listPages, listPages);
 			break;
-		default: 
+		default: break;
 		}
 		result.setList(list);
 		result.setSortColumn(sortColumn);
@@ -163,6 +165,107 @@ public class ManagerRestController {
 		if (cnt != 1) {
 			result.setStatus("SUCCESS");
 		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/request/deleteOk.do", method = RequestMethod.POST)
+	public AjaxManagerQryResult requestDeleteOk(String[] uids) {
+		AjaxManagerQryResult result = new AjaxManagerQryResult();
+		
+		int cnt = 0;
+		if (uids != null && uids.length > 0) {
+			ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+			int[] list = new int[uids.length];
+			for (int i = 0; i < list.length; i ++) {
+				list[i] = Integer.parseInt(uids[i]);
+			}
+			
+			cnt = dao.deleteRequestsByUids(list);
+			
+			result.setCount(cnt);
+			result.setStatus("SUCCESS");
+		} else {
+			result.setCount(cnt);
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/comment.ajax/{sortType}/{listPages}/{page}")
+	public AjaxCommentList commentList(@PathVariable("sortType") String sortType, @PathVariable("listPages") int listPages, @PathVariable("page") int page) {
+		AjaxCommentList result = new AjaxCommentList();
+		ArrayList<CommentRenumDTO> list = null;
+		int s_type = Integer.parseInt(sortType);
+		String sortColumn = "";
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		switch(s_type) {
+		case 0:
+			sortColumn = "co.co_regdate";
+			list = dao.selectAllCommentByRow((page - 1) * listPages, listPages);
+			break;
+		case 1:
+			sortColumn = "reportedNum";
+			list = dao.selectAllCommenType1((page - 1) * listPages, listPages);
+			break;
+		default: break;
+		}
+		result.setList(list);
+		result.setSortColumn(sortColumn);
+		
+		if (list != null && list.size() > 0) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/comment.ajax/{uid}")
+	public AjaxCommentList selectComment(@PathVariable("uid") String uid) {
+		AjaxCommentList result = new AjaxCommentList();
+		ArrayList<CommentRenumDTO> list = null;
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		list = dao.selectCommentByUid(Integer.parseInt(uid));
+		
+		result.setList(list);
+		
+		if (list != null && list.size() == 1) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/comment/deleteOk.do", method = RequestMethod.POST)
+	public AjaxManagerQryResult commentDeleteOk(String[] uids) {
+		AjaxManagerQryResult result = new AjaxManagerQryResult();
+		
+		int cnt = 0;
+		if (uids != null && uids.length > 0) {
+			ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+			int[] list = new int[uids.length];
+			for (int i = 0; i < list.length; i ++) {
+				list[i] = Integer.parseInt(uids[i]);
+			}
+			
+			cnt = dao.deleteCommentsByUids(list);
+			
+			result.setCount(cnt);
+			result.setStatus("SUCCESS");
+		} else {
+			result.setCount(cnt);
 			result.setStatus("FAIL");
 		}
 		
