@@ -13,7 +13,7 @@ import com.ateam.solohomes.user.main.ProductInfoDTO;
 @RestController
 @RequestMapping("/user")
 public class InfoRestController {
-	@RequestMapping("/productInfo/{g_uid}")
+	@RequestMapping("/productInfo.do/{g_uid}")
 	//매핑에 있는 uid값이 매개변수 uid에 저장된다.
 	public ProductInfoDTO read(@PathVariable("g_uid") int g_uid) {
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
@@ -24,8 +24,8 @@ public class InfoRestController {
 	}
 	
 	
-	
-	@RequestMapping("/readErr/{g_uid}")
+	/*
+	@RequestMapping("/productInfo/{g_uid}")
 	//매핑에 있는 uid값이 매개변수 uid에 저장된다.
 	public ResponseEntity<ProductInfoDTO> readErr(@PathVariable("g_uid") int g_uid) {
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
@@ -37,5 +37,5 @@ public class InfoRestController {
 		
 		// 성공했다면 
 		return new ResponseEntity<ProductInfoDTO>(dto,HttpStatus.OK);
-	}
+	}*/
 }

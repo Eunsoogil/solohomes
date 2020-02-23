@@ -2,21 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:choose>
-<c:when test="${empty dto }">
-	<script>
-		alert("해당 상품은 품절처리되었거나 삭제된 상품입니다.");
-		history.back();
-	</script>
-</c:when>
-<c:otherwise>
-
 <!DOCTYPE html>
 <jsp:include page="/common/menu"/>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="../css/user/animate.css">
 <link rel="stylesheet" href="../css/user/owl.carousel.min.css">
@@ -30,6 +22,24 @@
 <link rel="stylesheet" href="../css/user/icomoon.css">
 <link rel="stylesheet" href="../css/user/style.css">
 </head>
+<script>
+function loadPage(page){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/user/productInfo/",
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				
+				if(updateList(data)){ // 페이지 업데이트
+					// 페이지 로딩이 성공한 뒤라야 현재 페이지 정보 업데이트
+					$("input#page").val(page);
+				}
+			}
+		}		
+	});
+}
+</script>
 <body>
 	<section class="ftco-section bg-light">
 		<div class="container">
@@ -99,6 +109,3 @@
 </body>
 </html>
 <jsp:include page="/common/footer" />
-
-</c:otherwise>
-</c:choose>
