@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-td.ColumnOfCheckBox, td.ColumnOfCheckBox {
+td.ColumnOfCheckBox, th.ColumnOfCheckBox {
 	display:none;
 }
 

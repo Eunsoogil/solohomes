@@ -74,9 +74,6 @@
                         <a href="${pageContext.request.contextPath}/manager/goods.do" class="waves-effect"><i class="fa fa-database fa-fw" aria-hidden="true"></i><span class="hide-menu">상품관리</span></a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/manager/statistic.do" class="waves-effect"><i class="fa fa-align-left fa-fw" aria-hidden="true"></i><span class="hide-menu">판매관리</span></a>
-                    </li>
-                    <li>
                         <a href="${pageContext.request.contextPath}/manager/review.do" class="waves-effect"><i class="fa fa-heart fa-fw" aria-hidden="true"></i><span class="hide-menu">리뷰관리</span></a>
                     </li>
                     <li>
@@ -199,4 +196,3 @@
 </body>
 
 </html>
-

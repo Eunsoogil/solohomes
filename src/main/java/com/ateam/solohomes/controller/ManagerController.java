@@ -4,10 +4,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.commnad.Command;
+import com.ateam.solohomes.commnad.ManagerIndexCommand;
 
 @Controller
 @RequestMapping("/manager")
@@ -29,7 +31,9 @@ public class ManagerController {
 	}
 
 	@RequestMapping("/index.do")
-	public String managerMain() {
+	public String managerMain(Model model) {
+		command = new ManagerIndexCommand();
+		command.execute(model);
 		return "manager/index";
 	}
 	
