@@ -15,11 +15,22 @@ import com.ateam.solohomes.beans.manager.AjaxRequestList;
 import com.ateam.solohomes.beans.manager.CommentRenumDTO;
 import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
+import com.ateam.solohomes.beans.manager.MonthlySalesDTO;
 import com.ateam.solohomes.beans.manager.RequestDTO;
 
 @RestController
 @RequestMapping("/managerAjax")
 public class ManagerRestController {
+	
+	@RequestMapping("/index.ajax/monthlySales")
+	public ArrayList<MonthlySalesDTO> monthlySalesList() {
+		ArrayList<MonthlySalesDTO> list = null;
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		list = dao.getMonthlySales();
+		
+		return list;
+	}
 	
 	@RequestMapping("/member.ajax/{type}/{sortType}/{listPages}/{page}")
 	public AjaxMemberList userList(@PathVariable("type") String type, @PathVariable("sortType") String sortType, @PathVariable("listPages") int listPages, @PathVariable("page") int page) {

@@ -9,7 +9,6 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" type="image/png" sizes="16x16" href="admin/plugins/images/favicon.png">
-	<title>Pixel Admin - Responsive Admin Dashboard Template built with Twitter Bootstrap</title>
 	<!-- Bootstrap Core CSS -->
 	<link href="../admin/pixel-html/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Menu CSS -->
@@ -67,9 +66,6 @@
                         <a href="${pageContext.request.contextPath}/manager/goods.do" class="waves-effect"><i class="fa fa-database fa-fw" aria-hidden="true"></i><span class="hide-menu">상품관리</span></a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/manager/statistic.do" class="waves-effect"><i class="fa fa-align-left fa-fw" aria-hidden="true"></i><span class="hide-menu">판매관리</span></a>
-                    </li>
-                    <li>
                         <a href="${pageContext.request.contextPath}/manager/review.do" class="waves-effect"><i class="fa fa-heart fa-fw" aria-hidden="true"></i><span class="hide-menu">리뷰관리</span></a>
                     </li>
                     <li>
@@ -99,9 +95,9 @@
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb">MYNEW CLIENTS</h5> </div>
+                                    <h5 class="text-muted vb">Today Sign Up</h5> </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger">23</h3> </div>
+                                    <h3 class="counter text-right m-t-15 text-danger">${countOfMembers}</h3> </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
@@ -116,9 +112,9 @@
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
-                                    <h5 class="text-muted vb">NEW PROJECTS</h5> </div>
+                                    <h5 class="text-muted vb">Today Sales</h5> </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-megna">169</h3> </div>
+                                    <h3 class="counter text-right m-t-15 text-megna">${countOfSales}</h3> </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
@@ -132,13 +128,13 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
-                                    <h5 class="text-muted vb">NEW INVOICES</h5> </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
+                                    <h5 class="text-muted vb">Today Sales Amount(10,000)</h5> </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-primary">157</h3> </div>
+                                    <h3 class="counter text-right m-t-15 text-megna">${sumOfSales}</h3> </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                        <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
                                     </div>
                                 </div>
                             </div>
@@ -151,16 +147,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title">Sales Difference</h3>
+                            <h3 class="box-title">Monthly Sales Chart</h3>
                             <ul class="list-inline text-right">
                                 <li>
-                                    <h5><i class="fa fa-circle m-r-5" style="color: #dadada;"></i>Site A View</h5>
-                                </li>
-                                <li>
-                                    <h5><i class="fa fa-circle m-r-5" style="color: #aec9cb;"></i>Site B View</h5>
+                                    <h5><i class="fa fa-circle m-r-5" style="color: #e60012; opacity : 0.5;"></i>Sales Amount</h5>
                                 </li>
                             </ul>
-                            <div id="morris-area-chart2" style="height: 370px;"></div>
+                            <div id="salesChart" style="height: 370px;"></div>
                         </div>
                     </div>
                 </div>
@@ -168,7 +161,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Recent sales
+                            <h3 class="box-title">월별판매현황 상세
                                 <div class="col-md-2 col-sm-4 col-xs-12 pull-right">
                                     <select class="form-control pull-right row b-none">
                                         <option>March 2016</option>
@@ -180,118 +173,20 @@
                                 </div>
                             </h3>
                             <div class="table-responsive">
-                                <table class="table ">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>NAME</th>
-                                            <th>STATUS</th>
-                                            <th>DATE</th>
-                                            <th>PRICE</th>
+                                            <th>제품명</th>
+                                            <th>제품타입</th>
+                                            <th>판매량</th>
+                                            <th>판매액</th>
+                                            <th>한줄평수</th>
+                                            <th>좋아요수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="txt-oflo">Pixel admin</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 18</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Real Homes</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Medical Pro</td>
-                                            <td>TAX</td>
-                                            <td class="txt-oflo">April 20</td>
-                                            <td><span class="text-danger">-$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Hosting press</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 21</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Helping Hands</td>
-                                            <td>MEMBER</td>
-                                            <td class="txt-oflo">April 22</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Digital Agency</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 23</td>
-                                            <td><span class="text-danger">-$14</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="txt-oflo">Helping Hands</td>
-                                            <td>MEMBER</td>
-                                            <td class="txt-oflo">April 22</td>
-                                            <td><span class="text-success">$64</span></td>
-                                        </tr>
                                     </tbody>
                                 </table> <a href="#">Check all the sales</a> </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12 col-lg-6 col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Recent Comments</h3>
-                            <div class="comment-center">
-                                <div class="comment-body">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"></div>
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat.</span><a href="javacript:void(0)" class="action"><i class="ti-close text-danger"></i></a> <a href="javacript:void(0)" class="action"><i class="ti-check text-success"></i></a><span class="time pull-right">April 14, 2016</span></div>
-                                </div>
-                                <div class="comment-body">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/sonu.jpg" alt="user" class="img-circle"> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat.</span><a href="javacript:void(0)" class="action"><i class="ti-close text-danger"></i></a> <a href="javacript:void(0)" class="action"><i class="ti-check text-success"></i></a><span class="time pull-right">April 14, 2016</span></div>
-                                </div>
-                                <div class="comment-body b-none">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/arijit.jpg" alt="user" class="img-circle"> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Arijit Sinh</h5> <span class="mail-desc">Donec ac condimentum massa. Etiam pellentesque pretium lacus. Phasellus ultricies dictum suscipit. Aenean commodo dui pellentesque molestie feugiat. </span><a href="javacript:void(0)" class="action"><i class="ti-close text-danger"></i></a> <a href="javacript:void(0)" class="action"><i class="ti-check text-success"></i></a><span class="time pull-right">April 14, 2016</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title">You have 5 new messages</h3>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
-                                </a>
-                                <a href="#">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
-                                </a>
-                                <a href="#">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                                </a>
-                                <a href="#">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/genu.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Genelia Deshmukh</h5> <span class="mail-desc">I love to do acting and dancing</span> <span class="time">9:08 AM</span> </div>
-                                </a>
-                                <a href="#" class="b-none">
-                                    <div class="user-img"> <img src="../admin/plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -322,19 +217,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../admin/pixel-html/js/custom.min.js"></script>
     <script src="../admin/pixel-html/js/dashboard1.js"></script>
+    <script src="../js/manager/morrisChartData.js"></script>
     <script src="../admin/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $.toast({
-            heading: 'Welcome to Pixel admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
-    });
-    </script>
 </body>
 </html>

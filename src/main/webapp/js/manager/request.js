@@ -55,6 +55,7 @@ $(document).ready(function(){
 			return;
 		}
 		
+		// update 
 		$.ajax({
 			url : "../managerAjax/responseWriteOk.do"
 			, type : "POST"
@@ -82,8 +83,8 @@ $(document).ready(function(){
 	
 });
 
+// modalBox start function
 function modalOpen(uid, type) {
-	
 	$.ajax({
 		url : "../managerAjax/request.ajax/" + uid
 		, type : "GET"
@@ -104,6 +105,7 @@ function modalOpen(uid, type) {
 	});
 }
 
+// update data in responseModalWrite function
 function updateResponseModalWrite(jsonObj) {
 	result = "";
 	if (jsonObj.status == "SUCCESS") {
@@ -131,6 +133,7 @@ function updateResponseModalWrite(jsonObj) {
 	return false;
 }
 
+// update data in responseModalView function
 function updateResponseModalView(jsonObj) {
 	result = "";
 	if (jsonObj.status == "SUCCESS") {
@@ -158,6 +161,7 @@ function updateResponseModalView(jsonObj) {
 	return false;
 }
 
+// ajax function (get request json data)
 function loadRequestTable(page){
 	var sortType = parseInt($("select#sortSelect").val());
 	
@@ -176,6 +180,7 @@ function loadRequestTable(page){
 	});
 }
 
+// update data in requestTable
 function updateRequestTable(jsonObj) {
 	result = "";
 	if (jsonObj.status == "SUCCESS") {

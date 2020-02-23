@@ -4,6 +4,22 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ateam.solohomes.beans.manager.ManagerDAO">
+
+	<!-- index -->
+	<select id="getMonthlySales" resultType="com.ateam.solohomes.beans.manager.MonthlySalesDTO">
+		SELECT * 
+		FROM (
+			SELECT mid(py_regdate, 1, 7) 'year_month', SUM(IFNULL(py_amount * g.g_price, 0)) amount
+			FROM 
+				payment py
+				JOIN goods_info gi ON py.in_uid = gi.in_uid
+				JOIN goods g ON gi.g_uid = g.g_uid
+			GROUP BY 1
+			ORDER BY 1 DESC
+			LIMIT 0, 6) tb
+		ORDER BY 1 ASC
+	</select>
+	
 	<!-- member -->
 	<select id="selectAllUserByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">
 		<![CDATA[
@@ -42,7 +58,7 @@
 				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
 				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
 				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
-				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+				mb.mb_regdate regdate, mb.mb_level level, IFNULL(SUM(re.reportedNum), 0) reportedNum
 			FROM
 				member mb
 				LEFT OUTER JOIN 
@@ -73,7 +89,7 @@
 				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
 				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
 				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
-				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+				mb.mb_regdate regdate, mb.mb_level level, IFNULL(SUM(re.reportedNum), 0) reportedNum
 			FROM
 				member mb
 				LEFT OUTER JOIN 
@@ -104,7 +120,7 @@
 				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
 				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
 				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
-				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+				mb.mb_regdate regdate, mb.mb_level level, IFNULL(SUM(re.reportedNum), 0) reportedNum
 			FROM
 				member mb
 				LEFT OUTER JOIN 
@@ -135,7 +151,7 @@
 				mb.mb_uid uid, mb.mb_id id, mb.mb_nn nn,
 				mb.mb_name name, mb.mb_phone phone, mb.mb_email email,
 				mb.mb_zipcode zipcode, mb.mb_addr addr, mb.mb_addr2 addr2,
-				mb.mb_regdate regdate, mb.mb_level level, NVL(SUM(re.reportedNum), 0) reportedNum
+				mb.mb_regdate regdate, mb.mb_level level, IFNULL(SUM(re.reportedNum), 0) reportedNum
 			FROM
 				member mb
 				LEFT OUTER JOIN 

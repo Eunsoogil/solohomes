@@ -7,6 +7,14 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
 public interface ManagerDAO {
+	
+	// NON AJAX
+	// count today's sign up member
+	public Integer countTodaySignUp();
+	// count today's sales
+	public Integer countTodaySales();
+	// sum today's sales
+	public Integer sumTodaySales();
 
 	// REST
 	// select all users
@@ -38,4 +46,7 @@ public interface ManagerDAO {
 	public ArrayList<CommentRenumDTO> selectCommentByUid(@Param("uid") int uid);
 	// delete checked reviews
 	public int deleteCommentsByUids(@Param("uidList") int[] list);
+	
+	// get statistics of monthly sales amount
+	public ArrayList<MonthlySalesDTO> getMonthlySales();
 }
