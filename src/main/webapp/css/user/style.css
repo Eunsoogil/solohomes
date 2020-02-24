@@ -4,9 +4,6 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- 
- @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
- 
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -36,6 +33,12 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
 
 html {
   font-family: sans-serif;
@@ -137,7 +140,6 @@ sup {
   top: -.5em; }
 
 a {
-  color: #78d5ef;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
@@ -452,6 +454,7 @@ pre {
   overflow-y: scroll; }
 
 .container {
+  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -470,6 +473,7 @@ pre {
       max-width: 1140px; } }
 
 .container-fluid {
+  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -2012,11 +2016,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
-
-.btn-primary {
-  color: #212529;
-  background-color: #78d5ef;
-  border-color: #78d5ef; }
   .btn-primary:hover {
     color: #212529;
     background-color: #56caeb;
@@ -5099,10 +5098,7 @@ button.bg-dark:focus {
 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
-  display: flex !important; 
-  max-width: 1500px;
-  margin:0 auto;
-  }
+  display: flex !important; }
 
 .d-inline-flex {
   display: -webkit-inline-box !important;
@@ -7566,8 +7562,8 @@ h1, h2, h3, h4, h5,
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 18em;
-  z-index: 85; }
+  bottom: 12.5em;
+  z-index: 10; }
 
 .mouse-icon {
   width: 60px;
@@ -7710,12 +7706,15 @@ h1, h2, h3, h4, h5,
   border-radius: 30px;
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
+  .btn.btn-primary:hover{
+  	color:#f1b8c4 !important;
+  }
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
     background: #f1b8c4;
     border: 1px solid #f1b8c4;
-    color: #fff; }
+    color: #fff !important; }
     .btn.btn-primary:hover {
       border: 1px solid #f1b8c4;
       background: transparent;
@@ -9068,9 +9067,29 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
 
+/* 내가 바꾼 설정 들 */
+/*
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0; }
+ */
+
 @media screen and (max-width:599px){
 	.product{max-width:350px;}
 	/*
 	.mouse{bottom:13em;}
 	*/
-}    
+}

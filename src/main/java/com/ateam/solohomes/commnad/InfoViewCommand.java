@@ -16,10 +16,10 @@ public class InfoViewCommand implements Command {
 		int g_uid = (Integer)map.get("g_uid");
 		
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
-		ProductInfoDTO dto = dao.selectByUid(g_uid);
+		ProductInfoDTO dto = dao.selectGoods(g_uid);
 		
-		
-		model.addAttribute("dto", dto);
+		model.addAttribute("goods", dto);
+		model.addAttribute("gInfo", dao.selectgInfo(g_uid));
 	}
 
 }

@@ -21,3 +21,15 @@
 	width:100px;
 	heigth:100px;
 }
+
+.like i{
+	color:#f1b8c4;
+}
+.likeBtn{
+	margin-left:10px;
+	border:1px solid #eee;
+	color:#f1b8c4 !important;
+}
+.likeBtn:hover{
+	border:1px solid #f1b8c4;
+}

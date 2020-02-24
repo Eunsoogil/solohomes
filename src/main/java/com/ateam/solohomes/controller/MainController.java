@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +22,6 @@ import com.ateam.solohomes.commnad.InfoViewCommand;
 import com.ateam.solohomes.commnad.ListCommand;
 
 @Controller
-@RequestMapping("/user")
 public class MainController {
 
 	private Command command;
@@ -39,18 +39,18 @@ public class MainController {
 		C.transactionTemplate = transactionTemplate;
 	}
 	
-	@RequestMapping("/main.do")
+	@RequestMapping("/user/main.do")
 	public String ListMain(Model model) {
 		command = new ListCommand();
 		command.execute(model);
 		return "user/main";
 	}
-	@RequestMapping("/search.do")
+	@RequestMapping("/user/search.do")
 	public String search(Model model) {
 		return "user/search/search";
 	}
 	
-	@RequestMapping(value = "/searchOk.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/searchOk.do", method = RequestMethod.POST)
 	public String searchOk(Model model, HttpServletRequest request) {
 		String userKeyword = (String)request.getParameter("userKeyword");
 		
@@ -101,18 +101,18 @@ public class MainController {
 		return "user/search/searchOk";
 	}
 	
-	@RequestMapping("/category.do")
+	@RequestMapping("/user/category.do")
 	public String category(Model model) {
 		return "user/search/category";
 	}
 	
-	@RequestMapping("/detail.do")
+	@RequestMapping("/user/detail.do")
 	public String detail(Model model) {
 		return "user/search/detail";
 	}
 	
-	@RequestMapping("/productInfo.do")
-	public String productInfo(int g_uid, Model model) {
+	@RequestMapping("/user/productInfo.do/{g_uid}")
+	public String productInfo(@PathVariable("g_uid")int g_uid, Model model) {
 		model.addAttribute("g_uid", g_uid); 
 		new InfoViewCommand().execute(model);
 		return "user/productInfo";

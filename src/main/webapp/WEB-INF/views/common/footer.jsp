@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 
 <body>

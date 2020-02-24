@@ -1,14 +1,22 @@
 package com.ateam.solohomes.user.main;
 
+import java.util.ArrayList;
+
 
 public interface ProductInfoDAO{
-	// 가구 상세 띄우기
-	public ProductInfoDTO selectByUid(int g_uid);
+	// 가구정보 띄우기
+	public ProductInfoDTO selectGoods(int g_uid);
+	
+	// 가구상세정보
+	public ArrayList<ProductInfoDTO> selectgInfo(int g_uid);
 	
 	// 좋아요
-	public int likeInsert(int gl_uid, int mb_uid, int g_uid);
+	public int likePlus(int g_uid);	
+	public int likeInsert(int mb_uid, int g_uid);
+	
 	// 좋아요 취소
-	public int likeDelete(int gl_uid);
+	public int likeMinus(int g_uid);	
+	public int likeDelete(int mb_uid, int g_uid);
 	
 	// 장바구니
 	public int cartInsert(int cr_uid, int mb_uid, int in_uid, int cr_amount);

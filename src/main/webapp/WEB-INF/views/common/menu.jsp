@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 function sendKeyword(){
@@ -88,10 +88,10 @@ function hide(){
 		<div class="container">
 			<div class="pc">
 				<a id="menuBtn"><i class="fas fa-bars"></i></a>
-				<a id="brand" href="main.do"><img src="../img/logo.png"></a>
+				<a id="brand" href="main.do"><img src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
 			<div class="pc mo_none">
-				<form action="searchOk.do" name="myForm" method="POST" autocomplete="off">
+				<form action="${pageContext.request.contextPath}/user/searchOk.do" name="myForm" method="POST" autocomplete="off">
 					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();" autocomplete="off"/>
 					<button type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
 					<div id="suggestDiv" class="suggest">
@@ -106,7 +106,9 @@ function hide(){
 	<ul class="mo_menu">
 		<li><a class="f">가구 <i class="fas fa-sort-down"></i></a></li>
 		<ul class="f_sub">
+			<li><a href="#">거실장</a></li>
 			<li><a href="#">서랍장</a></li>
+			<li><a href="#">쇼파</a></li>
 			<li><a href="#">옷장</a></li>
 			<li><a href="#">의자</a></li>
 			<li><a href="#">책상</a></li>
@@ -132,7 +134,9 @@ function hide(){
 		<div class="modal-content">
 			<ul class="right">
 				<h3>가구</h3>
+				<li><a href="#">거실장</a></li>
 				<li><a href="#">서랍장</a></li>
+				<li><a href="#">쇼파</a></li>
 				<li><a href="#">옷장</a></li>
 				<li><a href="#">의자</a></li>
 				<li><a href="#">책상</a></li>
@@ -161,7 +165,7 @@ function hide(){
 	<!-- javascript 링크 -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="../js/menu.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/menu.js" type="text/javascript"></script>
 
 </body>
 </html>
