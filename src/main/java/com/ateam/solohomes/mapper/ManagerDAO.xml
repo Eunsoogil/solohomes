@@ -19,6 +19,18 @@
 			LIMIT 0, 6) tb
 		ORDER BY 1 ASC
 	</select>
+	<select id="getDailySalesByMonth" resultType="com.ateam.solohomes.beans.manager.DailySalesDTO">
+		SELECT
+			mid(py_regdate, 1, 10) 'day', SUM(IFNULL(py_amount * g.g_price, 0)) amount, COUNT(gi.in_uid) quantity
+		FROM 
+			payment py
+			JOIN goods_info gi ON py.in_uid = gi.in_uid
+			JOIN goods g ON gi.g_uid = g.g_uid
+		WHERE
+			mid(py.py_regdate, 1, 7) = #{month}
+		GROUP BY 1
+		ORDER BY 1 DESC
+	</select>
 	
 	<!-- member -->
 	<select id="selectAllUserByRow" resultType="com.ateam.solohomes.beans.manager.MemberRenumDTO">

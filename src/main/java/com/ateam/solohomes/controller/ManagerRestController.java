@@ -13,6 +13,7 @@ import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
 import com.ateam.solohomes.beans.manager.AjaxMemberList;
 import com.ateam.solohomes.beans.manager.AjaxRequestList;
 import com.ateam.solohomes.beans.manager.CommentRenumDTO;
+import com.ateam.solohomes.beans.manager.DailySalesDTO;
 import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
 import com.ateam.solohomes.beans.manager.MonthlySalesDTO;
@@ -29,6 +30,27 @@ public class ManagerRestController {
 		
 		list = dao.getMonthlySales();
 		
+		return list;
+	}
+	
+	@RequestMapping("/index.ajax/dailySales/{month}")
+	public ArrayList<DailySalesDTO> dailySalesList(@PathVariable("month") String month) {
+		ArrayList<DailySalesDTO> list = null;
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		
+		list = dao.getDailySalesByMonth(month);
+		
+		if (list != null && list.size() > 0) {
+			// set stack_amount
+			int size = list.size();
+			list.get(size - 1).setStack_amount(list.get(size - 1).getAmount());
+			for (int i = list.size() - 2; i >= 0; i--) {
+				DailySalesDTO dto_p = list.get(i + 1);
+				DailySalesDTO dto = list.get(i);
+				dto.setStack_amount(dto.getAmount() + dto_p.getStack_amount());
+			}
+		}
 		return list;
 	}
 	
