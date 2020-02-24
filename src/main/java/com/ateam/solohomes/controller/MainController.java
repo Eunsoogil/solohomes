@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,6 +21,7 @@ import com.ateam.solohomes.commnad.InfoViewCommand;
 import com.ateam.solohomes.commnad.ListCommand;
 
 @Controller
+@RequestMapping("/user")
 public class MainController {
 
 	private Command command;
@@ -39,18 +39,18 @@ public class MainController {
 		C.transactionTemplate = transactionTemplate;
 	}
 	
-	@RequestMapping("/user/main.do")
+	@RequestMapping("/main.do")
 	public String ListMain(Model model) {
 		command = new ListCommand();
 		command.execute(model);
 		return "user/main";
 	}
-	@RequestMapping("/user/search.do")
+	@RequestMapping("/search.do")
 	public String search(Model model) {
 		return "user/search/search";
 	}
 	
-	@RequestMapping(value = "/user/searchOk.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchOk.do", method = RequestMethod.POST)
 	public String searchOk(Model model, HttpServletRequest request) {
 		String userKeyword = (String)request.getParameter("userKeyword");
 		
@@ -101,20 +101,37 @@ public class MainController {
 		return "user/search/searchOk";
 	}
 	
-	@RequestMapping("/user/category.do")
+	@RequestMapping("/category.do")
 	public String category(Model model) {
 		return "user/search/category";
 	}
 	
-	@RequestMapping("/user/detail.do")
+	@RequestMapping("/detail.do")
 	public String detail(Model model) {
 		return "user/search/detail";
 	}
 	
-	@RequestMapping("/user/productInfo.do/{g_uid}")
-	public String productInfo(@PathVariable("g_uid")int g_uid, Model model) {
+
+	@RequestMapping("/purchaselist.do")
+	public String purchaseList(Model model) {
+		return "user/mypage/purchaselist";
+	}
+	
+	@RequestMapping("/likelist.do")
+	public String likeList(Model model) {
+		return "user/mypage/likelist";
+	}
+	
+	@RequestMapping("/requestlist.do")
+	public String requestlist(Model model) {
+		return "user/mypage/requestlist";
+	}
+
+	@RequestMapping("/productInfo.do")
+	public String productInfo(int g_uid, Model model) {
 		model.addAttribute("g_uid", g_uid); 
 		new InfoViewCommand().execute(model);
 		return "user/productInfo";
+
 	}
 }

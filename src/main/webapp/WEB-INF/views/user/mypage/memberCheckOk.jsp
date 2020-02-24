@@ -5,7 +5,7 @@
 <c:choose>
 	<c:when test="${empty result || result == 0 }">
 	<script>
-		alert("비밀번호가 일치가지 않습니다.");
+		alert("비밀번호 불일치");
 		history.back();
 	</script>
 	</c:when>

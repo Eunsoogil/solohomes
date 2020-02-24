@@ -1,8 +1,6 @@
 package com.ateam.solohomes.controller;
 
 
-import java.util.ArrayList;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ateam.solohomes.C;
-import com.ateam.solohomes.beans.AjaxPurchaseList;
 import com.ateam.solohomes.beans.MemberDTO;
-import com.ateam.solohomes.beans.MypageDAO;
-import com.ateam.solohomes.beans.PurchaseDTO;
+import com.ateam.solohomes.beans.RequestDTO;
 import com.ateam.solohomes.commnad.MypageMemberCheckCommand;
 import com.ateam.solohomes.commnad.MypageMemberInfoCommand;
 import com.ateam.solohomes.commnad.MypageMemberUpdateCommand;
+import com.ateam.solohomes.commnad.MypageRequestWriteCommand;
+import com.ateam.solohomes.commnad.MypageRequestViewCommand;
 
 @Controller
 @RequestMapping("/user/mypage")
@@ -35,38 +33,7 @@ public class MypageController {
 		C.sqlSession = sqlSession;
 	}
 	
-		
-	@RequestMapping("/index.do")
-	public String home(Model model){
-		return "user/index";
-	}
-
 	
-	@RequestMapping("/memberPurchaseList/{mb_uid}/{writePages}/{page}")
-	public AjaxPurchaseList memberPurchaseList(@PathVariable("mb_uid") int mb_uid, @PathVariable("writePages") int writePages, @PathVariable("page") int page){
-	
-		AjaxPurchaseList result = new AjaxPurchaseList();
-		ArrayList<PurchaseDTO> list = null;
-		
-		// 페이징처리 결과를 리스트로 
-		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
-		list = dao.selectPurchaseListByUid(mb_uid, (page - 1) * writePages, writePages);
-			
-		result.setList(list);
-	
-		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
-		if(list != null && list.size() > 0){ 
-			result.setStatus("OK");
-			result.setCount(list.size());
-		}else {
-			result.setStatus("FAIL");
-		}
-	
-		return result;
-	}
-	
-
-		
 	@RequestMapping("/memberCheck.do/{mb_uid}")
 	public String memberCheck(@PathVariable("mb_uid") int mb_uid, Model model){
 		model.addAttribute("mb_uid", mb_uid);
@@ -99,6 +66,43 @@ public class MypageController {
 		new MypageMemberUpdateCommand().execute(model);
 		
 		return "user/mypage/memberUpdateOk";
+	}
+	
+
+	
+	@RequestMapping("/likeList.ajax/{mb_uid}")
+	public String likeList(@PathVariable("mb_uid") int mb_uid){
+	
+		System.out.println("mb_uid: "+ mb_uid);
+
+		return "user/mypage/likelist";
+	}
+	
+	@RequestMapping("/requestWrite.do/{mb_uid}")
+	public String requestWrite(@PathVariable("mb_uid") int mb_uid, Model model){
+		model.addAttribute("mb_uid", mb_uid);
+		return "user/mypage/requestWrite";
+	}
+	
+	@RequestMapping(value ="/requestWriteOk.do", method = RequestMethod.POST)
+	public String requestWriteOk(RequestDTO dto, Model model){
+		
+		model.addAttribute("dto", dto);
+		System.out.println("컨트롤러 도착:" + dto.getMb_uid());
+		new MypageRequestWriteCommand().execute(model);
+		
+		return "user/mypage/requestWriteOk";
+	}
+	
+	
+	@RequestMapping(value ="/requestView.do/{rq_uid}")
+	public String requestView(@PathVariable("rq_uid") int rq_uid, Model model){
+		
+		model.addAttribute("rq_uid", rq_uid);
+		
+		new MypageRequestViewCommand().execute(model);
+		
+		return "user/mypage/requestView";
 	}
 	
 

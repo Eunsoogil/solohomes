@@ -509,3 +509,23 @@ SELECT * FROM comment;
 SELECT * FROM payment;
 SELECT * FROM cart;
 -- DELETE FROM MEMBER WHERE mb_uid = 2;
+
+SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price*p.py_amount "py_price", p.py_confirm "py_confirm"
+FROM goods g, goods_info gi, `member` m, payment p
+WHERE m.mb_uid = 2
+	  and m.mb_uid = p.mb_uid
+	  and p.in_uid = gi.in_uid
+	  and gi.g_uid = g.g_uid
+ORDER BY p.py_regdate desc;
+
+
+select * from payment;
+update payment set py_confirm=0 where py_uid=8 and mb_uid=2;
+
+select * from goods g where g.g_name="" ;
+
+update payment set py_regdate="2020-01-01" where py_uid=1;
+
+select * from payment where py_regdate between date("2020-01-01") and date("2020-01-06");
+
+update payment set py_uid="2020-01-01" where py_uid=1;

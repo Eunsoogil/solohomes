@@ -57,6 +57,8 @@ public class PurchaseDTO {
 		this.goodsInfo = goodsInfo;
 	}
 
+	
+	
 
 	public int getMb_uid() {
 		return mb_uid;
@@ -228,6 +230,11 @@ public class PurchaseDTO {
 		this.goodsInfo = goodsInfo;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("[PurchaseDTO %d, %s, %s, %s, %d, %s]", 
+				py_uid, g_name, py_regdate, py_amount, py_price, py_confirm);
+	}
 
 	
 }
