@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ateam.solohomes.user.main.ProductInfoDTO">
+<mapper namespace="com.ateam.solohomes.user.main.ProductInfoDAO">
 	<select id="selectByUid" resultType="com.ateam.solohomes.user.main.ProductInfoDTO">
-		SELECT * FROM goods_info
+		SELECT * FROM goods
 		WHERE g_uid = #{g_uid} 
 	</select>
 	

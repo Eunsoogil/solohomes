@@ -17,7 +17,7 @@ public class ProductInfoDTO {
 		super();
 		System.out.println("ProductInfoDTO() 객체 생성");
 	}
-
+	
 	public int getIn_uid() {
 		return in_uid;
 	}

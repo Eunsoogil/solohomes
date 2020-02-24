@@ -60,6 +60,7 @@ $(document).ready(function(){
 		loadMemberTable(curUserPage + 1, "admin");
 	});
 	
+	// sortSelect
 	$("select#sortSelect").change(function(){
 		$("input#userPage").val(1);
 		loadMemberTable(1, "user");
@@ -97,7 +98,7 @@ function updateUserTable(jsonObj) {
 		var count = jsonObj.count;
 		var i;
 		var items = jsonObj.list;
-		for (i = 0; i < count; i ++) {
+		for (i = 0; i < count; i++) {
 			result += "<tr>\n";
 			result += "<td class='user ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
 			result += "<td>" + items[i].id + "</td>\n";

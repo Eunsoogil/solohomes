@@ -2,21 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:choose>
-<c:when test="${empty dto }">
-	<script>
-		alert("해당 상품은 품절처리되었거나 삭제된 상품입니다.");
-		history.back();
-	</script>
-</c:when>
-<c:otherwise>
-
 <!DOCTYPE html>
 <jsp:include page="/common/menu"/>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="../css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="../css/user/animate.css">
 <link rel="stylesheet" href="../css/user/owl.carousel.min.css">
@@ -29,32 +22,38 @@
 <link rel="stylesheet" href="../css/user/flaticon.css">
 <link rel="stylesheet" href="../css/user/icomoon.css">
 <link rel="stylesheet" href="../css/user/style.css">
+
+<script>
+function doShow(imgSrc) {
+	document.getElementById("bigImg").src = imgSrc;
+}
+</script>
 </head>
 <body>
 	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="images/menu-2.jpg" class="image-popup"><img
-						src="images/product-1.jpg" class="img-fluid"
-						alt="Colorlib Template"></a>
+					<a href="http://placehold.it/300x300" class="image-popup">
+						<img id="bigImg" src="http://placehold.it/300x300" class="img-fluid">
+					</a>
+					<ul class="subImgbox">
+						<li class="subImg">
+							<img src="http://placehold.it/300x300" onclick="doShow(this.src)">
+						</li>
+						<li class="subImg">
+							<img src="http://placehold.it/200x200" onclick="doShow(this.src)">
+						</li>
+						<li class="subImg">
+							<img src="http://placehold.it/100x100" onclick="doShow(this.src)">
+						</li>
+					</ul>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3>Young Woman Wearing Dress</h3>
+					<h3>가구이름</h3>
 					<p class="price">
-						<span>$120.00</span>
+						<span>200000원</span>
 					</p>
-					<p>A small river named Duden flows by their place and supplies
-						it with the necessary regelialia. It is a paradisematic country,
-						in which roasted parts of sentences fly into your mouth.</p>
-					<p>On her way she met a copy. The copy warned the Little Blind
-						Text, that where it came from it would have been rewritten a
-						thousand times and everything that was left from its origin would
-						be the word "and" and the Little Blind Text should turn around and
-						return to its own, safe country. But nothing the copy said could
-						convince her and so it didn’t take long until a few insidious Copy
-						Writers ambushed her, made her drunk with Longe and Parole and
-						dragged her into their agency, where they abused her for their.</p>
 					<div class="row mt-4">
 						<div class="col-md-6">
 							<div class="form-group d-flex">
@@ -96,9 +95,47 @@
 			</div>
 		</div>
 	</section>
+	
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+$(document).ready(function(){
+	var quantitiy=0;
+	$('.quantity-right-plus').click(function(e){
+		// Stop acting like a button
+		e.preventDefault();
+		// Get the field name
+		var quantity = parseInt($('#quantity').val());
+		// If is not undefined
+		
+		$('#quantity').val(quantity + 1);		
+		// Increment
+		});
+	
+	$('.quantity-left-minus').click(function(e){
+		e.preventDefault();
+		var quantity = parseInt($('#quantity').val());
+		if(quantity>0){
+			$('#quantity').val(quantity - 1);
+		}
+	});		    
+});
+</script>
 </body>
 </html>
 <jsp:include page="/common/footer" />
-
-</c:otherwise>
-</c:choose>

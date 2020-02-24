@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ateam.solohomes.beans.manager.ManagerDAO">
+	<select id="countTodaySignUp" resultType="java.lang.Integer">
+		SELECT IFNULL(count(*), 0) FROM member WHERE date_format(mb_regdate, '%Y-%m-%d') = CURDATE()
+	</select>
+	<select id="countTodaySales" resultType="java.lang.Integer">
+		SELECT IFNULL(count(*), 0) FROM payment WHERE date_format(py_regdate, '%Y-%m-%d') = CURDATE()
+	</select>
+	<select id="sumTodaySales" resultType="java.lang.Integer">
+		SELECT
+			IFNULL(SUM(IFNULL(py_amount * g.g_price, 0)), 0)
+		FROM 
+			payment py
+			JOIN goods_info gi ON py.in_uid = gi.in_uid
+			JOIN goods g ON gi.g_uid = g.g_uid 
+		WHERE 
+			date_format(py_regdate, '%Y-%m-%d') = CURDATE()
+	</select>
+</mapper>
