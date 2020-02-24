@@ -161,7 +161,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">월별판매현황 상세
+                            <h3 class="box-title"><b>이번달 판매현황</b>
                                 <div class="col-md-2 col-sm-4 col-xs-12 pull-right">
                                     <select class="form-control pull-right row b-none">
                                         <option>March 2016</option>
