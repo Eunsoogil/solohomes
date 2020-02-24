@@ -33,3 +33,17 @@
 .likeBtn:hover{
 	border:1px solid #f1b8c4;
 }
+
+#likeCnt{
+	border:none;
+	background: none;
+}
+
+#color option{
+	font-size:13px;
+	magin:5px 0;
+}
+
+.pink{
+	border-color:#f1b8c4;
+}

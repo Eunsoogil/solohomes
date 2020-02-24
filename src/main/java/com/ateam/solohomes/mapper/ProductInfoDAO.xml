@@ -17,6 +17,10 @@
 	
 	
 	<!-- 가구 테이블 좋아요 컬럼 수정 -->
+	<select id="likeCnt" resultType="com.ateam.solohomes.user.main.ProductInfoDTO">
+		SELECT g_likecnt FROM goods
+		WHERE g_uid = #{g_uid} 
+	</select>
 	<update id="likePlus" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
 		UPDATE goods SET g_likecnt = (g_likecnt + 1)
 		WHERE g_uid = #{g_uid};
@@ -29,24 +33,29 @@
 	
 	
 	<!-- 좋아요 테이블 추가/삭제 -->
+	<select id="likeYN" resultType="com.ateam.solohomes.user.main.ProductInfoDTO">
+		SELECT gl_uid FROM g_like
+		WHERE mb_uid = #{param1} AND g_uid = #{param2};
+	</select>
+	
 	<insert id="likeInsert" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
 		INSERT INTO g_like
 			(mb_uid, g_uid)
 		VALUES
-			(#{mb_uid}, #{g_uid});
+			(#{param1}, #{param2});
 	</insert>
 	
 	<delete id="likeDelete" flushCache="true">
 		DELETE FROM g_like
-		WHERE mb_uid = #{mb_uid} AND g_uid = #{g_uid};
+		WHERE mb_uid = #{param1} AND g_uid = #{param2};
 	</delete>
 	
 	
 	<!-- 장바구니 추가 -->
 	<insert id="cartInsert" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
 		INSERT INTO g_like
-			(cr_uid, mb_uid, in_uid, cr_amount)
+			(mb_uid, in_uid, cr_amount)
 		VALUES
-			(#{cr_uid}, #{mb_uid}, #{in_uid}, #{cr_amount});
+			(#{mb_uid}, #{in_uid}, #{cr_amount});
 	</insert>
 </mapper>

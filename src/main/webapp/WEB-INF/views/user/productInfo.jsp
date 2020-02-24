@@ -39,26 +39,57 @@ function doShow(imgSrc) {
 	document.getElementById("bigImg").src = imgSrc;
 }
 
-function goCart() {
-	var color = $("#color option:selected").val();
-	var buy = $("#quantity").val();
-	var storage = document.getElementById(color).value;
+function goCart() {	
+	var in_uid = parseInt($("#color option:selected").val());
+	var cr_amount = parseInt($("#quantity").val());
+	var storage = parseInt(document.getElementById(in_uid).value);
+	
+	if(confirm("해당 상품을 장바구니에 넣으시겠습니까?")){
+		if(cr_amount > storage){
+			alert("해당 색상의 재고수량은 " + storage + "개 입니다.\n구매수량을 재고수량보다 작게 선택해주세요.");
+		} else{
+			location.href="/cartInsert.do/3"+in_uid+"/"+cr_amount;
+		}
+	}	
 }
 </script>
 
+<!------ AJAX 자바스크립트 ------>
 <script>
-function likeCnt(){
+var mb_uid = 3;
+function likeUp(){
+	var url = "${pageContext.request.contextPath}/user/likeup/" + ${goods.g_uid} + "/" + mb_uid;
 	$.ajax({
-		url : "${pageContext.request.contextPath}/user/like/" + ${goods.g_uid},
+		url : url,
 		type : "GET",
 		cache : false,
 		success : function(data, status){
 			if(status == "success"){
-
+				var likeCnt = parseInt($('#likeCnt').val());
+				alert("좋아요 상품으로 등록되었습니다.");
+				$('#likeCnt').val(likeCnt + 1);					
 			}
 		}		
 	});
 }
+
+function likeDown(){
+	var url = "${pageContext.request.contextPath}/user/likedown/" + ${goods.g_uid} + "/" + mb_uid;
+	$.ajax({
+		url : url,
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				var likeCnt = parseInt($('#likeCnt').val());
+				alert("좋아요 취소되었습니다.");
+				$('#likeCnt').val(likeCnt - 1);	
+				
+			}
+		}		
+	});
+}
+
 </script>
 </head>
 <body>
@@ -66,19 +97,18 @@ function likeCnt(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="http://placehold.it/300x300" class="image-popup">
-						<img id="bigImg" src="http://placehold.it/300x300" class="img-fluid">
+					<a href="${pageContext.request.contextPath}/img/goods/${goods.g_img}" class="image-popup">
+						<img id="bigImg" src="${pageContext.request.contextPath}/img/goods/${goods.g_img}" class="img-fluid">
 					</a>
 					<ul class="subImgbox">
 						<li class="subImg">
-							<img src="http://placehold.it/300x300" onclick="doShow(this.src)">
+							<img src="${pageContext.request.contextPath}/img/goods/${goods.g_img}" onclick="doShow(this.src)">
 						</li>
+					<c:forEach var="gInfo" items="${gInfo }">
 						<li class="subImg">
-							<img src="http://placehold.it/200x200" onclick="doShow(this.src)">
+							<img src="${pageContext.request.contextPath}/img/goods/${gInfo.in_img }" onclick="doShow(this.src)">
 						</li>
-						<li class="subImg">
-							<img src="http://placehold.it/100x100" onclick="doShow(this.src)">
-						</li>
+					</c:forEach>
 					</ul>
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
@@ -87,7 +117,8 @@ function likeCnt(){
 						<span>${goods.g_price}원</span>						
 					</p>
 					<span class="like">
-						<i class="ion-ios-heart"></i> ${goods.g_likecnt }
+						<i class="ion-ios-heart"></i>
+						<input id="likeCnt" type="text" value="${goods.g_likecnt }" disabled>
 					</span>
 					<div class="row mt-4">
 						<div class="col-md-6">
@@ -98,11 +129,11 @@ function likeCnt(){
 									</div>
 									<select name="color" id="color" class="form-control">
 										<c:forEach var="gInfo" items="${gInfo }">
-											<option value="${gInfo.in_color }">${gInfo.in_color }</option>
+											<option value="${gInfo.in_uid }">${gInfo.in_color }</option>
 										</c:forEach>
 									</select>
 									<c:forEach var="gInfo" items="${gInfo }">
-										<input type="hidden" id="${gInfo.in_color }" value="${gInfo.in_inv }">									
+										<input type="hidden" id="${gInfo.in_uid }" value="${gInfo.in_inv }">									
 									</c:forEach>
 								</div>
 							</div>
@@ -127,7 +158,14 @@ function likeCnt(){
 					</div>
 					<p>
 						<a onclick="goCart();" class="btn btn-primary py-3 px-5">장바구니</a>
-						<a onclick="likeCnt();" class="btn likeBtn"><i class="ion-ios-heart-empty"></i></a>
+						<c:choose>
+							<c:when test="${empty likeYN}">
+								<a class="btn likeBtn"><i class="ion-ios-heart-empty"></i></a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn likeBtn pink"><i class="ion-ios-heart"></i></a>
+							</c:otherwise>
+						</c:choose>
 					</p>
 				</div>
 			</div>
@@ -176,12 +214,14 @@ $(document).ready(function(){
 					
 		if(className == "ion-ios-heart-empty"){
 			$(".likeBtn > i").attr('class','ion-ios-heart');
-			$(".likeBtn").css('border-color','#f1b8c4');
+			$(".likeBtn").addClass('pink');
+			likeUp();
 		}
 		
 		else{
 			$(".likeBtn > i").attr('class','ion-ios-heart-empty');
-			$(".likeBtn").css('border-color','#eee');
+			$(".likeBtn").removeClass('pink');
+			likeDown();
 		}
 	});
 });

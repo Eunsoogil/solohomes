@@ -10,6 +10,10 @@ public interface ProductInfoDAO{
 	// 가구상세정보
 	public ArrayList<ProductInfoDTO> selectgInfo(int g_uid);
 	
+	// 좋아요 개수 및 여부
+	public ArrayList<ProductInfoDTO> likeCnt(int g_uid);
+	public ProductInfoDTO likeYN(int mb_uid, int g_uid);
+	
 	// 좋아요
 	public int likePlus(int g_uid);	
 	public int likeInsert(int mb_uid, int g_uid);
@@ -19,5 +23,5 @@ public interface ProductInfoDAO{
 	public int likeDelete(int mb_uid, int g_uid);
 	
 	// 장바구니
-	public int cartInsert(int cr_uid, int mb_uid, int in_uid, int cr_amount);
+	public int cartInsert(int mb_uid, int in_uid, int cr_amount);
 }

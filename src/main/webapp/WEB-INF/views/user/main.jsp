@@ -8,22 +8,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/user/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="../css/user/animate.css">
-<link rel="stylesheet" href="../css/user/owl.carousel.min.css">
-<link rel="stylesheet" href="../css/user/owl.theme.default.min.css">
-<link rel="stylesheet" href="../css/user/magnific-popup.css">
-<link rel="stylesheet" href="../css/user/aos.css">
-<link rel="stylesheet" href="../css/user/ionicons.min.css">
-<link rel="stylesheet" href="../css/user/bootstrap-datepicker.css">
-<link rel="stylesheet" href="../css/user/jquery.timepicker.css">
-<link rel="stylesheet" href="../css/user/flaticon.css">
-<link rel="stylesheet" href="../css/user/icomoon.css">
-<link rel="stylesheet" href="../css/user/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/style.css">
 </head>
 <body>
 	<!-- 메인 이미지 -->
-	<div class="hero-wrap js-fullheight" style="background-image: url('../img/mainbg.jpg');">
+	<div class="hero-wrap js-fullheight" style="background-image: url('${pageContext.request.contextPath}/img/mainbg.jpg');">
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 				<div class="col-md-11 ftco-animate text-center">
@@ -59,7 +59,7 @@
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
 					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-						<a href="#" class="img-prod"><img class="img-fluid" src="http://placehold.it/350x300"></a>
+						<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }"></a>
 						<div class="text py-3 px-3">
 							<h3><a href="#">${dto.sr_subject }</a></h3>
 						</div>
@@ -86,7 +86,7 @@
 					<div class="col-sm col-md-6 col-lg ftco-animate">
 						<div class="product">
 						<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-							<a href="#" class="img-prod"><img class="img-fluid" src="http://placehold.it/350x300"></a>
+							<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }"></a>
 							<div class="text py-3 px-3">
 								<h3><a href="#">${dto.g_name }</a></h3>
 								<div class="d-flex">
@@ -118,7 +118,7 @@
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
 					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-						<a href="#" class="img-prod"><img class="img-fluid" src="http://placehold.it/350x300"></a>
+						<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }"></a>
 						<div class="text py-3 px-3">
 							<h3><a href="#">${dto.g_name }</a></h3>
 							<div class="d-flex">
@@ -144,18 +144,18 @@
 		</svg>
 	</div>
 
-	<script src="../js/user/jquery.min.js"></script>
-	<script src="../js/user/jquery-migrate-3.0.1.min.js"></script>
-	<script src="../js/user/bootstrap.min.js"></script>
-	<script src="../js/user/jquery.easing.1.3.js"></script>
-	<script src="../js/user/jquery.waypoints.min.js"></script>
-	<script src="../js/user/jquery.stellar.min.js"></script>
-	<script src="../js/user/owl.carousel.min.js"></script>
-	<script src="../js/user/jquery.magnific-popup.min.js"></script>
-	<script src="../js/user/aos.js"></script>
-	<script src="../js/user/jquery.animateNumber.min.js"></script>
-	<script src="../js/user/scrollax.min.js"></script>
-	<script src="../js/user/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.easing.1.3.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/aos.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.animateNumber.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/scrollax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 </body>
 </html>
 <jsp:include page="/common/footer" />

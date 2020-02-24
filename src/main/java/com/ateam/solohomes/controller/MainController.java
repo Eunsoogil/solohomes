@@ -111,9 +111,11 @@ public class MainController {
 		return "user/search/detail";
 	}
 	
-	@RequestMapping("/user/productInfo.do/{g_uid}")
-	public String productInfo(@PathVariable("g_uid")int g_uid, Model model) {
+	@RequestMapping("/user/productInfo.do/{g_uid}/{mb_uid}")
+	public String productInfo(Model model,
+			@PathVariable("g_uid")int g_uid, @PathVariable("mb_uid")int mb_uid) {
 		model.addAttribute("g_uid", g_uid); 
+		model.addAttribute("mb_uid", mb_uid); 
 		new InfoViewCommand().execute(model);
 		return "user/productInfo";
 	}
