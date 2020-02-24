@@ -7,14 +7,9 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
 public interface MypageDAO {
-	
-	// 페이징용 글 목록 SELECT
-	// fromRow : 몇번째 row부터?
-	// writePages : 페이지 당 몇개의 데이터(게시글)?
-	// public ArrayList<> selectPurchaseListByUid(@Param("mb_uid") int mb_uid, @Param("fromRow") int fromRow, @Param("writePages")int writePages);
-	// public ArrayList<> selectPurchaseListByUid(@Param("mb_uid") int mb_uid);
 
-	public MemberDTO selectMemberInfo(int mb_uid);
+
+	public MemberDTO selectMemberInfo(@Param("mb_uid") int mb_uid);
 	
 	public int updateMemberInfo(@Param("dto") MemberDTO dto);
 	
@@ -32,5 +27,13 @@ public interface MypageDAO {
 												@Param("writePages") int writePages);
 	
 	public int purchaseConfirm(@Param("mb_uid") int mb_uid,	@Param("py_uid") int py_uid);
+	
+	public ArrayList<GoodsDTO> selectMemberLikeListByUid(@Param("mb_uid") int mb_uid, @Param("fromRow") int fromRow, @Param("writePages") int writePages);
+
+	public ArrayList<RequestDTO> selectMemberRequest(@Param("mb_uid") int mb_uid, @Param("fromRow") int fromRow, @Param("writePages") int writePages);
+
+	public int insertRequest(@Param("dto") RequestDTO dto);
+	
+	public RequestDTO selectRequestByUid(@Param("rq_uid") int rq_uid);
 
 }

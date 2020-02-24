@@ -11,7 +11,7 @@
 	function chkSubmit(){
 		frm = document.forms["frm"];
 		
-		var mb_nn = frm["mb_pw"].value.trim();
+		var mb_pw = frm["mb_pw"].value.trim();
 	    if (mb_pw == "") {
 	        alert("비밀번호를 입력해주세요");
 	        frm["mb_pw"].focus();

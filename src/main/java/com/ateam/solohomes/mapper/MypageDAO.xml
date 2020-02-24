@@ -6,7 +6,7 @@
 	<select id="selectMemberInfo" resultType="com.ateam.solohomes.beans.MemberDTO">
 			SELECT *
 			FROM `member`
-			WHERE mb_uid = #{mb_uid}	
+			WHERE mb_uid = #{mb_uid};	
  	</select>
  	
  	<update id="updateMemberInfo" flushCache="true">
@@ -18,7 +18,7 @@
 				mb_addr = #{dto.mb_addr},
 				mb_addr2 = #{dto.mb_addr2},
 				mb_phone = #{dto.mb_phone}
-			WHERE mb_uid = #{dto.mb_uid}
+			WHERE mb_uid = #{dto.mb_uid};
 	</update>
 	
 	
@@ -67,5 +67,39 @@
 	</update>
  	
  	
+ 	<select id="selectMemberLikeListByUid" resultType="com.ateam.solohomes.beans.GoodsDTO">
+		 	SELECT gl.gl_uid "gl_uid", g.g_uid "g_uid", g.g_name "g_name", g.g_img "g_img", g.g_price "g_price", g.g_likecnt "g_likecnt"  
+			FROM g_like gl, goods g, `member` m
+			WHERE m.mb_uid = #{mb_uid}
+			 	  and m.mb_uid = gl.mb_uid
+			  	  and g.g_uid = gl.g_uid
+			ORDER BY g.g_name 
+			LIMIT #{fromRow}, #{writePages};
+ 	</select>
+ 	
+
+ 	<select id="selectMemberRequest" resultType="com.ateam.solohomes.beans.RequestDTO">
+		 	SELECT r.rq_uid "rq_uid", r.rq_type "rq_type", r.rq_subject "rq_subject", r.rq_response "rq_response", r.rq_regdate "rq_regdate" 
+			FROM request r, `member` m
+			WHERE m.mb_uid = #{mb_uid}
+				  and m.mb_uid = r.mb_uid
+		    ORDER BY r.rq_regdate DESC
+			LIMIT #{fromRow}, #{writePages};
+ 	</select>
+ 	
+	
+ 	<insert id="insertRequest" flushCache="true">
+		 	INSERT INTO request
+					(mb_uid, rq_type, rq_subject, rq_content)
+			VALUES
+					(#{dto.mb_uid}, #{dto.rq_type}, #{dto.rq_subject}, #{dto.rq_content});
+ 	</insert>
+ 	
+ 	
+ 	<select id="selectRequestByUid" resultType="com.ateam.solohomes.beans.RequestDTO">
+		 	SELECT r.rq_uid "rq_uid", r.rq_type "rq_type", r.rq_subject "rq_subject", r.rq_content "rq_content", r.rq_response "rq_response", r.rq_regdate "rq_regdate" 
+			FROM request r
+			WHERE r.rq_uid = #{rq_uid};
+ 	</select>
  	
 </mapper>

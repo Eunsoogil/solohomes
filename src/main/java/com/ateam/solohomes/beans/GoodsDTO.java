@@ -10,6 +10,8 @@ public class GoodsDTO {
 	private int g_price;
 	private int g_likecnt;
 	
+	private int gl_uid;  // 마이페이지 좋아요 때문에 추가 - 이미지 02/23 
+	
 	
 	public GoodsDTO() {
 		super();
@@ -26,6 +28,21 @@ public class GoodsDTO {
 		this.g_size = g_size;
 		this.g_price = g_price;
 		this.g_likecnt = g_likecnt;
+	}
+	
+
+
+	// 마이페이지 좋아요 때문에 추가 - 이미지 02/23 
+	public GoodsDTO(int g_uid, int g_type, String g_name, String g_img, String g_size, int g_price, int g_likecnt, int gl_uid) {
+		super();
+		this.g_uid = g_uid;
+		this.g_type = g_type;
+		this.g_name = g_name;
+		this.g_img = g_img;
+		this.g_size = g_size;
+		this.g_price = g_price;
+		this.g_likecnt = g_likecnt;
+		this.gl_uid = gl_uid;
 	}
 
 
@@ -97,6 +114,17 @@ public class GoodsDTO {
 	public void setG_likecnt(int g_likecnt) {
 		this.g_likecnt = g_likecnt;
 	}
+
+
+	public int getGl_uid() {
+		return gl_uid;
+	}
+
+
+	public void setGl_uid(int gl_uid) {
+		this.gl_uid = gl_uid;
+	}
+	
 	
 	
 	

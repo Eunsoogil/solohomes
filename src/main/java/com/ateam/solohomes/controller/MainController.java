@@ -114,4 +114,14 @@ public class MainController {
 	public String purchaseList(Model model) {
 		return "user/mypage/purchaselist";
 	}
+	
+	@RequestMapping("/likelist.do")
+	public String likeList(Model model) {
+		return "user/mypage/likelist";
+	}
+	
+	@RequestMapping("/requestlist.do")
+	public String requestlist(Model model) {
+		return "user/mypage/requestlist";
+	}
 }

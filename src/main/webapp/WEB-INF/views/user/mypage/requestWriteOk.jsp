@@ -5,13 +5,14 @@
 <c:choose>
 	<c:when test="${empty result || result == 0 }">
 	<script>
-		alert("비밀번호 불일치");
+		alert("등록 실패");
 		history.back();
 	</script>
 	</c:when>
 	<c:otherwise>
 	<script>
-		location.href = "memberUpdate.do/${mb_uid}"; 
+		alert("등록 성공");
+		location.href = "${pageContext.request.contextPath}/user/requestlist.do"; 
 	</script>
 	</c:otherwise>
 </c:choose>

@@ -2,14 +2,21 @@ package com.ateam.solohomes.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.solohomes.C;
+import com.ateam.solohomes.beans.AjaxLikeList;
 import com.ateam.solohomes.beans.AjaxPurchaseList;
+import com.ateam.solohomes.beans.AjaxRequestList;
+import com.ateam.solohomes.beans.GoodsDTO;
 import com.ateam.solohomes.beans.MypageDAO;
 import com.ateam.solohomes.beans.PurchaseDTO;
+import com.ateam.solohomes.beans.RequestDTO;
+import com.ateam.solohomes.commnad.MypageRequestWriteCommand;
 
 
 @RestController
@@ -47,8 +54,7 @@ public class MypageRestController {
 		return result;
 	}
 	
-	
-	
+
 	
 	
 	@RequestMapping("/searchDate.ajax/{mb_uid}/{searchStartDate}/{searchEndDate}/{writePages}/{page}")
@@ -148,5 +154,70 @@ public class MypageRestController {
 		return result;
 	}
 
+	
+	
+	
+	@RequestMapping("/memberLikeList.ajax/{mb_uid}/{writePages}/{page}")
+	public AjaxLikeList memberLikeList(@PathVariable("mb_uid") int mb_uid, @PathVariable("writePages") int writePages, @PathVariable("page") int page){
+	
+		System.out.println("mb_uid: "+ mb_uid);
+		System.out.println("writePages: "+ writePages);
+		System.out.println("page: "+ page);
+		
+		AjaxLikeList result = new AjaxLikeList();
+		ArrayList<GoodsDTO> list = null;
+		
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		list = dao.selectMemberLikeListByUid(mb_uid, (page - 1) * writePages, writePages);
+			
+		result.setList(list);
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(list != null && list.size() > 0){ 
+			result.setStatus("OK");
+			result.setCount(list.size());
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
+	
+	
+	
+	@RequestMapping("/memberRequestList.ajax/{mb_uid}/{writePages}/{page}")
+	public AjaxRequestList memberRequestList(@PathVariable("mb_uid") int mb_uid, @PathVariable("writePages") int writePages, @PathVariable("page") int page){
+	
+		System.out.println("mb_uid: "+ mb_uid);
+		System.out.println("writePages: "+ writePages);
+		System.out.println("page: "+ page);
+		
+		AjaxRequestList result = new AjaxRequestList();
+		ArrayList<RequestDTO> list = null;
+		
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		list = dao.selectMemberRequest(mb_uid, (page - 1) * writePages, writePages);
+	
+		result.setList(list);
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(list != null && list.size() > 0){ 
+			result.setStatus("OK");
+			result.setCount(list.size());
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
 
+	
+	
+	
 }
