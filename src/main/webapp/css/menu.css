@@ -64,12 +64,19 @@ header img{
 	cursor: pointer;
 }
 #login{
-	text-align: right;
+	width:70px;
+	float:right;
 	display:block;
-	padding-top:5px;
+	padding:3px 5px;
 	font-weight:bold;
+	background: #A91F24;
+	color:white;
+	border:1px solid #A91F24;
+	border-radius: 20px;
+	text-align: center;
 }
 #login:hover{
+	background:white;
 	color:#A91F24;
 }
 
@@ -82,9 +89,9 @@ header img{
 	padding:25px;
 	text-align: center;
 	width:500px !important;
-	height:350px;
+	height:355px;
 	top:50%;
-	margin-top:-170px;
+	margin-top:-180px;
 	z-index:99;
 }
 .modal-content a{
@@ -238,4 +245,5 @@ header > .container{
 
 .bg_white{
 	background: white;
+	box-shadow: 0 5px 10px rgba(0,0,0,.2) !important;
 }

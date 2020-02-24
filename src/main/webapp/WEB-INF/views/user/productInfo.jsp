@@ -37,6 +37,7 @@
 <script>
 function doShow(imgSrc) {
 	document.getElementById("bigImg").src = imgSrc;
+	$(".image-popup").attr("href", imgSrc);
 }
 
 function goCart() {	

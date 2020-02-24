@@ -5,7 +5,7 @@ $(function(){
 	$(window).scroll(function() {
 	    var scrollPosition = $(window).scrollTop();
 
-	    if (scrollPosition >= 200) {	      
+	    if (scrollPosition >= 100) {	      
 	    	$('header').addClass("bg_white")
 	    } else{
 	    	$('header').removeClass("bg_white");
