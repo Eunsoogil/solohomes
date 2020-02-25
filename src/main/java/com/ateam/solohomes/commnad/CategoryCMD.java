@@ -36,7 +36,7 @@ public class CategoryCMD implements Command {
 			break;
 			case 4:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "소 파";
+				typeName= "쇼 파";
 			break;
 			case 5:
 				gdto = dao.selectByTypee(g_type);

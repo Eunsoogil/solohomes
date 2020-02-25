@@ -26,15 +26,16 @@
 	</div>
 </div>
 <br><br>
-<div id="categorybody" class="container">
+<div id="categorybody" class="container col-md-10 col-md-offset-1">
+
 	<c:choose>
 	<c:when test="${empty gdto || fn.length(gdto) == 0 }">
 		품목이 없습니다<br>
 	</c:when>
 	<c:otherwise>
 		<c:forEach var="gdto" items="${gdto }">	
-				<div id="unit" class="col-md-3 col-sm-6 col-xs-12" OnClick="location.href='#'">
-					<div id="imgdiv" style="background-image:url(../css/category/img/${gdto.g_img}); background-size : cover; "></div>
+				<div id="unit" class="col-sm-3 col-xs-12" OnClick="location.href='#'">
+					<div id="imgdiv" class="col-md-12"  style="background-image:url(../img/goods/${gdto.g_img});"></div>
 			<br><p id="name">${gdto.g_name }</p>
 					<p id ="price">${gdto.g_price } 원</p>
 					<p id="like">${gdto.g_likecnt }</p>
@@ -43,6 +44,7 @@
 			</c:forEach>
 	</c:otherwise>
 </c:choose>
+
 </div>
 
 </body>

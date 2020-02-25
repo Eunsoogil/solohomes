@@ -99,23 +99,23 @@ function hide(){
 					</div>
 				</form>
 			</div>
-			<div class="pc mo_none"><a id="login" href="#">로그인</a></div>
+			<div class="pc mo_none"><a id="login" href="../member/login.do">로그인</a></div>
 		</div>
 	</header>
 
 	<ul class="mo_menu">
 		<li><a class="f">가구 <i class="fas fa-sort-down"></i></a></li>
 		<ul class="f_sub">
-			<li><a href="#">거실장</a></li>
-			<li><a href="#">서랍장</a></li>
-			<li><a href="#">쇼파</a></li>
-			<li><a href="#">옷장</a></li>
-			<li><a href="#">의자</a></li>
-			<li><a href="#">책상</a></li>
-			<li><a href="#">책장</a></li>
-			<li><a href="#">침대</a></li>
-			<li><a href="#">테이블</a></li>
-			<li><a href="#">화장대</a></li>
+			<li><a href="../category/category.do?g_type=5">거실장</a></li>
+			<li><a href="../category/category.do?g_type=3">서랍장</a></li>
+			<li><a href="../category/category.do?g_type=4">쇼파</a></li>
+			<li><a href="../category/category.do?g_type=6">옷장</a></li>
+			<li><a href="../category/category.do?g_type=8">의자</a></li>
+			<li><a href="../category/category.do?g_type=9">책상</a></li>
+			<li><a href="../category/category.do?g_type=10">책장</a></li>
+			<li><a href="../category/category.do?g_type=1">침대</a></li>
+			<li><a href="../category/category.do?g_type=7">테이블</a></li>
+			<li><a href="../category/category.do?g_type=2">화장대</a></li>
 		</ul>
 		<li><a href="#">시리즈</a></li>
 		<li><a class="mypage">마이페이지 <i class="fas fa-sort-down"></i></a></li>
@@ -134,16 +134,16 @@ function hide(){
 		<div class="modal-content">
 			<ul class="right">
 				<h3>가구</h3>
-				<li><a href="#">거실장</a></li>
-				<li><a href="#">서랍장</a></li>
-				<li><a href="#">쇼파</a></li>
-				<li><a href="#">옷장</a></li>
-				<li><a href="#">의자</a></li>
-				<li><a href="#">책상</a></li>
-				<li><a href="#">책장</a></li>
-				<li><a href="#">침대</a></li>
-				<li><a href="#">테이블</a></li>
-				<li><a href="#">화장대</a></li>
+				<li><a href="../category/category.do?g_type=5">거실장</a></li>
+				<li><a href="../category/category.do?g_type=3">서랍장</a></li>
+				<li><a href="../category/category.do?g_type=4">쇼파</a></li>
+				<li><a href="../category/category.do?g_type=6">옷장</a></li>
+				<li><a href="../category/category.do?g_type=8">의자</a></li>
+				<li><a href="../category/category.do?g_type=9">책상</a></li>
+				<li><a href="../category/category.do?g_type=10">책장</a></li>
+				<li><a href="../category/category.do?g_type=1">침대</a></li>
+				<li><a href="../category/category.do?g_type=7">테이블</a></li>
+				<li><a href="../category/category.do?g_type=2">화장대</a></li>
 			</ul>
 			<ul>
 				<h3>시리즈</h3>
