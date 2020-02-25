@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%!
-	int writePages = 3;
+	int writePages = 10;
 %> 
 <%!
 	int mb_uid = 2;
@@ -51,6 +51,8 @@
 		<section class="ftco-section bg-light">
     	<div class="container-fluid">
     		<div class="row" id="pr">
+    		
+    		
     			
     		</div>
     		<div class="row mt-5">
@@ -74,7 +76,6 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-	
 	
 	<script>
 	$(document).ready(function(){
@@ -134,32 +135,78 @@
 			var count = jsonObj.count; // 글 개수
 			var items = jsonObj.list; // 글 목록
 			
+			
 			var i;
 			for(i = 0; i < count; i++){
-				result += "<span class='price-sale'>"+ items[i].g_price +"</span>";
 				
+				result += "<div class='col-sm col-md-6 col-lg-3'>";
+				result += "<div class='product'>";
+				result += "<a href='#' class='img-prod'>";
+				result += "<img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].g_img +"' alt='Colorlib Template' />";
+				result += "</a>";
+				result += "<div class='text py-3 px-3'>";
+				result += "<h3><a href='#'>"+ items[i].g_name +"</a></h3>";
+				result += "<div class='d-flex'>";
+				result += "<div class='pricing'>";
+				result += "<p class='price'><span class='price-sale'>"+ items[i].g_price +"</span></p>"
+				result += "</div>";			
+				result += "<div class='rating'>";
+				result += "<p class='text-right'>";
+				result += "<a href='#' onclick=delzzim('"+items[i].gl_uid+"') class='ml-auto'><span><i class='material-icons'>favorite</i></span></a>";
+				result += "<span>"+items[i].g_likecnt+"</span>";
+				result += "</p>";
+				result += "</div>"		
+				result += "</div>"
+				result += "<hr>"; 		
+				result += "<p class='bottom-area d-flex'>";
+				result += "<a href='#' class='add-to-cart'><span>Add to cart<i class='material-icons'>add_shopping_cart</i></span></a></p>";		
+				result += "</div>"
+				result += "</div>"
+				result += "</div>";
 
+			}
 			
-	//$("#pr").html(result); 
-
-			$('#pr').append(result);
-
+			$("#pr").append(result);
 			alert(result);
 			return true;
-			
-			}
+
 		}else{
 			alert("내용이 없습니다.")
-			
 			return false;
 		}
 		
 		return false;
 	}
+	
+	
+	function delzzim(gl_uid){
+	
+			if(confirm("해당 찜을 삭제하시겠습니까?")){
+				$.ajax({
+					url : "${pageContext.request.contextPath}/mypageAjax/memberLikeDelete.ajax/"+gl_uid,
+					type : "GET",
+					cache : false,
+					success : function(data){
+						if(data != 0){
+							alert("찜 삭제 완료");
+							loadPage(1);
+						}else{
+							alert("찜 삭제 실패");
+							loadPage(1);
+						}
+					}
+				});
+			}else{
+				history.back();
+			}
+			
+	}
+
+	
+	
 	</script>
 	
-	
-	
+
 	
 	<script src="${pageContext.request.contextPath }/js/user/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/user/jquery-migrate-3.0.1.min.js"></script>

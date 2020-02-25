@@ -102,4 +102,8 @@
 			WHERE r.rq_uid = #{rq_uid};
  	</select>
  	
+ 	
+ 	<delete id="deleteLikeByUid" flushCache="true">
+ 		DELETE FROM g_like WHERE gl_uid = #{gl_uid};
+ 	</delete>
 </mapper>
