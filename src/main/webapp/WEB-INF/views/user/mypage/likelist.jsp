@@ -163,7 +163,6 @@
 				result += "</div>"
 				result += "</div>"
 				result += "</div>";
-
 			}
 			
 			$("#pr").append(result);
@@ -177,6 +176,7 @@
 		
 		return false;
 	}
+	
 	
 	
 	function delzzim(gl_uid){
@@ -198,12 +198,9 @@
 				});
 			}else{
 				history.back();
-			}
-			
+			}		
 	}
 
-	
-	
 	</script>
 	
 
