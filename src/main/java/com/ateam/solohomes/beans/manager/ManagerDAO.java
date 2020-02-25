@@ -49,4 +49,7 @@ public interface ManagerDAO {
 	
 	// get statistics of monthly sales amount
 	public ArrayList<MonthlySalesDTO> getMonthlySales();
+	// get daily sales
+	public ArrayList<DailySalesDTO> getDailySalesByMonth(@Param("month") String month);
+	
 }

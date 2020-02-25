@@ -1,39 +1,65 @@
 package com.ateam.solohomes.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.solohomes.C;
+import com.ateam.solohomes.user.main.AjaxInfoList;
+import com.ateam.solohomes.user.main.AjaxInfoQryResult;
 import com.ateam.solohomes.user.main.ProductInfoDAO;
 import com.ateam.solohomes.user.main.ProductInfoDTO;
 
 @RestController
 @RequestMapping("/user")
 public class InfoRestController {
-	@RequestMapping("/productInfo.do/{g_uid}")
-	//매핑에 있는 uid값이 매개변수 uid에 저장된다.
-	public ProductInfoDTO read(@PathVariable("g_uid") int g_uid) {
+	@RequestMapping("/likeup/{g_uid}/{mb_uid}")
+	public AjaxInfoList likeup( 
+			@PathVariable("g_uid") int g_uid, @PathVariable("mb_uid") int mb_uid){
+		System.out.println(g_uid);
+		System.out.println(mb_uid);
+		AjaxInfoList result = new AjaxInfoList();
+		
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
-		return dao.selectByUid(g_uid);
-		// 만약 Uid가 없는값 /즉, 존재하지 않는 글을 체크한다면 쿼리는 문제없기때문에 에러가 나지 않는다.
-		// 하지만 쿼리의 결과는 존재하지 않기 때문에 빈화면으로 출력이 된다. 
-		// 따라서 REST설계를 했다면 , 이를 고려하여 에러를 나게 해주는것이 좋다.
+		ArrayList<ProductInfoDTO> list = dao.likeCnt(g_uid);
+		
+		int cnt = dao.likePlus(g_uid);
+		int cnt2 = dao.likeInsert(mb_uid, g_uid);
+		
+		if(cnt == 1  && cnt == 2) {
+			result.setStatus("OK");
+			result.setCount(cnt);
+			result.setList(list);
+		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
 	}
 	
-	
-	/*
-	@RequestMapping("/productInfo/{g_uid}")
-	//매핑에 있는 uid값이 매개변수 uid에 저장된다.
-	public ResponseEntity<ProductInfoDTO> readErr(@PathVariable("g_uid") int g_uid) {
+	@RequestMapping("/likedown/{g_uid}/{mb_uid}")
+	public AjaxInfoList likedown( 
+			@PathVariable("g_uid") int g_uid, @PathVariable("mb_uid") int mb_uid){
+		System.out.println(g_uid);
+		System.out.println(mb_uid);
+		AjaxInfoList result = new AjaxInfoList();
+		
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
-		ProductInfoDTO dto = dao.selectByUid(g_uid);  // 값이 존재하지 않는다면 dto는 Null을 리턴한다.
+		ArrayList<ProductInfoDTO> list = dao.likeCnt(g_uid);
 		
-		//글읽기 실패 (없는글일때)
-		if (dto == null) return new ResponseEntity(HttpStatus.NOT_FOUND); // 404에러
+		int cnt = dao.likeMinus(g_uid);
+		int cnt2 = dao.likeDelete(mb_uid, g_uid);
 		
+		if(cnt == 1  && cnt == 2) {
+			result.setStatus("OK");
+			result.setCount(cnt);
+			result.setList(list);
+		} else {
+			result.setStatus("FAIL");
+		}
 		
-		// 성공했다면 
-		return new ResponseEntity<ProductInfoDTO>(dto,HttpStatus.OK);
-	}*/
+		return result;
+	}
 }

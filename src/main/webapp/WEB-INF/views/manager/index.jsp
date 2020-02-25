@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,6 +29,9 @@
 	<title>SoloHomes Manager</title>
 </head>
 <body>
+	<!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/manager/index.js"></script>
     <!-- Preloader -->
     <div class="preloader">
         <div class="cssload-speeding-wheel"></div>
@@ -161,14 +167,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title"><b>이번달 판매현황</b>
+                            <h3 class="box-title"><b>월별 판매현황</b>
                                 <div class="col-md-2 col-sm-4 col-xs-12 pull-right">
-                                    <select class="form-control pull-right row b-none">
-                                        <option>March 2016</option>
-                                        <option>April 2016</option>
-                                        <option>May 2016</option>
-                                        <option>June 2016</option>
-                                        <option>July 2016</option>
+                                	<!-- month select -->
+                                    <select class="form-control pull-right row b-none" id="selectMonth">
+                                    	<c:set var="size" value="${fn:length(mothlySalesList) - 1}"/>
+                                  		<c:forEach var="i" begin="0" end="${size}">
+                                  			<option value="${mothlySalesList[size - i].year_month}">${mothlySalesList[size - i].year_month}</option>
+                                  		</c:forEach>
                                     </select>
                                 </div>
                             </h3>
@@ -176,30 +182,27 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>제품명</th>
-                                            <th>제품타입</th>
-                                            <th>판매량</th>
+                                            <th>날짜</th>
+                                            <th>판매수량</th>
                                             <th>판매액</th>
-                                            <th>한줄평수</th>
-                                            <th>좋아요수</th>
+                                            <th>누적판매액</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
-                                </table> <a href="#">Check all the sales</a> </div>
-                        </div>
-                    </div>
-                </div>
+                               	</table>
+                               	<div class="pull-right">단위 : (&#8361)</div>
+                        	</div>
+                    	</div>
+                	</div>
                 <!-- /.row -->
-            </div>
+            	</div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="../admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../admin/pixel-html/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Menu Plugin JavaScript -->

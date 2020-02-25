@@ -14,12 +14,15 @@ public class InfoViewCommand implements Command {
 	public void execute(Model model) {
 		Map<String, Object> map = model.asMap();
 		int g_uid = (Integer)map.get("g_uid");
+		int mb_uid = (Integer)map.get("mb_uid");
 		
 		ProductInfoDAO dao = C.sqlSession.getMapper(ProductInfoDAO.class);
-		ProductInfoDTO dto = dao.selectByUid(g_uid);
+		ProductInfoDTO dto = dao.selectGoods(g_uid);
+		ProductInfoDTO dto2 = dao.likeYN(mb_uid, g_uid);
 		
-		
-		model.addAttribute("dto", dto);
+		model.addAttribute("goods", dto);
+		model.addAttribute("likeYN", dto2);
+		model.addAttribute("gInfo", dao.selectgInfo(g_uid));
 	}
 
 }
