@@ -51,32 +51,17 @@ function goCart() {
 	if(confirm("해당 상품을 장바구니에 넣으시겠습니까?")){
 		if(cr_amount > storage){
 			alert("해당 색상의 재고수량은 " + storage + "개 입니다.\n구매수량을 재고수량보다 작게 선택해주세요.");
+			return false;
 		} else{
 			location.href="${pageContext.request.contextPath}/user/cartInsert.do/3/"+in_uid+"/"+cr_amount;
 		}
 	}	
 }
 
-function goDelete(number) {	
-	if(confirm("삭제하시겠습니까?")){
-		var co_uid = parseInt(number);
-		
-		$.ajax({
-			url:"${pageContext.request.contextPath}/user/review/delete.do",
-			type:"POST",
-			data: {"co_uid" : co_uid},
-			cache:false,
-			success:function(data,status){
-				if(status == "success"){
-					alert("삭제되었습니다.");
-					loadPage(1);
-				}
-			}
-			
-		})
-	} else{
-		return false;
-	}
+function popUp(co_uid) {
+	$("#popUp").css("display", "block");
+	$('#co_uid').val(co_uid);	
+	$('#mb_uid').val("3");	
 }
 </script>
 
@@ -144,7 +129,7 @@ function updateList(jsonObj){
 						(regDate.getMonth() + 1) + "/" +     // +1 해추어어야 한다 
 						regDate.getDate();		
 			result += "<td>" +strDate + "</td>\n";
-			result += "<td><button type='button' class='tBtn notify'>신고하기</button></td>"
+			result += "<td><button type='button' onclick='popUp(this.value)' class='tBtn notify' value='" + items[i].co_uid + "'>신고하기</button></td>"
 			
 			if(mb_uid == items[i].mb_uid){				
 				result += "<td><button class='tBtn' value='"+ items[i].co_uid + "' onclick='goDelete(this.value)'>";
@@ -201,6 +186,28 @@ function likeDown(){
 			}
 		}		
 	});
+}
+
+function goDelete(number) {	
+	if(confirm("삭제하시겠습니까?")){
+		var co_uid = parseInt(number);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/review/delete.do",
+			type:"POST",
+			data: {"co_uid" : co_uid},
+			cache:false,
+			success:function(data,status){
+				if(status == "success"){
+					alert("삭제되었습니다.");
+					loadPage(1);
+				}
+			}
+			
+		})
+	} else{
+		return false;
+	}
 }
 </script>
 </head>
@@ -306,6 +313,37 @@ function likeDown(){
 	</div>
 	</section>	
 	
+	<div id="popUp">
+		<form class="modal-notify">
+			<p>
+				한줄평 신고는 이용수칙에 맞지 않는 글을 신고하는 기능이며, 반대 의견을 표시하는 것이 아닙니다.
+				신고는 철회가 안되므로 신중하게 해주세요. 허위 신고의 경우 신고자가 제재받을 수 있음을 유념해주세요.
+			</p>
+			<input type="hidden" id="co_uid" name="co_uid" value="">
+			<input type="hidden" id="mb_uid" name="mb_uid" value="">
+			<div class="moBox">
+				<h6>신고사유</h6>
+				<ul>
+					<li><input type="radio" name="re_type" value="1"> 광고/음란성</li>
+					<li><input type="radio" name="re_type" value="2"> 욕설/반말/부적절한 언어</li>
+					<li><input type="radio" name="re_type" value="3"> 회원 분란/비방</li>
+					<li><input type="radio" name="re_type" value="4"> 지나친 정지/종교적 언행</li>
+					<li><input type="radio" name="re_type" value="5"> 도배성 댓글</li>
+					<li><input type="radio" name="re_type" value="6"> 기타</li>
+				</ul>
+				<h6>상세내용(선택)</h6>
+				<div class="txtBox">
+					<textarea name="re_content" id="re_content"></textarea>
+				</div>				
+			</div>	
+			<div class="popBtnBox">
+				<button class="popBtn">신고하기</button>
+				<button class="popBtn closePop">취소하기</button>
+			</div>
+			
+		</form>
+	</div>
+	
 <script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>
@@ -358,6 +396,20 @@ $(document).ready(function(){
 			likeDown();
 		}
 	});
+	
+	$(".closePop").click(function() {		
+		$("#popUp").css("display", "none");
+		return false;
+	});
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		var pop = document.getElementById('popUp');
+		if (event.target == pop) {
+			$("#popUp").css("display", "none");
+			return false;
+		}
+	}
 		
 });
 </script>
