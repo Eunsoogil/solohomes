@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.ateam.solohomes.beans.GoodsDTO;
+
 @MapperScan
 public interface ManagerDAO {
 	
@@ -52,4 +54,6 @@ public interface ManagerDAO {
 	// get daily sales
 	public ArrayList<DailySalesDTO> getDailySalesByMonth(@Param("month") String month);
 	
+	// select goods by type and sort
+	public ArrayList<GoodsSalNumDTO> selectSortedGoodsByType(@Param("type") int type, @Param("columnNum") int columnNum, @Param("sord") String sord, @Param("startRow") int startRow, @Param("listPage") int listPage);
 }

@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.manager.AjaxCommentList;
+import com.ateam.solohomes.beans.manager.AjaxGoodsList;
 import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
 import com.ateam.solohomes.beans.manager.AjaxMemberList;
 import com.ateam.solohomes.beans.manager.AjaxRequestList;
 import com.ateam.solohomes.beans.manager.CommentRenumDTO;
 import com.ateam.solohomes.beans.manager.DailySalesDTO;
+import com.ateam.solohomes.beans.manager.GoodsSalNumDTO;
 import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
 import com.ateam.solohomes.beans.manager.MonthlySalesDTO;
@@ -299,6 +301,45 @@ public class ManagerRestController {
 			result.setStatus("SUCCESS");
 		} else {
 			result.setCount(cnt);
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/goods.ajax/{type}/{stype}/{listPages}/{page}")
+	public AjaxGoodsList selectGoods(@PathVariable("type") int type, @PathVariable("stype") int stype, @PathVariable("listPages") int listPages, @PathVariable("page") int page) {
+		AjaxGoodsList result = new AjaxGoodsList();
+		ArrayList<GoodsSalNumDTO> list = null;
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		String sord = "";
+		int colNum = 1; // 실제 쿼리에 보낼 컬럼 인덱스
+		
+		switch(stype) {
+			case 1: // g_likecnt DESC
+				sord = "DESC";
+				colNum = 7;
+				break;
+			case 2: // g_uid DESC
+				sord = "DESC";
+				colNum = 1;
+				break;
+			case 3: // 판매횟수 DESC
+				sord = "DESC";
+				colNum = 8;
+				break;
+			default:
+				sord = "ASC";
+				break;
+		}
+		
+		list = dao.selectSortedGoodsByType(type, colNum, sord, (page - 1) * listPages, listPages);
+		result.setList(list);
+		if (list != null && list.size() > 0) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
 			result.setStatus("FAIL");
 		}
 		
