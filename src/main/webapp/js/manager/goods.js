@@ -70,7 +70,7 @@ function updateTable(jsonObj) {
 		
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
-			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].uid + "'></td>\n";
+			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
 			result += "<td>" + list[i].g_name + "</td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
 			result += "<td>" + list[i].g_price + "</td>";
@@ -105,4 +105,37 @@ function parseType(num) {
 	default: break;
 	}
 	return result;
+}
+
+//delete ajax
+function chkDelete() {
+	var curPage = parseInt($("input#goodsPage").val());
+	var uids = [];
+	$("#frmDelete input[name=uid]").each(function(){
+		if ($(this).is(":checked")) {
+			uids.push(parseInt($(this).val()));
+		}
+	});
+	
+	if (uids.length == 0) {
+		alert("상품을 하나 이상 선택해 주세요");
+	} else {
+		var confirmResult = confirm("정말 삭제하겠습니까?");
+		if (confirmResult) {
+			$.ajax({
+				url : "../managerAjax/goods/deleteOk.do"
+				, type : "POST"
+				, cache : false
+				, data : {
+					uids : JSON.stringify(uids).slice(1).slice(0, -1)
+				}
+				, success : function(data, status) {
+					if (status == "success") {
+						alert(data.count + "개의 상품 삭제 성공");
+						loadRequestTable(curPage);
+					}
+				}
+			});
+		}
+	}
 }

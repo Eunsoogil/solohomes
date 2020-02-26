@@ -56,4 +56,6 @@ public interface ManagerDAO {
 	
 	// select goods by type and sort
 	public ArrayList<GoodsSalNumDTO> selectSortedGoodsByType(@Param("type") int type, @Param("columnNum") int columnNum, @Param("sord") String sord, @Param("startRow") int startRow, @Param("listPage") int listPage);
+	// delete goods by uids
+	public int deleteGoodsByUids(@Param("uidList") int[] list);
 }

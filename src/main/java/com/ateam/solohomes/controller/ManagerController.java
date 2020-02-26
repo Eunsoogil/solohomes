@@ -47,9 +47,9 @@ public class ManagerController {
 		return "manager/goods";
 	}
 	
-	@RequestMapping("/statistic.do")
-	public String manageStatistic() {
-		return "manager/statistic";
+	@RequestMapping("/goodsWrite.do")
+	public String manageGoodsWrite() {
+		return "manager/goodsWrite";
 	}
 	
 	@RequestMapping("/review.do")
