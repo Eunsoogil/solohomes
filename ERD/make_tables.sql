@@ -180,7 +180,7 @@ ALTER TABLE payment COMMENT '구매목록';
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES member (mb_uid) ON DELETE SET NULL ON UPDATE CASCADE;
-
+c
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
         REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;

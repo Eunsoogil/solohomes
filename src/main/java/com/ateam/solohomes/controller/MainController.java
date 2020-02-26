@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.search.SearchDAO;
 import com.ateam.solohomes.beans.search.SearchDTO;
+import com.ateam.solohomes.commnad.CartInsertCommand;
 import com.ateam.solohomes.commnad.Command;
 import com.ateam.solohomes.commnad.InfoViewCommand;
 import com.ateam.solohomes.commnad.ListCommand;
+import com.ateam.solohomes.user.main.ProductInfoDTO;
 
 @Controller
 public class MainController {
@@ -109,15 +111,5 @@ public class MainController {
 	@RequestMapping("/user/detail.do")
 	public String detail(Model model) {
 		return "user/search/detail";
-	}
-	
-	@RequestMapping("/user/productInfo.do/{g_uid}/{mb_uid}")
-	public String productInfo(Model model,
-			@PathVariable("g_uid")int g_uid, @PathVariable("mb_uid")int mb_uid) {
-		model.addAttribute("g_uid", g_uid); 
-		model.addAttribute("mb_uid", mb_uid); 
-		new InfoViewCommand().execute(model);
-		return "user/productInfo";
-	}
-	
+	}	
 }

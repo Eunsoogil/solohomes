@@ -2,16 +2,16 @@ package com.ateam.solohomes.user.main;
 
 import java.util.ArrayList;
 
-public class AjaxInfoList {
+public class AjaxReviewList {
 
 	int count;  // 데이터 갯수
 	String status; // 처리결과
-	ArrayList<ProductInfoDTO> list; // 데이터
+	ArrayList<ReviewDTO> list; // 데이터
 	
-	public AjaxInfoList() {
+	public AjaxReviewList() {
 		super();
 	}
-	public AjaxInfoList(int count, String status, ArrayList<ProductInfoDTO> list) {
+	public AjaxReviewList(int count, String status, ArrayList<ReviewDTO> list) {
 		super();
 		this.count = count;
 		this.status = status;
@@ -29,10 +29,10 @@ public class AjaxInfoList {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public ArrayList<ProductInfoDTO> getList() {
+	public ArrayList<ReviewDTO> getList() {
 		return list;
 	}
-	public void setList(ArrayList<ProductInfoDTO> list) {
+	public void setList(ArrayList<ReviewDTO> list) {
 		this.list = list;
 	}
 }

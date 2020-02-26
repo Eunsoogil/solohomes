@@ -179,7 +179,7 @@
                                 </div>
                             </h3>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" id="dailySalesTable">
                                     <thead>
                                         <tr>
                                             <th>날짜</th>

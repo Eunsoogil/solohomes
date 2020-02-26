@@ -2,6 +2,7 @@ package com.ateam.solohomes.user.main;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 
 public interface ProductInfoDAO{
 	// 가구정보 띄우기
@@ -23,5 +24,5 @@ public interface ProductInfoDAO{
 	public int likeDelete(int mb_uid, int g_uid);
 	
 	// 장바구니
-	public int cartInsert(int mb_uid, int in_uid, int cr_amount);
+	public int cartInsert(@Param("dto") ProductInfoDTO dto);
 }
