@@ -47,9 +47,3 @@
 			(#{co_uid}, #{mb_uid}, #{re_type}, #{re_content});
 	</insert>
 </mapper>
-
-
-
-
-
-
