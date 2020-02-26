@@ -64,7 +64,7 @@ header img{
 	cursor: pointer;
 }
 #login{
-	width:70px;
+	width:80px;
 	float:right;
 	display:block;
 	padding:3px 5px;
@@ -145,18 +145,19 @@ header img{
 #myModal{
 	display:none;
     position: fixed;
-    z-index: 15;
+    z-index: 99;
     left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 .bg_white{
 	background: rgba(255,255,255,1);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .show{
@@ -210,40 +211,35 @@ header img{
 }
 
 @media screen and (min-width:600px) and (max-width:900px){
-header > .container{
-	padding:0 5%;
-	min-width:500px;
-}
-
+	header > .container{
+		padding:0 5%;
+		min-width:500px;
+	}
 }
 
 
 @media screen and (max-width:599px){
-header{
-	background: white;
-}
-header > .container{
-	display:block;
-	width:100%;
-	min-width:200px;
-	padding:0 5px;
-}
-
-#menuBtn{
-	position:absolute;
-	top:3px; left:5px;
-}
-#brand{
-	margin:0 auto;
-	width:100%;
-	display:block;
-	text-align: center;
-}
-.mo_none{
-	display:none !important;
-}
-
-.bg_white{
-	background: white;
-	box-shadow: 0 5px 10px rgba(0,0,0,.2) !important;
+	header{
+		background: white;
+	}
+	header > .container{
+		display:block;
+		width:100%;
+		min-width:200px;
+		padding:0 5px;
+	}
+	
+	#menuBtn{
+		position:absolute;
+		top:3px; left:5px;
+	}
+	#brand{
+		margin:0 auto;
+		width:100%;
+		display:block;
+		text-align: center;
+	}
+	.mo_none{
+		display:none !important;
+	}
 }

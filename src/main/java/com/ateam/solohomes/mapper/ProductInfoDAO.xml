@@ -53,9 +53,9 @@
 	
 	<!-- 장바구니 추가 -->
 	<insert id="cartInsert" flushCache="true" parameterType="com.ateam.solohomes.user.main.ProductInfoDTO">
-		INSERT INTO g_like
+		INSERT INTO cart
 			(mb_uid, in_uid, cr_amount)
 		VALUES
-			(#{mb_uid}, #{in_uid}, #{cr_amount});
+			(#{dto.mb_uid}, #{dto.in_uid}, #{dto.cr_amount});
 	</insert>
 </mapper>
