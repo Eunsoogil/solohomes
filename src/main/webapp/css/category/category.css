@@ -27,6 +27,13 @@
 	
 }
 
+.container #unit #unit2{
+	width:100%;
+	height: 100%;
+	padding: 10px;
+	
+}
+
 .container #unit #imgdiv{
 	margin:0px;
 	background-position:center;

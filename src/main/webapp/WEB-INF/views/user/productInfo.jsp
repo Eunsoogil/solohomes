@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%!
+	// 페이징 관련 변수들
+	int writePages = 10;
+%>
 <c:choose>
 	<c:when test="${empty goods}">
 		<script>
@@ -48,10 +51,130 @@ function goCart() {
 	if(confirm("해당 상품을 장바구니에 넣으시겠습니까?")){
 		if(cr_amount > storage){
 			alert("해당 색상의 재고수량은 " + storage + "개 입니다.\n구매수량을 재고수량보다 작게 선택해주세요.");
+			return false;
 		} else{
-			location.href="/cartInsert.do/3"+in_uid+"/"+cr_amount;
+			location.href="${pageContext.request.contextPath}/user/cartInsert.do/3/"+in_uid+"/"+cr_amount;
 		}
 	}	
+}
+
+function popUp(uid) {
+	$("#popUp").css("display", "block");
+	var co_uid = uid;	
+	var mb_uid = 3;	
+
+	$(".accept").click(function() {
+		var re_content = $('#re_content').val();
+		var re_type = $("input[name='re_type']:checked").val(); 
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/review/notify.do",
+			type:"POST",
+			data: {
+				"co_uid" : co_uid, 
+				"mb_uid" : mb_uid,
+				"re_content" : re_content,
+				"re_type" : re_type},
+			cache:false,
+			success:function(data, status){
+				if(data.status == "OK"){
+					alert("신고되었습니다.");
+					loadPage(1);
+				} else{
+					alert("이미 신고한 게시물입니다.");					
+					return false;
+				}
+			}
+				
+		});
+	});
+}
+</script>
+
+<!------ 페이징 AJAX 자바스크립트 ------>
+<script>
+$(document).ready(function(){
+	$("input#page").val(1);  // 페이지 최초 로딩되면 1페이지로 기본 세팅
+	loadPage(1)// page 읽어오기
+
+	$("button#prev").click(function(){
+		// 현재 페이지 정보
+		var curPage = parseInt($("input#page").val());
+		
+		// 첫페이지였다면 ..
+		if(curPage == 1){
+			alert("첫 페이지입니다.");
+			return;
+		}
+		
+		// 첫페이지 아니라면 이전페이지 로딩
+		loadPage(curPage - 1); 		
+	});
+	
+	$("button#next").click(function(){
+		// 현재페이지
+		var curPage = parseInt($("input#page").val());
+		loadPage(curPage + 1);   // 다음 페이지 로딩		
+	});
+});
+
+function loadPage(page){	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/user/review/" + ${goods.g_uid} + "/3/<%= writePages%>/" + page,
+		type : "GET",
+		cache : false,
+		success : function(data, status){
+			if(status == "success"){
+				
+				if(updateList(data)){ // 페이지 업데이트
+					// 페이지 로딩이 성공한 뒤라야 현재 페이지 정보 업데이트
+					$("input#page").val(page);
+				}
+			}
+		}		
+	});
+} // end loadPage()
+
+function updateList(jsonObj){
+	result = "";
+	
+	if(jsonObj.status == "OK"){
+	
+		var count = jsonObj.count; // 글 개수
+		var items = jsonObj.list;  // 글 목록
+		var mb_uid = 3;
+		var i;
+		for(i = 0; i < count; i++){
+			result += "<tr>\n";	
+			result += "<td>" + items[i].mb_nn + "</td>\n";
+			result += "<td>" + items[i].co_subject + "</td>\n";
+			result += "<td>" + items[i].co_content + "</td>\n";			
+			// Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
+			var regDate = new Date(items[i].co_regdate);
+			var strDate = regDate.getFullYear() + "." +
+						(regDate.getMonth() + 1) + "." +     // +1 해추어어야 한다 
+						regDate.getDate();		
+			result += "<td>" +strDate + "</td>\n";
+			result += "<td><button type='button' onclick='popUp(this.value)' class='tBtn notify' value='" + items[i].co_uid + "'>신고하기</button></td>"
+			
+			if(mb_uid == items[i].mb_uid){				
+				result += "<td><button class='tBtn' value='"+ items[i].co_uid + "' onclick='goDelete(this.value)'>";
+				result += "<i class='fas fa-times tBtn'></i></button></td>"
+				result += "</tr>\n";
+			} else{
+				result +="<td></td>\n"
+				result += "</tr>\n";
+			}
+		}
+		
+		$("table#list tbody").html(result); // 테이블 내용 업데이트
+		return true;
+	} else {
+		alert("마지막 페이지입니다.");
+		return false;
+	}
+	
+	return false;
 }
 </script>
 
@@ -91,10 +214,31 @@ function likeDown(){
 	});
 }
 
+function goDelete(number) {	
+	if(confirm("삭제하시겠습니까?")){
+		var co_uid = parseInt(number);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/review/delete.do",
+			type:"POST",
+			data: {"co_uid" : co_uid},
+			cache:false,
+			success:function(data,status){
+				if(status == "success"){
+					alert("삭제되었습니다.");
+					loadPage(1);
+				}
+			}
+			
+		})
+	} else{
+		return false;
+	}
+}
 </script>
 </head>
 <body>
-	<section class="ftco-section">
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
@@ -122,7 +266,7 @@ function likeDown(){
 						<input id="likeCnt" type="text" value="${goods.g_likecnt }" disabled>
 					</span>
 					<div class="row mt-4">
-						<div class="col-md-6">
+						<div class="col-md-9">
 							<div class="form-group d-flex">
 								<div class="select-wrap">
 									<div class="icon">
@@ -172,6 +316,59 @@ function likeDown(){
 			</div>
 		</div>
 	</section>	
+	
+	<section class="ftco-section-parallax">
+	<div class="parallax-img d-flex align-items-center">
+		<div class="container">
+			<div class="row d-flex justify-content-center py-5">
+				<div class="col-md-7 text-center heading-section ftco-animate">
+					<h1 class="big">Review</h1>
+					<h2>Show our review</h2>
+					<div class="row d-flex justify-content-center mt-5">
+						<input type="hidden" id="page"/>
+						<table id="list">
+							<tbody>
+							</tbody>
+						</table>	
+					</div>
+					<button type="button" id="prev" class="pgBtn">&lt</button>
+					<button type="button" id="next" class="pgBtn">&gt</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>	
+	
+	<div id="popUp">
+		<form class="modal-notify">
+			<p>
+				한줄평 신고는 이용수칙에 맞지 않는 글을 신고하는 기능이며, 반대 의견을 표시하는 것이 아닙니다.
+				신고는 철회가 안되므로 신중하게 해주세요. 허위 신고의 경우 신고자가 제재받을 수 있음을 유념해주세요.
+			</p>
+			<input type="hidden" id="co_uid" name="co_uid" value="">
+			<input type="hidden" id="mb_uid" name="mb_uid" value="">
+			<div class="moBox">
+				<h6>신고사유</h6>
+				<ul>
+					<li><input type="radio" name="re_type" value="1"> 광고/음란성</li>
+					<li><input type="radio" name="re_type" value="2"> 욕설/반말/부적절한 언어</li>
+					<li><input type="radio" name="re_type" value="3"> 회원 분란/비방</li>
+					<li><input type="radio" name="re_type" value="4"> 지나친 정지/종교적 언행</li>
+					<li><input type="radio" name="re_type" value="5"> 도배성 댓글</li>
+					<li><input type="radio" name="re_type" value="6"> 기타</li>
+				</ul>
+				<h6>상세내용(선택)</h6>
+				<div class="txtBox">
+					<textarea name="re_content" id="re_content"></textarea>
+				</div>				
+			</div>	
+			<div class="popBtnBox">
+				<button class="popBtn accept">신고하기</button>
+				<button class="popBtn closePop">취소하기</button>
+			</div>
+			
+		</form>
+	</div>
 	
 <script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
@@ -225,6 +422,21 @@ $(document).ready(function(){
 			likeDown();
 		}
 	});
+	
+	$(".closePop").click(function() {		
+		$("#popUp").css("display", "none");
+		return false;
+	});
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		var pop = document.getElementById('popUp');
+		if (event.target == pop) {
+			$("#popUp").css("display", "none");
+			return false;
+		}
+	}
+		
 });
 </script>
 </body>
