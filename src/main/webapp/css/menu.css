@@ -64,12 +64,19 @@ header img{
 	cursor: pointer;
 }
 #login{
-	text-align: right;
+	width:80px;
+	float:right;
 	display:block;
-	padding-top:5px;
+	padding:3px 5px;
 	font-weight:bold;
+	background: #A91F24;
+	color:white;
+	border:1px solid #A91F24;
+	border-radius: 20px;
+	text-align: center;
 }
 #login:hover{
+	background:white;
 	color:#A91F24;
 }
 
@@ -82,9 +89,9 @@ header img{
 	padding:25px;
 	text-align: center;
 	width:500px !important;
-	height:350px;
+	height:355px;
 	top:50%;
-	margin-top:-170px;
+	margin-top:-180px;
 	z-index:99;
 }
 .modal-content a{
@@ -138,18 +145,19 @@ header img{
 #myModal{
 	display:none;
     position: fixed;
-    z-index: 1;
+    z-index: 99;
     left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 .bg_white{
 	background: rgba(255,255,255,1);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .show{
@@ -203,39 +211,35 @@ header img{
 }
 
 @media screen and (min-width:600px) and (max-width:900px){
-header > .container{
-	padding:0 5%;
-	min-width:500px;
-}
-
+	header > .container{
+		padding:0 5%;
+		min-width:500px;
+	}
 }
 
 
 @media screen and (max-width:599px){
-header{
-	background: white;
-}
-header > .container{
-	display:block;
-	width:100%;
-	min-width:200px;
-	padding:0 5px;
-}
-
-#menuBtn{
-	position:absolute;
-	top:3px; left:5px;
-}
-#brand{
-	margin:0 auto;
-	width:100%;
-	display:block;
-	text-align: center;
-}
-.mo_none{
-	display:none !important;
-}
-
-.bg_white{
-	background: white;
+	header{
+		background: white;
+	}
+	header > .container{
+		display:block;
+		width:100%;
+		min-width:200px;
+		padding:0 5px;
+	}
+	
+	#menuBtn{
+		position:absolute;
+		top:3px; left:5px;
+	}
+	#brand{
+		margin:0 auto;
+		width:100%;
+		display:block;
+		text-align: center;
+	}
+	.mo_none{
+		display:none !important;
+	}
 }

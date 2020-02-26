@@ -35,5 +35,7 @@ public interface MypageDAO {
 	public int insertRequest(@Param("dto") RequestDTO dto);
 	
 	public RequestDTO selectRequestByUid(@Param("rq_uid") int rq_uid);
+	
+	public int deleteLikeByUid(@Param("gl_uid") int gl_uid);
 
 }

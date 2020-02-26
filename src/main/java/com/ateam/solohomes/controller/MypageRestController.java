@@ -162,7 +162,7 @@ public class MypageRestController {
 	
 		System.out.println("mb_uid: "+ mb_uid);
 		System.out.println("writePages: "+ writePages);
-		System.out.println("page: "+ page);
+		System.out.println("page: " + page);
 		
 		AjaxLikeList result = new AjaxLikeList();
 		ArrayList<GoodsDTO> list = null;
@@ -214,6 +214,20 @@ public class MypageRestController {
 		
 		System.out.println(result.getStatus());
 	
+		return result;
+	}
+	
+	
+	
+	@RequestMapping("/memberLikeDelete.ajax/{gl_uid}")
+	public int memberRequestList(@PathVariable("gl_uid") int gl_uid){
+	
+		System.out.println("gl_uid: "+ gl_uid);
+			
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		int result = dao.deleteLikeByUid(gl_uid);
+
 		return result;
 	}
 

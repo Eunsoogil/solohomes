@@ -8,7 +8,6 @@ public class AjaxInfoList {
 	String status; // 처리결과
 	ArrayList<ProductInfoDTO> list; // 데이터
 	
-	
 	public AjaxInfoList() {
 		super();
 	}
