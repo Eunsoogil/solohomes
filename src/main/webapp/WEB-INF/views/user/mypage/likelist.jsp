@@ -32,6 +32,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/icomoon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/style.css">
     
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/mypage-date.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<!-- datepicker 한국어로 -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+	
   
   </head>
   
@@ -102,6 +109,35 @@
 			var curPage = parseInt($("input#page").val())
 			loadPage(curPage+1);
 		});
+		
+		
+		//datepicker 한국어로 사용하기 위한 언어설정
+		$.datepicker.setDefaults($.datepicker.regional['ko']); 	
+	
+		// Datepicker			
+		$(".datepicker").datepicker({
+			showButtonPanel: true,
+			dateFormat: "yy-mm-dd",
+			onClose : function ( selectedDate ) {
+			
+				var eleId = $(this).attr("id");
+				var optionName = "";
+
+				if(eleId.indexOf("StartDate") > 0) {
+					eleId = eleId.replace("StartDate", "EndDate");
+					optionName = "minDate";
+				} else {
+					eleId = eleId.replace("EndDate", "StartDate");
+					optionName = "maxDate";
+				}
+
+				$("#"+eleId).datepicker( "option", optionName, selectedDate );		
+				$(".searchDate").find(".chkbox2").removeClass("on"); 
+			}
+		}); 
+		
+		$(".dateclick").dateclick();	// DateClick
+		$(".searchDate").schDate();		// searchDate
 		 
 	});
 	

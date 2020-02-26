@@ -119,4 +119,5 @@ public class MainController {
 		new InfoViewCommand().execute(model);
 		return "user/productInfo";
 	}
+	
 }
