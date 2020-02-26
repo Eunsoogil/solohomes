@@ -488,6 +488,13 @@ VALUES
 ;
 
 -- CO_REPORT TABLE
+-- re_type 1 : 광고/음란성
+-- re_type 2 : 욕설/반말/부적절한 언어
+-- re_type 3 : 회원 분란/비방
+-- re_type 4 : 지나친 정지/종교적 언행
+-- re_type 5 : 도배성 댓글
+-- re_type 6 : 기타
+
 INSERT INTO co_report 
 	(co_uid, mb_uid, re_type, re_content)
 VALUES

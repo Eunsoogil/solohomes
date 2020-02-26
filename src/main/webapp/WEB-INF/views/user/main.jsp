@@ -59,7 +59,9 @@
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
 					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-						<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }"></a>
+						<a href="#" class="img-prod">
+							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
+						</a>
 						<div class="text py-3 px-3">
 							<h3><a href="#">${dto.sr_subject }</a></h3>
 						</div>
@@ -86,7 +88,9 @@
 					<div class="col-sm col-md-6 col-lg ftco-animate">
 						<div class="product">
 						<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-							<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }"></a>
+							<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
+								<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
+							</a>
 							<div class="text py-3 px-3">
 								<h3><a href="#">${dto.g_name }</a></h3>
 								<div class="d-flex">
@@ -118,7 +122,9 @@
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
 					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
-						<a href="#" class="img-prod"><img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }"></a>
+						<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
+							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
+						</a>
 						<div class="text py-3 px-3">
 							<h3><a href="#">${dto.g_name }</a></h3>
 							<div class="d-flex">
