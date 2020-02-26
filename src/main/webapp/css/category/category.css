@@ -1,82 +1,54 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap");
-
-
-#categorybody{
 	
+
+#categorybody {
 	font-family:'Noto Sans KR', sans-serif;
-	position: relative;
+}
+
+#categorybody #mom{
+	height: 400px;
 	top: 13px;
 	
 }
-
-#sortdivt{
-	
-}
-#sortdiv{
-	
-}
-
-.container #unit {
-	
-	
-	
-	height: 400px;
-	cursor: pointer;
-	padding: 0;
-	
-}
-
-.container #unit #unit2{
-	width:100%;
+#categorybody #mom #mom2{
+	width: 100%;
 	height: 100%;
-	padding: 10px;
+	cursor: pointer;
+}
+#categorybody #mom #mom2 #imgbox{
+	width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#categorybody #mom #mom2 #goodsName{
+	font-weight: bolder;
+	top: 20px;
+	display: inline-block;
+	position: relative;
 	
 }
-
-.container #unit #imgdiv{
-	margin:0px;
-	background-position:center;
-	background-size: contain;
-	background-repeat:no-repeat;
-	height: 290px;
-}
-
-.container #unit #name {
-	font-size: 15px;
-	font-weight: bolder;
-	color: black;
-	display: inline-block;
-	position:absolute;
-	left: 0px;
-	top: 300px;
-}
-
-.container #unit #price {
-	font-size: 15px;
+#categorybody #mom #mom2 #goodsPrice{
 	color: red;
-	display: inline-block;
-	position: absolute;
-	left: 0px;
-	top:330px;
+	display:block;
+	position: relative;
+	top: 25px;
+	left: 0;
 }
-
-.container #unit #like {
-	font-size: 12px;
-	color: black;
-	display: inline-block;
-	right: 20px;
-	position:absolute;
-	top:330px;
-}
-.container #unit #likeicon {
+#categorybody #mom #mom2 #goodsLikeIcon{
 	width: 20px;
 	height:20px;
 	background-image: url("img/likeicon.png");
 	background-size: cover;
-	display: inline-block;
-	position:absolute;
-	right: 20px;
-	
-	top:310px;
+	position: absolute;
+	right: 15px;
+	top:268px;
+}
+#categorybody #mom #mom2 #goodsLike{
+	font-size: 12px;
+	position: absolute;
+	right: 19px;
+	top:287px;
 }
