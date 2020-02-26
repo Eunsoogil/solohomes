@@ -22,4 +22,10 @@ public interface ReviewDAO {
 			@Param("writePages")int writePages
 	);
 	
+	// 신고 조회
+	public ArrayList<ReviewDTO> notiList(int co_uid, int mb_uid);
+	
+	// 신고 인서트
+	public int notify(final ReviewDTO dto);
+	
 }
