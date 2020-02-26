@@ -58,10 +58,36 @@ function goCart() {
 	}	
 }
 
-function popUp(co_uid) {
+function popUp(uid) {
 	$("#popUp").css("display", "block");
-	$('#co_uid').val(co_uid);	
-	$('#mb_uid').val("3");	
+	var co_uid = uid;	
+	var mb_uid = 3;	
+
+	$(".accept").click(function() {
+		var re_content = $('#re_content').val();
+		var re_type = $("input[name='re_type']:checked").val(); 
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/user/review/notify.do",
+			type:"POST",
+			data: {
+				"co_uid" : co_uid, 
+				"mb_uid" : mb_uid,
+				"re_content" : re_content,
+				"re_type" : re_type},
+			cache:false,
+			success:function(data, status){
+				if(data.status == "OK"){
+					alert("신고되었습니다.");
+					loadPage(1);
+				} else{
+					alert("이미 신고한 게시물입니다.");					
+					return false;
+				}
+			}
+				
+		});
+	});
 }
 </script>
 
@@ -125,8 +151,8 @@ function updateList(jsonObj){
 			result += "<td>" + items[i].co_content + "</td>\n";			
 			// Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
 			var regDate = new Date(items[i].co_regdate);
-			var strDate = regDate.getFullYear() + "/" +
-						(regDate.getMonth() + 1) + "/" +     // +1 해추어어야 한다 
+			var strDate = regDate.getFullYear() + "." +
+						(regDate.getMonth() + 1) + "." +     // +1 해추어어야 한다 
 						regDate.getDate();		
 			result += "<td>" +strDate + "</td>\n";
 			result += "<td><button type='button' onclick='popUp(this.value)' class='tBtn notify' value='" + items[i].co_uid + "'>신고하기</button></td>"
@@ -337,7 +363,7 @@ function goDelete(number) {
 				</div>				
 			</div>	
 			<div class="popBtnBox">
-				<button class="popBtn">신고하기</button>
+				<button class="popBtn accept">신고하기</button>
 				<button class="popBtn closePop">취소하기</button>
 			</div>
 			
