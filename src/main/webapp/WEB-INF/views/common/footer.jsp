@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
-
 <body>
 	<footer>
 		<div class="footerbox">
@@ -16,7 +15,7 @@
 				<li>팀장</li>
 			</ul>
 			<ul class="footer1">
-				<h4>강종일</h4>
+				<h4>박종일</h4>
 				<li>팀원</li>
 			</ul>
 			<ul class="footer1">
