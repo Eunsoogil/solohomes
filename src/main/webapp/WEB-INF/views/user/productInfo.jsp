@@ -170,7 +170,6 @@ function updateList(jsonObj){
 		$("table#list tbody").html(result); // 테이블 내용 업데이트
 		return true;
 	} else {
-		alert("마지막 페이지입니다.");
 		return false;
 	}
 	
@@ -238,7 +237,7 @@ function goDelete(number) {
 </script>
 </head>
 <body>
-	<section class="ftco-section bg-light">
+	<section class="ftco-section bg-light padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">

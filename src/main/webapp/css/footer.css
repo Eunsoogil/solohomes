@@ -7,11 +7,9 @@ footer li{
 }
 
 footer{
-	margin:0;
-   	padding:0;
    	font-family:'Noto Sans KR', sans-serif;
 	background: #f8f9fa;
-	padding:10px;
+	padding:10px;	
 }
 .footerbox{
 	width:100%;

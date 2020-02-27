@@ -6,7 +6,6 @@ li{ list-style-type: none;}
 p{padding: 0; margin: 0;}
 font {font-family:'Noto Sans KR', sans-serif;}
 
-#login11 {position: relative; margin: 0 auto; background:url("img/loginBG_1.png") center center no-repeat; width:515px; height: 515px; top:100px; display: flex;}
 #login11 #id {position: absolute; width:215px; height: 40px; left: 145px; top: 180px; border: none; border-radius: 5px; padding-left: 10px;}
 #login11 #pw {position: absolute; width: 215px; height: 40px; left: 145px; top: 235px; border: none; border-radius: 5px;padding-left: 10px;}
 #login11 #submit_button {position: absolute; width:215px; height: 40px; left: 144px; top:286px; background-color: #A91F24; border:none; color: white; font-size: 12px; cursor: pointer; border-radius: 5px;}
@@ -62,3 +61,26 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #findid #fbody #femail {position: absolute; width:210px; height: 40px; left: 2px; top: 134px; border: none; border-radius: 5px;padding-left: 10px;}
 #findid #fbody #findsm {position: absolute; width: 102px; height: 40px; top: 184px; left: 112px; font-size: 12px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
 #findid #fbody #fback {position: absolute; width: 102px; height: 40px; top: 184px; left: 0px; text-align: center; font-size: 12px; line-height: 40px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
+
+/****오다현이 추가한 css 코드*****/
+
+#loginBox{
+	position: absolute;
+	width:515px; 
+	height: 515px; 
+	top:50%;
+	left:50%;
+	margin-top: -300px;
+	margin-left:-267px;
+}
+#login11 {		 
+	background:url("img/loginBG_1.png") center center no-repeat; 
+	width:515px; 
+	height: 515px; 
+	/*
+	top:100px; 
+	display: flex;
+	position: relative; 
+	margin: 0 auto;
+	*/
+}

@@ -63,7 +63,7 @@ public class LoginController {
 		
 		session = request.getSession();
 		
-		if((int)model.getAttribute("result") == 1) {
+		if((Integer)model.getAttribute("result") == 1) {
 			session.setAttribute("userUID", model.getAttribute("userUID"));
 			session.setAttribute("userID", model.getAttribute("userID"));
 			session.setAttribute("userLevel", model.getAttribute("userLevel"));
@@ -127,7 +127,7 @@ public class LoginController {
 		cmd = new LoginCodeCheckCMD();
 		cmd.execute(model);
 		
-		if((int)model.getAttribute("result") == 1) {
+		if((Integer)model.getAttribute("result") == 1) {
 			session.setAttribute("userUID", model.getAttribute("userUID"));
 			session.setAttribute("userID", model.getAttribute("userID"));
 			session.setAttribute("userLevel", model.getAttribute("userLevel"));
