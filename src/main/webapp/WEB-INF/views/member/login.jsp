@@ -6,6 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+
+<!-- bootstrap css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_2.css">
 </head>
 <script>
 // form 검증
