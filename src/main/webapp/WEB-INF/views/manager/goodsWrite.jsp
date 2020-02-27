@@ -100,8 +100,8 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.row -->
-                <form method="post" action="" id="frmGoods" enctype="multipart/form-data" class="form-horizontal form-material">
+                <!-- /.row --><!-- ${pageContext.request.contextPath}/manager/goodswriteOk.do -->
+                <form method="POST" id="frmGoods" action="${pageContext.request.contextPath}/manager/goodswriteOk.do" enctype="multipart/form-data" class="form-horizontal form-material">
                 <!-- .row -->
                 <div class="row" id="frmContent">
                     <div class="white-box">
@@ -110,7 +110,7 @@
 		                    	<label class="col-sm-12"><b>대표이미지</b></label>
 		                        <div class="user-bg"><img id="goodsImg" style="max-width:300px;" width="100%" height="100%" alt="goods" src="http://placehold.it/150x150"></div>
 		                        <div class="user-btm-box">
-						<input type="file" name="g_img" id="g_img">
+								<input type="file" name="g_img" id="g_img" accept="image/*" required>
 		                        </div>
 		                    </div>
 		                </div>
@@ -119,7 +119,7 @@
 		 	                	<div class="form-group">
 		                         <label class="col-sm-12"><b>가구종류</b></label>
 		                         <div class="col-sm-12">
-		                             <select class="form-control form-control-line" name="g_type">
+		                             <select class="form-control form-control-line" name="g_type" required>
 		                                    <option value="1">침대</option>
 		                                    <option value="2">화장대</option>
 		                                    <option value="3">서랍장</option>
@@ -136,17 +136,17 @@
 		                     <div class="form-group">
 		                         <label class="col-md-12"><b>가구이름</b></label>
 		                         <div class="col-md-12">
-		                             <input type="text" name="g_name" placeholder="name" class="form-control form-control-line"> </div>
+		                             <input type="text" name="g_name" placeholder="name" class="form-control form-control-line" required> </div>
 		                     </div>
 		                     <div class="form-group">
-		                         <label for="example-email" class="col-md-12"><b>가구크기</b></label>
+		                         <label class="col-md-12"><b>가구크기</b></label>
 		                         <div class="col-md-12">
-		                             <input type="email" name="g_size" placeholder="000*000*000" class="form-control form-control-line" name="example-email" id="example-email"> </div>
+		                             <input type="text" name="g_size" placeholder="000*000*000" class="form-control form-control-line"> </div>
 		                     </div>
 		                     <div class="form-group">
 		                         <label class="col-md-12"><b>가구가격</b></label>
 		                         <div class="col-md-12">
-		                             <input type="text" name="g_price" placeholder="단위(&#8361)" class="form-control form-control-line"> </div>
+		                             <input type="text" name="g_price" placeholder="단위(&#8361)" class="form-control form-control-line" required> </div>
 		                     </div>
 		                     <div class="clear"></div>
 		                    </div>
@@ -162,12 +162,12 @@
 		                    	<div class="form-group col-md-6">
 			                    	<label class="col-sm-12"><b>옵션이미지1</b></label>
 			      					<div class="col-md-12">
-				                    	<input type="file" name="in_img" id="in_img1"></div>
+				                    	<input type="file" name="in_img" id="in_img1" accept="image/*" required></div>
 		                    	</div>
 			                    <div class="form-group col-md-6">
 			                        <label class="col-md-12"><b>색상1</b></label>
 			                        <div class="col-md-12">
-			                            <input type="text" name="in_color" placeholder="color" class="form-control form-control-line"> </div>
+			                            <input type="text" name="in_color" placeholder="color" class="form-control form-control-line" required> </div>
 			                    </div>
 	                    	</div>
 	                    </div>

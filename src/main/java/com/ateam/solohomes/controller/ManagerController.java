@@ -6,9 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.commnad.Command;
+import com.ateam.solohomes.commnad.ManagerGoodsUploadCommand;
 import com.ateam.solohomes.commnad.ManagerIndexCommand;
 
 @Controller
@@ -50,6 +56,16 @@ public class ManagerController {
 	@RequestMapping("/goodsWrite.do")
 	public String manageGoodsWrite() {
 		return "manager/goodsWrite";
+	}
+	
+	@RequestMapping(value = "/goodswriteOk.do", method = RequestMethod.POST)
+	public ModelAndView goodsWriteOk(Model model, MultipartHttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("manager/goodsWriteOk");
+		model.addAttribute("request", request);
+		command = new ManagerGoodsUploadCommand();
+		command.execute(model);
+		
+		return mv;
 	}
 	
 	@RequestMapping("/review.do")

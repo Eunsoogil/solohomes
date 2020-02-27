@@ -17,7 +17,10 @@ public interface ManagerDAO {
 	public Integer countTodaySales();
 	// sum today's sales
 	public Integer sumTodaySales();
-
+	// insert goods
+	public Integer insertGoods(GoodsDTO goodsDTO);
+	// insert goods_info
+	public Integer insertGoodsInfo(@Param("color") String color, @Param("imgPath") String imgPath, @Param("g_uid") int g_uid);
 	// REST
 	// select all users
 	public ArrayList<MemberRenumDTO> selectAllUserByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);

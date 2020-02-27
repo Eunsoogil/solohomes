@@ -20,4 +20,18 @@
 		WHERE 
 			date_format(py_regdate, '%Y-%m-%d') = CURDATE()
 	</select>
+	
+	<insert keyProperty="g_uid" useGeneratedKeys="true"
+		id="insertGoods" flushCache="true" parameterType="com.ateam.solohomes.beans.GoodsDTO">
+		INSERT INTO goods
+			(g_type, g_name, g_img, g_size, g_price)
+		VALUES
+			(#{g_type}, #{g_name}, #{g_img}, #{g_size}, #{g_price})
+	</insert>
+	<insert id="insertGoodsInfo" flushCache="true">
+		INSERT INTO goods_info
+			(g_uid, in_color, in_img, in_inv)
+		VALUES
+			(#{g_uid}, #{color}, #{imgPath}, 1)
+	</insert>
 </mapper>
