@@ -45,13 +45,13 @@ function displaySuggest(data){
 				break;
 			}
 			if(1 <= parseInt(keywordList[i+1]) && parseInt(keywordList[i+1]) <= 10){
-				html += "<a style='text-decoration: none' href='category.do?g_uid=" +
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/search/category.do?g_uid=" +
 				keywordList[i+1] + "'>" +
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
 				"/카테고리" + "</b></span>" + "</a><br>";				
 			} else {
-				html += "<a style='text-decoration: none' href='detail.do?g_uid=" +
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/search/detail.do?g_uid=" +
 				keywordList[i+1] + "'>" +
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
@@ -94,7 +94,7 @@ function hide(){
 				</a>
 			</div>
 			<div class="pc mo_none">
-				<form action="${pageContext.request.contextPath}/user/searchOk.do" name="myForm" method="POST" autocomplete="off">
+				<form action="${pageContext.request.contextPath}/search/searchOk.do" name="myForm" method="POST" autocomplete="off">
 					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();" autocomplete="off"/>
 					<button type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
 					<div id="suggestDiv" class="suggest">
