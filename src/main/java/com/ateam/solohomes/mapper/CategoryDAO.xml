@@ -15,6 +15,8 @@
 			goods
 		WHERE 
 			g_type = #{g_type}
+		order by
+			g_uid DESC	
 </select>
 
 <select id="selectByGtype" resultType="com.ateam.solohomes.beans.GoodsDTO">

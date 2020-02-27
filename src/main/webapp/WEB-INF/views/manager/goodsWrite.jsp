@@ -32,7 +32,7 @@
 </head>
 	<!-- jQuery -->
     <script src="${pageContext.request.contextPath}/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/manager/goods.js"></script>
+    <script src="${pageContext.request.contextPath}/js/manager/goodsWrite.js"></script>
 <body>
 
     <!-- Preloader -->
@@ -90,81 +90,102 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">상품관리</h4> </div>
+                        <h4 class="page-title">상품등록</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="${pageContext.request.contextPath}/manager/index.do">Main</a></li>
-                            <li class="active">Goods</li>
+                            <li><a href="${pageContext.request.contextPath}/manager/goods.do">Goods</a></li>
+                            <li class="active">Write</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                <!-- /row -->
-                <input type="hidden" id="goodsPage"/> <!-- requestTable curPage -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="white-box">
-                        	<div class="box-title"><b>상품목록</b>
-                        		<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
-                        			<button onclick="location.href='${pageContext.request.contextPath}/manager/goodsWrite.do'" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">신규 상품등록</button>
-                        		</div>
-                        		<div class="clear"></div>
-                        	</div>
-                            <div class="box-title">
-                            	<div class="col-md-2 col-sm-3 col-xs-10 pull-right">
-                                    <select class="form-control pull-right row b-none" id="typeSelect">
-                                        <option value="0" selected>모든상품</option>
-                                        <option value="1">침대</option>
-                                        <option value="2">화장대</option>
-                                        <option value="3">서랍장</option>
-                                        <option value="4">소파</option>
-                                        <option value="5">거실장</option>
-                                        <option value="6">옷장</option>
-                                        <option value="7">테이블</option>
-                                        <option value="8">의자</option>
-                                        <option value="9">책상</option>
-                                        <option value="10">책장</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2 col-sm-3 col-xs-10 pull-right">
-                                    <select class="form-control pull-right row b-none" id="sortSelect">
-                                        <option value="0" selected>상세옵션</option>
-                                        <option value="1">좋아요순</option>
-                                        <option value="2">최신순</option>
-                                        <option value="3">판매횟수순</option>
-                                    </select>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <form name="frmDelete" id="frmDelete" onsubmit="return chkDelete()">
-	                            <div class="table-responsive">
-	                                <table class="table" id="goodsTable">
-	                                    <thead>
-	                                        <tr>
-	                                            <th class='goods ColumnOfCheckBox'>선택</th>
-	                                            <th>상품명</th>
-	                                            <th>카테고리</th>
-	                                            <th>가격</th>
-	                                            <th>좋아요</th>
-	                                            <th>판매수량</th>
-	                                        </tr>
-	                                    </thead>
-	                                    <tbody>
-	                                    </tbody>
-	                                </table>
-	                            </div>
-	                            <div class="col-sm-12">
-		                            <button type="button" class="btn btn-info" id="goodsCheckBoxToggle">선택삭제</button>
-		                            <button type="submit" class="btn btn-danger" id="goodsDeleteOk">선택완료</button>
-		                        	<button type="button" class="btn btn-danger pull-right m-l-20 btn-circle btn-outline waves-effect waves-light nextPage" id="goodsNextPage"><i class="fa fa-chevron-right fa-fw" aria-hidden="true"></i></button>
-		                            <button type="button" class="btn btn-danger pull-right m-l-20 btn-circle btn-outline waves-effect waves-light prevPage" id="goodsPrevPage"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i></button>
-	                            </div>
-                            </form>
-                            <div class="clear"></div>
-                        </div>
+                <!-- /.row -->
+                <form method="post" action="" id="frmGoods" enctype="multipart/form-data" class="form-horizontal form-material">
+                <!-- .row -->
+                <div class="row" id="frmContent">
+                    <div class="white-box">
+		                <div class="col-md-4 col-xs-12">
+		                    <div class="white-box">
+		                    	<label class="col-sm-12"><b>대표이미지</b></label>
+		                        <div class="user-bg"><img id="goodsImg" style="max-width:300px;" width="100%" height="100%" alt="goods" src="http://placehold.it/150x150"></div>
+		                        <div class="user-btm-box">
+						<input type="file" name="g_img" id="g_img">
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-md-8 col-xs-12">
+		                    <div class="white-box">
+		 	                	<div class="form-group">
+		                         <label class="col-sm-12"><b>가구종류</b></label>
+		                         <div class="col-sm-12">
+		                             <select class="form-control form-control-line" name="g_type">
+		                                    <option value="1">침대</option>
+		                                    <option value="2">화장대</option>
+		                                    <option value="3">서랍장</option>
+		                                    <option value="4">소파</option>
+		                                    <option value="5">거실장</option>
+		                                    <option value="6">옷장</option>
+		                                    <option value="7">테이블</option>
+		                                    <option value="8">의자</option>
+		                                    <option value="9">책상</option>
+		                                    <option value="10">책장</option>
+		                             </select>
+		                         </div>
+		                     </div>
+		                     <div class="form-group">
+		                         <label class="col-md-12"><b>가구이름</b></label>
+		                         <div class="col-md-12">
+		                             <input type="text" name="g_name" placeholder="name" class="form-control form-control-line"> </div>
+		                     </div>
+		                     <div class="form-group">
+		                         <label for="example-email" class="col-md-12"><b>가구크기</b></label>
+		                         <div class="col-md-12">
+		                             <input type="email" name="g_size" placeholder="000*000*000" class="form-control form-control-line" name="example-email" id="example-email"> </div>
+		                     </div>
+		                     <div class="form-group">
+		                         <label class="col-md-12"><b>가구가격</b></label>
+		                         <div class="col-md-12">
+		                             <input type="text" name="g_price" placeholder="단위(&#8361)" class="form-control form-control-line"> </div>
+		                     </div>
+		                     <div class="clear"></div>
+		                    </div>
+		                </div>
+                    	<div class="clear"></div>
+                    </div>
+                    
+                    <input type="hidden" id="optionCnt" value="1">
+                    <!-- info -->
+                    <div class="white-box" id="optionList">
+	                	<div class="col-md-12" id="options">
+	                		<div class="col-md-12 option">
+		                    	<div class="form-group col-md-6">
+			                    	<label class="col-sm-12"><b>옵션이미지1</b></label>
+			      					<div class="col-md-12">
+				                    	<input type="file" name="in_img" id="in_img1"></div>
+		                    	</div>
+			                    <div class="form-group col-md-6">
+			                        <label class="col-md-12"><b>색상1</b></label>
+			                        <div class="col-md-12">
+			                            <input type="text" name="in_color" placeholder="color" class="form-control form-control-line"> </div>
+			                    </div>
+	                    	</div>
+	                    </div>
+	                    <div class="clear"></div>
+	               	</div>
+         
+                    <div class="white-box" id="buttonList">
+	                    <div align="right" class="col-sm-12">
+	                    	<button type="button" class="btn btn-danger" id="minusInfo">옵션제거</button>
+	                        <button type="button" class="btn btn-danger" id="plusInfo">옵션추가</button>
+	                        <button type="submit" class="btn btn-info" id="submit">상품등록</button>
+	                    </div>      
+	                    <div class="clear"></div>           	
                     </div>
                 </div>
                 <!-- /.row -->
+                </form>
+                <!-- /form -->
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
@@ -185,4 +206,3 @@
 </body>
 
 </html>
-

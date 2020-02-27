@@ -13,7 +13,7 @@ public class PurchaseDTO {
 	private String py_zipcode;
 	private String py_addr;
 	private String py_addr2;
-	private int py_price;
+	private String py_price;
 	
 	private int in_uid;
 	private String in_img;
@@ -22,6 +22,8 @@ public class PurchaseDTO {
 	private int g_uid;
 	private String g_name;
 	private String g_price;
+	
+	private int co_uid;
 	
 
 	private GoodsDTO goods;
@@ -34,9 +36,13 @@ public class PurchaseDTO {
 
 	
 
+	
+	
+	
+
 	public PurchaseDTO(int mb_uid, int py_uid, int py_amount, int py_confirm, Timestamp py_regdate, String py_zipcode,
-			String py_addr, String py_addr2, int py_price, int in_uid, String in_img, String in_color, int g_uid,
-			String g_name, String g_price, GoodsDTO goods, GoodsInfoDTO goodsInfo) {
+			String py_addr, String py_addr2, String py_price, int in_uid, String in_img, String in_color, int g_uid,
+			String g_name, String g_price, int co_uid, GoodsDTO goods, GoodsInfoDTO goodsInfo) {
 		super();
 		this.mb_uid = mb_uid;
 		this.py_uid = py_uid;
@@ -53,12 +59,16 @@ public class PurchaseDTO {
 		this.g_uid = g_uid;
 		this.g_name = g_name;
 		this.g_price = g_price;
+		this.co_uid = co_uid;
 		this.goods = goods;
 		this.goodsInfo = goodsInfo;
 	}
 
-	
-	
+
+
+
+
+
 
 	public int getMb_uid() {
 		return mb_uid;
@@ -140,12 +150,12 @@ public class PurchaseDTO {
 	}
 
 
-	public int getPy_price() {
+	public String getPy_price() {
 		return py_price;
 	}
 
 
-	public void setPy_price(int py_price) {
+	public void setPy_price(String py_price) {
 		this.py_price = py_price;
 	}
 
@@ -230,6 +240,28 @@ public class PurchaseDTO {
 		this.goodsInfo = goodsInfo;
 	}
 	
+	
+	
+	public int getCo_uid() {
+		return co_uid;
+	}
+
+
+
+
+
+
+
+	public void setCo_uid(int co_uid) {
+		this.co_uid = co_uid;
+	}
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return String.format("[PurchaseDTO %d, %s, %s, %s, %d, %s]", 

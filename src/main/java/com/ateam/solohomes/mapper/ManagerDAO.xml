@@ -378,6 +378,15 @@
 		LIMIT
 			#{startRow}, #{listPage}
 	</select>
+	<delete id="deleteGoodsByUids" flushCache="true">
+		DELETE FROM
+			goods
+		WHERE
+			g_uid IN
+		<foreach item="uid" index="index" collection="uidList" open="(" separator="," close=")">
+			#{uid}
+		</foreach>
+	</delete>
 	
 </mapper>       
     

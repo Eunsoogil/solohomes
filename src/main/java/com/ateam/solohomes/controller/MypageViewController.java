@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.commnad.Command;
-import com.ateam.solohomes.commnad.ManagerIndexCommand;
 
 @Controller
-@RequestMapping("/manager")
-public class ManagerController {
-	
+public class MypageViewController {
+
 	private Command command;
 	private SqlSession sqlSession;
 	private TransactionTemplate transactionTemplate;
@@ -29,36 +27,25 @@ public class ManagerController {
 		this.transactionTemplate = transactionTemplate;
 		C.transactionTemplate = transactionTemplate;
 	}
-
-	@RequestMapping("/index.do")
-	public String managerMain(Model model) {
-		command = new ManagerIndexCommand();
-		command.execute(model);
-		return "manager/index";
+	
+	@RequestMapping("/user/purchaselist.do")
+	public String purchaselist(Model model) {
+		return "user/mypage/purchaselist";
 	}
 	
-	@RequestMapping("/member.do")
-	public String manageMember() {
-		return "manager/member";
+	@RequestMapping("/user/memberCheck.do")
+	public String memberCheck(Model model) {
+		return "user/mypage/memberCheck";
 	}
 	
-	@RequestMapping("/goods.do")
-	public String manageGoods() {
-		return "manager/goods";
+	@RequestMapping("/user/likelist.do")
+	public String likelist(Model model) {
+		return "user/mypage/likelist";
 	}
 	
-	@RequestMapping("/goodsWrite.do")
-	public String manageGoodsWrite() {
-		return "manager/goodsWrite";
+	@RequestMapping("/user/requestlist.do")
+	public String requestlist(Model model) {
+		return "user/mypage/requestlist";
 	}
 	
-	@RequestMapping("/review.do")
-	public String manageReview() {
-		return "manager/review";
-	}
-	
-	@RequestMapping("/request.do")
-	public String manageRequest() {
-		return "manager/request";
-	}
 }

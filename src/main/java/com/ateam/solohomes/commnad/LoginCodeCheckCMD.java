@@ -36,6 +36,11 @@ public class LoginCodeCheckCMD implements Command {
 		if(isRight == true) {
 			dao = C.sqlSession.getMapper(LoginDAO.class);
 			dao.emailSignUp(id);
+			
+			model.addAttribute("userUID",dto.getUid());
+			model.addAttribute("userID",dto.getId());
+			model.addAttribute("userLevel",dto.getLevel());
+			
 			result = 1;
 		} else {
 			result = 0;

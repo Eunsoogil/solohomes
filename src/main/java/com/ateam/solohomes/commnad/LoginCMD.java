@@ -1,6 +1,12 @@
 package com.ateam.solohomes.commnad;
 
+import java.util.Enumeration;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.ui.Model;
 
@@ -23,12 +29,16 @@ public class LoginCMD implements Command {
 		int result = 0;
 		
 		try {
-			LoginDTO mdto = dao.selectById(id);
+				LoginDTO mdto = dao.selectById(id);
 				int cnt = mdto.getEmailsign();
 				String pwpw = mdto.getPw();
 				
 				if(pwpw.equals(pw) && cnt > 0) {
 					result = 1;		// 로그인 성공
+					model.addAttribute("userUID", mdto.getUid());
+					model.addAttribute("userID", mdto.getId());
+					model.addAttribute("userLevel", mdto.getLevel());
+					
 				}else if(pwpw.equals(pw) && cnt == 0) {
 					result = 2;		// 이메일 인증 안했음
 				}else if(!pwpw.equals(pw)) {
