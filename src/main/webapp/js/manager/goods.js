@@ -71,11 +71,12 @@ function updateTable(jsonObj) {
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
 			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
-			result += "<td>" + list[i].g_name + "</td>";
+			result += "<td><a href='#' target='_blank'>" + list[i].g_name + "</a></td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
 			result += "<td>" + list[i].g_price + "</td>";
 			result += "<td>" + list[i].g_likecnt + "</td>";
 			result += "<td>" + list[i].salNum + "</td>";
+			result += "<td><button type='button' class='btn btn-danger btn-rounded' onclick='moveToUpdate(" + list[i].g_uid + ")'>수정</button></td>";
 			result += "</tr>";
 		}
 		
@@ -87,6 +88,10 @@ function updateTable(jsonObj) {
 		return false;
 	}
 	return false;
+}
+
+function moveToUpdate(uid) {
+	location.href="../manager/goodsUpdate.do?g_uid=" + uid;
 }
 
 function parseType(num) {

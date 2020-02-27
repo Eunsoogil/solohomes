@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 import com.ateam.solohomes.beans.GoodsDTO;
+import com.ateam.solohomes.beans.GoodsInfoDTO;
 
 @MapperScan
 public interface ManagerDAO {
@@ -21,6 +22,14 @@ public interface ManagerDAO {
 	public Integer insertGoods(GoodsDTO goodsDTO);
 	// insert goods_info
 	public Integer insertGoodsInfo(@Param("color") String color, @Param("imgPath") String imgPath, @Param("g_uid") int g_uid);
+	// select goods by uid
+	public GoodsDTO selectGoodsByUid(@Param("uid") int uid);
+	// select goods_info by g_uid
+	public ArrayList<GoodsInfoDTO> selectGoodsInfosByGuid(@Param("uid") int uid);
+	// update goods by g_uid
+	public Integer updateGoods(@Param("dto") GoodsDTO goodsDTO, @Param("g_uid") int uid);
+	// delete goods_info by_uid
+	public Integer deleteGoodsInfoByUid(int uid);
 	// REST
 	// select all users
 	public ArrayList<MemberRenumDTO> selectAllUserByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);

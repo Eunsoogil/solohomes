@@ -13,7 +13,7 @@ public class CategoryCMD implements Command {
 	@Override
 	public void execute(Model model) {
 		
-		int g_type = (int) model.getAttribute("g_type");
+		int g_type = (Integer) model.getAttribute("g_type");
 		System.out.println(g_type);
 		
 		CategoryDAO dao = C.sqlSession.getMapper(CategoryDAO.class);

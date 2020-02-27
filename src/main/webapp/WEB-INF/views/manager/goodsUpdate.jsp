@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -90,25 +91,26 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">상품등록</h4> </div>
+                        <h4 class="page-title">상품수정</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="${pageContext.request.contextPath}/manager/index.do">Main</a></li>
                             <li><a href="${pageContext.request.contextPath}/manager/goods.do">Goods</a></li>
-                            <li class="active">Write</li>
+                            <li class="active">Update</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row --><!-- ${pageContext.request.contextPath}/manager/goodswriteOk.do -->
-                <form method="POST" id="frmGoods" action="${pageContext.request.contextPath}/manager/goodsWriteOk.do" enctype="multipart/form-data" class="form-horizontal form-material">
+                <form method="POST" id="frmGoods" action="${pageContext.request.contextPath}/manager/goodsUpdateOk.do" enctype="multipart/form-data" class="form-horizontal form-material">
+                <input type="hidden" name="g_uid" value="${goods.g_uid }">
                 <!-- .row -->
                 <div class="row" id="frmContent">
                     <div class="white-box">
 		                <div class="col-md-4 col-xs-12">
 		                    <div class="white-box">
 		                    	<label class="col-sm-12"><b>대표이미지</b></label>
-		                        <div class="user-bg"><img id="goodsImg" style="max-width:300px;" width="100%" height="100%" alt="goods" src="http://placehold.it/150x150"></div>
+		                        <div class="user-bg"><img id="goodsImg" style="max-width:300px;" width="100%" height="100%" alt="goods" src="${pageContext.request.contextPath}/img/goods/${goods.g_img}"></div>
 		                        <div class="user-btm-box">
 								<input type="file" name="g_img" id="g_img" accept="image/*" required>
 		                        </div>
@@ -119,57 +121,64 @@
 		 	                	<div class="form-group">
 		                         <label class="col-sm-12"><b>가구종류</b></label>
 		                         <div class="col-sm-12">
+		                         	 <script>
+		                   				$(document).ready(function(){
+		                   					$("option[value=" + ${goods.g_type} + "]").attr("selected", true);	
+		                   				});
+		                         	 </script>
 		                             <select class="form-control form-control-line" name="g_type" required>
-		                                    <option value="1">침대</option>
-		                                    <option value="2">화장대</option>
-		                                    <option value="3">서랍장</option>
-		                                    <option value="4">소파</option>
-		                                    <option value="5">거실장</option>
-		                                    <option value="6">옷장</option>
-		                                    <option value="7">테이블</option>
-		                                    <option value="8">의자</option>
-		                                    <option value="9">책상</option>
-		                                    <option value="10">책장</option>
+	                                    <option value="1">침대</option>
+	                                    <option value="2">화장대</option>
+	                                    <option value="3">서랍장</option>
+	                                    <option value="4">소파</option>
+	                                    <option value="5">거실장</option>
+	                                    <option value="6">옷장</option>
+	                                    <option value="7">테이블</option>
+	                                    <option value="8">의자</option>
+	                                    <option value="9">책상</option>
+	                                 	<option value="10">책장</option>
 		                             </select>
 		                         </div>
 		                     </div>
 		                     <div class="form-group">
 		                         <label class="col-md-12"><b>가구이름</b></label>
 		                         <div class="col-md-12">
-		                             <input type="text" name="g_name" placeholder="name" class="form-control form-control-line" required> </div>
+		                             <input type="text" name="g_name" placeholder="name" class="form-control form-control-line" value="${goods.g_name}" required> </div>
 		                     </div>
 		                     <div class="form-group">
 		                         <label class="col-md-12"><b>가구크기</b></label>
 		                         <div class="col-md-12">
-		                             <input type="text" name="g_size" placeholder="000*000*000" class="form-control form-control-line"> </div>
+		                             <input type="text" name="g_size" placeholder="000*000*000" class="form-control form-control-line" value="${goods.g_size}"> </div>
 		                     </div>
 		                     <div class="form-group">
 		                         <label class="col-md-12"><b>가구가격</b></label>
 		                         <div class="col-md-12">
-		                             <input type="text" name="g_price" placeholder="단위(&#8361)" class="form-control form-control-line" required> </div>
+		                             <input type="text" name="g_price" placeholder="단위(&#8361)" class="form-control form-control-line" value="${goods.g_price}" required> </div>
 		                     </div>
 		                     <div class="clear"></div>
 		                    </div>
 		                </div>
                     	<div class="clear"></div>
                     </div>
-                    
-                    <input type="hidden" id="optionCnt" value="1">
+                    <c:set var="count" value="${fn:length(inList)}"></c:set>
+                    <input type="hidden" id="optionCnt" value="${count}">
                     <!-- info -->
                     <div class="white-box" id="optionList">
 	                	<div class="col-md-12" id="options">
-	                		<div class="col-md-12 option">
+	                		<c:forEach var="info" items="${inList}" varStatus="status">
+    				        <div class="col-md-12 option">
 		                    	<div class="form-group col-md-6">
-			                    	<label class="col-sm-12"><b>옵션이미지1</b></label>
+			                    	<label class="col-sm-12"><b>옵션이미지${status.count }</b></label>
 			      					<div class="col-md-12">
-				                    	<input type="file" name="in_img" id="in_img1" accept="image/*" required></div>
+				                    	<input type="file" name="in_img" id="in_img${status.count }" accept="image/*" required></div>
 		                    	</div>
 			                    <div class="form-group col-md-6">
-			                        <label class="col-md-12"><b>색상1</b></label>
+			                        <label class="col-md-12"><b>색상${status.count }</b></label>
 			                        <div class="col-md-12">
-			                            <input type="text" name="in_color" placeholder="color" class="form-control form-control-line" required> </div>
+			                            <input type="text" name="in_color" placeholder="color" class="form-control form-control-line" value="${info.in_color}" required> </div>
 			                    </div>
 	                    	</div>
+	                		</c:forEach>
 	                    </div>
 	                    <div class="clear"></div>
 	               	</div>
@@ -178,7 +187,7 @@
 	                    <div align="right" class="col-sm-12">
 	                    	<button type="button" class="btn btn-danger" id="minusInfo">옵션제거</button>
 	                        <button type="button" class="btn btn-danger" id="plusInfo">옵션추가</button>
-	                        <button type="submit" class="btn btn-info" id="submit">상품등록</button>
+	                        <button type="submit" class="btn btn-info" id="submit">상품수정</button>
 	                    </div>      
 	                    <div class="clear"></div>           	
                     </div>
