@@ -41,6 +41,7 @@ function ckSubmit(){
 }
 </script>
 
+<!-- height 길이 조절 자바스크립트  -->
 <script>
 $(document).ready(function(){
 	var menu = 90;
