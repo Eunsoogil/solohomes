@@ -136,4 +136,9 @@ public class LoginController {
 		return "member/emailCheckAction";
 	}
 	
+	@RequestMapping(value="/logOut.do")
+	public String logout() {
+		return "member/logOut";
+	}
+	
 }

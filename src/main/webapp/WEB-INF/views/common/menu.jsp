@@ -85,6 +85,12 @@ function hide(){
 </script>
 </head>
 <body>
+<%
+	String userID = null;
+	if(session.getAttribute("userID") != null){
+		userID = (String)session.getAttribute("userID");
+	}
+%>
 	<header class="header">
 		<div class="container">
 			<div class="pc">
@@ -103,7 +109,17 @@ function hide(){
 				</form>
 			</div>
 			<div class="pc mo_none">
+				<%
+	if(userID == null){
+%>	
 				<a id="login" href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+<%
+	} else {
+%>
+				<a id="login" href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a>
+<%
+	}
+%>			
 			</div>
 		</div>
 	</header>
@@ -131,7 +147,17 @@ function hide(){
 			<li><a href="#">1:1문의</a></li>
 			<li><a href="#">회원정보수정</a></li>
 		</ul>
-		<li><a href="${pageContext.request.contextPath}/member/login.do">로그인</a></li>
+<%
+	if(userID == null){
+%>	
+				<li><a href="${pageContext.request.contextPath}/member/login.do">로그인</a></li>
+<%
+	} else {
+%>
+				<li><a href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a></li>
+<%
+	}
+%>					
 		<li><a href="#">검색</a></li>
 	</ul>
 
