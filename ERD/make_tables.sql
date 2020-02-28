@@ -53,7 +53,7 @@ CREATE TABLE goods
     `g_uid`      INT            NOT NULL    AUTO_INCREMENT COMMENT '가구uid', 
     `g_type`     INT            NOT NULL    COMMENT '가구type', 
     `g_name`     VARCHAR(45)    NOT NULL    COMMENT '가구이름', 
-    `g_img`      VARCHAR(45)    NOT NULL    COMMENT '대표이미지', 
+    `g_img`      VARCHAR(100)    NOT NULL    COMMENT '대표이미지', 
     `g_size`     VARCHAR(45)    NULL        COMMENT '가구크기', 
     `g_price`    INT            NOT NULL    COMMENT '가구가격', 
     `g_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '가구등록일', 
@@ -70,7 +70,7 @@ CREATE TABLE goods_info
     `in_uid`    INT            NOT NULL    AUTO_INCREMENT COMMENT '가구상세uid', 
     `g_uid`     INT            NOT NULL    COMMENT '가구uid', 
     `in_color`  VARCHAR(45)    NOT NULL    COMMENT '색상', 
-    `in_img`    VARCHAR(45)    NULL        COMMENT '이미지', 
+    `in_img`    VARCHAR(100)    NULL        COMMENT '이미지', 
     `in_inv`    INT            NOT NULL    DEFAULT 0 COMMENT '재고', 
     PRIMARY KEY (in_uid)
 );
@@ -110,7 +110,7 @@ CREATE TABLE series
 (
     `sr_uid`      INT            NOT NULL    AUTO_INCREMENT COMMENT '시리즈uid', 
     `sr_subject`  VARCHAR(45)    NOT NULL    COMMENT '시리즈제목', 
-    `sr_img`      VARCHAR(45)    NOT NULL    COMMENT '시리즈이미지', 
+    `sr_img`      VARCHAR(100)    NOT NULL    COMMENT '시리즈이미지', 
     `sr_regdate`  DATETIME       NOT NULL    DEFAULT now() COMMENT '시리즈등록일', 
     PRIMARY KEY (sr_uid)
 );
@@ -180,7 +180,6 @@ ALTER TABLE payment COMMENT '구매목록';
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES member (mb_uid) ON DELETE SET NULL ON UPDATE CASCADE;
-c
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
         REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;

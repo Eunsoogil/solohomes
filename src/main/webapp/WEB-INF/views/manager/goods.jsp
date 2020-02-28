@@ -147,6 +147,7 @@
 	                                            <th>가격</th>
 	                                            <th>좋아요</th>
 	                                            <th>판매수량</th>
+	                                            <th></th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
