@@ -36,7 +36,7 @@
 	<c:otherwise>
 		<c:forEach var="gdto" items="${gdto }">	
 			<div id="mom" class="col-md-3 col-xs-10 col-md-offset-0 col-xs-offset-1">
-				<div id=mom2 onclick="location.href = '#'">
+				<div id=mom2 onclick="location.href = '${pageContext.request.contextPath}/user/productInfo.do/${gdto.g_uid}/4'">
 					<div id="imgbox"><img src="../img/goods/${gdto.g_img}"></div>
 					<div id="goodsName">${gdto.g_name }</div>
 					<div id="goodsPrice">${gdto.g_price } 원</div>
