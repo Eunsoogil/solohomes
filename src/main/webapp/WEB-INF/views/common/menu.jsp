@@ -81,7 +81,16 @@ function hide(){
 	var suggetDiv = document.getElementById("suggestDiv");
 	suggestDiv.style.display = "none";
 }
-	
+
+function sessionchk(){
+	var sessionUid = "${sessionScope.userUID}";
+	if(sessionUid.trim() == ""){
+		alert("로그인이 되어있지 않습니다");
+		location.href = "${pageContext.request.contextPath}/member/login.do";
+		return false;
+	}
+	return true;
+}
 </script>
 </head>
 <body>
@@ -122,10 +131,10 @@ function hide(){
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=7">테이블</a></li>
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=2">화장대</a></li>
 		</ul>
-		<li><a href="#">시리즈</a></li>
+		<li><a href="${pageContext.request.contextPath}/series/series.do">시리즈</a></li>
 		<li><a class="mypage">마이페이지 <i class="fas fa-sort-down"></i></a></li>
 		<ul class="my_sub">
-			<li><a href="#">장바구니</a></li>
+			<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
 			<li><a href="#">구매목록</a></li>
 			<li><a href="#">좋아요한 상품</a></li>
 			<li><a href="#">1:1문의</a></li>
@@ -156,7 +165,7 @@ function hide(){
 			</ul>
 			<ul class="left">
 				<h3>마이페이지</h3>
-				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}">장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
 				<li><a href="#">구매목록</a></li>
 				<li><a href="#">좋아요한 상품</a></li>
 				<li><a href="#">1:1문의</a></li>
