@@ -156,7 +156,7 @@ function hide(){
 			</ul>
 			<ul class="left">
 				<h3>마이페이지</h3>
-				<li><a href="#">장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}">장바구니</a></li>
 				<li><a href="#">구매목록</a></li>
 				<li><a href="#">좋아요한 상품</a></li>
 				<li><a href="#">1:1문의</a></li>
