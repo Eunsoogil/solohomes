@@ -1,6 +1,6 @@
 package com.ateam.solohomes.controller;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ateam.solohomes.C;
 import com.ateam.solohomes.commnad.CartInsertCommand;
@@ -35,11 +34,17 @@ public class ProductInfoController {
 		C.transactionTemplate = transactionTemplate;
 	}
 	
-	@RequestMapping("/user/productInfo.do/{g_uid}/{mb_uid}")
-	public String productInfo(Model model,
-			@PathVariable("g_uid")int g_uid, @PathVariable("mb_uid")int mb_uid) {
+	@RequestMapping("/user/productInfo.do/{g_uid}")
+	public String productInfo(Model model, @PathVariable("g_uid")int g_uid, HttpSession s) {	
+		int mb_uid = 0;
+		if(s.getAttribute("userUID") == null) {
+			mb_uid = 0;
+		}else{
+			mb_uid = (int)(s.getAttribute("userUID"));
+		}
+		
 		model.addAttribute("g_uid", g_uid); 
-		model.addAttribute("mb_uid", mb_uid); 
+		model.addAttribute("mb_uid", mb_uid);
 		new InfoViewCommand().execute(model);
 		return "user/productInfo";
 	}
