@@ -83,7 +83,7 @@ function upDateList(jsonObj){
 	if(status == "success"){
 		for(var i = 0; i < count; i++){
 			result += "<div id='mom' class='col-md-3 col-xs-10 col-md-offset-0 col-xs-offset-1'>";
-			result += "<div id=mom2 onclick='location.href = 'user/productInfo.do/"+list[i].g_uid+"''>";
+			result += "<div id=mom2 onclick='location.href = '${pageContext.request.contextPath}/user/productInfo.do/"+list[i].g_uid+"''>";
 			result += "<div id='imgbox'><img src='../img/goods/"+list[i].g_img+"'></div>";
 			result += "<div id='goodsName'>"+list[i].g_name+"</div>";
 			result += "<div id='goodsPrice'>"+list[i].g_price+" 원</div>";
