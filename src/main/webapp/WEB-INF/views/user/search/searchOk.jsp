@@ -10,7 +10,7 @@
 </c:if>
 <c:if test="${g_uid >= 1 && g_uid <= 10}">
 	<script>
-		location.href = "${pageContext.request.contextPath}/search/category.do?g_uid=${g_uid}";
+		location.href = "${pageContext.request.contextPath}/category/category.do?g_type=${g_uid}";
 	</script>			
 </c:if>
 <c:if test="${g_uid > 10}">

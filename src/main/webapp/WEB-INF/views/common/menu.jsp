@@ -45,7 +45,7 @@ function displaySuggest(data){
 				break;
 			}
 			if(1 <= parseInt(keywordList[i+1]) && parseInt(keywordList[i+1]) <= 10){
-				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/search/category.do?g_uid=" +
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/category/category.do?g_type=" +
 				keywordList[i+1] + "'>" +
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
@@ -152,7 +152,7 @@ function hide(){
 			</ul>
 			<ul>
 				<h3>시리즈</h3>
-				<li><a href="#">시리즈</a></li>
+				<li><a href="${pageContext.request.contextPath}/series/series.do">시리즈</a></li>
 			</ul>
 			<ul class="left">
 				<h3>마이페이지</h3>
