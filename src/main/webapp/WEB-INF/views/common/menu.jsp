@@ -9,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_nbc.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 function sendKeyword(){

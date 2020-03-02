@@ -413,7 +413,7 @@ function goDelete(number) {
 <script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 
 <script>
-$(document).ready(function(){
+$(document).ready(function(){	
 	var quantitiy=0;
 	$('.quantity-right-plus').click(function(e){
 		// Stop acting like a button
