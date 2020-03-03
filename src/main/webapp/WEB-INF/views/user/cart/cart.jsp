@@ -59,17 +59,7 @@ function CheckForm(Join){
 	}
 }
 
-function onlyNumber(event){
-    event = event || window.event;
-    var keyID = (event.which) ? event.which : event.keyCode;
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-        return;
-    else {
-		event.target.value = event.target.value.replace(/[^0-9]/g, "");
-		alert("숫자만 입력 가능합니다");
-		return false;
-    }
-}
+
 </script>
 </head>
 <body>
@@ -128,18 +118,18 @@ function onlyNumber(event){
 								</c:choose>
 							</c:forEach>
 						</select>
-						<td class="price">${glist[status.index].g_price }</td>
+						<td class="price" id="price">${glist[status.index].g_price }</td>
 						<td class="quantity">
 							<div class="quantityBox">
-							<span class="input-group-btn mr-2 cart_btn">
+							<span class="input-group-btn mr-2 cart_btn" onclick="minus(this);">
 								<button type="button" class="quantity-left-minus btn"
 									data-type="minus" data-field="">
 									<i class="ion-ios-remove"></i>
 								</button>
 							</span>
-							<input type="text" id="quantity" name="quantity" class="cart_input form-control input-number" 
-								value="${list[status.index].cr_amount }" onkeyup='return onlyNumber(event)'>
-							<span class="input-group-btn ml-2 cart_btn">
+							<input type="text" id="quantity" name="${list[status.index].cr_uid }cr_amount" class="cart_input form-control input-number" 
+								value="${list[status.index].cr_amount }">
+							<span class="input-group-btn ml-2 cart_btn" onclick="plus(this);">
 								<button type="button" class="quantity-right-plus btn"
 									data-type="plus" data-field="">
 									<i class="ion-ios-add"></i>
@@ -147,7 +137,7 @@ function onlyNumber(event){
 							</span>
 							</div>						
 						</td>							
-						<td class="total">${glist[status.index].g_price * list[status.index].cr_amount }</td>
+						<td class="total" id="total">${glist[status.index].g_price * list[status.index].cr_amount }</td>
 					</tr>
 					</c:forEach>
 					</tbody>
@@ -156,29 +146,25 @@ function onlyNumber(event){
 			</div>
 		</div>
 		<p>
-		<!-- -----------------------변경하기 온클릭 걸기----------------------------- -->
-			<input type="submit" class="selectBtn selectBtn2 mr-3" value="선택상품 변경하기" onclick=""/>
 			<input type="submit" class="selectBtn selectBtn2" value="선택상품 삭제하기" onclick="javascript: form.action='cartdelete.do';"/>
 		</p>
 		
-		<!-- 총 결산 부분 화면  -->
-		<div class="row justify-content-end">
+		<div class="row justify-content-end" onload="totalCost()">
 			<div class="col cart-wrap ftco-animate">
 				<div class="cart-total mb-2">
 					<h3>총 구매 상품</h3>
 					<p class="d-flex">
-		<!---------------------------- 달러표시된 곳 수정해주세요(총 3곳) ---------------------->
 						<span>가격</span> 
-						<span>$0.00</span>
+						<span id="cost">$0.00</span>
 					</p>
 					<p class="d-flex">
 						<span>배송비</span> 
-						<span>$0.00</span>
+						<span>무료</span>
 					</p>
 					<hr>
 					<p class="d-flex total-price">
 						<span>최종 가격</span> 
-						<span>$0.00</span>
+						<span id="totalcost">$0.00</span>
 					</p>
 				</div>
 				<p class="text-center">
@@ -215,24 +201,43 @@ function onlyNumber(event){
 <script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 
 <script>
-$(document).ready(function(){
-	var quantitiy=0;
-	
-	$('.quantity-right-plus').click(function(e){
-		e.preventDefault();
-        var quantity = parseInt($('#quantity').val());
-        $('#quantity').val(quantity + 1);
-    });
+function minus(data){
+	var tr = data.parentNode.parentNode.parentNode;
+	var input = tr.cells[5].childNodes[1].childNodes[3];
+	var cost = tr.cells[4].childNodes[0].nodeValue;
+	if(parseInt(input.value) <= 1) return;
+	input.value = parseInt(input.value) - 1;
+	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
+	totalCost();
+}
 
-	$('.quantity-left-minus').click(function(e){
-        e.preventDefault();
-        var quantity = parseInt($('#quantity').val());
-        if(quantity>0){
-        	$('#quantity').val(quantity - 1);
-        }
-    });
-    
-});
+function plus(data){
+	var tr = data.parentNode.parentNode.parentNode;
+	var input = tr.cells[5].childNodes[1].childNodes[3];
+	var cost = tr.cells[4].childNodes[0].nodeValue;
+	input.value = parseInt(input.value) + 1;
+	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
+	totalCost();
+}
+
+function totalCost(){
+	var table = document.getElementsByTagName('tbody')[0].childNodes;
+	var cost = 0;
+	var i = 0;
+	for (i = 1; i < table.length; i+=2) {
+		cost += parseInt(table[i].cells[6].childNodes[0].nodeValue);
+	}
+	cost = numberWithCommas(cost);
+	$('#cost').html(cost + "원");
+	$('#totalcost').html(cost + "원");
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+document.getElementById("cost").onload = totalCost();
+
 </script>
 </c:otherwise>
 </c:choose>

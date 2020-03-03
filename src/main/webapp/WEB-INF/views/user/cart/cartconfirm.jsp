@@ -112,6 +112,7 @@ $(document).ready(function() {
 		} 
 	}); 
 });
+
 </script>
 </head>
 <body>
@@ -132,11 +133,37 @@ $(document).ready(function() {
 			<td>${list[status.index].cr_amount }</td>
 			<td>${in_color[status.index] }</td>
 			<td>${glist[status.index].g_price }</td>
-			<td>${glist[status.index].g_price * list[status.index].cr_amount }</td>
+			<td class="costlist">${glist[status.index].g_price * list[status.index].cr_amount }</td>
 			<td>무료</td>
 		</tr>
 	</c:forEach>
 </table>
+
+<div class="row justify-content-end" onload="totalCost()">
+	<div class="col cart-wrap ftco-animate">
+		<div class="cart-total mb-2">
+			<h3>총 구매 상품</h3>
+			<p class="d-flex">
+				<span>가격</span> 
+				<span id="cost">$0.00</span>
+			</p>
+			<p class="d-flex">
+				<span>배송비</span> 
+				<span>무료</span>
+			</p>
+			<hr>
+			<p class="d-flex total-price">
+				<span>최종 가격</span> 
+				<span id="totalcost">$0.00</span>
+			</p>
+		</div>
+		<p class="text-center">
+			<input type="submit" class="selectBtn" value="선택상품 구매하기"/>
+		</p>
+	</div>
+</div>
+
+
 <input type="checkbox" id="sameasmine"><span>회원정보와 동일</span>
 
 <form name="form" method="post" action="cartconfirmOk.do" onsubmit="return chkSubmit()">
@@ -153,6 +180,27 @@ $(document).ready(function() {
 </form>
 <input type="hidden" id="sample6_extraAddress" placeholder="참고항목"><br>
 <br>
+
+<script type="text/javascript">
+
+function totalCost(){
+	var costlist = document.getElementsByClassName('costlist');
+	var cost = 0;
+	var i = 0;
+	for (i = 0; i < costlist.length; i++) {
+		cost += parseInt(costlist.item(i).innerHTML);
+	}
+	cost = numberWithCommas(cost);
+	$('#cost').html(cost + "원");
+	$('#totalcost').html(cost + "원");
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+document.getElementById("cost").onload = totalCost();
+</script>
 </body>
 </html>
 
