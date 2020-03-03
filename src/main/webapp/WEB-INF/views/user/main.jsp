@@ -95,7 +95,20 @@
 								<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 							</a>
 							<div class="text py-3 px-3">
-								<h3><a href="#">${dto.g_name }</a></h3>
+								<c:choose>
+									<c:when test="${fn:length(dto.g_name) > 20}">
+										<h3>
+											<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}">
+												${fn:substring(dto.g_name,0,20)}...
+											</a>
+										</h3>
+									</c:when>
+									<c:otherwise>
+										<h3>
+											<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}">${dto.g_name }</a>
+										</h3>
+									</c:otherwise>
+								</c:choose>
 								<div class="d-flex">
 									<div class="pricing">
 										<p class="price">
@@ -132,7 +145,18 @@
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 						</a>
 						<div class="text py-3 px-3 bg-light">
-							<h3><a href="#">${dto.g_name }</a></h3>
+							<c:choose>
+								<c:when test="${fn:length(dto.g_name) > 20}">
+									<h3>
+										<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}">
+											${fn:substring(dto.g_name,0,20) }...
+										</a>
+									</h3>
+								</c:when>
+								<c:otherwise>
+									<h3><a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}">${dto.g_name }</a></h3>
+								</c:otherwise>
+							</c:choose>
 							<div class="d-flex">
 								<div class="pricing">
 									<p class="price">
