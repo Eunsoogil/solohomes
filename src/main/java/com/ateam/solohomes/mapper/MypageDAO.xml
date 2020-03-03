@@ -24,7 +24,7 @@
 	
 	<select id="selectPurchaseListByUid" resultType="com.ateam.solohomes.beans.PurchaseDTO">
 			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", FORMAT((g.g_price*p.py_amount),0) "py_price", p.py_confirm "py_confirm", c.co_uid "co_uid"
-			FROM goods g, goods_info gi, `member` m, payment p LEFT OUTER JOIN comment c ON p.py_uid = c.co_uid
+			FROM goods g, goods_info gi, `member` m, payment p LEFT OUTER JOIN comment c ON p.py_uid = c.py_uid
 			WHERE m.mb_uid = #{mb_uid}
 				  and m.mb_uid = p.mb_uid
 				  and p.in_uid = gi.in_uid
@@ -106,4 +106,29 @@
  	<delete id="deleteLikeByUid" flushCache="true">
  		DELETE FROM g_like WHERE gl_uid = #{gl_uid};
  	</delete>
+ 	
+ 	<insert id="insertReview" flushCache="true">
+		 	INSERT INTO comment
+					(mb_uid, py_uid, g_uid, co_subject, co_content)
+			VALUES
+					(#{mb_uid}, #{py_uid}, #{g_uid}, #{dto.co_subject}, #{dto.co_content});
+ 	</insert>
+ 	
+ 	
+ 	<select id="selectReviewByUid" resultType="com.ateam.solohomes.beans.ReviewDTO">
+		 	SELECT * 
+		 	FROM comment 
+		 	WHERE co_uid= #{co_uid};
+		 		
+ 	</select>
+ 	
+ 	
+ 	<update id="updateReview" flushCache="true">
+			UPDATE comment 
+			SET co_subject = #{dto.co_subject}, 
+				co_content = #{dto.co_content}
+			WHERE co_uid = #{dto.co_uid};
+	</update>
+
+ 	
 </mapper>

@@ -3,17 +3,16 @@
 
 /* Drop Tables */
 DROP TABLE IF EXISTS cart;
-DROP TABLE IF EXISTS payment;
 DROP TABLE IF EXISTS request;
 DROP TABLE IF EXISTS series_goods;
 DROP TABLE IF EXISTS series;
 DROP TABLE IF EXISTS g_like;
 DROP TABLE IF EXISTS co_report;
 DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS payment;
 DROP TABLE IF EXISTS goods_info;
 DROP TABLE IF EXISTS goods;
 DROP TABLE IF EXISTS member;
-
 
 -- member Table Create SQL
 CREATE TABLE member
@@ -86,7 +85,8 @@ ALTER TABLE goods_info
 CREATE TABLE comment
 (
     `co_uid`      INT            NOT NULL    AUTO_INCREMENT COMMENT '리뷰uid', 
-    `mb_uid`      INT            NOT NULL    COMMENT '회원uid', 
+    `mb_uid`      INT            NOT NULL    COMMENT '회원uid',
+    `py_uid`      INT            NOT NULL    COMMENT '구매uid',
     `g_uid`       INT            NOT NULL    COMMENT '가구uid', 
     `co_subject`  VARCHAR(45)    NOT NULL    COMMENT '리뷰제목', 
     `co_content`  TEXT           NOT NULL    COMMENT '리뷰내용', 
@@ -180,10 +180,7 @@ ALTER TABLE payment COMMENT '구매목록';
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES member (mb_uid) ON DELETE SET NULL ON UPDATE CASCADE;
-c
-ALTER TABLE payment
-    ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
-        REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;
+
 
 -- member Table Create SQL
 CREATE TABLE co_report
@@ -226,7 +223,10 @@ ALTER TABLE series_goods
 ALTER TABLE series_goods
     ADD CONSTRAINT FK_series_goods_sr_uid_series_sr_uid FOREIGN KEY (sr_uid)
         REFERENCES series (sr_uid) ON DELETE CASCADE ON UPDATE CASCADE;
-
+       
+ALTER TABLE payment
+    ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
+        REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- member Table Create SQL
 CREATE TABLE request
@@ -258,3 +258,9 @@ ALTER TABLE payment
 ALTER TABLE payment
     ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
         REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;
+        
+-- 제약조건 추가 2020-02-26
+ALTER TABLE comment
+    ADD CONSTRAINT FK_comment_py_uid_comment_py_uid FOREIGN KEY (py_uid)
+        REFERENCES payment (py_uid) ON DELETE CASCADE ON UPDATE CASCADE;
+       

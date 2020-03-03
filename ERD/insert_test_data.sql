@@ -408,6 +408,7 @@ VALUES
 	('이타카네오', 's3.jpg')
 ;
 
+
 -- SERIES_GOODS TABLE
 INSERT INTO series_goods
 	(g_uid, sr_uid)
@@ -415,33 +416,6 @@ VALUES
 	()
 ;
 
--- COMMENT TABLE
-INSERT INTO comment
-	(mb_uid, g_uid, co_subject, co_content)
-VALUES
-	(3, 501, '미엘 거실장 사용후기', '배송이 빨라서 좋았습니다.')
-	,(3, 501, 'xxxx', 'xxx xxxxx xxx xx xxxx')
-	,(2, 501, '미엘 거실장 사용후기', '집 인테리어랑 잘 어울리고 마음에 드네요.')
-	,(2, 601, '미엘 미니옷장 사용후기', '집이 좁았는데 적당한 크기의 옷장이라 만족합니다.')
-	,(2, 101, '사용후기', '좋아요.')
-	,(3, 101, '사용후기', '좋아요.')
-	,(4, 101, '사용후기', '좋아요.')
-	,(5, 101, '사용후기', '좋아요.')
-	,(6, 101, '사용후기', '좋아요.')
-	,(7, 101, '사용후기', '좋아요.')
-	,(2, 101, '사용후기', '좋아요.')
-	,(2, 1003, '사용후기', '좋아요.')
-	,(3, 1003, '사용후기', '좋아요.')
-	,(4, 1003, '사용후기', '좋아요.')
-	,(5, 1003, '사용후기', '좋아요.')
-	,(6, 1003, '사용후기', '좋아요.')
-	,(7, 1003, '사용후기', '좋아요.')
-	,(8, 1003, '사용후기', '좋아요.')
-	,(9, 1003, '사용후기', '좋아요.')
-	,(10, 1003, '테스트', '좋아요.')
-	,(11, 1003, '테스트2', '좋아요.')
-	,(12, 1003, '테스트3', '좋아요.')
-;
 
 -- g_like TABLE
 INSERT INTO g_like
@@ -495,6 +469,32 @@ VALUES
 -- re_type 5 : 도배성 댓글
 -- re_type 6 : 기타
 
+
+
+-- COMMENT TABLE
+INSERT INTO comment
+	(mb_uid, py_uid, g_uid, co_subject, co_content)
+VALUES
+	(2, 1 ,501, '미엘 거실장 사용후기', '배송이 빨라서 좋았습니다.')
+	,(2, 2, 502, 'xxxx', 'xxx xxxxx xxx xx xxxx')
+	,(2, 3, 303, '미엘 거실장 사용후기', '집 인테리어랑 잘 어울리고 마음에 드네요.')
+	,(2, 4,601, '미엘 미니옷장 사용후기', '집이 좁았는데 적당한 크기의 옷장이라 만족합니다.')
+	,(2, 5,702, '사용후기', '좋아요.')
+	,(2, 6, 402, '사용후기', '좋아요.')
+	,(4, 1, 101, '사용후기', '좋아요.')
+	,(5, 1, 101, '사용후기', '좋아요.')
+	,(6, 1, 101, '사용후기', '좋아요.')
+	,(7, 1, 101, '사용후기', '좋아요.')
+	,(6, 2, 1003, '사용후기', '좋아요.')
+	,(7, 1, 1003, '사용후기', '좋아요.')
+	,(8, 1, 1003, '사용후기', '좋아요.')
+	,(9, 1, 1003, '사용후기', '좋아요.')
+	,(10, 1, 1003, '테스트', '좋아요.')
+	,(11, 1, 1003, '테스트2', '좋아요.')
+	,(12, 1, 1003, '테스트3', '좋아요.')
+;
+
+
 INSERT INTO co_report 
 	(co_uid, mb_uid, re_type, re_content)
 VALUES
@@ -528,22 +528,6 @@ SELECT * FROM payment;
 SELECT * FROM cart;
 -- DELETE FROM MEMBER WHERE mb_uid = 2;
 
-SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price*p.py_amount "py_price", p.py_confirm "py_confirm"
-FROM goods g, goods_info gi, `member` m, payment p
-WHERE m.mb_uid = 2
-	  and m.mb_uid = p.mb_uid
-	  and p.in_uid = gi.in_uid
-	  and gi.g_uid = g.g_uid
-ORDER BY p.py_regdate desc;
 
 
-select * from payment;
-update payment set py_confirm=0 where py_uid=8 and mb_uid=2;
 
-select * from goods g where g.g_name="" ;
-
-update payment set py_regdate="2020-01-01" where py_uid=1;
-
-select * from payment where py_regdate between date("2020-01-01") and date("2020-01-06");
-
-update payment set py_uid="2020-01-01" where py_uid=1;

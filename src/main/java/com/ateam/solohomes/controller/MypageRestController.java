@@ -2,7 +2,6 @@ package com.ateam.solohomes.controller;
 
 import java.util.ArrayList;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +11,13 @@ import com.ateam.solohomes.C;
 import com.ateam.solohomes.beans.AjaxLikeList;
 import com.ateam.solohomes.beans.AjaxPurchaseList;
 import com.ateam.solohomes.beans.AjaxRequestList;
+import com.ateam.solohomes.beans.AjaxReviewList;
 import com.ateam.solohomes.beans.GoodsDTO;
 import com.ateam.solohomes.beans.MypageDAO;
 import com.ateam.solohomes.beans.PurchaseDTO;
 import com.ateam.solohomes.beans.RequestDTO;
-import com.ateam.solohomes.commnad.MypageRequestWriteCommand;
+import com.ateam.solohomes.beans.ReviewDTO;
+
 
 
 @RestController
@@ -231,6 +232,91 @@ public class MypageRestController {
 		return result;
 	}
 
+	
+	
+	
+	@RequestMapping(value = "/reviewWriteOk.ajax", method = RequestMethod.POST)
+	public AjaxReviewList writeReviewOk(ReviewDTO dto, int mb_uid, int py_uid, int g_uid){
+	
+		System.out.println("mb_uid: "+ mb_uid);
+		System.out.println("py_uid: "+ py_uid);
+		System.out.println("g_uid: "+ g_uid);
+		
+		AjaxReviewList result = new AjaxReviewList();
+		
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		
+		int resultQry = dao.insertReview(dto, mb_uid, py_uid, g_uid);
+	
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(resultQry != 0){ 
+			result.setStatus("OK");
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/reviewUpdate.ajax/{co_uid}")
+	public AjaxReviewList reviewUpdate(@PathVariable("co_uid")int co_uid){
+	
+		System.out.println("co_uid: "+ co_uid);
+		
+		AjaxReviewList result = new AjaxReviewList();
+		ReviewDTO dto = null;
+		
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		dto = dao.selectReviewByUid(co_uid);
+	
+		result.setDto(dto);
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(dto != null){ 
+			result.setStatus("OK");
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
+	
+	
+	
+	@RequestMapping(value = "/reviewUpdateOk.ajax", method = RequestMethod.POST)
+	public AjaxReviewList reviewUpdateOk(ReviewDTO dto){
+	
+		System.out.println("co_uid: "+ dto.getCo_uid());
+		System.out.println("co_subject: "+ dto.getCo_subject());
+		System.out.println("co_content: "+ dto.getCo_content());
+		
+		AjaxReviewList result = new AjaxReviewList();
+		
+		
+		// 페이징처리 결과를 리스트로 
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		int resultQry = dao.updateReview(dto);
+
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(resultQry != 0){ 
+			result.setStatus("OK");
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
 	
 	
 	

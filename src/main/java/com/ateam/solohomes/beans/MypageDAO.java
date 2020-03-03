@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
+
+
 @MapperScan
 public interface MypageDAO {
 
@@ -37,5 +39,10 @@ public interface MypageDAO {
 	public RequestDTO selectRequestByUid(@Param("rq_uid") int rq_uid);
 	
 	public int deleteLikeByUid(@Param("gl_uid") int gl_uid);
+	
+	public int insertReview(@Param("dto") ReviewDTO dto, @Param("mb_uid") int mb_uid, @Param("py_uid") int py_uid, @Param("g_uid") int g_uid);
+	
+	public ReviewDTO selectReviewByUid(@Param("co_uid") int co_uid);
 
+	public int updateReview(@Param("dto") ReviewDTO dto);
 }
