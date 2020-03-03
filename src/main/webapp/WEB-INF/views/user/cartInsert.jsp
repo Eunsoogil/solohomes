@@ -22,7 +22,6 @@
 	<script>
 		alert("장바구니에 상품이 등록되었습니다.");
 		if(confirm("장바구니로 이동하시겠습니까?")){
-			alert(<%=mb_uid%>);
 			location.href = "${pageContext.request.contextPath}/cart/cart.do?mb_uid=<%=mb_uid%>";
 		} else{
 			history.back();

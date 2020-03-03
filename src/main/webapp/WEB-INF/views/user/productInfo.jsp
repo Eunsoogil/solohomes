@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%!
 	// 페이징 관련 변수들
 	int writePages = 10;
@@ -287,7 +288,9 @@ function goDelete(number) {
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 					<h3>${goods.g_name }</h3>
 					<p class="price">
-						<span>${goods.g_price}원</span>						
+						<span>
+							<fmt:formatNumber value="${goods.g_price }" pattern="#,###,###"/>원
+						</span>						
 					</p>
 					<span class="like">
 						<i class="ion-ios-heart"></i>

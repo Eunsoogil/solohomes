@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <jsp:include page="/common/menu" />
@@ -119,7 +120,9 @@ function CheckForm(Join){
 								</c:forEach>
 							</select>
 						</td>
-						<td class="price" id="price">${glist[status.index].g_price }</td>
+						<td class="price" id="price">
+							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>	
+						</td>
 						<td class="quantity">
 							<div class="quantityBox">
 							<span class="input-group-btn mr-2 cart_btn" onclick="minus(this);">
@@ -138,7 +141,12 @@ function CheckForm(Join){
 							</span>
 							</div>						
 						</td>							
-						<td class="total" id="total">${glist[status.index].g_price * list[status.index].cr_amount }</td>
+						<td class="total" id="total">
+							${glist[status.index].g_price * list[status.index].cr_amount}
+							<!--  
+							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
+							-->
+						</td>
 					</tr>
 					</c:forEach>
 					</tbody>

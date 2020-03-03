@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <jsp:include page="/common/menu" />
@@ -55,7 +56,9 @@
 					<h2>Series</h2>
 				</div>
 			</div>
-			<div class="row d-flex">
+		</div>
+		<div class="container-fluid">
+			<div class="row d-flex mt-5">
 			<c:forEach var="dto" items="${seriese }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
@@ -63,7 +66,7 @@
 						<a href="#" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
 						</a>
-						<div class="text py-3 px-3">
+						<div class="text py-3 px-3 bg-light">
 							<h3><a href="#">${dto.sr_subject }</a></h3>
 						</div>
 					</div>
@@ -84,7 +87,7 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="row d-flex">
+			<div class="row d-flex mt-5">
 				<c:forEach var="dto" items="${newProduct }" begin="0" end="3">
 					<div class="col-sm col-md-6 col-lg ftco-animate">
 						<div class="product">
@@ -96,7 +99,9 @@
 								<div class="d-flex">
 									<div class="pricing">
 										<p class="price">
-											<span>${dto.g_price }원</span>
+											<span>
+												<fmt:formatNumber value="${dto.g_price }" pattern="#,###,###"/>원
+											</span>
 										</p>
 									</div>
 								</div>
@@ -117,19 +122,23 @@
 					<h2>Best Products</h2>
 				</div>
 			</div>
-			<div class="row d-flex">
+		</div>
+		<div class="container-fluid">
+			<div class="row d-flex mt-5">
 				<c:forEach var="dto" items="${best }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
 						<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 						</a>
-						<div class="text py-3 px-3">
+						<div class="text py-3 px-3 bg-light">
 							<h3><a href="#">${dto.g_name }</a></h3>
 							<div class="d-flex">
 								<div class="pricing">
 									<p class="price">
-										<span>${dto.g_price }원</span>
+										<span>
+										<fmt:formatNumber value="${dto.g_price }" pattern="#,###,###"/>원
+										</span>
 									</p>
 								</div>
 							</div>
