@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 import com.ateam.solohomes.beans.GoodsDTO;
+import com.ateam.solohomes.beans.GoodsInfoDTO;
 
 @MapperScan
 public interface ManagerDAO {
@@ -17,7 +18,18 @@ public interface ManagerDAO {
 	public Integer countTodaySales();
 	// sum today's sales
 	public Integer sumTodaySales();
-
+	// insert goods
+	public Integer insertGoods(GoodsDTO goodsDTO);
+	// insert goods_info
+	public Integer insertGoodsInfo(@Param("color") String color, @Param("imgPath") String imgPath, @Param("g_uid") int g_uid);
+	// select goods by uid
+	public GoodsDTO selectGoodsByUid(@Param("uid") int uid);
+	// select goods_info by g_uid
+	public ArrayList<GoodsInfoDTO> selectGoodsInfosByGuid(@Param("uid") int uid);
+	// update goods by g_uid
+	public Integer updateGoods(@Param("dto") GoodsDTO goodsDTO, @Param("g_uid") int uid);
+	// delete goods_info by_uid
+	public Integer deleteGoodsInfoByUid(int uid);
 	// REST
 	// select all users
 	public ArrayList<MemberRenumDTO> selectAllUserByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
@@ -56,4 +68,6 @@ public interface ManagerDAO {
 	
 	// select goods by type and sort
 	public ArrayList<GoodsSalNumDTO> selectSortedGoodsByType(@Param("type") int type, @Param("columnNum") int columnNum, @Param("sord") String sord, @Param("startRow") int startRow, @Param("listPage") int listPage);
+	// delete goods by uids
+	public int deleteGoodsByUids(@Param("uidList") int[] list);
 }

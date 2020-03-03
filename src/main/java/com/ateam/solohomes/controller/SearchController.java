@@ -18,11 +18,6 @@ import com.ateam.solohomes.beans.search.SearchDTO;
 @RequestMapping("/search")
 public class SearchController {
 	
-	@RequestMapping("/search.do")
-	public String search(Model model) {
-		return "user/search/search";
-	}
-	
 	@RequestMapping(value = "/searchOk.do", method = RequestMethod.POST)
 	public String searchOk(Model model, HttpServletRequest request) {
 		String userKeyword = (String)request.getParameter("userKeyword");

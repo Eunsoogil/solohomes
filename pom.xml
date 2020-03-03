@@ -151,20 +151,40 @@
 			<version>2.9.8</version>
 		</dependency>
 		 
-		 <!-- java mail --> 
-		  <dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>mail</artifactId>
-		    <version>1.4.3</version>
-		  </dependency>
+		<!-- java mail --> 
+		<dependency>
+	    	<groupId>javax.mail</groupId>
+	    	<artifactId>mail</artifactId>
+	    	<version>1.4.3</version>
+	  	</dependency>
 		  
-		  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-			<dependency>
-			    <groupId>org.springframework</groupId>
-			    <artifactId>spring-context-support</artifactId>
-			    <version>5.2.0.RELEASE</version>
-			</dependency>
+	  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.2.0.RELEASE</version>
+		</dependency>
 		  
+		<!-- common fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- jstl -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

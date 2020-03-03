@@ -5,6 +5,17 @@
 	// 페이징 관련 변수들
 	int writePages = 10;
 %>
+<%!
+	HttpSession session;
+	int mb_uid = 0;
+%>
+<%
+	if(session.getAttribute("userUID") == null){
+		mb_uid = 0;
+	} else{
+		mb_uid = (int)session.getAttribute("userUID");
+	}
+%>
 <c:choose>
 	<c:when test="${empty goods}">
 		<script>
@@ -19,6 +30,7 @@
 <jsp:include page="/common/menu"/>
 <html lang="ko">
 <head>
+<title>${goods.g_name }</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -38,56 +50,74 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/imagebox.css">
 
 <script>
+// 이미지 큰 화면
 function doShow(imgSrc) {
 	document.getElementById("bigImg").src = imgSrc;
 	$(".image-popup").attr("href", imgSrc);
 }
 
+// 장바구니 인서트
 function goCart() {	
 	var in_uid = parseInt($("#color option:selected").val());
 	var cr_amount = parseInt($("#quantity").val());
 	var storage = parseInt(document.getElementById(in_uid).value);
 	
-	if(confirm("해당 상품을 장바구니에 넣으시겠습니까?")){
-		if(cr_amount > storage){
-			alert("해당 색상의 재고수량은 " + storage + "개 입니다.\n구매수량을 재고수량보다 작게 선택해주세요.");
-			return false;
+	if(<%= mb_uid%> == 0){
+		if(confirm("로그인이 필요한 기능입니다.\n로그인화면으로 이동하시겠습니까?")){
+			location.href="${pageContext.request.contextPath}/member/login.do";
 		} else{
-			location.href="${pageContext.request.contextPath}/user/cartInsert.do/3/"+in_uid+"/"+cr_amount;
+			return false;
 		}
-	}	
+	} else{
+		if(confirm("해당 상품을 장바구니에 넣으시겠습니까?")){
+			if(cr_amount > storage){
+				alert("해당 색상의 재고수량은 " + storage + "개 입니다.\n구매수량을 재고수량보다 작게 선택해주세요.");
+				return false;
+			} else{
+				location.href="${pageContext.request.contextPath}/user/cartInsert.do/<%= mb_uid%>/"+in_uid+"/"+cr_amount;
+			}
+		}
+	}		
 }
 
 function popUp(uid) {
-	$("#popUp").css("display", "block");
-	var co_uid = uid;	
-	var mb_uid = 3;	
+	if(<%= mb_uid%> == 0){
+		if(confirm("로그인이 필요한 기능입니다.\n로그인화면으로 이동하시겠습니까?")){
+			location.href="${pageContext.request.contextPath}/member/login.do";
+		} else{
+			return false;
+		}
+	} else{
+		$("#popUp").css("display", "block");
+		var co_uid = uid;	
+		var mb_uid = <%= mb_uid%>;	
 
-	$(".accept").click(function() {
-		var re_content = $('#re_content').val();
-		var re_type = $("input[name='re_type']:checked").val(); 
-		
-		$.ajax({
-			url:"${pageContext.request.contextPath}/user/review/notify.do",
-			type:"POST",
-			data: {
-				"co_uid" : co_uid, 
-				"mb_uid" : mb_uid,
-				"re_content" : re_content,
-				"re_type" : re_type},
-			cache:false,
-			success:function(data, status){
-				if(data.status == "OK"){
-					alert("신고되었습니다.");
-					loadPage(1);
-				} else{
-					alert("이미 신고한 게시물입니다.");					
-					return false;
+		$(".accept").click(function() {
+			var re_content = $('#re_content').val();
+			var re_type = $("input[name='re_type']:checked").val(); 
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/user/review/notify.do",
+				type:"POST",
+				data: {
+					"co_uid" : co_uid, 
+					"mb_uid" : mb_uid,
+					"re_content" : re_content,
+					"re_type" : re_type},
+				cache:false,
+				success:function(data, status){
+					if(data.status == "OK"){
+						alert("신고되었습니다.");
+						loadPage(1);
+					} else{
+						alert("이미 신고한 게시물입니다.");					
+						return false;
+					}
 				}
-			}
-				
+					
+			});
 		});
-	});
+	}	
 }
 </script>
 
@@ -120,7 +150,7 @@ $(document).ready(function(){
 
 function loadPage(page){	
 	$.ajax({
-		url : "${pageContext.request.contextPath}/user/review/" + ${goods.g_uid} + "/3/<%= writePages%>/" + page,
+		url : "${pageContext.request.contextPath}/user/review/" + ${goods.g_uid} + "/<%= mb_uid%>/<%= writePages%>/" + page,
 		type : "GET",
 		cache : false,
 		success : function(data, status){
@@ -170,7 +200,6 @@ function updateList(jsonObj){
 		$("table#list tbody").html(result); // 테이블 내용 업데이트
 		return true;
 	} else {
-		alert("마지막 페이지입니다.");
 		return false;
 	}
 	
@@ -180,9 +209,8 @@ function updateList(jsonObj){
 
 <!------ AJAX 자바스크립트 ------>
 <script>
-var mb_uid = 3;
 function likeUp(){
-	var url = "${pageContext.request.contextPath}/user/likeup/" + ${goods.g_uid} + "/" + mb_uid;
+	var url = "${pageContext.request.contextPath}/user/likeup/" + ${goods.g_uid} + "/<%= mb_uid%>";
 	$.ajax({
 		url : url,
 		type : "GET",
@@ -198,7 +226,7 @@ function likeUp(){
 }
 
 function likeDown(){
-	var url = "${pageContext.request.contextPath}/user/likedown/" + ${goods.g_uid} + "/" + mb_uid;
+	var url = "${pageContext.request.contextPath}/user/likedown/" + ${goods.g_uid} + "/<%= mb_uid%>";
 	$.ajax({
 		url : url,
 		type : "GET",
@@ -238,7 +266,7 @@ function goDelete(number) {
 </script>
 </head>
 <body>
-	<section class="ftco-section bg-light">
+	<section class="ftco-section bg-light padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
@@ -370,6 +398,15 @@ function goDelete(number) {
 		</form>
 	</div>
 	
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#A91F24" /></svg>
+	</div>	
+	
 <script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>
@@ -386,7 +423,7 @@ function goDelete(number) {
 <script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 
 <script>
-$(document).ready(function(){
+$(document).ready(function(){	
 	var quantitiy=0;
 	$('.quantity-right-plus').click(function(e){
 		// Stop acting like a button
@@ -408,19 +445,27 @@ $(document).ready(function(){
 	});		    
 	
 	$(".likeBtn").click(function() {
-		var className = $(".likeBtn > i").attr('class');
-					
-		if(className == "ion-ios-heart-empty"){
-			$(".likeBtn > i").attr('class','ion-ios-heart');
-			$(".likeBtn").addClass('pink');
-			likeUp();
-		}
-		
-		else{
-			$(".likeBtn > i").attr('class','ion-ios-heart-empty');
-			$(".likeBtn").removeClass('pink');
-			likeDown();
-		}
+		if(<%= mb_uid%> == 0){
+			if(confirm("로그인이 필요한 기능입니다.\n로그인화면으로 이동하시겠습니까?")){
+				location.href="${pageContext.request.contextPath}/member/login.do";
+			} else{
+				return false;
+			}
+		} else{
+			var className = $(".likeBtn > i").attr('class');
+			
+			if(className == "ion-ios-heart-empty"){
+				$(".likeBtn > i").attr('class','ion-ios-heart');
+				$(".likeBtn").addClass('pink');
+				likeUp();
+			}
+			
+			else{
+				$(".likeBtn > i").attr('class','ion-ios-heart-empty');
+				$(".likeBtn").removeClass('pink');
+				likeDown();
+			}
+		}		
 	});
 	
 	$(".closePop").click(function() {		
@@ -428,7 +473,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		var pop = document.getElementById('popUp');
 		if (event.target == pop) {

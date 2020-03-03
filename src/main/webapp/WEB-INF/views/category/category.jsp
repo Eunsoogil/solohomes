@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>카테고리</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,9 +18,9 @@
 <h1 class="text-center"> ${typeName } </h1>	
 
 <hr>
-<div id="sortdivt">
-	<div id ="sortdiv" class="col-md-2 col-sm-4 col-xs-12 pull-right">
-	    <select class="form-control pull-right row b-none" id="sortSelect">
+<div id="sortdivt" class="col-md-10 col-md-offset-1">
+	<div id ="sortdiv" class="col-md-2 col-xs-12 pull-right">
+	    <select class="form-control" id="sortSelect">
 	        <option value="0" selected>신상품</option>
 	        <option value="1">가격순</option>
 	        <option value="2">추천순</option>
@@ -27,24 +29,24 @@
 </div>
 <br><br>
 <div id="categorybody" class="container col-md-10 col-md-offset-1">
-
 	<c:choose>
 	<c:when test="${empty gdto || fn.length(gdto) == 0 }">
 		품목이 없습니다<br>
 	</c:when>
 	<c:otherwise>
 		<c:forEach var="gdto" items="${gdto }">	
-				<div id="unit" class="col-sm-3 col-xs-12" OnClick="location.href='#'">
-					<div id="imgdiv" class="col-md-12"  style="background-image:url(../img/goods/${gdto.g_img});"></div>
-			<br><p id="name">${gdto.g_name }</p>
-					<p id ="price">${gdto.g_price } 원</p>
-					<p id="like">${gdto.g_likecnt }</p>
-					<p id="likeicon"></p>
+			<div id="mom" class="col-md-3 col-xs-10 col-md-offset-0 col-xs-offset-1">
+				<div id=mom2 onclick="location.href = '${pageContext.request.contextPath}/user/productInfo.do/${gdto.g_uid }'">
+					<div id="imgbox"><img src="../img/goods/${gdto.g_img}"></div>
+					<div id="goodsName">${gdto.g_name }</div>
+					<div id="goodsPrice">${gdto.g_price } 원</div>
+					<div id="goodsLikeIcon"></div>
+					<div id="goodsLike">${gdto.g_likecnt }</div>
 				</div>
+			</div>
 			</c:forEach>
 	</c:otherwise>
 </c:choose>
-
 </div>
 
 </body>
@@ -80,12 +82,14 @@ function upDateList(jsonObj){
 	
 	if(status == "success"){
 		for(var i = 0; i < count; i++){
-			result += "<div id='unit' class='col-md-3' OnClick='movePage(" + list[i].g_uid + ")'>";
-			result += "<div id='imgdiv' style='background-image:url(../css/category/img/"+list[i].g_img +"); background-size : cover;'></div>";
-			result += "<br><p id='name'>"+list[i].g_name +"</p>";
-			result += "<p id ='price'>"+ list[i].g_price+" 원</p>";
-			result += "<p id='like'>"+list[i].g_likecnt+"</p>";
-			result += "<p id='likeicon'></p>";
+			result += "<div id='mom' class='col-md-3 col-xs-10 col-md-offset-0 col-xs-offset-1'>";
+			result += "<div id=mom2 onclick=location.href ="${pageContext.request.contextPath}+"/user/productInfo.do/"+list[i].g_uid+">";
+			result += "<div id='imgbox'><img src='../img/goods/"+list[i].g_img+"'></div>";
+			result += "<div id='goodsName'>"+list[i].g_name+"</div>";
+			result += "<div id='goodsPrice'>"+list[i].g_price+" 원</div>";
+			result += "<div id='goodsLikeIcon'></div>";
+			result += "<div id='goodsLike'>"+list[i].g_likecnt+"</div>";
+			result += "</div>";
 			result += "</div>";
 		}
 		
@@ -102,3 +106,4 @@ function movePage(uid) {
 }
 </script>
 </html>
+

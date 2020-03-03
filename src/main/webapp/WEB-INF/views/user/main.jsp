@@ -6,6 +6,7 @@
 <jsp:include page="/common/menu" />
 <html lang="ko">
 <head>
+<title>HoloHomes</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
@@ -58,7 +59,7 @@
 			<c:forEach var="dto" items="${seriese }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
-					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
+					<!-- ----------------------------------------------시리즈 경로 재설정------------------------------------------------ -->
 						<a href="#" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
 						</a>
@@ -87,7 +88,6 @@
 				<c:forEach var="dto" items="${newProduct }" begin="0" end="3">
 					<div class="col-sm col-md-6 col-lg ftco-animate">
 						<div class="product">
-						<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
 							<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
 								<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 							</a>
@@ -121,7 +121,6 @@
 				<c:forEach var="dto" items="${best }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
-					<!-- -------------------------------------------------이미지 교체--------------------------------------------------------------- -->
 						<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 						</a>

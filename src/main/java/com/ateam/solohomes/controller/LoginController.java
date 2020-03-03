@@ -54,12 +54,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/loginOk.do", method=RequestMethod.POST)
-	public String loginOk(String id, String pw, Model model) {
+	public String loginOk(String id, String pw, Model model, HttpServletRequest request, HttpSession session) {
 		
 		model.addAttribute("id", id);
 		model.addAttribute("pw", pw);
 		cmd = new LoginCMD();
 		cmd.execute(model);
+		
+		session = request.getSession();
+		
+		if((Integer)model.getAttribute("result") == 1) {
+			session.setAttribute("userUID", model.getAttribute("userUID"));
+			session.setAttribute("userID", model.getAttribute("userID"));
+			session.setAttribute("userLevel", model.getAttribute("userLevel"));
+		}
 		
 		return "member/loginOk";
 	}
@@ -69,10 +77,6 @@ public class LoginController {
 		return "member/findId";
 	}
 	
-	@RequestMapping(value="/mainPage.do")
-	public String mainPage() {
-		return "member/mainPage";
-	}
 	
 	@RequestMapping(value="/terms.do")
 	public String terms() {
@@ -123,7 +127,18 @@ public class LoginController {
 		cmd = new LoginCodeCheckCMD();
 		cmd.execute(model);
 		
+		if((Integer)model.getAttribute("result") == 1) {
+			session.setAttribute("userUID", model.getAttribute("userUID"));
+			session.setAttribute("userID", model.getAttribute("userID"));
+			session.setAttribute("userLevel", model.getAttribute("userLevel"));
+		}
+		
 		return "member/emailCheckAction";
+	}
+	
+	@RequestMapping(value="/logOut.do")
+	public String logout() {
+		return "member/logOut";
 	}
 	
 }

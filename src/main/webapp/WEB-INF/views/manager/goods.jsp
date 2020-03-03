@@ -28,7 +28,7 @@
 	<![endif]-->
 	<link href="${pageContext.request.contextPath}/css/manager/common.css" rel="stylesheet">
 	
-	<title>Request Management</title>
+	<title>Goods Management</title>
 </head>
 	<!-- jQuery -->
     <script src="${pageContext.request.contextPath}/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -106,7 +106,7 @@
                         <div class="white-box">
                         	<div class="box-title"><b>상품목록</b>
                         		<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
-                        			<button class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">신규 상품등록</button>
+                        			<button onclick="location.href='${pageContext.request.contextPath}/manager/goodsWrite.do'" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">신규 상품등록</button>
                         		</div>
                         		<div class="clear"></div>
                         	</div>
@@ -147,6 +147,7 @@
 	                                            <th>가격</th>
 	                                            <th>좋아요</th>
 	                                            <th>판매수량</th>
+	                                            <th></th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>

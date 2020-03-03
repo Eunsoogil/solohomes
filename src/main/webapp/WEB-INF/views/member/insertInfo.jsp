@@ -1,12 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/common/menu" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>회원정보 입력</title>
+<!-- bootstrap css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_2.css">
+<!-- height 길이 조절 자바스크립트  -->
+<script>
+$(document).ready(function(){
+	var menu = 90;
+	var dHeight = $(document).height() - menu;
+	
+	$(document).resize(function() {
+		dHeight = $(document).height() - menu;
+	});
+	
+	$("#heightBox").css('min-height', dHeight);
+});
+</script>
 </head>
 <body>
+<div id="heightBox">
+<div id="loginBox">
 <div id="logInfo">
 	<p id="p1">약관 동의</p>
 	<p id="p2">정보 입력</p>
@@ -38,7 +67,9 @@
 	</form>
 		<input type="hidden" id="sample6_extraAddress" placeholder="참고항목"><br>
 		<a href="terms.do" id="lback">이전으로</a><br>
-</div>		
+</div>	
+</div>	
+</div>
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -193,3 +224,4 @@ $(document).ready(function(){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../css/login/js/login_1.js"></script>
 </html>
+<jsp:include page="/common/footer" />
