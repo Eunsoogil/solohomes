@@ -106,18 +106,19 @@ function CheckForm(Join){
 						</div></td>
 						<td class="product-name">${glist[status.index].g_name }</td>						
 						<td>
-						<select name="${list[status.index].cr_uid }in_color">
-							<c:forEach items="${gi}" var="i">
-								<c:choose>
-									<c:when test="${i.in_color == colorselect[status.index] }">
-									    <option value="${i.in_color }" selected="selected">${i.in_color }</option>
-									</c:when>
-									<c:otherwise>
-									    <option value="${i.in_color }">${i.in_color }</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</select>
+							<select name="${list[status.index].cr_uid }in_color">
+								<c:forEach items="${gi}" var="i">
+									<c:choose>
+										<c:when test="${i.in_color == colorselect[status.index] }">
+										    <option value="${i.in_color }" selected="selected">${i.in_color }</option>
+										</c:when>
+										<c:otherwise>
+										    <option value="${i.in_color }">${i.in_color }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</td>
 						<td class="price" id="price">${glist[status.index].g_price }</td>
 						<td class="quantity">
 							<div class="quantityBox">
@@ -151,11 +152,11 @@ function CheckForm(Join){
 		
 		<div class="row justify-content-end" onload="totalCost()">
 			<div class="col cart-wrap ftco-animate">
-				<div class="cart-total mb-2">
-					<h3>총 구매 상품</h3>
+				<div class="p-md-5 cart-total mb-2">
+					<h3>주문내역</h3>
 					<p class="d-flex">
 						<span>가격</span> 
-						<span id="cost">$0.00</span>
+						<span id="cost"></span>
 					</p>
 					<p class="d-flex">
 						<span>배송비</span> 
@@ -164,7 +165,7 @@ function CheckForm(Join){
 					<hr>
 					<p class="d-flex total-price">
 						<span>최종 가격</span> 
-						<span id="totalcost">$0.00</span>
+						<span id="totalcost"></span>
 					</p>
 				</div>
 				<p class="text-center">
