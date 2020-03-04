@@ -1,44 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
+<jsp:include page="/common/menu" />
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>주문서작성</title>
-<style>
-.table {
-  border-collapse: collapse;
-  border-top: 3px solid #168;
-}  
-.table th {
-  color: #168;
-  background: #f0f6f9;
-  text-align: center;
-}
-.table th, .table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-.table th:first-child, .table td:first-child {
-  border-left: 0;
-}
-.table th:last-child, .table td:last-child {
-  border-right: 0;
-}
-.table tr td:first-child {
-  text-align: center;
-}
-.img {
-	width : 80%;
-	height : auto;
-	display: block;
-	margin: 0px auto;
-}
-</style>
+<title>주문하기</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/style.css">
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -67,6 +53,7 @@ function chkSubmit(){
 	
 	return true;
 }
+
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -99,6 +86,7 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
 $(document).ready(function() { 
 	$("#sameasmine").on('click', function() { 
 		if ( $(this).prop('checked') ) {
@@ -112,83 +100,167 @@ $(document).ready(function() {
 		} 
 	}); 
 });
-
 </script>
 </head>
+
 <body>
-<table class="table">
-	<tr>
-		<th>대표이미지</th>
-		<th>상품명</th>
-		<th>수량</th>
-		<th>색상</th>
-		<th>단가</th>
-		<th>총가격</th>
-		<th>배송비</th>
-	</tr>
-	<c:forEach items="${list }" varStatus="status">
-		<tr>
-			<td><img class="img" src="${pageContext.request.contextPath}/img/goods/${glist[status.index].g_img }"></td>
-			<td>${glist[status.index].g_name }</td>
-			<td>${list[status.index].cr_amount }</td>
-			<td>${in_color[status.index] }</td>
-			<td>${glist[status.index].g_price }</td>
-			<td class="costlist">${glist[status.index].g_price * list[status.index].cr_amount }</td>
-			<td>무료</td>
-		</tr>
-	</c:forEach>
-</table>
-
-<div class="row justify-content-end" onload="totalCost()">
-	<div class="col cart-wrap ftco-animate">
-		<div class="cart-total mb-2">
-			<h3>총 구매 상품</h3>
-			<p class="d-flex">
-				<span>가격</span> 
-				<span id="cost">$0.00</span>
-			</p>
-			<p class="d-flex">
-				<span>배송비</span> 
-				<span>무료</span>
-			</p>
-			<hr>
-			<p class="d-flex total-price">
-				<span>최종 가격</span> 
-				<span id="totalcost">$0.00</span>
-			</p>
+	<div class="ftco-section ftco-cart pb-0">
+		<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-12 ftco-animate">
+			<div class="cart-list">
+				<table class="table" id="cart_table">
+					<thead class="thead-primary">
+						<tr class="text-center">
+							<th>&nbsp;</th>
+							<th>상품명</th>
+							<th>색상</th>
+							<th>단가</th>
+							<th>수량</th>
+							<th>총 가격</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${list }" varStatus="status">
+					<tr class="text-center">
+						<td class="image-prod"><div class="img">
+							<img class="img" src="${pageContext.request.contextPath}/img/goods/${glist[status.index].g_img }">
+						</div></td>
+						<td class="product-name">${glist[status.index].g_name }</td>						
+						<td>${in_color[status.index]}</td>
+						<td class="price" id="price">
+							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>
+						</td>
+						<td>${list[status.index].cr_amount }</td>							
+						<td class="total" id="total">  
+							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
+						</td>
+					</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			</div>
 		</div>
-		<p class="text-center">
-			<input type="submit" class="selectBtn" value="선택상품 구매하기"/>
-		</p>
+		</div>
 	</div>
-</div>
+		
+	<section class="ftco-section">
+		<div class="container">
+        <div class="row justify-content-center">
+        <div class="col-xl-8 ftco-animate">
+			<form name="form" method="post" action="cartconfirmOk.do" onsubmit="return chkSubmit()"
+				class="billing-form bg-light p-3 p-md-5">
+				<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/>
+				<c:forEach items="${list }" varStatus="status">
+					<input type="hidden" name="cr_amount" value="${list[status.index].cr_amount }">
+					<input type="hidden" name="in_uid" value="${list[status.index].in_uid }">
+				</c:forEach>
+				
+				<h3 class="mb-2 billing-heading">배송지 작성하기</h3>
+				<input type="checkbox" id="sameasmine" class="mb-5"> <span>회원정보와 동일</span>
+	          	<div class="row align-items-end">
+	          		<div class="col-md-6">
+		                <div class="form-group">
+		                	<label for="username">주문자 이름</label>
+		                  	<input type="text" class="form-control" value="${member.mb_name}" disabled>
+		                </div>
+	              	</div>
+
+                	<div class="w-100"></div>             
+                	<div class="col-md-6">
+		            	<div class="form-group">
+		            		<label for="postcodezip">우편번호</label>
+		                  	<input type="text" class="form-control" name="zipcode" id="sample6_postcode">
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                	<input type="button" class="form-control" id="zipbt" 
+		                		onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+		                </div>
+		            </div>
+		            
+	              	<div class="w-100"></div>
+		            <div class="col-md-12">
+		            	<div class="form-group">
+		            		<label for="country">주소</label>
+		            		<div class="select-wrap">
+		            			<input type="text" class="form-control" name="addr" id="sample6_address">
+		               		</div>
+		            	</div>
+		            </div>
+		            
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+		                	<label for="streetaddress">상세주소</label>
+		                  	<input type="text" class="form-control" name="addr2" id="sample6_detailAddress">
+		                </div>
+		            </div>
+	           	</div>
+           	<div class="row justify-content-end" onload="totalCost()">
+				<div class="col cart-wrap ftco-animate">
+					<div class="p-md-5 cart-total mb-2 bg-light bdn">
+						<h3>총 구매 상품</h3>
+						<p class="d-flex">
+							<span>가격</span> 
+							<span id="cost"></span>
+						</p>
+						<p class="d-flex">
+							<span>배송비</span> 
+							<span>무료</span>
+						</p>
+						<hr>
+						<p class="d-flex total-price">
+							<span>최종 가격</span> 
+							<span id="totalcost"></span>
+						</p>
+					</div>
+					<p class="text-center">
+						<input type="submit" class="selectBtn" value="주문하기"/>
+					</p>
+				</div>
+			</div>
+           	</form>
+			<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+		</div>
+		</div>
+		</div>
+	</section>
 
 
-<input type="checkbox" id="sameasmine"><span>회원정보와 동일</span>
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#A91F24" />
+		</svg>
+	</div>
 
-<form name="form" method="post" action="cartconfirmOk.do" onsubmit="return chkSubmit()">
-	<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/>
-	<c:forEach items="${list }" varStatus="status">
-		<input type="hidden" name="cr_amount" value="${list[status.index].cr_amount }">
-		<input type="hidden" name="in_uid" value="${list[status.index].in_uid }">
-	</c:forEach>
-	<input type="text" name="zipcode" id="sample6_postcode" placeholder="우편번호">
-	<input type="button" id="zipbt" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" name="addr" id="sample6_address" placeholder="주소"><br>
-	<input type="text" name="addr2" id="sample6_detailAddress" placeholder="상세주소"><br>
-	<input type="submit" value="작성완료"/>
-</form>
-<input type="hidden" id="sample6_extraAddress" placeholder="참고항목"><br>
-<br>
+<script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery.waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery.stellar.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery.magnific-popup.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/aos.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/jquery.animateNumber.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/bootstrap-datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/scrollax.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 
 <script type="text/javascript">
-
 function totalCost(){
-	var costlist = document.getElementsByClassName('costlist');
+	var costlist = document.getElementsByClassName('total');
 	var cost = 0;
 	var i = 0;
 	for (i = 0; i < costlist.length; i++) {
-		cost += parseInt(costlist.item(i).innerHTML);
+		cost += parseInt(costlist.item(i).innerHTML.replace(/[^0-9]/g,""));
 	}
 	cost = numberWithCommas(cost);
 	$('#cost').html(cost + "원");
@@ -203,10 +275,4 @@ document.getElementById("cost").onload = totalCost();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
+<jsp:include page="/common/footer" />
