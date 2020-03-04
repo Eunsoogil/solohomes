@@ -110,6 +110,7 @@ function popUp(uid) {
 					if(data.status == "OK"){
 						alert("신고되었습니다.");
 						loadPage(1);
+						return true;
 					} else{
 						alert("이미 신고한 게시물입니다.");					
 						return false;
@@ -173,7 +174,7 @@ function updateList(jsonObj){
 	
 		var count = jsonObj.count; // 글 개수
 		var items = jsonObj.list;  // 글 목록
-		var mb_uid = 3;
+		var mb_uid = <%= mb_uid%>;
 		var i;
 		for(i = 0; i < count; i++){
 			result += "<tr>\n";	
@@ -186,7 +187,7 @@ function updateList(jsonObj){
 						(regDate.getMonth() + 1) + "." +     // +1 해추어어야 한다 
 						regDate.getDate();		
 			result += "<td>" +strDate + "</td>\n";
-			result += "<td><button type='button' onclick='popUp(this.value)' class='tBtn notify' value='" + items[i].co_uid + "'>신고하기</button></td>"
+			result += "<td class='tdNotify'><button type='button' onclick='popUp(this.value)' class='tBtn notify' value='" + items[i].co_uid + "'>신고하기</button></td>"
 			
 			if(mb_uid == items[i].mb_uid){				
 				result += "<td><button class='tBtn' value='"+ items[i].co_uid + "' onclick='goDelete(this.value)'>";
@@ -352,12 +353,12 @@ function goDelete(number) {
 	<div class="parallax-img d-flex align-items-center">
 		<div class="container">
 			<div class="row d-flex justify-content-center py-5">
-				<div class="col-md-7 text-center heading-section ftco-animate">
+				<div class="col-md-9 text-center heading-section ftco-animate">
 					<h1 class="big">Review</h1>
 					<h2>Show our review</h2>
 					<div class="row d-flex justify-content-center mt-5">
 						<input type="hidden" id="page"/>
-						<table id="list">
+						<table id="list" class="mt-3">
 							<tbody>
 							</tbody>
 						</table>	

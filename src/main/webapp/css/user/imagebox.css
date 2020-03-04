@@ -27,15 +27,15 @@
 }
 
 .like i{
-	color:#f1b8c4;
+	color:#c80a1e;
 }
 .likeBtn{
 	margin-left:10px;
 	border:1px solid #eee;
-	color:#f1b8c4 !important;
+	color:#c80a1e !important;
 }
 .likeBtn:hover{
-	border:1px solid #f1b8c4;
+	border:1px solid #c80a1e;
 }
 
 #likeCnt{
@@ -49,7 +49,7 @@
 }
 
 .pink{
-	border-color:#f1b8c4;
+	border-color:#c80a1e;
 }
 
 #list {
@@ -67,18 +67,18 @@
 
 .pgBtn{
 	background: white;
-	border:1px solid #f1b8c4;
+	border:1px solid #c80a1e;
 	border-radius: 50%;
 	width:30px;
 	height:30px;
 	margin:10px;	
 	margin-top:20px;
-	color:#f1b8c4;
+	color:#c80a1e;
 	cursor: pointer;
 }
 
 .pgBtn:hover{
-	background:#f1b8c4;
+	background:#c80a1e;
 	color:white;
 }
 
@@ -89,7 +89,7 @@
 	border:none;
 }
 .tBtn:hover{
-	color:#f1b8c4;
+	color:#c80a1e;
 }
 
 .notify{
@@ -125,9 +125,9 @@
 	position:relative;
 	padding:25px;
 	width:550px;
-	height:590px;
+	height:610px;
 	top:50%;
-	margin-top:-300px;
+	margin-top:-310px;
 	z-index:99;
 	color:#444;
 }
@@ -164,17 +164,17 @@
 }
 .popBtn{
 	background: white;
-	border:1px solid #A91F24;
+	border:1px solid #c80a1e;
 	border-radius:10px;
 	padding:10px 0;
-	color:#A91F24;
+	color:#c80a1e;
 	width:200px;
 	margin:15px;
 	cursor: pointer;
 }
 
 .closePop{
-	background: #A91F24;
+	background: #c80a1e;
 	color:white;
 }
 

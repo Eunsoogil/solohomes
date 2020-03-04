@@ -35,7 +35,7 @@ header i{
 	padding:10px;
 }
 header i:hover{
-	color:#A91F24;
+	color:#c80a1e;
 }
 header img{
 	width:65px;
@@ -45,7 +45,7 @@ header img{
 	flex:1;
 }
 .pc form{
-	border-bottom:1px solid #A91F24;
+	border-bottom:1px solid #c80a1e;
 	position:relative;
 }
 .pc input{
@@ -69,15 +69,15 @@ header img{
 	display:block;
 	padding:3px 5px;
 	font-weight:bold;
-	background: #A91F24;
+	background: #c80a1e;
 	color:white;
-	border:1px solid #A91F24;
+	border:1px solid #c80a1e;
 	border-radius: 20px;
 	text-align: center;
 }
 #login:hover{
-	background:white;
-	color:#A91F24;
+	background:none;
+	color:#c80a1e;
 }
 
 
@@ -98,7 +98,7 @@ header img{
 	color:#888;
 }
 .modal-content a:hover{
-	color:#A91F24;
+	color:#c80a1e;
 }
 .modal-content ul{
 	padding-left:0;
@@ -109,7 +109,7 @@ header img{
 	font-size:0.7em;
 }
 .modal-content i:hover{
-	color:#A91F24;
+	color:#c80a1e;
 }
 .modal-content ul{
 	flex:1;
@@ -125,7 +125,7 @@ header img{
 	font-size:0.9em;
 }
 .modal-content li:hover{
-	color:#A91F24;
+	color:#c80a1e;
 	font-weight:500;
 }
 
@@ -190,7 +190,7 @@ header img{
 	cursor: pointer;
 }
 .mo_menu a:hover{
-	color:#A91F24;
+	color:#c80a1e;
 }
 .f_sub, .my_sub{
 	display:none;
