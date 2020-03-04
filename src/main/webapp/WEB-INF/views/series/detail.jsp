@@ -46,9 +46,9 @@
 		<div id="sortdivt">
 			<div id ="sortdiv" class="mt-3 col-md-2 col-xs-12">
 			    <select class="form-control" id="sortSelect">
-			        <option value="0" selected>신상품</option>
+			        <option value="0" selected>최신순</option>
 			        <option value="1">가격순</option>
-			        <option value="2">추천순</option>
+			        <option value="2">좋아요순</option>
 			    </select>
 			</div>
 		</div>
