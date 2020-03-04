@@ -62,12 +62,11 @@
 			<c:forEach var="dto" items="${seriese }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
-					<!-- ----------------------------------------------시리즈 경로 재설정------------------------------------------------ -->
-						<a href="#" class="img-prod">
+						<a href="${pageContext.request.contextPath}/series/series.do" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
 						</a>
 						<div class="text py-3 px-3 bg-light">
-							<h3><a href="#">${dto.sr_subject }</a></h3>
+							<h3><a href="${pageContext.request.contextPath}/series/series.do">${dto.sr_subject }</a></h3>
 						</div>
 					</div>
 				</div>
