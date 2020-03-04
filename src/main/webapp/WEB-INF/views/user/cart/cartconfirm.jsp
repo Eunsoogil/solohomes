@@ -150,8 +150,8 @@ $(document).ready(function() {
 		<div class="container">
         <div class="row justify-content-center">
         <div class="col-xl-8 ftco-animate">
-			<form name="form" method="post" action="cartconfirmOk.do" onsubmit="return chkSubmit()"
-				class="billing-form bg-light p-3 p-md-5">
+			<form name="form" method="post" action="cartconfirmOk.do" onsubmit="return chkSubmit()">
+			<div class="billing-form bg-light p-3 p-md-5">
 				<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/>
 				<c:forEach items="${list }" varStatus="status">
 					<input type="hidden" name="cr_amount" value="${list[status.index].cr_amount }">
@@ -200,6 +200,8 @@ $(document).ready(function() {
 		                </div>
 		            </div>
 	           	</div>
+	        </div>
+	        
            	<div class="row justify-content-end" onload="totalCost()">
 				<div class="col cart-wrap ftco-animate">
 					<div class="p-md-5 cart-total mb-2 bg-light bdn">

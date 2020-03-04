@@ -24,43 +24,43 @@ public class CategoryCMD implements Command {
 		switch(g_type) {
 			case 1:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "침 대";
+				typeName= "침대";
 				break;
 			case 2:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "화 장 대";
+				typeName= "화장대";
 			break;
 			case 3:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "서 랍 장";
+				typeName= "서랍장";
 			break;
 			case 4:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "쇼 파";
+				typeName= "소파";
 			break;
 			case 5:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "거 실 장";
+				typeName= "거실장";
 			break;
 			case 6:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "옷 장";
+				typeName= "옷장";
 			break;
 			case 7:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "테 이 블";
+				typeName= "테이블";
 			break;
 			case 8:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "의 자";
+				typeName= "의자";
 			break;
 			case 9:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "책 상";
+				typeName= "책상";
 			break;
 			case 10:
 				gdto = dao.selectByTypee(g_type);
-				typeName= "책 장";
+				typeName= "책장";
 			break;
 			default:
 				break;

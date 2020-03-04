@@ -7521,7 +7521,8 @@ h1, h2, h3, h4, h5,
           color: #000000; }
     .hero-wrap .slider-text .bread {
       font-weight: 100;
-      color: #000000;
+      color: #444;
+      padding:20px 0;
       font-size: 40px;
       font-family: "Lato", Arial, sans-serif;
       letter-spacing: 3px; }
@@ -7535,7 +7536,9 @@ h1, h2, h3, h4, h5,
         background: #fff !important;
         color: #000000; }
   .hero-wrap.hero-bread {
-    padding: 7em 0; }
+    padding-top: 6em; 
+    padding-bottom:2em;
+    }
 
 .mouse {
   position: absolute;
@@ -7762,7 +7765,10 @@ h1, h2, h3, h4, h5,
 .product {
   display: block;
   width: 100%;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  /**/
+  cursor: pointer;
+ }
   @media (max-width: 991.98px) {
     .product {
       margin-bottom: 30px; } }
@@ -9153,6 +9159,26 @@ table select{
 	border:none !important;
 }
 
+.text-right>span>i{
+	color:#f1b8c4;
+}
+
+#sortdivt{
+	position: relative;
+	overflow: hidden;
+}
+#sortdiv{
+	float:right;
+}
+
+.rating > .text-right{
+	margin-bottom: 0;
+}
+
+.quote{
+	color:#ddd;
+	font-size:15px;
+}
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;
