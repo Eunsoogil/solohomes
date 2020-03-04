@@ -133,11 +133,8 @@ $(document).ready(function() {
 							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>
 						</td>
 						<td>${list[status.index].cr_amount }</td>							
-						<td class="total" id="total">
-							${glist[status.index].g_price * list[status.index].cr_amount }
-							<!--  
+						<td class="total" id="total">  
 							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
-							-->
 						</td>
 					</tr>
 					</c:forEach>
@@ -166,9 +163,8 @@ $(document).ready(function() {
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6">
 		                <div class="form-group">
-		                	<label for="username">이름</label>
-		                	<!------------- 요기 수정해주세욥.....ㅎㅎㅎ ------------->
-		                  	<input type="text" class="form-control">
+		                	<label for="username">주문자 이름</label>
+		                  	<input type="text" class="form-control" value="${member.mb_name}" disabled>
 		                </div>
 	              	</div>
 
@@ -204,8 +200,6 @@ $(document).ready(function() {
 		                </div>
 		            </div>
 	           	</div>
-           	</form>
-           	
            	<div class="row justify-content-end" onload="totalCost()">
 				<div class="col cart-wrap ftco-animate">
 					<div class="p-md-5 cart-total mb-2 bg-light bdn">
@@ -229,6 +223,8 @@ $(document).ready(function() {
 					</p>
 				</div>
 			</div>
+           	</form>
+			<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 		</div>
 		</div>
 		</div>
@@ -260,11 +256,11 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 function totalCost(){
-	var costlist = document.getElementsByClassName('costlist');
+	var costlist = document.getElementsByClassName('total');
 	var cost = 0;
 	var i = 0;
 	for (i = 0; i < costlist.length; i++) {
-		cost += parseInt(costlist.item(i).innerHTML);
+		cost += parseInt(costlist.item(i).innerHTML.replace(/[^0-9]/g,""));
 	}
 	cost = numberWithCommas(cost);
 	$('#cost').html(cost + "원");

@@ -32,8 +32,10 @@ $(document).ready(function(){
     $(":checkbox:first", tbl).click(function(){
         if($(this).is(":checked")){
             $(":checkbox", tbl).attr("checked", "checked");
+            totalCost();
         }else {
           	$(":checkbox", tbl).removeAttr("checked");
+            totalCost();
         }
         $(":checkbox", tbl).trigger("change");
     });
@@ -101,7 +103,7 @@ function CheckForm(Join){
 					<tbody>
 					<c:forEach items="${gilist }" var="gi" varStatus="status">
 					<tr class="text-center">
-	          			<td><input type="checkbox" name="cr_uid" value="${list[status.index].cr_uid }"></td>
+	          			<td><input type="checkbox" name="cr_uid" value="${list[status.index].cr_uid }" onclick="totalCost();"></td>
 						<td class="image-prod"><div class="img">
 							<img class="img" src="${pageContext.request.contextPath}/img/goods/${glist[status.index].g_img }">
 						</div></td>
@@ -142,10 +144,7 @@ function CheckForm(Join){
 							</div>						
 						</td>							
 						<td class="total" id="total">
-							${glist[status.index].g_price * list[status.index].cr_amount}
-							<!--  
 							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
-							-->
 						</td>
 					</tr>
 					</c:forEach>
@@ -213,7 +212,7 @@ function CheckForm(Join){
 function minus(data){
 	var tr = data.parentNode.parentNode.parentNode;
 	var input = tr.cells[5].childNodes[1].childNodes[3];
-	var cost = tr.cells[4].childNodes[0].nodeValue;
+	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	if(parseInt(input.value) <= 1) return;
 	input.value = parseInt(input.value) - 1;
 	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
@@ -223,9 +222,9 @@ function minus(data){
 function plus(data){
 	var tr = data.parentNode.parentNode.parentNode;
 	var input = tr.cells[5].childNodes[1].childNodes[3];
-	var cost = tr.cells[4].childNodes[0].nodeValue;
+	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	input.value = parseInt(input.value) + 1;
-	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
+	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value);
 	totalCost();
 }
 
@@ -234,7 +233,9 @@ function totalCost(){
 	var cost = 0;
 	var i = 0;
 	for (i = 1; i < table.length; i+=2) {
-		cost += parseInt(table[i].cells[6].childNodes[0].nodeValue);
+		if($(table[i].cells[0].childNodes[0]).is(":checked")){
+			cost += parseInt(table[i].cells[6].childNodes[0].nodeValue.replace(/[^0-9]/g,""));
+		}
 	}
 	cost = numberWithCommas(cost);
 	$('#cost').html(cost + "원");
