@@ -240,10 +240,10 @@ VALUES
 INSERT INTO goods_info 
 	(in_uid, g_uid, in_color, in_img, in_inv)
 VALUES
-	(6011, 601, 'CCBGM', 'ch1_1.jpg', 3)
-	,(6012, 601, 'FIVGYM', 'ch1_2.jpg', 3)
-	,(6021, 602, '', 'ch1_2.jpg', 3)
-	,(6031, 603, 'XX', 'ch3_1.jpg', 10)
+	(6011, 601, 'CCBGM', 'cl1_1.jpg', 3)
+	,(6012, 601, 'FIVGYM', 'cl1_2.jpg', 3)
+	,(6021, 602, '', 'cl1_2.jpg', 3)
+	,(6031, 603, 'XX', 'cl3_1.jpg', 10)
 ;
 
 -- g_type 7 : 테이블

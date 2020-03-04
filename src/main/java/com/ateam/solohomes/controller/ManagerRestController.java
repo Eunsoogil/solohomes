@@ -13,6 +13,7 @@ import com.ateam.solohomes.beans.manager.AjaxGoodsList;
 import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
 import com.ateam.solohomes.beans.manager.AjaxMemberList;
 import com.ateam.solohomes.beans.manager.AjaxRequestList;
+import com.ateam.solohomes.beans.manager.AjaxSeriesList;
 import com.ateam.solohomes.beans.manager.CommentRenumDTO;
 import com.ateam.solohomes.beans.manager.DailySalesDTO;
 import com.ateam.solohomes.beans.manager.GoodsSalNumDTO;
@@ -20,6 +21,7 @@ import com.ateam.solohomes.beans.manager.ManagerDAO;
 import com.ateam.solohomes.beans.manager.MemberRenumDTO;
 import com.ateam.solohomes.beans.manager.MonthlySalesDTO;
 import com.ateam.solohomes.beans.manager.RequestDTO;
+import com.ateam.solohomes.beans.manager.SeriesComponentsDTO;
 
 @RestController
 @RequestMapping("/managerAjax")
@@ -364,6 +366,25 @@ public class ManagerRestController {
 			result.setStatus("SUCCESS");
 		} else {
 			result.setCount(cnt);
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/goods.ajax/series")
+	public AjaxSeriesList selectSeriesList() {
+		AjaxSeriesList result = new AjaxSeriesList();
+		ArrayList<SeriesComponentsDTO> list = null;
+		
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		list = dao.selectSerieses();
+		result.setList(list);
+		
+		if (list != null && list.size() > 0) {
+			result.setStatus("SUCCESS");
+			result.setCount(list.size());
+		} else {
 			result.setStatus("FAIL");
 		}
 		

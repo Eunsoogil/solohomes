@@ -30,6 +30,7 @@ public interface ManagerDAO {
 	public Integer updateGoods(@Param("dto") GoodsDTO goodsDTO, @Param("g_uid") int uid);
 	// delete goods_info by_uid
 	public Integer deleteGoodsInfoByUid(int uid);
+	
 	// REST
 	// select all users
 	public ArrayList<MemberRenumDTO> selectAllUserByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
@@ -70,4 +71,8 @@ public interface ManagerDAO {
 	public ArrayList<GoodsSalNumDTO> selectSortedGoodsByType(@Param("type") int type, @Param("columnNum") int columnNum, @Param("sord") String sord, @Param("startRow") int startRow, @Param("listPage") int listPage);
 	// delete goods by uids
 	public int deleteGoodsByUids(@Param("uidList") int[] list);
+	// select Series and Components of each series 
+	public ArrayList<SeriesComponentsDTO> selectSerieses();
+	// select Components by sr_uid
+	public ArrayList<GoodsDTO> selectComponentsOfSeries(@Param("sr_uid") int sr_uid);
 }

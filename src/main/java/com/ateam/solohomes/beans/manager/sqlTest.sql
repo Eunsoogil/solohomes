@@ -159,3 +159,16 @@ SELECT gi.g_uid, count(*)
 	JOIN goods_info gi ON py.in_uid = gi.in_uid
 GROUP BY gi.g_uid
 ;
+
+SELECT 
+	g.g_uid g_uid,
+	g.g_type g_type,
+	g.g_name g_name,
+	g.g_img g_img,
+	g.g_size g_size,
+	g.g_price g_price,
+	g.g_likecnt g_likecnt 
+FROM 
+	goods g 
+	JOIN series_goods sg ON g.g_uid = sg.g_uid
+WHERE sg.sr_uid = 1;
