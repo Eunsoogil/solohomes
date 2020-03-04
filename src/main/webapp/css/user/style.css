@@ -9183,6 +9183,19 @@ table select{
 .tdNotify{
 	min-width: 100px;
 }
+
+.formBox{
+	width:100%;
+}
+
+.rq_type{
+	padding:10px;
+	border:1px solid #ced4da;
+}
+
+#reContent{
+	height:300px !important;
+}
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;
