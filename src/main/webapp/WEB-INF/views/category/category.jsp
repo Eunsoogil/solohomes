@@ -93,7 +93,7 @@
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#A91F24" />
 		</svg>
 	</div>
 
@@ -103,7 +103,7 @@ $(document).ready(function(){
 		var sortType = parseInt($("select#sortSelect").val());
 		
 		$.ajax({
-			url: "${pageContext.request.contextPath}/Cajax/typeCheck.do/" + sortType + "/" + ${g_type},
+			url: "${pageContext.request.contextPath}/Cajax/typeCheck.do/" + sortType + "/" + ${g_type} + "",
 			type: "GET",
 			cache : false,
 			success: function(data, status){
@@ -127,7 +127,7 @@ function upDateList(jsonObj){
 	
 	if(status == "success"){
 		for(var i = 0; i < count; i++){
-			result += "<div class='col-sm col-md-6 col-lg-3 ftco-animate'>";
+			result += "<div class='col-sm col-md-6 col-lg-3'>";
 			result += "<div class='product' onclick='movePage(" + list[i].g_uid + ")'>";
 			result += "<a class='img-prod'><img class='img-fluid' src='../img/goods/" + list[i].g_img + "'></a>";
 			result += "<div class='text py-3 px-3'>";
@@ -135,12 +135,16 @@ function upDateList(jsonObj){
 			result += "<div class='d-flex'><div class='pricing'>";
 			result += "<p class='price'><span class='price-sale'>" + numberWithCommas(list[i].g_price) + "</span></p></div>";
 			result += "<div class='rating'><p class='text-right'>";
-			result += "<span><i class='ion-ios-heart'></i>" + list[i].g_likecnt + "</span></p>";
+			result += "<span><i class='ion-ios-heart'></i> " + list[i].g_likecnt + "</span></p>";
 			result += "</div></div></div></div></div>";
 		}
 	} else {
 		result = "정렬 실패";
 	}
+	$(".ftco-animate").css({
+		visibility : "inherit",
+		opacity : "100"
+	});
 	$("div#categorybody").html(result);
 }
 
@@ -168,7 +172,7 @@ function numberWithCommas(x) {
 <script src="${pageContext.request.contextPath}/js/user/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/main.js"></script>
 </body>
-
 </html>
+<jsp:include page="/common/footer" />
 </c:otherwise>
 </c:choose>
