@@ -12,10 +12,12 @@
 
 </head>
 <body>
-<c:forEach var="series" items="${series }">
-	<div onclick="location.href = '${pageContext.request.contextPath}/series/detail.do?sr_uid=${series.sr_uid }'">                   
-		<div class="text-center"> ${series.sr_subject }</div>
-		<img src="../img/goods/${series.sr_img}">
+<c:forEach var="dto" items="${dto }">	
+	<div onclick="location.href = '${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}'">
+		<div><img src="../img/goods/${dto.g_img}"></div>
+		<div>${dto.g_name }</div>
+		<div>${dto.g_price } 원</div>
+		<div>${dto.g_likecnt }</div>
 	</div>
 </c:forEach>
 </body>

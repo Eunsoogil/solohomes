@@ -17,7 +17,7 @@
 		FROM
 			series s, series_goods sg, goods g2 
 		WHERE
-			s.sr_uid = sg.sr_uid and sg.g_uid = g2.g_uid
+			s.sr_uid = #{sr_uid} and s.sr_uid = sg.sr_uid and sg.g_uid = g2.g_uid
 		ORDER BY sr_uid
 	</select>
 </mapper>
