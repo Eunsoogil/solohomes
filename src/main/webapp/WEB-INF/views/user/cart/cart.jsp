@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <jsp:include page="/common/menu" />
@@ -31,8 +32,10 @@ $(document).ready(function(){
     $(":checkbox:first", tbl).click(function(){
         if($(this).is(":checked")){
             $(":checkbox", tbl).attr("checked", "checked");
+            totalCost();
         }else {
           	$(":checkbox", tbl).removeAttr("checked");
+            totalCost();
         }
         $(":checkbox", tbl).trigger("change");
     });
@@ -100,25 +103,28 @@ function CheckForm(Join){
 					<tbody>
 					<c:forEach items="${gilist }" var="gi" varStatus="status">
 					<tr class="text-center">
-	          			<td><input type="checkbox" name="cr_uid" value="${list[status.index].cr_uid }"></td>
+	          			<td><input type="checkbox" name="cr_uid" value="${list[status.index].cr_uid }" onclick="totalCost();"></td>
 						<td class="image-prod"><div class="img">
 							<img class="img" src="${pageContext.request.contextPath}/img/goods/${glist[status.index].g_img }">
 						</div></td>
 						<td class="product-name">${glist[status.index].g_name }</td>						
 						<td>
-						<select name="${list[status.index].cr_uid }in_color">
-							<c:forEach items="${gi}" var="i">
-								<c:choose>
-									<c:when test="${i.in_color == colorselect[status.index] }">
-									    <option value="${i.in_color }" selected="selected">${i.in_color }</option>
-									</c:when>
-									<c:otherwise>
-									    <option value="${i.in_color }">${i.in_color }</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</select>
-						<td class="price" id="price">${glist[status.index].g_price }</td>
+							<select name="${list[status.index].cr_uid }in_color">
+								<c:forEach items="${gi}" var="i">
+									<c:choose>
+										<c:when test="${i.in_color == colorselect[status.index] }">
+										    <option value="${i.in_color }" selected="selected">${i.in_color }</option>
+										</c:when>
+										<c:otherwise>
+										    <option value="${i.in_color }">${i.in_color }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</td>
+						<td class="price" id="price">
+							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>	
+						</td>
 						<td class="quantity">
 							<div class="quantityBox">
 							<span class="input-group-btn mr-2 cart_btn" onclick="minus(this);">
@@ -137,7 +143,9 @@ function CheckForm(Join){
 							</span>
 							</div>						
 						</td>							
-						<td class="total" id="total">${glist[status.index].g_price * list[status.index].cr_amount }</td>
+						<td class="total" id="total">
+							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
+						</td>
 					</tr>
 					</c:forEach>
 					</tbody>
@@ -151,11 +159,11 @@ function CheckForm(Join){
 		
 		<div class="row justify-content-end" onload="totalCost()">
 			<div class="col cart-wrap ftco-animate">
-				<div class="cart-total mb-2">
-					<h3>총 구매 상품</h3>
+				<div class="p-md-5 cart-total mb-2">
+					<h3>주문내역</h3>
 					<p class="d-flex">
 						<span>가격</span> 
-						<span id="cost">$0.00</span>
+						<span id="cost"></span>
 					</p>
 					<p class="d-flex">
 						<span>배송비</span> 
@@ -164,7 +172,7 @@ function CheckForm(Join){
 					<hr>
 					<p class="d-flex total-price">
 						<span>최종 가격</span> 
-						<span id="totalcost">$0.00</span>
+						<span id="totalcost"></span>
 					</p>
 				</div>
 				<p class="text-center">
@@ -204,7 +212,7 @@ function CheckForm(Join){
 function minus(data){
 	var tr = data.parentNode.parentNode.parentNode;
 	var input = tr.cells[5].childNodes[1].childNodes[3];
-	var cost = tr.cells[4].childNodes[0].nodeValue;
+	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	if(parseInt(input.value) <= 1) return;
 	input.value = parseInt(input.value) - 1;
 	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
@@ -214,9 +222,9 @@ function minus(data){
 function plus(data){
 	var tr = data.parentNode.parentNode.parentNode;
 	var input = tr.cells[5].childNodes[1].childNodes[3];
-	var cost = tr.cells[4].childNodes[0].nodeValue;
+	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	input.value = parseInt(input.value) + 1;
-	tr.cells[6].childNodes[0].nodeValue = cost * input.value;
+	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value);
 	totalCost();
 }
 
@@ -225,7 +233,9 @@ function totalCost(){
 	var cost = 0;
 	var i = 0;
 	for (i = 1; i < table.length; i+=2) {
-		cost += parseInt(table[i].cells[6].childNodes[0].nodeValue);
+		if($(table[i].cells[0].childNodes[0]).is(":checked")){
+			cost += parseInt(table[i].cells[6].childNodes[0].nodeValue.replace(/[^0-9]/g,""));
+		}
 	}
 	cost = numberWithCommas(cost);
 	$('#cost').html(cost + "원");

@@ -166,6 +166,43 @@
                     </div>
                 </div>
                 <!-- /.row -->
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                        	<div class="box-title"><b>시리즈목록</b>
+                        		<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
+                        			<button onclick="location.href='${pageContext.request.contextPath}/manager/goodsWrite.do'" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">시리즈등록</button>
+                        		</div>
+                        		<div class="clear"></div>
+                        	</div>
+                            <form name="frmDelete" id="frmSeriesDelete" onsubmit="return chkDelete()">
+	                            <div class="table-responsive">
+	                                <table class="table" id="seriesTable">
+	                                    <thead>
+	                                        <tr>
+	                                            <th class='series ColumnOfCheckBox'>선택</th>
+	                                            <th>시리즈번호</th>
+	                                            <th>시리즈명</th>
+	                                            <th>등록일</th>
+	                                            <th>구성상품</th>
+	                                            <th></th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <div class="col-sm-12">
+		                            <button type="button" class="btn btn-info" id="seriesCheckBoxToggle">선택삭제</button>
+		                            <button type="submit" class="btn btn-danger" id="seriesDeleteOk">선택완료</button>
+	                            </div>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->                
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>

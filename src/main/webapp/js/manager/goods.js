@@ -4,6 +4,8 @@ $(document).ready(function(){
 	$("input#goodsPage").val(1);
 	loadGoodsData(1);
 	
+	loadSeriesData()
+	
 	// pagination
 	// prevPage
 	$("button#goodsPrevPage").click(function(){
@@ -71,7 +73,7 @@ function updateTable(jsonObj) {
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
 			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
-			result += "<td><a href='#' target='_blank'>" + list[i].g_name + "</a></td>";
+			result += "<td><a href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
 			result += "<td>" + list[i].g_price + "</td>";
 			result += "<td>" + list[i].g_likecnt + "</td>";
@@ -142,5 +144,46 @@ function chkDelete() {
 				}
 			});
 		}
+	}
+}
+
+// series table
+function loadSeriesData() {
+	$.ajax({
+		url : "../managerAjax/goods.ajax/series"
+		, type : "GET"
+		, cache : false
+		, success : function(data, status) {
+			if (status == "success") {
+				makeSeriesTable(data);
+			}
+		}
+	});
+}
+
+function makeSeriesTable(jsonObj) {
+	var result = "";
+	
+	if (jsonObj.status == "SUCCESS") {
+		var list = jsonObj.list
+		var cnt = jsonObj.count
+		
+		for (var i = 0; i < cnt; i++) {
+			result += "<tr>";
+			result += "<td class='series ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].sr_uid + "'></td>\n";
+			result += "<td>" + (i + 1) + ".</td>";
+			result += "<td>" + list[i].sr_subject + "</td>";
+			var regdate = new Date(list[i].sr_regdate);
+			var strdate = regdate.getFullYear() + "/"
+				+ (regdate.getMonth() + 1) + "/"
+				+ regdate.getDate();
+			result += "<td>" + strdate + "</td>";
+			result += "<td>" + "자세히보기" + "</td>";
+			result += "<td><button type='button' class='btn btn-danger btn-rounded' onclick='moveToUpdateSeries(" + list[i].sr_uid + ")'>수정</button></td>";
+			result += "</tr>";
+		}
+		
+		$("table#seriesTable tbody").html("");
+		$("table#seriesTable tbody").html(result);
 	}
 }

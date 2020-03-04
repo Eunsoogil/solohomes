@@ -49,7 +49,7 @@ function displaySuggest(data){
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
 				"/카테고리" + "</b></span>" + "</a><br>";				
 			} else {
-				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/search/detail.do?g_uid=" +
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/user/productInfo.do/" +
 				keywordList[i+1] + "'>" +
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
@@ -136,7 +136,7 @@ function sessionchk(){
 		<ul class="f_sub">
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=5">거실장</a></li>
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=3">서랍장</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">쇼파</a></li>
+			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">소파</a></li>
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=6">옷장</a></li>
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=8">의자</a></li>
 			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=9">책상</a></li>
@@ -174,7 +174,7 @@ function sessionchk(){
 				<h3>가구</h3>
 				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=5">거실장</a></li>
 				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=3">서랍장</a></li>
-				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">쇼파</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">소파</a></li>
 				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=6">옷장</a></li>
 				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=8">의자</a></li>
 				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=9">책상</a></li>

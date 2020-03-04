@@ -388,5 +388,28 @@
 		</foreach>
 	</delete>
 	
+	<!-- Series -->
+	<resultMap  id="serieses" type="com.ateam.solohomes.beans.manager.SeriesComponentsDTO">
+		<result property="sr_uid" column="sr_uid"/>
+		<result property="sr_subject" column="sr_subject"/>
+		<result property="sr_img" column="sr_img"/>
+		<result property="sr_regdate" column="sr_regdate"/>
+		<collection property="goodsList" column="sr_uid"
+			javaType="java.util.ArrayList" ofType="com.ateam.solohomes.beans.GoodsDTO"
+			select="getGoodsListBySrUid"/>
+	</resultMap>
+	<select id="selectSerieses" resultMap="serieses">
+		SELECT * FROM series
+	</select>
+	<select id="getGoodsListBySrUid" resultType="com.ateam.solohomes.beans.GoodsDTO">
+		SELECT 
+			g.g_uid g_uid, g.g_type g_type,	g.g_name g_name,
+			g.g_img g_img, g.g_size g_size, g.g_price g_price, g.g_likecnt g_likecnt 
+		FROM 
+			goods g 
+			JOIN series_goods sg ON g.g_uid = sg.g_uid
+		WHERE sg.sr_uid = #{sr_uid};
+	</select>
+	
 </mapper>       
     
