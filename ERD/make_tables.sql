@@ -226,13 +226,6 @@ ALTER TABLE series_goods
 ALTER TABLE series_goods
     ADD CONSTRAINT FK_series_goods_sr_uid_series_sr_uid FOREIGN KEY (sr_uid)
         REFERENCES series (sr_uid) ON DELETE CASCADE ON UPDATE CASCADE;
-<<<<<<< HEAD
-=======
-    
--- ALTER TABLE payment
---    ADD CONSTRAINT FK_payment_in_uid_goods_info_in_uid FOREIGN KEY (in_uid)
---        REFERENCES goods_info (in_uid) ON DELETE SET NULL ON UPDATE CASCADE;
->>>>>>> branch 'master' of https://github.com/Eunsoogil/solohomes.git
 
 -- member Table Create SQL
 CREATE TABLE request
