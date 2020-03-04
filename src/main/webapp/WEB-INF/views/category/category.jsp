@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
-   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+   <jsp:include page="/common/menu" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>카테고리</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_2.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -39,7 +52,7 @@
 				<div id="mom2" onclick="location.href = '${pageContext.request.contextPath}/user/productInfo.do/${gdto.g_uid }'">
 					<div id="imgbox"><img src="../img/goods/${gdto.g_img}"></div>
 					<div id="goodsName">${gdto.g_name }</div>
-					<div id="goodsPrice">${gdto.g_price } 원</div>
+					<div id="goodsPrice"><fmt:formatNumber type="number" maxFractionDigits="3" value="${gdto.g_price}" /> 원</div>
 					<div id="goodsLikeIcon"></div>
 					<div id="goodsLike">${gdto.g_likecnt }</div>
 				</div>
@@ -86,7 +99,9 @@ function upDateList(jsonObj){
 			result += "<div id='mom2' onclick='movePage("+list[i].g_uid+")'>";
 			result += "<div id='imgbox'><img src='../img/goods/"+list[i].g_img+"'></div>";
 			result += "<div id='goodsName'>"+list[i].g_name+"</div>";
-			result += "<div id='goodsPrice'>"+list[i].g_price+" 원</div>";
+			//result += "<div id='goodsPrice'>"+list[i].g_price+"</div>";			
+			result += "<div id='goodsPrice'>"+numberWithCommas(list[i].g_price)+" 원</div>";			
+			
 			result += "<div id='goodsLikeIcon'></div>";
 			result += "<div id='goodsLike'>"+list[i].g_likecnt+"</div>";
 			result += "</div>";
@@ -104,6 +119,10 @@ function upDateList(jsonObj){
 function movePage(uid) {
 	location.href = "../user/productInfo.do/"+uid;
 }
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 </script>
 </html>
-
+<jsp:include page="/common/footer" />
