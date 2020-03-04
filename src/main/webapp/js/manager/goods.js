@@ -73,7 +73,7 @@ function updateTable(jsonObj) {
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
 			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
-			result += "<td><a href='#' target='_blank'>" + list[i].g_name + "</a></td>";
+			result += "<td><a href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
 			result += "<td>" + list[i].g_price + "</td>";
 			result += "<td>" + list[i].g_likecnt + "</td>";
