@@ -40,7 +40,7 @@ public class ProductInfoController {
 		if(s.getAttribute("userUID") == null) {
 			mb_uid = 0;
 		}else{
-			mb_uid = (int)(s.getAttribute("userUID"));
+			mb_uid = (Integer)(s.getAttribute("userUID"));
 		}
 		
 		model.addAttribute("g_uid", g_uid); 

@@ -49,7 +49,7 @@ function displaySuggest(data){
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
 				"/카테고리" + "</b></span>" + "</a><br>";				
 			} else {
-				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/search/detail.do?g_uid=" +
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/user/productInfo.do/" +
 				keywordList[i+1] + "'>" +
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
@@ -149,10 +149,10 @@ function sessionchk(){
 		<li><a class="mypage">마이페이지 <i class="fas fa-sort-down"></i></a></li>
 		<ul class="my_sub">
 			<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
-			<li><a href="#">구매목록</a></li>
-			<li><a href="#">좋아요한 상품</a></li>
-			<li><a href="#">1:1문의</a></li>
-			<li><a href="#">회원정보수정</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/purchaselist.do">구매목록</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/likelist.do">좋아요한 상품</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/requestlist.do">1:1문의</a></li>
+			<li><a href="${pageContext.request.contextPath}/user/memberCheck.do">회원정보수정</a></li>
 		</ul>
 <%
 	if(userID == null){

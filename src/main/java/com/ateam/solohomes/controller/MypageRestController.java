@@ -231,6 +231,35 @@ public class MypageRestController {
 
 		return result;
 	}
+	
+	
+	
+	@RequestMapping(value = "/purchaseProductInfo.ajax/{py_uid}")
+	public AjaxPurchaseList purchaseProductInfo(@PathVariable("py_uid") int py_uid){
+	
+		System.out.println("py_uid: "+ py_uid);
+
+		AjaxPurchaseList result = new AjaxPurchaseList();
+		
+
+		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
+		
+		PurchaseDTO dto = dao.selectPurchaseByUid(py_uid);
+		
+		result.setDto(dto);
+	
+		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		if(dto != null){ 
+			result.setStatus("OK");
+		}else {
+			result.setStatus("FAIL");
+		}
+		
+		System.out.println(result.getStatus());
+	
+		return result;
+	}
+	
 
 	
 	

@@ -6,6 +6,7 @@ public class AjaxPurchaseList {
 	int count; // 데이터 개수
 	String status; // 처리 결과
 	ArrayList<PurchaseDTO> list; // 데이터
+	PurchaseDTO dto;
 	
 	
 	public AjaxPurchaseList() {
@@ -18,6 +19,15 @@ public class AjaxPurchaseList {
 		this.count = count;
 		this.status = status;
 		this.list = list;
+	}
+	
+
+
+	public AjaxPurchaseList(int count, String status, PurchaseDTO dto) {
+		super();
+		this.count = count;
+		this.status = status;
+		this.dto = dto;
 	}
 
 
@@ -49,6 +59,17 @@ public class AjaxPurchaseList {
 	public void setList(ArrayList<PurchaseDTO> list) {
 		this.list = list;
 	}
+
+
+	public PurchaseDTO getDto() {
+		return dto;
+	}
+
+
+	public void setDto(PurchaseDTO dto) {
+		this.dto = dto;
+	}
+	
 	
 	
 }

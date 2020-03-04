@@ -30,7 +30,7 @@ public class MypageViewController {
 	
 	@RequestMapping("/user/purchaselist.do")
 	public String purchaselist(Model model) {
-		return "user/mypage/purchaselist";
+		return "user/mypage/purchaselist2";
 	}
 	
 	@RequestMapping("/user/memberCheck.do")
