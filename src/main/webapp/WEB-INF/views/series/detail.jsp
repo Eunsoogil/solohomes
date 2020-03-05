@@ -36,7 +36,7 @@
 					<span class="quote"><i class="fas fa-quote-left"></i></span>
 					
 					<!-- ---------------------- 시리즈 이름 받아오기 ------------------------- -->
-					<h1 class="mb-0 bread">시리즈이름</h1>
+					<h1 class="mb-0 bread">${dto[0].sr_subject }</h1>
 					
 					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>

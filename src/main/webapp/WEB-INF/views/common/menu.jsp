@@ -94,8 +94,12 @@ function sessionchk(){
 <body>
 <%
 	String userID = null;
+	int userLevel = 0;
 	if(session.getAttribute("userID") != null){
 		userID = (String)session.getAttribute("userID");
+	}
+	if(session.getAttribute("userLevel") != null){
+		userLevel = (Integer)session.getAttribute("userLevel");
 	}
 %>
 	<header class="header">
@@ -116,7 +120,15 @@ function sessionchk(){
 				</form>
 			</div>
 			<div class="pc mo_none">
-				<%
+<%
+	if(userLevel > 1){
+%>
+				<a id="login" style="width:110px" href="${pageContext.request.contextPath}/manager/index.do">관리자페이지</a>
+<%
+	}
+%>			
+
+<%
 	if(userID == null){
 %>	
 				<a id="login" href="${pageContext.request.contextPath}/member/login.do">로그인</a>
