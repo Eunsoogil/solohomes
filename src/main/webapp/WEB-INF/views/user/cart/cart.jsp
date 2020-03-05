@@ -27,19 +27,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-    var tbl = $("#cart_table");
-    $(":checkbox:first", tbl).click(function(){
-        if($(this).is(":checked")){
-            $(":checkbox", tbl).attr("checked", "checked");
-            totalCost();
-        }else {
-          	$(":checkbox", tbl).removeAttr("checked");
-            totalCost();
-        }
-        $(":checkbox", tbl).trigger("change");
-    });
-});
+function check(data){
+	var check = $(data).is(":checked")
+	var table = document.getElementsByTagName('tbody')[0].childNodes;
+	var i = 0;
+	for (i = 1; i < table.length; i+=2) {
+		if(check){
+			table[i].cells[0].childNodes[0].checked = true;
+		} else {
+			table[i].cells[0].childNodes[0].checked = false;
+		}
+	}
+}
 
 $("input:text[numberOnly]").on("keyup", function() {
     $(this).val($(this).val().replace(/[^0-9]/g,""));
@@ -76,7 +75,7 @@ function CheckForm(Join){
 	<c:when test="${empty list || fn.length(list) == 0 }">
 		<script>
 			alert("장바구니가 비어있습니다");
-			history.back();
+			location.href = "${pageContext.request.contextPath}/user/main.do";
 		</script>
 	</c:when>
 	<c:otherwise>
@@ -91,7 +90,7 @@ function CheckForm(Join){
 				<table class="table" id="cart_table">
 					<thead class="thead-primary">
 						<tr class="text-center">
-							<th><input type="checkbox"></th>
+							<th><input type="checkbox" onclick="check(this);"></th>
 							<th>&nbsp;</th>
 							<th>상품명</th>
 							<th>색상</th>
