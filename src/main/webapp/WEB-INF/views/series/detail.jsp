@@ -3,13 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+	
 <jsp:include page="/common/menu" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>시리즈</title>
+
+<!-- ---------------------- 시리즈 이름 받아오기 ------------------------- -->
+<title>시리즈이름</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
@@ -31,26 +34,52 @@
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="mb-5 col-md-9 ftco-animate text-center">
 					<span class="quote"><i class="fas fa-quote-left"></i></span>
-					<h1 class="mb-0 bread">시리즈</h1>
+					
+					<!-- ---------------------- 시리즈 이름 받아오기 ------------------------- -->
+					<h1 class="mb-0 bread">${dto[0].sr_subject }</h1>
+					
 					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>
+		<!--  
+		<div id="sortdivt">
+			<div id ="sortdiv" class="mt-3 col-md-2 col-xs-12">
+			    <select class="form-control" id="sortSelect">
+			        <option value="0" selected>최신순</option>
+			        <option value="1">가격순</option>
+			        <option value="2">좋아요순</option>
+			    </select>
+			</div>
+		</div>
+		-->
 	</div>
 
 	<section class="ftco-section bg-light">
 		<div class="container-fluid">
 			<div class="row" id="categorybody">
-				<c:forEach var="series" items="${series }">
+				<c:forEach var="dto" items="${dto }">	
 				<div class="col-sm col-md-6 col-lg-3 ftco-animate">
-					<div class="product" onclick="location.href = '${pageContext.request.contextPath}/series/detail.do?sr_uid=${series.sr_uid }'">
+					<div class="product" onclick="location.href = '${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid}'">
 						<a class="img-prod">
-							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${series.sr_img}">
+							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img}">
 						</a>
 						<div class="text py-3 px-3">
 							<h3>
-								<a>${series.sr_subject }</a>
+								<a>${dto.g_name }</a>
 							</h3>
+							<div class="d-flex">
+								<div class="pricing">
+									<p class="price">
+										<span class="price-sale"><fmt:formatNumber type="number" maxFractionDigits="3" value="${dto.g_price}" />원</span>
+									</p>
+								</div>
+								<div class="rating">
+									<p class="text-right">
+										<span><i class="ion-ios-heart"></i> ${dto.g_likecnt }</span>
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -67,6 +96,67 @@
 		</svg>
 	</div>
 
+<!--  	
+<script>
+$(document).ready(function(){	
+	$("select#sortSelect").change(function(){
+		var sortType = parseInt($("select#sortSelect").val());
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/Cajax/typeCheck.do/" + sortType + "/" + ${g_type} + "",
+			type: "GET",
+			cache : false,
+			success: function(data, status){
+				if(status == "success"){
+					upDateList(data);
+				} else{
+					alert("정렬 변경 실패");
+				}
+			}
+		});
+	
+	});
+	
+});
+
+function upDateList(jsonObj){
+	var result = "";
+	var count = jsonObj.count;
+	var list = jsonObj.list;
+	var status = jsonObj.status;
+	
+	if(status == "success"){
+		for(var i = 0; i < count; i++){
+			result += "<div class='col-sm col-md-6 col-lg-3'>";
+			result += "<div class='product' onclick='movePage(" + list[i].g_uid + ")'>";
+			result += "<a class='img-prod'><img class='img-fluid' src='../img/goods/" + list[i].g_img + "'></a>";
+			result += "<div class='text py-3 px-3'>";
+			result += "<h3><a>" + list[i].g_name + "</a></h3>";
+			result += "<div class='d-flex'><div class='pricing'>";
+			result += "<p class='price'><span class='price-sale'>" + numberWithCommas(list[i].g_price) + "</span></p></div>";
+			result += "<div class='rating'><p class='text-right'>";
+			result += "<span><i class='ion-ios-heart'></i> " + list[i].g_likecnt + "</span></p>";
+			result += "</div></div></div></div></div>";
+		}
+	} else {
+		result = "정렬 실패";
+	}
+	$(".ftco-animate").css({
+		visibility : "inherit",
+		opacity : "100"
+	});
+	$("div#categorybody").html(result);
+}
+
+function movePage(uid) {
+	location.href = "../user/productInfo.do/"+uid;
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+-->
 <script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>

@@ -62,11 +62,11 @@
 			<c:forEach var="dto" items="${seriese }" begin="0" end="3">
 				<div class="col-sm col-md-6 col-lg ftco-animate">
 					<div class="product">
-						<a href="${pageContext.request.contextPath}/series/series.do" class="img-prod">
+						<a href="${pageContext.request.contextPath}/series/detail.do?sr_uid=${dto.sr_uid }" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
 						</a>
 						<div class="text py-3 px-3 bg-light">
-							<h3><a href="${pageContext.request.contextPath}/series/series.do">${dto.sr_subject }</a></h3>
+							<h3><a href="${pageContext.request.contextPath}/series/detail.do?sr_uid=${dto.sr_uid }">${dto.sr_subject }</a></h3>
 						</div>
 					</div>
 				</div>
