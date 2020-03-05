@@ -241,7 +241,6 @@ public class MypageRestController {
 
 		AjaxPurchaseList result = new AjaxPurchaseList();
 		
-
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
 		
 		PurchaseDTO dto = dao.selectPurchaseByUid(py_uid);

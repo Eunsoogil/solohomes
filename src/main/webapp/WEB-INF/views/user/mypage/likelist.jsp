@@ -40,9 +40,9 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 	
   
-  </head>
-  
+  </head>  
   <body>
+  <jsp:include page="/common/menu" />
   <input type="hidden" id="page"/>
   
 	  <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
@@ -202,7 +202,7 @@
 			}
 			
 			$("#pr").append(result);
-			alert(result);
+
 			return true;
 
 		}else{
@@ -258,3 +258,4 @@
 	
   </body>
 </html>
+<jsp:include page="/common/footer" />
