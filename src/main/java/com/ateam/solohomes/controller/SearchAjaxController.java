@@ -29,7 +29,7 @@ public class SearchAjaxController {
 		if(userKeyword == null || userKeyword.equals("")){
 			return null;
 		}		
-		String [] keywords = new String [keywordlist.size() + 10];
+		String [] keywords = new String [keywordlist.size() + 15];
 		keywords[0] = "침대,1";
 		keywords[1] = "화장대,2";
 		keywords[2] = "서랍장,3";
@@ -40,11 +40,16 @@ public class SearchAjaxController {
 		keywords[7] = "의자,8";
 		keywords[8] = "책상,9";
 		keywords[9] = "책장,10";
+		keywords[10] = "비비,11";
+		keywords[11] = "어바니,12";
+		keywords[12] = "이타카네오,13";
+		keywords[13] = "글렌,14";
+		keywords[14] = "미엘갤러리,15";
 		
 		Iterator<SearchDTO> iter = keywordlist.iterator();
 		int cnt = 0;
 		while(iter.hasNext()){
-			keywords[10 + cnt] = keywordlist.get(cnt).getG_name() + ","
+			keywords[15 + cnt] = keywordlist.get(cnt).getG_name() + ","
 					+ keywordlist.get(cnt).getG_uid();
 			cnt++;
 			if(cnt == keywordlist.size()) break;

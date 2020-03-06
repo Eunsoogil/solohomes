@@ -49,6 +49,12 @@ function displaySuggest(data){
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
 				"/카테고리" + "</b></span>" + "</a><br>";				
+			} else if(11 <= parseInt(keywordList[i+1]) && parseInt(keywordList[i+1]) <= 15){
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/series/detail.do?sr_uid=" +
+				(parseInt(keywordList[i+1])-10) + "'>" +
+				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
+				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
+				"/시리즈" + "</b></span>" + "</a><br>";	
 			} else {
 				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/user/productInfo.do/" +
 				keywordList[i+1] + "'>" +
