@@ -17,7 +17,7 @@ $(function(){
 		if(winWidth > 600){
 			$(".mo_menu").removeClass("show");
 		}
-	})
+	});
 
 	// Get the modal
 	var modal = document.getElementById('myModal');
@@ -43,11 +43,12 @@ $(function(){
 		
 	$(".f").click(function() {
 		$(".f_sub").toggleClass("show")
-	})
+	});
 	
 	$(".mypage").click(function() {
 		$(".my_sub").toggleClass("show")
-	})
+	});
+	
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {		
 		modal.style.display = "none";

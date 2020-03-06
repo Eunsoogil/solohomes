@@ -63,7 +63,8 @@ header img{
 	right:0;
 	cursor: pointer;
 }
-#login{
+
+.login{
 	width:80px;
 	float:right;
 	display:block;
@@ -75,11 +76,10 @@ header img{
 	border-radius: 20px;
 	text-align: center;
 }
-#login:hover{
-	background:none;
+.login:hover{
+	background:none !important;
 	color:#c80a1e;
 }
-
 
 .modal-content{
 	display: flex !important;
@@ -181,17 +181,14 @@ header img{
 	padding:10px 0 10px 10px;
 	font-weight:500;
 }
-.mo_menu li:hover{
-	color:#A91F24 !important;
-}
-
 .mo_menu a{
 	color:#808080 !important;
 	cursor: pointer;
 }
 .mo_menu a:hover{
-	color:#c80a1e;
+	color:#c80a1e !important;
 }
+
 .f_sub, .my_sub{
 	display:none;
 	background:#fafafa;
@@ -210,6 +207,10 @@ header img{
 	z-index:50;
 }
 
+#adminBtn{
+	background:#888;
+	border:1px solid #888;
+}
 @media screen and (min-width:600px) and (max-width:900px){
 	header > .container{
 		padding:0 5%;
