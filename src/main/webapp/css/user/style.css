@@ -9162,6 +9162,9 @@ table select{
 .text-right>span>i{
 	color:#ff001b;
 }
+.text-right>span{
+	color:black;
+}
 
 #sortdivt{
 	position: relative;
