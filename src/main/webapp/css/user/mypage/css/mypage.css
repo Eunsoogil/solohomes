@@ -268,5 +268,34 @@ th, td {
 	height: 33px;
 	vertical-align: middle;
 	padding: 0px;
-	
+}
+
+#writeRequestBtn{
+	margin-bottom: 30px;
+}
+
+#request_view td{
+	padding: 15px; !important;
+	height:auto;
+}
+
+.tbody-test{
+	text-align: left; !important;
+}
+
+
+.fp{
+	padding-top: 30px; !important;
+	padding-bottom: 30px; !important;
+}
+
+.pd{
+	padding-top: 1em; !important;
+}
+
+#td_width1{
+	width:30%;
+}
+#td_width2{
+	width:70%;
 }

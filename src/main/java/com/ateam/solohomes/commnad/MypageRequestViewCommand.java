@@ -1,6 +1,6 @@
 package com.ateam.solohomes.commnad;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.Map;
 
 import org.springframework.ui.Model;
@@ -39,7 +39,7 @@ public class MypageRequestViewCommand implements Command {
 			break;
 			
 		}
-	
+
 		model.addAttribute("dto", dto);
 
 	}

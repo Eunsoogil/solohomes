@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%!
-	int writePages = 10;
+	int writePages = 8;
 %> 
 <%!
 	int mb_uid = 2;
@@ -33,38 +33,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-	<div class="hero-wrap hero-bread">
-		<div class="container">
-			<div class="row no-gutters slider-text align-items-center justify-content-center">
-				<div class="mb-5 col-md-9 ftco-animate text-center">
-					<span class="quote"><i class="fas fa-quote-left"></i></span>
-					<h1 class="mb-0 bread">좋아요 목록</h1>					
-					<span class="quote"><i class="fas fa-quote-right"></i></span>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<section class="ftco-section bg-light">
-		<div class="container-fluid">
-			<div class="row" id="categorybody">	
-			</div>
-		</div>
-		<div class="prne">
-			<button type="button" id="prev" class="pgBtn">&lt</button>
-			<button type="button" id="next" class="pgBtn">&gt</button>
-		</div>
-	</section>
-
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#c80a1e" />
-		</svg>
-	</div>
-	
 <script>
 $(document).ready(function(){
 
@@ -90,35 +58,7 @@ $(document).ready(function(){
 		var curPage = parseInt($("input#page").val())
 		loadPage(curPage+1);
 	});
-	
-	
-	//datepicker 한국어로 사용하기 위한 언어설정
-	$.datepicker.setDefaults($.datepicker.regional['ko']); 	
 
-	// Datepicker			
-	$(".datepicker").datepicker({
-		showButtonPanel: true,
-		dateFormat: "yy-mm-dd",
-		onClose : function ( selectedDate ) {
-		
-			var eleId = $(this).attr("id");
-			var optionName = "";
-
-			if(eleId.indexOf("StartDate") > 0) {
-				eleId = eleId.replace("StartDate", "EndDate");
-				optionName = "minDate";
-			} else {
-				eleId = eleId.replace("EndDate", "StartDate");
-				optionName = "maxDate";
-			}
-
-			$("#"+eleId).datepicker( "option", optionName, selectedDate );		
-			$(".searchDate").find(".chkbox2").removeClass("on"); 
-		}
-	}); 
-	
-	$(".dateclick").dateclick();	// DateClick
-	$(".searchDate").schDate();		// searchDate
 	 
 });
 
@@ -195,10 +135,10 @@ function delzzim(gl_uid){
 			success : function(data){
 				if(data != 0){
 					alert("취소 완료");
-					loadPage(1);
+					location.href= "${pageContext.request.contextPath}/user/likelist.do";
 				}else{
 					alert("취소 실패");
-					loadPage(1);
+					location.href= "${pageContext.request.contextPath}/user/likelist.do";
 				}
 			}
 		});
@@ -211,6 +151,40 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 </script>
+<body>
+<input type="hidden" id="page"/>
+	<div class="hero-wrap hero-bread">
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="mb-5 col-md-9 ftco-animate text-center">
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
+					<h1 class="mb-0 bread">좋아요 목록</h1>					
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="ftco-section bg-light">
+		<div class="container-fluid">
+			<div class="row" id="categorybody">	
+			</div>
+		</div>
+		<div class="prne">
+			<button type="button" id="prev" class="pgBtn">&lt</button>
+			<button type="button" id="next" class="pgBtn">&gt</button>
+		</div>
+	</section>
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#c80a1e" />
+		</svg>
+	</div>
+	
+
 <script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>

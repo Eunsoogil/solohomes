@@ -31,68 +31,154 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/jquery.timepicker.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/flaticon.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/icomoon.css">
-   
-   
-    <!-- 표 -->
-    <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/main.css">
-	<!--===============================================================================================-->
-
-	
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/mypage.css">
-<title>Insert title here</title>
+	
+<title>1:1문의</title>
+
+
+<script>
+$(document).ready(function(){
+    // 문의 작성 시간 
+	var regDate = new Date("${dto.rq_regdate}");
+	var strDate = regDate.getFullYear() + "-" +
+				(regDate.getMonth() + 1) + "-" + 
+				 regDate.getDate() + "&nbsp&nbsp " +
+				 regDate.getHours() + ":" + 
+				 regDate.getMinutes();
+	
+	$("#regdate").html(strDate);
+	
+	 // 답변 
+	 var checkResponse = "${dto.rq_response}";
+	 if(checkResponse == "" || checkResponse == null || checkResponse.length == 0){
+		 msg="미답변"
+		 $("#admin_msg").html(msg);
+	 }else{
+		 $("#admin_msg").html(checkResponse);
+	 }
+	
+});
+</script>
 </head>
 <body>
+
 	<!-- 대문 -->
 	<div class="hero-wrap hero-bread">
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<h1 class="mb-0 bread">1:1 문의</h1>
-					<p class="breadcrumbs">
-						<span class="mr-2">
-							<a href="${pageContext.request.contextPath}/user/requestlist.do">문의목록 가기</a>
-						</span>
-					</p>
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
+					<h1 class="mb-0 bread">1:1 문의</h1>				
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
+	
+	<div class="hero-wrap hero-bread">
+		<div class="container">
+			<div class="col-md-12 ftco-animate text-center">
+				<h3 class="mb-0 bread">문의내용</h3>
+			</div>
+		</div>
+	</div>	
+	<hr>
+	
 
-	<!-- 문의목록 테이블 -->
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100 ver1 m-b-110">
-					<div>
-						<table>
-						
-							<tr class="row100 head">
-								<th class="cell100 column11">문의제목</th>
-								<td class="cell100 column12">${dto.rq_subject}</td>
-							</tr>
+<!-- <p class="breadcrumbs">
+	<span class="mr-2">
+		<a href="${pageContext.request.contextPath}/user/requestlist.do">문의목록 가기</a>
+	</span>
+</p> -->
 
-							<tr class="row100 head">
-								<th class="cell100 column11">문의내용</th>
-								<td class="cell100 column12">${dto.rq_content}</td>
+	<!-- 문의내용 테이블 -->
+	<section class="ftco-section ftco-cart fp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">	
+						<table class="table" id="request_view">
+						<tbody>
+							<tr>
+								<td class="thead-primary">문의번호</td>
+								<td class="tbody-text">${dto.rq_uid}</td>
 							</tr>
+							<tr>
+								<td class="thead-primary">문의분류</td>
+								<td class="tbody-text">${dto.rq_type_str}</td>
+							</tr>
+							<tr>
+								<td class="thead-primary">제목</td>
+								<td class="tbody-text">${dto.rq_subject}</td>
+							</tr>
+							<tr>
+								<td class="thead-primary">문의번호</td>
+								<td class="tbody-text">${dto.rq_uid}</td>
+							</tr>
+							<tr>
+								<td class="thead-primary">내용</td>
+								<td class="tbody-text">${dto.rq_content}</td>
+							</tr>
+							<tr>
+								<td class="thead-primary">등록일</td>
+								<td class="tbody-text" id="regdate"></td>
+							</tr>
+						</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+
+
+	<div class="hero-wrap hero-bread pd">
+		<div class="container">
+			<div class="col-md-12 ftco-animate text-center">
+				<h3 class="mb-0 bread">문의답변</h3>
+			</div>
+		</div>
+	</div>	
+	<hr>
+	
+	
+	<!-- 문의답변 테이블 -->
+	<section class="ftco-section ftco-cart fp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">	
+						<table class="table" id="request_view">
+						<tbody>
+							<tr>
+								<td class="thead-primary" colspan="2">솔로홈즈관리자</td>
+							</tr>
+							<tr>
+								<td class="thead-primary" id="td_width1">답변내용</td>
+								<td class="tbody-text" id="admin_msg" id="td_width2"></td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div id="writeRequestBtn" class="col-md-12  ftco-animate">
+	   				<input type="button" id="writeBtn" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/user/requestlist.do'"/>
+				</div> 
+			</div>			
+		</div>
+	</section>
+
+
+	  
+
+
 	
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
@@ -116,27 +202,6 @@
 	<script src="${pageContext.request.contextPath }/js/user/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath }/js/user/scrollax.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/user/main.js"></script>
-	
-	<!--===============================================================================================-->	
-	<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/popper.js"></script>
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script>
-			$('.js-pscroll').each(function(){
-				var ps = new PerfectScrollbar(this);
-	
-				$(window).on('resize', function(){
-					ps.update();
-				})
-			});	
-		</script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/js/main.js"></script>
 
 </body>
 </html>

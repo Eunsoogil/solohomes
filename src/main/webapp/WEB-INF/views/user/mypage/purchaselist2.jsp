@@ -372,7 +372,7 @@ function updateList(jsonObj){
                   (regDate.getMonth() + 1) + "-" +     // +1 해추어어야 한다 
                   regDate.getDate();
          
-         result += "<td class='cell100 column103'>" +strDate + "</td>";         
+         result += "<td>" +strDate + "</td>";         
          result += "<td class='imageTd'><img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].in_img +"'/></td>"
          result += "<td class='productTd'>" + items[i].g_name +"</td>";
          result += "<td>" + items[i].in_color +"</td>\n";       

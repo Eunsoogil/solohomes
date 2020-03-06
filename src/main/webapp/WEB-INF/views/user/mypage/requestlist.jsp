@@ -124,8 +124,8 @@ function updateList(jsonObj){
 		
 		var i;
 		for(i = 0; i < count; i++){
-			result += "<tr class='row100 body'>\n";
-			result += "<td class='cell100 column1'>" + (i+1) +"</td>\n";
+			result += "<tr>\n";
+			result += "<td>" + (i+1) +"</td>\n";
 			
 			var rq_type = items[i].rq_type;
 			var rq_type_str;
@@ -149,24 +149,24 @@ function updateList(jsonObj){
 				
 			}
 				
-			result += "<td class='cell100 column2'>" + rq_type_str +"</td>\n";
+			result += "<td>" + rq_type_str +"</td>\n";
 			
 			var url = "${pageContext.request.contextPath}/user/mypage/requestView.do/"+ items[i].rq_uid;
 			
-			result += "<td class='cell100 column3'><a href="+ url +">" + items[i].rq_subject +"</a></td>\n";
+			result += "<td colspan='3'><a href="+ url +">" + items[i].rq_subject +"</a></td>\n";
 
 			// Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
 			var regDate = new Date(items[i].rq_regdate);
 			var strDate = regDate.getFullYear() + "-" +
 						(regDate.getMonth() + 1) + "-" + 
 						regDate.getDate();
-			result += "<td class='cell100 column4'>" +strDate + "</td>\n";
+			result += "<td>" +strDate + "</td>\n";
 			
 			var response = items[i].py_response;
 			if($.trim(response).length > 0){
-				result += "<td class='cell100 column5'>답변 완료</td>\n";
+				result += "<td>답변 완료</td>\n";
 			}else{
-				result += "<td class='cell100 column5'>N</td>\n";
+				result += "<td>N</td>\n";
 			}
 		
 			result += "</tr>\n";
@@ -191,59 +191,51 @@ function updateList(jsonObj){
 	
 	<!-- 대문 -->
 	<div class="hero-wrap hero-bread">
-			<div class="container">
-				<div class="row no-gutters slider-text align-items-center justify-content-center">
-					<div class="col-md-9 ftco-animate text-center">
-						<h1 class="mb-0 bread">1:1 문의</h1>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
+					<h1 class="mb-0 bread">1:1 문의</h1>				
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<!-- 문의목록 테이블 -->
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100 ver1 m-b-110">
-					<div class="table100-head">
-						<table>
-							<thead>
-								<tr class="row100 head">
-									<th class="cell100 column1">no.</th>
-									<th class="cell100 column2">문의분류</th>
-									<th class="cell100 column3">문의제목</th>
-									<th class="cell100 column4">작성시간</th>
-									<th class="cell100 column5">답변여부</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-
-					<div class="table100-body js-pscroll">
-						<table id="list">
-							<tbody>
-								<!-- 데이터 -->
-							</tbody>
+	<!-- 문의목록 테이블 -->	
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			<div class="row">
+				<div id="writeRequestBtn" class="col-md-12  ftco-animate">
+		        	<input type="button" id="writeBtn" value="문의등록" onclick="location.href='${pageContext.request.contextPath}/user/mypage/requestWrite.do/<%= mb_uid%>'"/>
+		        </div>   
+			</div>	
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">	
+						<table class="table" id="list">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>No.</th>
+								<th>문의분류</th>
+								<th colspan="3">문의제목</th>	
+								<th>작성시간</th>							
+								<th>답변여부</th>						
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
 						</table>
 					</div>
 				</div>
-				
-				<div>
-					<button type="button" class="pageBtn" id="prev">이전페이지</button>
-					<button type="button" class="pageBtn" id="next">다음페이지</button>
+				<div class="prne">
+					<button type="button" id="prev" class="pgBtn">&lt</button>
+					<button type="button" id="next" class="pgBtn">&gt</button>
 				</div>
-					
-				<div>
-					<input type="button" id="writeBtn" value="문의등록" onclick="location.href='${pageContext.request.contextPath}/user/mypage/requestWrite.do/<%= mb_uid%>'"/>
-				</div>	
-				
 			</div>
 		</div>
-	</div>
-	
-
-
+	</section>
 
 
 	
