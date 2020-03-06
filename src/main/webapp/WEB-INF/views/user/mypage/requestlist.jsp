@@ -6,9 +6,6 @@
 <%!
 	int writePages = 5;
 %>
-<%!
-	int mb_uid = 2;
-%>     
 <!DOCTYPE html>
 <jsp:include page="/common/menu"/>
 <html>
@@ -92,9 +89,7 @@ $(document).ready(function(){
 
 function loadPage(page){
 
-
-	var urlText = "${pageContext.request.contextPath}/mypageAjax/memberRequestList.ajax/<%= mb_uid%>/<%= writePages%>/" + page;
-	
+	var urlText = "${pageContext.request.contextPath}/mypageAjax/memberRequestList.ajax/${sessionScope.userUID}/<%= writePages%>/" + page;	
 	
 	$.ajax({
 		url : urlText,
@@ -208,7 +203,7 @@ function updateList(jsonObj){
 		<div class="container">
 			<div class="row">
 				<div id="writeRequestBtn" class="col-md-12  ftco-animate">
-		        	<input type="button" id="writeBtn" value="문의등록" onclick="location.href='${pageContext.request.contextPath}/user/mypage/requestWrite.do/<%= mb_uid%>'"/>
+		        	<input type="button" id="writeBtn" value="문의등록" onclick="location.href='${pageContext.request.contextPath}/user/mypage/requestWrite.do/${sessionScope.userUID}'"/>
 		        </div>   
 			</div>	
 			<div class="row">

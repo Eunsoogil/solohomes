@@ -78,7 +78,11 @@
 	<!-- Interceptor 등록/설정 -->
 		<interceptors>
 			<interceptor>
-				<mapping path="/cart/**"/>	
+				<mapping path="/cart/**"/>
+				<mapping path="/user/purchaselist.do"/>
+				<mapping path="/user/likelist.do"/>
+				<mapping path="/user/requestlist.do"/>
+				<mapping path="/user/memberCheck.do"/>					
 				<beans:ref bean="LoginInterceptor"/>	
 			</interceptor>
 		</interceptors>

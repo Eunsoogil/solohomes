@@ -237,7 +237,7 @@ public class MypageRestController {
 	@RequestMapping(value = "/purchaseProductInfo.ajax/{py_uid}")
 	public AjaxPurchaseList purchaseProductInfo(@PathVariable("py_uid") int py_uid){
 	
-		System.out.println("py_uid: "+ py_uid);
+		System.out.println("ProductInfo.ajax ----- py_uid: "+ py_uid);
 
 		AjaxPurchaseList result = new AjaxPurchaseList();
 		
@@ -247,7 +247,7 @@ public class MypageRestController {
 		
 		result.setDto(dto);
 	
-		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
+		// 읽어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
 		if(dto != null){ 
 			result.setStatus("OK");
 		}else {
@@ -294,7 +294,7 @@ public class MypageRestController {
 	@RequestMapping(value = "/reviewUpdate.ajax/{co_uid}")
 	public AjaxReviewList reviewUpdate(@PathVariable("co_uid")int co_uid){
 	
-		System.out.println("co_uid: "+ co_uid);
+		System.out.println("reviewUpdate.ajax: " + co_uid);
 		
 		AjaxReviewList result = new AjaxReviewList();
 		ReviewDTO dto = null;

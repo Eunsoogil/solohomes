@@ -7,9 +7,7 @@
 <%!
 	int writePages = 8;
 %> 
-<%!
-	int mb_uid = 2;
-%> 
+
 
 <jsp:include page="/common/menu" />
 <!DOCTYPE html>
@@ -67,7 +65,7 @@ $(document).ready(function(){
 // TODO
 function loadPage(page){
 	$.ajax({
-		url : "${pageContext.request.contextPath}/mypageAjax/memberLikeList.ajax/<%= mb_uid%>/<%= writePages%>/" + page,
+		url : "${pageContext.request.contextPath}/mypageAjax/memberLikeList.ajax/${sessionScope.userUID}/<%= writePages%>/" + page,
 		type : "GET",
 		cache : false,
 		success : function(data, status){

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%!
-	int mb_uid = 2;
-%>  
 <!DOCTYPE html>
 <jsp:include page="/common/menu"/>
 <html>
@@ -70,7 +67,7 @@
 				<div class="row block-9">
 					<div class="formBox">
 						<form name="frm" action="${pageContext.request.contextPath }/user/mypage/memberCheckOk.do" method="post" onsubmit="return chkSubmit()" class="bg-white p-5 contact-form">
-							<input type="hidden" name="mb_uid" value="<%=mb_uid%>"/> 
+							<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/> 
 							<div class="form-group2">
 								<label for="mb_pw" class="col-form-label pwcheck-form" id="label_pw">비밀번호 확인</label>
 								<input type="text" class="form-control2 pwcheck-form" id="mb_pw" name="mb_pw"/>

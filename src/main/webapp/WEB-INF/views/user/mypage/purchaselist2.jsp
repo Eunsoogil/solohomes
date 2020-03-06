@@ -6,9 +6,6 @@
 <%!
    int writePages = 5;
 %>
-<%!
-	int mb_uid = 2;
-%>
 
 <jsp:include page="/common/menu" /> 
 
@@ -115,9 +112,10 @@ $(document).ready(function(){
 
 function popUp(py_uid, option) {
 
-	var mb_uid = <%=mb_uid%>;
+	var mb_uid = "${sessionScope.userUID}";
 	var g_name = "";
 	var py_amount = "";
+	var py_confrim = "";
 	var g_uid = "";
 	var co_uid = "";
 	var reviewProduct = "";
@@ -135,17 +133,37 @@ function popUp(py_uid, option) {
 	         if(status == "success"){
 	           	g_name = data.dto.g_name;
 	           	py_amount = data.dto.py_amount;
+	        	py_confirm = data.dto.py_confirm;
 	           	g_uid = data.dto.g_uid;
 	           	co_uid = data.dto.co_uid;
+	         }else{
+	        	 alert("141행 ajax 실패");
 	         }
 	      }
 	   });
 
-	
 	 
 setTimeout(function() {
 	 
 	if(option == 1){
+
+		var urlText = "${pageContext.request.contextPath}/mypageAjax/reviewUpdate.ajax/" + co_uid;
+
+		$.ajax({
+	         url : urlText,
+	         type : "GET",
+	         cache : false,
+	         success : function(data, status){
+	            if(status == "success"){
+	            	$('#co_subject').val(data.dto.co_subject); 
+	            	$('#co_content').val(data.dto.co_content);
+	            }else{
+		             alert("리뷰 불러오기 실패");
+		        	 return false;
+	            }
+	         }
+	      });
+		
 		
 		$('#title').html("리뷰수정");
 		$("#popUp").css("display", "block"); // 띄우기
@@ -159,28 +177,6 @@ setTimeout(function() {
 		reviewUpdateBtn += "<button class='popBtn closePop'>취소</button>";
 		
 		$('.popBtnBox').html(reviewUpdateBtn);		
-		
-		var urlText = "${pageContext.request.contextPath}/mypageAjax/reviewUpdate.ajax/" + co_uid;
-		
-		$.ajax({
-	         url : urlText,
-	         type : "GET",
-	         cache : false,
-	         success : function(data, status){
-	            if(status == "success"){
-	            	
-	            	$('#co_subject').val(data.dto.co_subject); 
-	            	$('#co_content').val(data.dto.co_content);
-            	
-	            }else{
-	            	$.alert({
-					    title: 'Alert!',
-					    content: '리뷰 불러오기 실패!',
-					});
-	        	 return false;
-	            }
-	         }
-	      });
 	
 
 		$("#update").click(function() {  // 확인버튼 눌렀을 때
@@ -215,6 +211,11 @@ setTimeout(function() {
 		});
 		
 	}else if(option == 0){
+		
+		if(py_confirm==0){
+			alert("구매확정 후에 리뷰 작성이 가능합니다.");
+			return false;
+		}
 
 		 reviewProduct += "<label>구매상품: "+g_name+"</label><br>";
 		 reviewProduct += "<label>구매수량: "+py_amount+"</label>"; 		 
@@ -295,11 +296,11 @@ function loadPage(page, searchStartDate, searchEndDate, keyword){
    var keyword = $('#keyword').val();
 
    if(searchStartDate == "" && searchEndDate == "" && keyword == ""){
-      urlText = "${pageContext.request.contextPath}/mypageAjax/memberPurchaseList.ajax/<%= mb_uid%>/<%= writePages%>/" + page;
+      urlText = "${pageContext.request.contextPath}/mypageAjax/memberPurchaseList.ajax/${sessionScope.userUID}/<%= writePages%>/" + page;
    }else if(searchStartDate != "" || searchEndDate != ""){
-      urlText = "${pageContext.request.contextPath}/mypageAjax/searchDate.ajax/<%= mb_uid%>/" + searchStartDate + "/" + searchEndDate + "/<%= writePages%>/" + page;
+      urlText = "${pageContext.request.contextPath}/mypageAjax/searchDate.ajax/${sessionScope.userUID}/" + searchStartDate + "/" + searchEndDate + "/<%= writePages%>/" + page;
    }else if(keyword != ""){
-      urlText = "${pageContext.request.contextPath}/mypageAjax/searchKeyword.ajax/<%= mb_uid%>/" + keyword + "/<%= writePages%>/" + page;
+      urlText = "${pageContext.request.contextPath}/mypageAjax/searchKeyword.ajax/${sessionScope.userUID}/" + keyword + "/<%= writePages%>/" + page;
    }
    
    $.ajax({
@@ -321,7 +322,7 @@ function loadPage(page, searchStartDate, searchEndDate, keyword){
 
 function pyConfrim(py_uid){
    
-	urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseConfirm.ajax/<%= mb_uid%>/"+ py_uid;
+	urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseConfirm.ajax/${sessionScope.userUID}/"+ py_uid;
 	
 	$.confirm({
 	    title: 'Confirm!',
@@ -345,7 +346,7 @@ function pyConfrim(py_uid){
 	           
 	        },
 	        cancel: function () {
-	        	 history.back();
+	        	loadPage(1, searchStartDate, searchEndDate, keyword);
 	        }
 	    }
 	});
@@ -389,9 +390,9 @@ function updateList(jsonObj){
          if(items[i].co_uid == "" ){
         	items[i].co_uid = 0;
 
-            result += "<td><input type='button' class='writeBtn' onclick = 'popUp("+items[i].py_uid+", 0)' value='작성하기'/></td>\n";  
+            result += "<td><input type='button' class='writeBtn' onclick='popUp("+items[i].py_uid+", 0)' value='작성하기'/></td>\n";  
          }else{
-            result += "<td><input type='button' class='updateBtn' onclick = 'popUp("+items[i].py_uid+", 1)' value='수정'/></td>\n";
+            result += "<td><input type='button' class='updateBtn' onclick='popUp("+items[i].py_uid+", 1)' value='수정'/></td>\n";
          }                
      	 result += "</tr>\n";
       }
@@ -517,7 +518,25 @@ function numberWithCommas(x) {
 			</div>
 		</div>
 	</section>
-
+	
+	
+	 <div id="popUp">
+      <form class="modal-notify" name="writeFrm" action="" method="post">
+         <p id="title">
+         </p>
+      
+         <div class="moBox">  
+            <div class="txtBox">
+                <label id="flag"></label>             
+                <input type="text" id="co_subject" class="form-control" placeholder="Subject"/>
+                <textarea id="co_content" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>   
+            </div>                       
+         </div>   
+         <div class="popBtnBox">    
+         </div>
+      </form>
+   </div>
+	
 
 
 	<!-- loader -->
@@ -538,25 +557,6 @@ function numberWithCommas(x) {
 <script src="${pageContext.request.contextPath }/js/user/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/user/main.js"></script>
 	
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/popper.js"></script>
-<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script>
-$('.js-pscroll').each(function(){
-	var ps = new PerfectScrollbar(this);
-
-	$(window).on('resize', function(){
-		ps.update();
-	});
-});	
-</script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath }/css/user/mypage/js/main.js"></script>
-
 </body>
 </html>
 <jsp:include page="/common/footer" />
