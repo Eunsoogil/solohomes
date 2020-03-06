@@ -168,7 +168,7 @@ function updateList(jsonObj){
 			result += "</div>";			
 			result += "<div class='rating'>";
 			result += "<p class='text-right'>";
-			result += "<a href='#' onclick=delzzim('" + items[i].gl_uid + "') class='ml-auto'>";
+			result += "<a onclick=delzzim('" + items[i].gl_uid + "') class='ml-auto'>";
 			result += "<span><i class='ion-ios-heart'></i></span></a></p>";
 			result += "</div></div></div></div></div>"		
 		}
