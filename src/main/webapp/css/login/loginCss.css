@@ -50,8 +50,8 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #sendPage #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
 #sendPage #p2 {position: absolute; left: 220px;top: 40px;  font-size: 13px;}
 #sendPage #p3 {position: absolute; right: 45px;top: 40px; color: red; font-size: 13px;}
-#sendPage h2 {position: absolute; color: white; top: 89px; left: 134px; font-size: 19px;}
-#sendPage #sendtext {position: relative; margin: 0 auto; width: 200px; height: 200px; top: 230px; left: 10px;}
+#sendPage h2 {position: absolute; color: white; top: 104px; left: 138px; font-size: 19px;}
+#sendPage #sendtext {position: relative; margin: 0 auto; width: 200px; height: 200px; top: 230px; left: 21px;}
 
 #findid {position: relative; margin: 0 auto; background:url("img/findid2.png") center center no-repeat; width:515px; height: 515px;}
 #findid #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
