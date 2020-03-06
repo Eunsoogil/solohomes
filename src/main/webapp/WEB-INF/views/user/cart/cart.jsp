@@ -124,7 +124,7 @@ function CheckForm(Join){
 							</select>
 						</td>
 						<td class="price" id="price">
-							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>	
+							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>원	
 						</td>
 						<td class="quantity">
 							<div class="quantityBox">
@@ -145,7 +145,7 @@ function CheckForm(Join){
 							</div>						
 						</td>							
 						<td class="total" id="total">
-							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
+							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>원	
 						</td>
 					</tr>
 					</c:forEach>
@@ -225,7 +225,7 @@ function plus(data){
 	var input = tr.cells[5].childNodes[1].childNodes[3];
 	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	input.value = parseInt(input.value) + 1;
-	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value);
+	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value) + "원";
 	totalCost();
 }
 

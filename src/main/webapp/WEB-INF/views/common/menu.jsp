@@ -224,6 +224,15 @@ function sessionchk(){
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/menu.js" type="text/javascript"></script>
-
+	<script type="text/javascript">
+	$(window).resize(function() {
+		var winWidth = $(window).width();
+		var modal = document.getElementById('myModal');
+		if(winWidth >= 600){
+			$(".mo_menu").removeClass("show");
+			modal.style.display = "none";
+		}
+	});
+</script>
 </body>
 </html>

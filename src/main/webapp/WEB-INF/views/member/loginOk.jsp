@@ -5,7 +5,18 @@
 	<c:when test="${result == 1}">
 		<script>
 			alert("로그인 성공!");
+<% 
+	if(session.getAttribute("urlCopy") != null) {
+%>
+			location.href="${urlCopy}";
+			session.removeAttribute("urlCopy");
+<%
+	}else{
+%>
 			location.href = "../user/main.do"
+<%
+	}
+%>
 		</script>
 	</c:when>
 	
