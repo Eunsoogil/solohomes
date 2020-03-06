@@ -191,7 +191,9 @@ label {
   margin-bottom: 0.5rem; }
 
 button {
-  border-radius: 0; }
+  border-radius: 0; 
+  outline: none;
+  }
 
 button:focus {
   outline: 1px dotted;
@@ -213,20 +215,24 @@ input {
 
 button,
 select {
-  text-transform: none; }
+  text-transform: none; 
+   outline: none;}
 
 button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; }
+  -webkit-appearance: button;
+  /* 버튼 아웃라인 전부 없음*/
+  outline: none; }
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
   padding: 0;
-  border-style: none; }
+  border-style: none; 
+  }
 
 input[type="radio"],
 input[type="checkbox"] {
@@ -2012,7 +2018,8 @@ fieldset:disabled a.btn {
   pointer-events: none; }
   .btn-primary:hover {
     color: #212529;
-    background-color: #56caeb;
+   /* background-color: #56caeb;*/
+    background-color: transparent;
     border-color: #4ac7ea; }
   .btn-primary:focus, .btn-primary.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(120, 213, 239, 0.5);
@@ -2023,8 +2030,11 @@ fieldset:disabled a.btn {
   .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
   .show > .btn-primary.dropdown-toggle {
     color: #212529;
-    background-color: #4ac7ea;
-    border-color: #3fc3e8; }
+    /*background-color: #4ac7ea;*/
+    background-color: transparent;
+    /*border-color: #3fc3e8; */
+   		border-color: #c80a1e;
+    }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-primary.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(120, 213, 239, 0.5);
@@ -9123,6 +9133,7 @@ table select{
     padding:15px 20px;
     border-radius: 30px;
     width:200px;
+    outline: none;
 }
 .selectBtn:hover{
 	background: white;
@@ -9217,6 +9228,7 @@ table select{
 	margin-top:20px;
 	color:#c80a1e;
 	cursor: pointer;
+	outline: none;
 }
 
 .pgBtn:hover{

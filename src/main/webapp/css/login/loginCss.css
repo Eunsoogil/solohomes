@@ -23,7 +23,7 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #terms #tback{position: absolute; width: 127px; height: 40px; bottom: 54px; left: 123px; text-align: center; line-height: 40px; color: white; border-radius: 5px; font-size: 12px}
 #terms #tpass{position: absolute; width: 127px; height: 40px; bottom: 54px; left: 259px; text-align: center; line-height: 40px; color: white; border-radius: 5px; font-size: 12px}
 
-#logInfo {position: relative; margin: 0 auto; background:url("img/loginfo3.png") center center no-repeat; width:515px; height: 515px;}
+#logInfo {position: relative; margin: 0 auto; background:url("img/infoBG.png") center center no-repeat; width:515px; height: 515px;}
 #logInfo #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
 #logInfo #p2 {position: absolute; left: 220px;top: 40px; color: #c80a1e; font-size: 13px;}
 #logInfo #p3 {position: absolute; right: 45px;top: 40px; font-size: 13px;}
@@ -46,21 +46,21 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #logInfo form #nick_check {position: absolute; right: 50px; font-size: 10px;top: 15px;}
 #logInfo form #pw_check {position: absolute; right: 27px; font-size: 10px;top: 116px;}
 
-#sendPage {position: relative; margin: 0 auto; background:url("img/send.png") center center no-repeat; width:515px; height: 515px;}
+#sendPage {position: relative; margin: 0 auto; background:url("img/sendBG.png") center center no-repeat; width:515px; height: 515px;}
 #sendPage #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
 #sendPage #p2 {position: absolute; left: 220px;top: 40px;  font-size: 13px;}
 #sendPage #p3 {position: absolute; right: 45px;top: 40px; color: #c80a1e; font-size: 13px;}
 #sendPage h2 {position: absolute; color: white; top: 104px; left: 138px; font-size: 19px;}
 #sendPage #sendtext {position: relative; margin: 0 auto; width: 200px; height: 200px; top: 230px; left: 21px;}
 
-#findid {position: relative; margin: 0 auto; background:url("img/findid2.png") center center no-repeat; width:515px; height: 515px;}
+#findid {position: relative; margin: 0 auto; background:url("img/findBG.png") center center no-repeat; width:515px; height: 515px;}
 #findid #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
 #findid #fbody {position: relative; margin: 0 auto; width: 300px; height: 300px; top: 170px; left: 40px;}
-#findid #fbody p {font-size: 14px;}
-#findid #fbody #fnn {position: absolute; width:210px; height: 40px; left: 2px; top: 78px; border: none; border-radius: 5px;padding-left: 10px;}
-#findid #fbody #femail {position: absolute; width:210px; height: 40px; left: 2px; top: 134px; border: none; border-radius: 5px;padding-left: 10px;}
-#findid #fbody #findsm {position: absolute; width: 102px; height: 40px; top: 184px; left: 112px; font-size: 12px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
-#findid #fbody #fback {position: absolute; width: 102px; height: 40px; top: 184px; left: 0px; text-align: center; font-size: 12px; line-height: 40px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
+#findid #fbody p {font-size: 14px; position: relative; top: 46px;}
+#findid #fbody #fnn {position: absolute; width:210px; height: 40px; left: 2px; top: 129px; border: none; border-radius: 5px;padding-left: 10px;}
+#findid #fbody #femail {position: absolute; width:210px; height: 40px; left: 2px; top: 183px; border: none; border-radius: 5px;padding-left: 10px;}
+#findid #fbody #findsm {position: absolute; width: 102px; height: 40px; top: 250px; left: 136px; font-size: 12px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
+#findid #fbody #fback {position: absolute; width: 102px; height: 40px; top: 250px; left: -23px; text-align: center; font-size: 12px; line-height: 40px; border-radius: 5px; color: white; border: none; cursor: pointer; background-color:transparent;}
 
 /****오다현이 추가한 css 코드*****/
 
@@ -74,7 +74,7 @@ font {font-family:'Noto Sans KR', sans-serif;}
 	margin-left:-267px;
 }
 #login11 {		 
-	background:url("img/loginBG_1.png") center center no-repeat; 
+	background:url("img/loginBG.png") center center no-repeat; 
 	width:515px; 
 	height: 515px; 
 	/*
