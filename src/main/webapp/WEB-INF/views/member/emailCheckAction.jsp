@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${result == 1 }">
 	<script>
-		alert("인증이 성공! 환영 합니다");
+		alert("인증 성공! 환영 합니다");
 		location.href = "../user/main.do";
 	</script>
 </c:if>
