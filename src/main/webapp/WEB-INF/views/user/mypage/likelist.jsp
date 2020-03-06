@@ -65,21 +65,6 @@
     		
     			
     		</div>
-    		<div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
     	</div>
     </section>
 
@@ -180,7 +165,7 @@
 				
 				result += "<div class='col-sm col-md-6 col-lg-3'>";
 				result += "<div class='product'>";
-				result += "<a href='#' class='img-prod'>";
+				result += "<a href='${pageContext.request.contextPath}/user/productInfo.do/"+ items[i].g_uid+"' class='img-prod'>";
 				result += "<img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].g_img +"' alt='Colorlib Template' />";
 				result += "</a>";
 				result += "<div class='text py-3 px-3'>";

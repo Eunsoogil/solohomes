@@ -553,8 +553,8 @@ function searchKeyword(){
       
        
       <div class="col-md-9">
-      <button type="button" id="prev">이전페이지</button>
-      <button type="button" id="next">다음페이지</button>
+      <button type="button" id="prev" class="pageBtn">이전페이지</button>
+      <button type="button" id="next" class="pageBtn">다음페이지</button>
      </div>
      
       
