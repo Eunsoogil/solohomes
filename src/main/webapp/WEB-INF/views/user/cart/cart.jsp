@@ -34,8 +34,10 @@ function check(data){
 	for (i = 1; i < table.length; i+=2) {
 		if(check){
 			table[i].cells[0].childNodes[0].checked = true;
+			totalCost();
 		} else {
 			table[i].cells[0].childNodes[0].checked = false;
+			totalCost();
 		}
 	}
 }
