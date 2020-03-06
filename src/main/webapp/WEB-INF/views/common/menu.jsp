@@ -105,6 +105,14 @@ $(window).resize(function() {
 		modal.style.display = "none";
 	}
 });
+
+window.addEventListener("click", function() {
+	var modal = document.getElementById('myModal');
+	if (event.target == modal) {
+		modal.style.display = "none";
+		$(".mo_menu").removeClass("show")
+	}	
+});
 </script>
 </head>
 <body>
