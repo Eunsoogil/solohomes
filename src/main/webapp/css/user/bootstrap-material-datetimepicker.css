@@ -49,6 +49,7 @@ a .material-icons, a:focus .material-icons, a:hover .material-icons{
 	color: #fff;
 	text-align: center;
 	padding: 0.3em;
+	box-shadow: none !important;
 }
 
 .dtp div.dtp-date, .dtp div.dtp-time {

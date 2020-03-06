@@ -59,7 +59,7 @@ $(document).ready(function(){
 		<div id="findid">
 			<p id="p1">ID / PW 찾기</p>
 			<div id="fbody">
-				<P>고객님의 닉네임과 <br>
+				<P>&nbsp고객님의 닉네임과 <br>
 				가입당시 이메일을 입력해 주세요<br>
 				해당 이메일로 발송 해드립니다<br></P>
 				<form name="form1" action="idpwSend.do" method="GET" onsubmit="return ckSubmit()">

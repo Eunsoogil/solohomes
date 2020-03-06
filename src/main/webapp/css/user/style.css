@@ -143,10 +143,9 @@ a {
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
-  color: inherit;
   text-decoration: none; }
   a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-    color: inherit;
+  	color:inherit;
     text-decoration: none; }
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
@@ -9209,7 +9208,7 @@ table select{
 }
 
 .pgBtn{
-	background: white;
+	background: none;
 	border:1px solid #c80a1e;
 	border-radius: 50%;
 	width:30px;
@@ -9232,7 +9231,7 @@ table select{
 }
 
 .prne{
-	width:103px;
+	width:105px;
 	margin:10px auto;
 }
 .prne button{

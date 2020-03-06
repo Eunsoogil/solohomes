@@ -17,7 +17,7 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #terms #p2 {position: absolute; left: 220px;top: 40px; font-size: 13px;}
 #terms #p3 {position: absolute; right: 45px;top: 40px; font-size: 13px;}
 #terms #policy { position: relative; width: 278px; height: 314px; top: 100px; margin: 0 auto;  text-align: left;}
-#terms #policy h3 {position: absolute; margin: 0; padding: 0; top:10px; left: 25px; color: #595757}
+#terms #policy h3 {position: absolute; margin: 0; padding: 0; top:6px; left: 25px; color: #595757; font-size: 23px; font-weight: bold; }
 #terms #policy #content {width: 225px; height: 240px; position: absolute; left: 24px; top: 50px; font-size: 12px; border: none; outline: none;  text-align: left;}
 #terms #policy #content::-webkit-scrollbar { display: none;}
 #terms #tback{position: absolute; width: 127px; height: 40px; bottom: 54px; left: 123px; text-align: center; line-height: 40px; color: white; border-radius: 5px; font-size: 12px}
@@ -40,7 +40,7 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #logInfo form #zipbt {position:absolute; width: 103px; height: 28px; top: 204px; left: 106px; border-radius: 5px; color: white; cursor: pointer; line-height: 28px}
 #logInfo form #sample6_address {position:absolute; top: 240px;}
 #logInfo form #sample6_detailAddress {position:absolute; top: 274px;}
-#logInfo form #lsubmit_button {position:absolute; top: 324px; width: 126px; height: 40px;background-color: #595757; right: -2px;color: white; border-radius: 5px; border: none; cursor: pointer; padding: 0;}
+#logInfo form #lsubmit_button {position:absolute; top: 324px; width: 126px; height: 40px;background-color: #595757; right: -3px;color: white; border-radius: 5px; border: none; cursor: pointer; padding: 0; font-size: 13px;}
 #logInfo #lback {position:absolute; bottom: 25px; width: 126px; height: 40px; left: 76px; background-color:transparent; color: white; border-radius: 5px; border: none; cursor: pointer; text-align: center; font-size: 13px; line-height: 40px; box-sizing: border-box;}
 #logInfo form #id_check {position: absolute; right: 50px; font-size: 10px; top: -20px;}
 #logInfo form #nick_check {position: absolute; right: 50px; font-size: 10px;top: 15px;}
