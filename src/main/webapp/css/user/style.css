@@ -9160,7 +9160,7 @@ table select{
 }
 
 .text-right>span>i{
-	color:#c80a1e;
+	color:#ff001b;
 }
 
 #sortdivt{
@@ -9196,6 +9196,11 @@ table select{
 #reContent{
 	height:300px !important;
 }
+
+.bdGray{
+	border:1px solid #fafafa;
+}
+
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;

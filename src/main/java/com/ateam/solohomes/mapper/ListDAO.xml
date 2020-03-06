@@ -15,21 +15,13 @@
 	</select>
 	
 	<select id="selectNew" resultType="com.ateam.solohomes.user.main.ListDTO">
-		SELECT 
-			g_uid, g_name, g_img, g_price
-		FROM 
-			goods 
-		ORDER BY 
-			g_regdate DESC
+		SELECT * FROM goods 
+		ORDER BY g_regdate DESC
 	</select>
 	
 	<select id="selectBest" resultType="com.ateam.solohomes.user.main.ListDTO">
-		SELECT 
-			g_uid, g_name, g_img, g_price
-		FROM 
-			goods 
-		ORDER BY 
-			g_likecnt DESC
+		SELECT * FROM goods
+		ORDER BY g_likecnt DESC
 	</select>
 </mapper>
 
