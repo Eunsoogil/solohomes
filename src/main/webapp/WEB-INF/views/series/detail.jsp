@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 
 <!-- ---------------------- 시리즈 이름 받아오기 ------------------------- -->
-<title>시리즈이름</title>
+<title>${dto[0].sr_subject }</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
