@@ -395,8 +395,8 @@ function goDelete(number) {
 				</div>				
 			</div>	
 			<div class="popBtnBox">
-				<button class="popBtn accept">신고하기</button>
-				<button class="popBtn closePop">취소하기</button>
+				<button class="popBtn accept" style="outline: none;">신고하기</button>
+				<button class="popBtn closePop" style="outline: none;">취소하기</button>
 			</div>
 			
 		</form>
