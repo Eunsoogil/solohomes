@@ -1,9 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<jsp:include page="/common/menu"/>
 <html lang="ko">
   <head>
     <title>회원정보수정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+	
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/magnific-popup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/aos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/ionicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/jquery.timepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/flaticon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/icomoon.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/mypage.css">
   </head>
   
   <script>
@@ -82,31 +103,78 @@
   </script>
   
   <body>
+  
+	<!-- 대문 -->
+	<div class="hero-wrap hero-bread">
+		<div class="container">
+			<div
+				class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<h1 class="mb-0 bread">회원 정보 수정</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 
-
-<form name="frm" action="${pageContext.request.contextPath }/user/mypage/memberUpdateOk.do" method="post" onsubmit="return chkSubmit()">
-<input type="hidden" name="mb_uid" value="${dto.mb_uid }"/>
-닉네임:
-<input type="text" name="mb_nn" value="${dto.mb_nn }"/><br>
-비밀번호:
-<input type="text" name="mb_pw"/><br>
-비밀번호확인:
-<input type="text" name="mb_pwCheck"/><br>
-이메일:
-<input type="text" name="mb_email" value="${dto.mb_email }"/><br>
-주소:
-<input type="text" id="sample6_postcode" value="${dto.mb_zipcode }" name="mb_zipcode" placeholder="우편번호" readonly="readonly"/>
-<input class="addr-btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"/></br>
-<input class="addr" type="text" id="sample6_address" value="${dto.mb_addr }" name="mb_addr" placeholder="주소" readonly="readonly"/></br>
-<input class="addr" type="text" id="sample6_detailAddress" value="${dto.mb_addr2 }" name="mb_addr2" placeholder="상세주소"/></br>
-<input class="addr" type="text" id="sample6_extraAddress" style="display: none;" placeholder="상세주소"/></br>
-연락처:
-<input type="text" name="mb_phone" value="${dto.mb_phone }"/><br>
-<br><br>
-<input type="submit" value="수정"/>
-</form>
- 
- 
+	<!-- 폼 -->
+	<section class="ftco-section contact-section bg-light">
+			<div class="container">
+				<div class="row block-9">
+					<div class="formBox">
+		
+					<form name="frm" action="${pageContext.request.contextPath }/user/mypage/memberUpdateOk.do" method="post" onsubmit="return chkSubmit()"  class="bg-white p-5 contact-form form-group3">
+						<input type="hidden" name="mb_uid" value="${dto.mb_uid }"/>
+						
+							<div class="frm_input_set">
+							<label for="mb_nn" class="col-form-label" id="label_nn">닉네임</label>
+							<input type="text" id="mb_nn" name="mb_nn" value="${dto.mb_nn }" class="form-control3"/>
+							</div>
+							
+							<div class="frm_input_set">
+							<label for="mb_pw2" class="col-form-label" id="label_pw2">비밀번호</label>
+							<input type="text" name="mb_pw" id="mb_pw2" class="form-control3"/>
+							</div>
+							
+							<div class="frm_input_set">
+							<label for="mb_pwCheck" class="col-form-label" id="label_pwCheck">비밀번호 확인</label>
+							<input type="text" name="mb_pwCheck" id="mb_pwCheck" class="form-control3"/>
+							</div>
+							
+							<div class="frm_input_set">
+							<label for="mb_email" class="col-form-label" id="label_email">이메일</label>
+							<input type="text" name="mb_email" id="mb_email" value="${dto.mb_email }" class="form-control3"/>
+							</div>
+							
+							<div class="frm_input_set">
+							<label for="sample6_postcode" class="col-form-label" id="label_addr">주소</label><br>
+							<input type="text" id="sample6_postcode" value="${dto.mb_zipcode }" name="mb_zipcode" placeholder="우편번호" readonly="readonly"/>
+							<input type="button" class="addr-btn btn btn-primary"  id="updateInfoBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"/>
+							<input class="addr form-control3" type="text" id="sample6_address" value="${dto.mb_addr }" name="mb_addr" placeholder="주소" readonly="readonly"/>
+							<input class="addr form-control3" type="text" id="sample6_detailAddress" value="${dto.mb_addr2 }" name="mb_addr2" placeholder="상세주소" />
+							<input class="addr form-control3" type="text" id="sample6_extraAddress" style="display: none;" placeholder="상세주소"/>
+							</div>
+							
+							<div class="frm_input_set">
+							<label for="mb_phone" class="col-form-label" id="label_phone">연락처</label>
+							<input type="text" name="mb_phone" id="mb_phone" value="${dto.mb_phone }" class="form-control3"/><br>
+							</div>
+							
+							<div class="frm_input_set">
+							<input type="submit" class="btn btn-primary pwcheck-form" value="수정"/>
+							</div>
+							
+					
+					</form>
+ 				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+	
+	
+	
  
  	<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -163,5 +231,23 @@
 					}).open();
 		}
 	</script>
+	
+	
+	<script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.easing.1.3.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/aos.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/jquery.animateNumber.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/scrollax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/js/user/main.js"></script>
   </body>
 </html>
+<jsp:include page="/common/footer" />

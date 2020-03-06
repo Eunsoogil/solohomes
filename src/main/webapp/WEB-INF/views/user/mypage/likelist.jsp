@@ -9,6 +9,7 @@
 	int mb_uid = 2;
 %>       
 <!DOCTYPE html>
+<jsp:include page="/common/menu"/>
 <html lang="ko">
   <head>
     <title>좋아요 목록</title>
@@ -42,18 +43,20 @@
   
   </head>  
   <body>
-  <jsp:include page="/common/menu" />
-  <input type="hidden" id="page"/>
-  
-	  <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">Collection</h1>
-          </div>
-        </div>
-      </div>
-    </div>
+  	<!-- 대문 -->
+	<div class="hero-wrap hero-bread">
+		<div class="container">
+			<div
+				class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<h1 class="mb-0 bread">찜목록</h1>
+					<p class="breadcrumbs">
+						
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 		
 		<section class="ftco-section bg-light">
     	<div class="container-fluid">
@@ -256,6 +259,7 @@
 	<script src="${pageContext.request.contextPath }/js/user/scrollax.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/user/main.js"></script>
 	
+   <input type="hidden" id="page"/>
   </body>
 </html>
 <jsp:include page="/common/footer" />

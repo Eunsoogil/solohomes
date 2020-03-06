@@ -202,10 +202,10 @@ function sessionchk(){
 			<ul class="left">
 				<h3>마이페이지</h3>
 				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
-				<li><a href="#">구매목록</a></li>
-				<li><a href="#">좋아요한 상품</a></li>
-				<li><a href="#">1:1문의</a></li>
-				<li><a href="#">회원정보수정</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/purchaselist.do">구매목록</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/likelist.do">좋아요한 상품</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/requestlist.do">1:1문의</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/memberCheck.do">회원정보수정</a></li>
 			</ul>
 			<span class="close"><i class="fas fa-times"></i></span>
 		</div>
