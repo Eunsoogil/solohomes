@@ -107,7 +107,7 @@ function sessionchk(){
 			<div class="pc">
 				<a id="menuBtn"><i class="fas fa-bars"></i></a>
 				<a id="brand" href="${pageContext.request.contextPath}/user/main.do">
-					<img src="${pageContext.request.contextPath}/img/logo.png">
+					<img src="${pageContext.request.contextPath}/img/flogo.png">
 				</a>
 			</div>
 			<div class="pc mo_none">

@@ -96,7 +96,7 @@ $(document).ready(function(){
 					$("#id_check").text("사용가능!");
 					$("#id_check").css("color","green");
 					$("#lsubmit_button").attr("disabled", false);
-					$("#lsubmit_button").css("background-color", "#A91F24");
+					$("#lsubmit_button").css("background-color", "#c80a1e");
 				}
 				
 			}
@@ -125,7 +125,7 @@ $(document).ready(function(){
 						$("#nick_check").text("사용가능!");
 						$("#nick_check").css("color","green");
 						$("#lsubmit_button").attr("disabled", false);
-						$("#lsubmit_button").css("background-color", "#A91F24");
+						$("#lsubmit_button").css("background-color", "#c80a1e");
 					}
 					
 				}
@@ -156,7 +156,7 @@ $(document).ready(function(){
 					$("#pw_check").text("비밀번호 같음!");
 					$("#pw_check").css("color","green");
 					$("#lsubmit_button").attr("disabled", false);
-					$("#lsubmit_button").css("background-color", "#A91F24");
+					$("#lsubmit_button").css("background-color", "#c80a1e");
 				}
 				
 			}

@@ -65,7 +65,7 @@ $(document).ready(function(){
 			<div id="sendtext">
 				<p id="p4">&nbsp&nbsp고객님의 메일함으로</p>
 				<p id="p5">인증 메일을 보넸습니다</p>
-				<p id="p6">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp확인해주세요</p>
+				<p id="p6">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp확인해주세요</p>
 			</div>
 		</div>
 	</div>

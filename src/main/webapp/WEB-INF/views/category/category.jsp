@@ -133,7 +133,7 @@ function upDateList(jsonObj){
 			result += "<div class='text py-3 px-3'>";
 			result += "<h3><a>" + list[i].g_name + "</a></h3>";
 			result += "<div class='d-flex'><div class='pricing'>";
-			result += "<p class='price'><span class='price-sale'>" + numberWithCommas(list[i].g_price) + "</span></p></div>";
+			result += "<p class='price'><span class='price-sale'>" + numberWithCommas(list[i].g_price) + "</span>원</p></div>";
 			result += "<div class='rating'><p class='text-right'>";
 			result += "<span><i class='ion-ios-heart'></i> " + list[i].g_likecnt + "</span></p>";
 			result += "</div></div></div></div></div>";
