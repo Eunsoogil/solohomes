@@ -8,12 +8,12 @@ font {font-family:'Noto Sans KR', sans-serif;}
 
 #login11 #id {position: absolute; width:215px; height: 40px; left: 145px; top: 180px; border: none; border-radius: 5px; padding-left: 10px;}
 #login11 #pw {position: absolute; width: 215px; height: 40px; left: 145px; top: 235px; border: none; border-radius: 5px;padding-left: 10px;}
-#login11 #submit_button {position: absolute; width:215px; height: 40px; left: 144px; top:286px; background-color: #A91F24; border:none; color: white; font-size: 12px; cursor: pointer; border-radius: 5px;}
-#login11 #pass {position: absolute; width: 215px; height: 40px; left: 144px; top:335px;  background-color: #A91F24; border: none; color: white; text-align: center; line-height: 40px; border-radius: 5px; font-size: 12px}
-#login11 #find {position: absolute; width: 215px; height: 40px; left: 144px; top:384px;  background-color: #A91F24; border: none; color: white; text-align: center; line-height: 40px; border-radius: 5px; font-size: 12px}
+#login11 #submit_button {position: absolute; width:215px; height: 40px; left: 144px; top:286px; background-color: #c80a1e; border:none; color: white; font-size: 12px; cursor: pointer; border-radius: 5px;}
+#login11 #pass {position: absolute; width: 215px; height: 40px; left: 144px; top:335px;  background-color: #c80a1e; border: none; color: white; text-align: center; line-height: 40px; border-radius: 5px; font-size: 12px}
+#login11 #find {position: absolute; width: 215px; height: 40px; left: 144px; top:384px;  background-color: #c80a1e; border: none; color: white; text-align: center; line-height: 40px; border-radius: 5px; font-size: 12px}
 
 #terms {position: relative; margin: 0 auto; background:url("img/termsBG.png") center center no-repeat; width:515px; height: 515px;}
-#terms #p1 {position: absolute; left: 40px; top: 40px; color: red; font-size: 13px;}
+#terms #p1 {position: absolute; left: 40px; top: 40px; color: #c80a1e; font-size: 13px;}
 #terms #p2 {position: absolute; left: 220px;top: 40px; font-size: 13px;}
 #terms #p3 {position: absolute; right: 45px;top: 40px; font-size: 13px;}
 #terms #policy { position: relative; width: 278px; height: 314px; top: 100px; margin: 0 auto;  text-align: left;}
@@ -25,7 +25,7 @@ font {font-family:'Noto Sans KR', sans-serif;}
 
 #logInfo {position: relative; margin: 0 auto; background:url("img/loginfo3.png") center center no-repeat; width:515px; height: 515px;}
 #logInfo #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
-#logInfo #p2 {position: absolute; left: 220px;top: 40px; color: red; font-size: 13px;}
+#logInfo #p2 {position: absolute; left: 220px;top: 40px; color: #c80a1e; font-size: 13px;}
 #logInfo #p3 {position: absolute; right: 45px;top: 40px; font-size: 13px;}
 #logInfo form {position: absolute; left: 110px; top: 126px; width: 320px; height: 300px;}
 #logInfo form input {border: none; width: 200px; height: 25px; font-size: 12px; background-color: transparent;}
@@ -49,9 +49,9 @@ font {font-family:'Noto Sans KR', sans-serif;}
 #sendPage {position: relative; margin: 0 auto; background:url("img/send.png") center center no-repeat; width:515px; height: 515px;}
 #sendPage #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}
 #sendPage #p2 {position: absolute; left: 220px;top: 40px;  font-size: 13px;}
-#sendPage #p3 {position: absolute; right: 45px;top: 40px; color: red; font-size: 13px;}
-#sendPage h2 {position: absolute; color: white; top: 89px; left: 134px; font-size: 19px;}
-#sendPage #sendtext {position: relative; margin: 0 auto; width: 200px; height: 200px; top: 230px; left: 10px;}
+#sendPage #p3 {position: absolute; right: 45px;top: 40px; color: #c80a1e; font-size: 13px;}
+#sendPage h2 {position: absolute; color: white; top: 104px; left: 138px; font-size: 19px;}
+#sendPage #sendtext {position: relative; margin: 0 auto; width: 200px; height: 200px; top: 230px; left: 21px;}
 
 #findid {position: relative; margin: 0 auto; background:url("img/findid2.png") center center no-repeat; width:515px; height: 515px;}
 #findid #p1 {position: absolute; left: 40px; top: 40px;  font-size: 13px;}

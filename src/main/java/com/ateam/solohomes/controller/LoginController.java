@@ -140,5 +140,9 @@ public class LoginController {
 	public String logout() {
 		return "member/logOut";
 	}
+	@RequestMapping(value="/loginCheck.do")
+	public String loginCheck() {
+		return "member/loginCheck";
+	}
 	
 }

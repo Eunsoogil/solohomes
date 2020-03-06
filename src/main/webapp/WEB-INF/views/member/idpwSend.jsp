@@ -7,14 +7,9 @@
 		history.back();
 	</script>
 </c:if>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>이메일 보내기</title>
-</head>
-<body>
-
-</body>
-</html>
+<c:if test="${result == 0}">
+	<script>
+		alert("ID / PW가 성공적으로 이메일 발송 되었습니다.");
+		location.href="login.do";
+	</script>
+</c:if>

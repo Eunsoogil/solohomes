@@ -71,4 +71,18 @@
 		<beans:property name="maxInMemorySize" value="52428800"/>
 		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
 	</beans:bean>
+	
+	<!-- Interceptor 빈 생성 -->
+		<beans:bean name="LoginInterceptor"
+						class="com.ateam.solohomes.controller.LoginInterceptor"/>
+	<!-- Interceptor 등록/설정 -->
+		<interceptors>
+			<interceptor>
+				<mapping path="/cart/**"/>	
+				<beans:ref bean="LoginInterceptor"/>	
+			</interceptor>
+		</interceptors>
+	
+	
+	
 </beans:beans>
