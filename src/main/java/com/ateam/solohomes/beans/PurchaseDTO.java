@@ -13,7 +13,7 @@ public class PurchaseDTO {
 	private String py_zipcode;
 	private String py_addr;
 	private String py_addr2;
-	private String py_price;
+	private int py_price;
 	
 	private int in_uid;
 	private String in_img;
@@ -21,7 +21,7 @@ public class PurchaseDTO {
 	
 	private int g_uid;
 	private String g_name;
-	private String g_price;
+	private int g_price;
 	
 	private int co_uid;
 	
@@ -36,13 +36,11 @@ public class PurchaseDTO {
 
 	
 
-	
-	
-	
+
 
 	public PurchaseDTO(int mb_uid, int py_uid, int py_amount, int py_confirm, Timestamp py_regdate, String py_zipcode,
-			String py_addr, String py_addr2, String py_price, int in_uid, String in_img, String in_color, int g_uid,
-			String g_name, String g_price, int co_uid, GoodsDTO goods, GoodsInfoDTO goodsInfo) {
+			String py_addr, String py_addr2, int py_price, int in_uid, String in_img, String in_color, int g_uid,
+			String g_name, int g_price, int co_uid, GoodsDTO goods, GoodsInfoDTO goodsInfo) {
 		super();
 		this.mb_uid = mb_uid;
 		this.py_uid = py_uid;
@@ -63,10 +61,6 @@ public class PurchaseDTO {
 		this.goods = goods;
 		this.goodsInfo = goodsInfo;
 	}
-
-
-
-
 
 
 
@@ -150,14 +144,26 @@ public class PurchaseDTO {
 	}
 
 
-	public String getPy_price() {
+
+	public int getPy_price() {
 		return py_price;
 	}
 
 
-	public void setPy_price(String py_price) {
+	public void setPy_price(int py_price) {
 		this.py_price = py_price;
 	}
+
+
+
+
+
+	public void setG_price(int g_price) {
+		this.g_price = g_price;
+	}
+
+
+
 
 
 	public int getIn_uid() {
@@ -210,13 +216,11 @@ public class PurchaseDTO {
 	}
 
 
-	public String getG_price() {
+
+
+
+	public int getG_price() {
 		return g_price;
-	}
-
-
-	public void setG_price(String g_price) {
-		this.g_price = g_price;
 	}
 
 
@@ -255,10 +259,6 @@ public class PurchaseDTO {
 	public void setCo_uid(int co_uid) {
 		this.co_uid = co_uid;
 	}
-
-
-
-
 
 
 

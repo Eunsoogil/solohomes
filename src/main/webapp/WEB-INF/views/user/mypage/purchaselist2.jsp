@@ -288,7 +288,8 @@ setTimeout(function() {
 
 function loadPage(page, searchStartDate, searchEndDate, keyword){
 	
-   var urlText;   
+   var urlText;
+   
    var searchStartDate = $('#searchStartDate').val();
    var searchEndDate = $('#searchEndDate').val();
    var keyword = $('#keyword').val();
@@ -376,8 +377,9 @@ function updateList(jsonObj){
          result += "<td class='productTd'>" + items[i].g_name +"</td>";
          result += "<td>" + items[i].in_color +"</td>\n";       
          result += "<td>" + items[i].py_amount +"</td>\n";        
-         result += "<td class='price'>" + numberWithCommas(items[i].py_price) +"원</td>\n";
-         result += "<td class='price'>총 금액</td>\n";
+         result += "<td class='price'>" + numberWithCommas(items[i].g_price) +"원</td>\n";
+         var totalPrice = parseInt(items[i].g_price) * parseInt(items[i].py_amount);
+         result += "<td class='price'>"+numberWithCommas(totalPrice)+"원</td>\n";
          if(items[i].py_confirm == 1){
             result += "<td>구매 확정 완료</td>\n";
          }else{
@@ -442,7 +444,7 @@ function numberWithCommas(x) {
 </head>
 
 <body>
-
+<input type="hidden" id="page"/>
 	<div class="hero-wrap hero-bread">
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
