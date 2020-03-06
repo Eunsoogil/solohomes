@@ -90,6 +90,15 @@ function sessionchk(){
 	}
 	return true;
 }
+
+$(window).resize(function() {
+	var winWidth = $(window).width();
+	var modal = document.getElementById('myModal');
+	if(winWidth >= 600){
+		$(".mo_menu").removeClass("show");
+		modal.style.display = "none";
+	}
+});
 </script>
 </head>
 <body>
@@ -161,7 +170,7 @@ function sessionchk(){
 		<li><a href="${pageContext.request.contextPath}/series/series.do">시리즈</a></li>
 		<li><a class="mypage">마이페이지 <i class="fas fa-sort-down"></i></a></li>
 			<ul class="my_sub pl-0">
-				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" >장바구니</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/purchaselist.do">구매목록</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/likelist.do">좋아요한 상품</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/requestlist.do">1:1문의</a></li>
@@ -210,7 +219,7 @@ function sessionchk(){
 			</ul>
 			<ul class="left">
 				<h3>마이페이지</h3>
-				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" >장바구니</a></li>
 				<li><a href="#">구매목록</a></li>
 				<li><a href="#">좋아요한 상품</a></li>
 				<li><a href="#">1:1문의</a></li>
@@ -225,15 +234,6 @@ function sessionchk(){
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/menu.js" type="text/javascript"></script>
-	<script type="text/javascript">
-	$(window).resize(function() {
-		var winWidth = $(window).width();
-		var modal = document.getElementById('myModal');
-		if(winWidth >= 600){
-			$(".mo_menu").removeClass("show");
-			modal.style.display = "none";
-		}
-	});
-</script>
+
 </body>
 </html>
