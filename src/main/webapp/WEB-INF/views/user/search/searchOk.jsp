@@ -18,7 +18,7 @@
 		location.href = "${pageContext.request.contextPath}/series/detail.do?sr_uid=${g_uid-10}";
 	</script>			
 </c:if>
-<c:if test="${g_uid > 10}">
+<c:if test="${g_uid > 15}">
 	<script>
 		location.href = "${pageContext.request.contextPath}/user/productInfo.do/${g_uid}";
 	</script>			
