@@ -9209,7 +9209,7 @@ table select{
 }
 
 .pgBtn{
-	background: white;
+	background: none;
 	border:1px solid #c80a1e;
 	border-radius: 50%;
 	width:30px;
@@ -9232,7 +9232,7 @@ table select{
 }
 
 .prne{
-	width:103px;
+	width:105px;
 	margin:10px auto;
 }
 .prne button{
