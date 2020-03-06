@@ -7685,7 +7685,7 @@ h1, h2, h3, h4, h5,
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
-  border-radius: 30px;
+  border-radius: 30px; !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
   .btn.btn-primary:hover{
@@ -7695,10 +7695,10 @@ h1, h2, h3, h4, h5,
     outline: none; }
   .btn.btn-primary {
     background: #c80a1e;
-    border: 1px solid #c80a1e;
+    border: 1px solid #c80a1e; 
     color: #fff !important; }
     .btn.btn-primary:hover {
-      border: 1px solid #c80a1e;
+      border: 1px solid #c80a1e; 
       background: transparent;
       color: #c80a1e; }
     .btn.btn-primary.btn-outline-primary {
@@ -7720,7 +7720,7 @@ h1, h2, h3, h4, h5,
     color: #fff; }
     .btn.btn-outline-white:hover, .btn.btn-outline-white:focus, .btn.btn-outline-white:active {
       background: #fff;
-      border-color: #fff;
+      border-color: #fff; !important;
       color: #c80a1e; }
 
 .img-2 {
@@ -8183,7 +8183,9 @@ textarea.form-control {
 
 .ftco-animate {
   opacity: 0;
-  visibility: hidden; }
+  visibility: hidden; 
+  overflow: hidden;
+}
 
 .bg-primary {
   background: #c80a1e !important; }
@@ -8713,7 +8715,9 @@ textarea.form-control {
   width: 100%; }
 
 .contact-section .contact-form {
-  width: 100%; }
+  width: 100%; 
+  margin: auto;
+  }
 
 .block-9 .form-control {
   outline: none !important;
@@ -9160,7 +9164,10 @@ table select{
 }
 
 .text-right>span>i{
-	color:#c80a1e;
+	color:#ff001b;
+}
+.text-right>span{
+	color:black;
 }
 
 #sortdivt{
@@ -9196,6 +9203,67 @@ table select{
 #reContent{
 	height:300px !important;
 }
+
+.bdGray{
+	border:1px solid #fafafa;
+}
+
+.pgBtn{
+	background: none;
+	border:1px solid #c80a1e;
+	border-radius: 50%;
+	width:30px;
+	height:30px;
+	margin:10px;	
+	margin-top:20px;
+	color:#c80a1e;
+	cursor: pointer;
+}
+
+.pgBtn:hover{
+	background:#c80a1e;
+	color:white !important;
+}
+
+#dateOk{
+	width: 100%;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.prne{
+	width:105px;
+	margin:10px auto;
+}
+.prne button{
+	height:30px !important;
+	color:#c80a1e !important;
+}
+
+.searchBox{
+	margin:10px 0;
+	float:right;
+	width:300px;
+}
+
+#keyword_search_btn{
+	border:none !important;
+	height:inherit !important;
+	padding:5px;
+	position: relative;
+	right: inherit;
+}
+#keyword_search_btn i{
+	font-size:1.5em;
+	color:#888;
+}
+#keyword_search_btn i:hover{
+	color:#c80a1e
+}
+
+.imageTd, .productTd{
+	width:15%;
+}
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;
@@ -9207,4 +9275,22 @@ table select{
 	/*
 	.mouse{bottom:13em;}
 	*/
+}
+@media screen and (min-width:769px) and (max-width:989px){
+	#keyword_search_btn{
+		display:block;
+		width:26px;
+		margin:0 auto;
+	}
+}
+@media screen and (max-width:768px){
+	.searchBox{
+		float:none;
+		width:100%;
+	}
+	#keyword_search_btn{
+		display:block;
+		width:26px;
+		margin:0 auto;
+	}
 }

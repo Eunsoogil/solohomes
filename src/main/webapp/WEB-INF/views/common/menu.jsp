@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" href="${pageContext.request.contextPath}/img/favi.png">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -48,6 +49,12 @@ function displaySuggest(data){
 				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
 				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
 				"/카테고리" + "</b></span>" + "</a><br>";				
+			} else if(11 <= parseInt(keywordList[i+1]) && parseInt(keywordList[i+1]) <= 15){
+				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/series/detail.do?sr_uid=" +
+				(parseInt(keywordList[i+1])-10) + "'>" +
+				"<span style='color:#A91F24'><b>" + start + "</b></span>" + 
+				"<span style='color:grey'><b>" + keywordList[i].substring(start.length, keywordList[i].length) + 
+				"/시리즈" + "</b></span>" + "</a><br>";	
 			} else {
 				html += "<a style='text-decoration: none' href='${pageContext.request.contextPath}/user/productInfo.do/" +
 				keywordList[i+1] + "'>" +
@@ -89,6 +96,23 @@ function sessionchk(){
 	}
 	return true;
 }
+
+$(window).resize(function() {
+	var winWidth = $(window).width();
+	var modal = document.getElementById('myModal');
+	if(winWidth >= 600){
+		$(".mo_menu").removeClass("show");
+		modal.style.display = "none";
+	}
+});
+
+window.addEventListener("click", function() {
+	var modal = document.getElementById('myModal');
+	if (event.target == modal) {
+		modal.style.display = "none";
+		$(".mo_menu").removeClass("show")
+	}	
+});
 </script>
 </head>
 <body>
@@ -120,52 +144,61 @@ function sessionchk(){
 				</form>
 			</div>
 			<div class="pc mo_none">
-<%
-	if(userLevel > 1){
-%>
-				<a id="login" style="width:110px" href="${pageContext.request.contextPath}/manager/index.do">관리자페이지</a>
-<%
-	}
-%>			
-
+		
 <%
 	if(userID == null){
 %>	
-				<a id="login" href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+				<a id="logInOut" class="login" href="${pageContext.request.contextPath}/member/login.do">로그인</a>
 <%
 	} else {
 %>
-				<a id="login" href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a>
+				<a id="logInOut" class="login" href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a>
 <%
 	}
-%>			
+%>		
+<%
+	if(userLevel > 1){
+%>
+				<a class="login mr-2" id="adminBtn" href="${pageContext.request.contextPath}/manager/index.do">관리자</a>
+<%
+	}
+%>		
 			</div>
 		</div>
 	</header>
 
 	<ul class="mo_menu">
 		<li><a class="f">가구 <i class="fas fa-sort-down"></i></a></li>
-		<ul class="f_sub">
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=5">거실장</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=3">서랍장</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">소파</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=6">옷장</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=8">의자</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=9">책상</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=10">책장</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=1">침대</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=7">테이블</a></li>
-			<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=2">화장대</a></li>
-		</ul>
+			<ul class="f_sub pl-0">
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=5">거실장</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=3">서랍장</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=4">소파</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=6">옷장</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=8">의자</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=9">책상</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=10">책장</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=1">침대</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=7">테이블</a></li>
+				<li><a href="${pageContext.request.contextPath}/category/category.do?g_type=2">화장대</a></li>
+			</ul>
 		<li><a href="${pageContext.request.contextPath}/series/series.do">시리즈</a></li>
 		<li><a class="mypage">마이페이지 <i class="fas fa-sort-down"></i></a></li>
-		<ul class="my_sub">
-			<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/purchaselist.do">구매목록</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/likelist.do">좋아요한 상품</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/requestlist.do">1:1문의</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/memberCheck.do">회원정보수정</a></li>
-		</ul>
+			<ul class="my_sub pl-0">
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" >장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/purchaselist.do">구매목록</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/likelist.do">좋아요한 상품</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/requestlist.do">1:1문의</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/memberCheck.do">회원정보수정</a></li>	
+			</ul>	
+		<li><a href="#">검색</a></li>				
+<%
+	if(userLevel > 1){
+%>
+				<li><a href="${pageContext.request.contextPath}/manager/index.do">관리자페이지</a></li>
+<%
+	}
+%>	
+
 <%
 	if(userID == null){
 %>	
@@ -176,9 +209,8 @@ function sessionchk(){
 				<li><a href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a></li>
 <%
 	}
-%>					
-		<li><a href="#">검색</a></li>
-	</ul>
+%>	
+		</ul>
 
 	<div class="menu" id="myModal">
 		<div class="modal-content">
@@ -201,7 +233,7 @@ function sessionchk(){
 			</ul>
 			<ul class="left">
 				<h3>마이페이지</h3>
-				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" onclick="return sessionchk();">장바구니</a></li>
+				<li><a href="${pageContext.request.contextPath}/cart/cart.do?mb_uid=${sessionScope.userUID}" >장바구니</a></li>
 				<li><a href="#">구매목록</a></li>
 				<li><a href="#">좋아요한 상품</a></li>
 				<li><a href="#">1:1문의</a></li>

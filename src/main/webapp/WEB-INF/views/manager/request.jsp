@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/img/favi.png">
     <!-- Bootstrap Core CSS -->
     <link href="../admin/pixel-html/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -41,26 +41,24 @@
     </div>
     <div id="wrapper">
         <!-- Navigation -->
+        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars
-"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="../admin/plugins/images/pixeladmin-logo.png" alt="home" /></b><span class="hidden-xs"><img src="../admin/plugins/images/pixeladmin-text.png" alt="home" /></span></a></div>
-                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
-                </ul>
+            <div class="navbar-header">
+            	<a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse">
+            		<i class="fa fa-bars"></i>
+            	</a>
+                <div class="top-left-part">
+                	<a class="logo" href="${pageContext.request.contextPath}/user/main.do">
+	                	<b>H</b>
+	                	<span class="hidden-xs">HoloHomes</span>
+                	</a>
+                </div>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="profile-pic" href="#"> <img src="../admin/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b> </a>
+                        <a href="${pageContext.request.contextPath}/member/logOut.do">로그아웃</a>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
         </nav>
         <!-- Left navbar-header -->
         <div class="navbar-default sidebar" role="navigation">
@@ -201,8 +199,7 @@
 				</div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
-        </div>
+			<footer class="footer text-center"> 2020 &copy; α-team HoloHomes </footer>        </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->

@@ -4,7 +4,7 @@ $("#submit_button").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#find").hover(function(){
@@ -12,7 +12,7 @@ $("#find").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#pass").hover(function(){
@@ -20,7 +20,7 @@ $("#pass").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#tpass").hover(function(){
@@ -28,7 +28,7 @@ $("#tpass").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#tback").hover(function(){
@@ -52,7 +52,7 @@ $("#lsubmit_button").hover(function(){
 		"background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
 	$(this).css({
-		"background-color" : "transparent"});
+		"background-color" : "#c80a1e"});
 });
 
 $("#zipbt").hover(function(){
@@ -60,7 +60,7 @@ $("#zipbt").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#findsm").hover(function(){
@@ -68,7 +68,7 @@ $("#findsm").hover(function(){
         "background-color" : "rgba(0, 0, 0, 0.2)"});
 }, function(){
     $(this).css({
-        "background-color" : "transparent"});
+        "background-color" : "#c80a1e"});
 });
 
 $("#fback").hover(function(){

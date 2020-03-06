@@ -20,6 +20,26 @@ public class MypageRequestViewCommand implements Command {
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
 		RequestDTO dto = dao.selectRequestByUid(rq_uid);
 		
+		
+		switch(dto.getRq_type()){
+		case 1: 
+			dto.setRq_type_str("배송문의");
+			break;
+		case 2:
+			dto.setRq_type_str("상품문의");
+			break;
+		case 3:
+			dto.setRq_type_str("결제문의");
+			break;
+		case 4:
+			dto.setRq_type_str("환불문의");
+			break;
+		case 5:
+			dto.setRq_type_str("기타문의");
+			break;
+			
+		}
+	
 		model.addAttribute("dto", dto);
 
 	}

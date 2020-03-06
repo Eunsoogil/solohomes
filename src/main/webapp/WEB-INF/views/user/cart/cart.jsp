@@ -68,12 +68,6 @@ function CheckForm(Join){
 </head>
 <body>
 	<c:choose>
-	<c:when test="${empty sessionScope.userUID}">
-		<script>
-			alert("로그인이 되어있지 않습니다");
-			location.href = "${pageContext.request.contextPath}/member/login.do";
-		</script>
-	</c:when>
 	<c:when test="${empty list || fn.length(list) == 0 }">
 		<script>
 			alert("장바구니가 비어있습니다");
@@ -124,7 +118,7 @@ function CheckForm(Join){
 							</select>
 						</td>
 						<td class="price" id="price">
-							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>	
+							<fmt:formatNumber value="${glist[status.index].g_price }" pattern="#,###,###"/>원	
 						</td>
 						<td class="quantity">
 							<div class="quantityBox">
@@ -145,7 +139,7 @@ function CheckForm(Join){
 							</div>						
 						</td>							
 						<td class="total" id="total">
-							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>	
+							<fmt:formatNumber value="${glist[status.index].g_price * list[status.index].cr_amount}" pattern="#,###,###"/>원	
 						</td>
 					</tr>
 					</c:forEach>
@@ -225,7 +219,7 @@ function plus(data){
 	var input = tr.cells[5].childNodes[1].childNodes[3];
 	var cost = tr.cells[4].childNodes[0].nodeValue.replace(/[^0-9]/g,"");
 	input.value = parseInt(input.value) + 1;
-	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value);
+	tr.cells[6].childNodes[0].nodeValue = numberWithCommas(cost * input.value) + "원";
 	totalCost();
 }
 

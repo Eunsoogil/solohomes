@@ -26,6 +26,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/owl.carousel.min.css">
@@ -38,6 +39,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/flaticon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/icomoon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 
 <script>
 function chkSubmit(){
@@ -63,6 +65,7 @@ function chkSubmit(){
 </head>
 
 <body>
+
 	<div class="hero-wrap hero-bread">
 		<div class="container">
 			<div
@@ -84,7 +87,7 @@ function chkSubmit(){
 			<div class="row block-9">
 				<div class="formBox">
 					<form name="frm" action="${pageContext.request.contextPath}/user/mypage/requestWriteOk.do" 
-						method="post" onsubmit="return chkSubmit()"class="bg-white p-5 contact-form">
+						method="post" onsubmit="return chkSubmit()" class="bg-white p-5 contact-form">
 						<input type="hidden" name="mb_uid" value="${mb_uid}"/>
 						<div>
 							<select name="rq_type" class="form-group rq_type">

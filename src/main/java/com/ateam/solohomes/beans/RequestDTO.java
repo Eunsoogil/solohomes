@@ -7,6 +7,7 @@ public class RequestDTO {
 	private int mb_uid;
 	private int rq_uid;
 	private int rq_type;
+	private String rq_type_str;
 	private String rq_subject;
 	private String rq_content;
 	private String rq_response;
@@ -84,6 +85,16 @@ public class RequestDTO {
 	public void setRq_regdate(Timestamp rq_regdate) {
 		this.rq_regdate = rq_regdate;
 	}
+
+	public String getRq_type_str() {
+		return rq_type_str;
+	}
+
+	public void setRq_type_str(String rq_type_str) {
+		this.rq_type_str = rq_type_str;
+	}
+
+	
 	
 	
 }

@@ -65,7 +65,7 @@
 						<a href="${pageContext.request.contextPath}/series/detail.do?sr_uid=${dto.sr_uid }" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.sr_img }">
 						</a>
-						<div class="text py-3 px-3 bg-light">
+						<div class="text py-3 px-3 bdGray">
 							<h3><a href="${pageContext.request.contextPath}/series/detail.do?sr_uid=${dto.sr_uid }">${dto.sr_subject }</a></h3>
 						</div>
 					</div>
@@ -116,6 +116,11 @@
 											</span>
 										</p>
 									</div>
+									<div class="rating">
+									<p class="text-right">
+										<span><i class="ion-ios-heart"></i> ${dto.g_likecnt }</span>
+									</p>
+								</div>
 								</div>
 							</div>
 						</div>
@@ -143,7 +148,7 @@
 						<a href="${pageContext.request.contextPath}/user/productInfo.do/${dto.g_uid }" class="img-prod">
 							<img class="img-fluid" src="${pageContext.request.contextPath}/img/goods/${dto.g_img }">
 						</a>
-						<div class="text py-3 px-3 bg-light">
+						<div class="text py-3 px-3 bdGray">
 							<c:choose>
 								<c:when test="${fn:length(dto.g_name) > 20}">
 									<h3>
@@ -164,6 +169,11 @@
 										</span>
 									</p>
 								</div>
+								<div class="rating">
+									<p class="text-right">
+										<span><i class="ion-ios-heart"></i> ${dto.g_likecnt }</span>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -177,7 +187,7 @@
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#A91F24" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#c80a1e" />
 		</svg>
 	</div>
 

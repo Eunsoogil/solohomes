@@ -12,6 +12,7 @@ public class ListDTO {
 	private String g_name;
 	private String g_img;
 	private int g_price;
+	private int g_likecnt;
 	
 	public ListDTO() {
 		super();
@@ -80,5 +81,13 @@ public class ListDTO {
 
 	public void setG_price(int g_price) {
 		this.g_price = g_price;
+	}
+
+	public int getG_likecnt() {
+		return g_likecnt;
+	}
+
+	public void setG_likecnt(int g_likecnt) {
+		this.g_likecnt = g_likecnt;
 	}
 }

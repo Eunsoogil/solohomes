@@ -34,8 +34,8 @@
  	</select>
  	
  	<select id="selectPurchaseByUid" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", FORMAT((g.g_price*p.py_amount),0) "py_price", p.py_confirm "py_confirm"
-			FROM goods g, goods_info gi, `member` m, payment p
+			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", FORMAT((g.g_price*p.py_amount),0) "py_price", p.py_confirm "py_confirm", c.co_uid "co_uid"
+			FROM goods g, goods_info gi, `member` m, payment p LEFT OUTER JOIN comment c ON p.py_uid = c.py_uid
 			WHERE p.py_uid = #{py_uid}
 			     and m.mb_uid = p.mb_uid
 			     and p.in_uid = gi.in_uid
