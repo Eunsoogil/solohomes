@@ -78,8 +78,7 @@
 	<!-- Interceptor 등록/설정 -->
 		<interceptors>
 			<interceptor>
-				<mapping path="/cart/**"/>
-				<mapping path="/series/**"/>		
+				<mapping path="/cart/**"/>	
 				<beans:ref bean="LoginInterceptor"/>	
 			</interceptor>
 		</interceptors>
