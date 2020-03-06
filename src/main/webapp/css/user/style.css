@@ -8183,7 +8183,9 @@ textarea.form-control {
 
 .ftco-animate {
   opacity: 0;
-  visibility: hidden; }
+  visibility: hidden; 
+  overflow: hidden;
+}
 
 .bg-primary {
   background: #c80a1e !important; }
@@ -9206,6 +9208,62 @@ table select{
 	border:1px solid #fafafa;
 }
 
+.pgBtn{
+	background: white;
+	border:1px solid #c80a1e;
+	border-radius: 50%;
+	width:30px;
+	height:30px;
+	margin:10px;	
+	margin-top:20px;
+	color:#c80a1e;
+	cursor: pointer;
+}
+
+.pgBtn:hover{
+	background:#c80a1e;
+	color:white !important;
+}
+
+#dateOk{
+	width: 100%;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.prne{
+	width:103px;
+	margin:10px auto;
+}
+.prne button{
+	height:30px !important;
+	color:#c80a1e !important;
+}
+
+.searchBox{
+	margin:10px 0;
+	float:right;
+	width:300px;
+}
+
+#keyword_search_btn{
+	border:none !important;
+	height:inherit !important;
+	padding:5px;
+	position: relative;
+	right: inherit;
+}
+#keyword_search_btn i{
+	font-size:1.5em;
+	color:#888;
+}
+#keyword_search_btn i:hover{
+	color:#c80a1e
+}
+
+.imageTd, .productTd{
+	width:15%;
+}
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;
@@ -9217,4 +9275,22 @@ table select{
 	/*
 	.mouse{bottom:13em;}
 	*/
+}
+@media screen and (min-width:769px) and (max-width:989px){
+	#keyword_search_btn{
+		display:block;
+		width:26px;
+		margin:0 auto;
+	}
+}
+@media screen and (max-width:768px){
+	.searchBox{
+		float:none;
+		width:100%;
+	}
+	#keyword_search_btn{
+		display:block;
+		width:26px;
+		margin:0 auto;
+	}
 }

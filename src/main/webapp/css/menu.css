@@ -57,7 +57,7 @@ header img{
 .pc input:focus {outline:none;}
 
 .searchBtn{
-	border:none;
+	border:none !important;
 	background:none;
 	position: absolute;
 	right:0;
@@ -106,7 +106,7 @@ header img{
 }
 .modal-content i{
 	color:#888;
-	font-size:0.7em;
+	font-size:17px;
 }
 .modal-content i:hover{
 	color:#c80a1e;

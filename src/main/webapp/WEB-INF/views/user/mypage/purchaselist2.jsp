@@ -7,70 +7,51 @@
    int writePages = 5;
 %>
 <%!
-   int mb_uid = 2;
-%>     
+	int mb_uid = 2;
+%>
+
+<jsp:include page="/common/menu" /> 
+
 <!DOCTYPE html>
-<jsp:include page="/common/menu" />
 <html>
 <head>
 <meta charset="UTF-8">
 <title>구매 목록</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-	<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>
-	<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/bootstrap-material-datetimepicker.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/imagebox.css" />
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
-	
-	<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
-	<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
-	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/user/bootstrap-material-datetimepicker.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/bootstrap-material-datetimepicker.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/imagebox.css" />
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/user/bootstrap-material-datetimepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
-	
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.carousel.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.theme.default.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/magnific-popup.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/aos.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/ionicons.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/jquery.timepicker.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/flaticon.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/icomoon.css">
-   
-   
-    <!-- 표 -->
-    <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/main.css">
-	<!--===============================================================================================-->
-	
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/style.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/user/mypage/css/mypage.css">
-	
-	
-</head>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/ionicons.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/jquery.timepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/icomoon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/user/style.css">	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/imagebox.css">
 
 <script type="text/javascript">
 // TODO
@@ -127,8 +108,6 @@ $(document).ready(function(){
 		$("#popUp").css("display", "none");
 		return false;
 	});
-   
-   
 });
 
 
@@ -383,39 +362,35 @@ function updateList(jsonObj){
       var i;
       for(i = 0; i < count; i++){
 	  
-         result += "<tr class='row100 body'>\n";
-
-         result += "<td class='cell100 column100'>" + items[i].py_uid +"</td>\n";
-         result += "<td class='cell100 column101'><img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].in_img +"'/></td>\n";
-         result += "<td class='cell100 column102'>" + items[i].g_name +"</td>\n";
-
-         // Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
+         result += "<tr class='text-center'>";
+         result += "<td>" + items[i].py_uid +"</td>";
+         
+      // Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
          var regDate = new Date(items[i].py_regdate);
          var strDate = regDate.getFullYear() + "-" +
                   (regDate.getMonth() + 1) + "-" +     // +1 해추어어야 한다 
                   regDate.getDate();
          
-         result += "<td class='cell100 column103'>" +strDate + "</td>\n";
-         result += "<td class='cell100 column104'>" + items[i].py_amount +"</td>\n";
-         result += "<td class='cell100 column105'>" + items[i].in_color +"</td>\n";
-         result += "<td class='cell100 column106'>" + items[i].py_price +"</td>\n";
-         
-         
+         result += "<td class='cell100 column103'>" +strDate + "</td>";         
+         result += "<td class='imageTd'><img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].in_img +"'/></td>"
+         result += "<td class='productTd'>" + items[i].g_name +"</td>";
+         result += "<td>" + items[i].in_color +"</td>\n";       
+         result += "<td>" + items[i].py_amount +"</td>\n";        
+         result += "<td class='price'>" + numberWithCommas(items[i].py_price) +"원</td>\n";
+         result += "<td class='price'>총 금액</td>\n";
          if(items[i].py_confirm == 1){
-            result += "<td class='cell100 column107'>구매 확정 완료</td>\n";
+            result += "<td>구매 확정 완료</td>\n";
          }else{
-            result += "<td class='cell100 column107'><input type='button' name='py_uid' value='구매확정' onclick='pyConfrim("+items[i].py_uid+")'/></td>\n";
+            result += "<td><input type='button' name='py_uid' value='구매확정' onclick='pyConfrim("+items[i].py_uid+")'/></td>\n";
          }
          
          if(items[i].co_uid == "" ){
         	items[i].co_uid = 0;
 
-            result += "<td class='cell100 column108'><input type='button' class='writeBtn' onclick = 'popUp("+items[i].py_uid+", 0)' value='작성하기'/></td>\n";  
+            result += "<td><input type='button' class='writeBtn' onclick = 'popUp("+items[i].py_uid+", 0)' value='작성하기'/></td>\n";  
          }else{
-            result += "<td class='cell100 column108'><input type='button' class='updateBtn' onclick = 'popUp("+items[i].py_uid+", 1)' value='수정'/></td>\n";
-         }
-         
-         
+            result += "<td><input type='button' class='updateBtn' onclick = 'popUp("+items[i].py_uid+", 1)' value='수정'/></td>\n";
+         }                
      	 result += "</tr>\n";
       }
       
@@ -439,7 +414,7 @@ function searchDate(){
    var keyword = "";
 
    if(searchStartDate == '' || searchEndDate == ''){
-      alert("검색기간을 입력해주세요");
+      alert("검색할 기간을 입력해주세요");
       return;
    }      
 
@@ -450,8 +425,7 @@ function searchKeyword(){
    
    var searchStartDate = "";
    var searchEndDate = "";
-   var keyword = $('#keyword').val();
-   
+   var keyword = $('#keyword').val();  
 
    if(keyword == ''){
       alert("검색어를 입력해주세요");
@@ -461,155 +435,126 @@ function searchKeyword(){
    loadPage(1, searchStartDate, searchEndDate, keyword);
 }
 
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 </script>   
-
+</head>
 
 <body>
-<input type="hidden" id="page"/>
 
-	<!-- 대문 -->
 	<div class="hero-wrap hero-bread">
-			<div class="container">
-				<div class="row no-gutters slider-text align-items-center justify-content-center">
-					<div class="col-md-9 ftco-animate text-center">
-						<h1 class="mb-0 bread">1:1 문의</h1>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
+					<h1 class="mb-0 bread">구매목록</h1>				
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
-	<!-- 표 -->		
-			
-		
-					
-			<div class="col-md-3">
-				<div class="form-control-wrapper">
-					<input type="text" id="searchStartDate" class="form-control floating-label" placeholder="Start Date">
-				</div>
-			</div>
-		
-		
-			<div class="col-md-3">
-				<div class="form-control-wrapper">
-					<input type="text" id="searchEndDate" class="form-control floating-label" placeholder="End Date">
-				</div>
-			</div>
-			<button type="button" onclick=searchDate()>검색</button>
-	
-    
-	
-      <div class="col-md-9">
-      <input type="text" name="keyword" id="keyword"/>
-      <input type="button" name="keyword_search_btn" id="keyword_search_btn" value="검색" onclick="searchKeyword()"/>
-      </div>
-      
-      
-      
-      
-      
-      
-      
-    <!-- 구매목록 테이블 -->
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100 ver1 m-b-110">
-					<div class="table100-head">
-						<table>
-							<thead>
-								<tr class="row100 head">
-									<th class="cell100 column100">no.</th>
-									<th class="cell100 column101">구매상품</th>
-									<th class="cell100 column102">상품명</th>
-									<th class="cell100 column103">구매일</th>
-									<th class="cell100 column104">구매수량</th>
-									<th class="cell100 column105">색상</th>
-									<th class="cell100 column106">단가</th>
-									<th class="cell100 column107">구매수량</th>
-									<th class="cell100 column108">리뷰작성</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
 
-					<div class="table100-body js-pscroll">
-						<table id="list">
-							<tbody>
-								<!-- 데이터 -->
-							</tbody>
-						</table>
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			<!------------ 달력 ------------>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-control-wrapper">
+						<input type="text" id="searchStartDate" class="form-control floating-label" placeholder="Start Date">
+					</div>
+				</div>	
+				<div class="col-md-3">
+					<div class="form-control-wrapper">
+						<input type="text" id="searchEndDate" class="form-control floating-label" placeholder="End Date">
 					</div>
 				</div>
- 			</div>
+				<div class="col-md-3">
+					<p>
+						<a onclick="searchDate();" class="btn btn-primary py-3 px-5" id="dateOk">날짜적용하기</a>
+					</p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">
+						<table class="table" id="list">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>No.</th>
+								<th>구매일</th>
+								<th colspan="2">구매상품</th>	
+								<th>색상</th>							
+								<th>수량</th>						
+								<th>단가</th>
+								<th>총 금액</th>
+								<th>확정여부</th>
+								<th>리뷰</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						</table>
+					</div>
+					<div class="searchBox">
+						<div class="col-md-10">
+							<div class="form-control-wrapper">
+								<input type="text" class="form-control floating-label" name="keyword" id="keyword"/>
+							</div>
+						</div>
+						<button type="button" onclick="keyword_search_btn();" name="keyword_search_btn" class="searchBtn mt-3" id="keyword_search_btn">
+							<i class="fas fa-search"></i>
+						</button>	
+					</div>
+				</div>
+				<div class="prne">
+					<button type="button" id="prev" class="pgBtn">&lt</button>
+					<button type="button" id="next" class="pgBtn">&gt</button>
+				</div>
+			</div>
 		</div>
-	</div>     
-      
-      
-      
+	</section>
 
-      
-      
-       
-      <div class="col-md-9">
-      <button type="button" id="prev">이전페이지</button>
-      <button type="button" id="next">다음페이지</button>
-     </div>
-     
-      
-      <div id="popUp">
-		<form class="modal-notify" name="writeFrm" action="" method="post">
-			<p id="title">
-				 
-			</p>
-		
-			<div class="moBox">
-				
-				<div class="txtBox">
-					 <label id="flag"></label>				 
-					 <input type="text" id="co_subject" class="form-control" placeholder="Subject"/>
-					 <textarea id="co_content" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>	
-				</div>
-								
-			</div>	
-			<div class="popBtnBox">
-				
-			</div>
-			
-		</form>
-	</div>
-	
 
-      
-    <script src="${pageContext.request.contextPath }/js/user/date.js"></script>     
-	<script src="${pageContext.request.contextPath }/js/user/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/jquery.waypoints.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/aos.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/jquery.stellar.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/scrollax.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/owl.carousel.min.js"></script>
-	<script src="${pageContext.request.contextPath }/js/user/main.js"></script>
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#c80a1e" />
+		</svg>
+	</div>	
 	
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/popper.js"></script>
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script>
-			$('.js-pscroll').each(function(){
-				var ps = new PerfectScrollbar(this);
+<script src="${pageContext.request.contextPath }/js/user/date.js"></script>     
+<script src="${pageContext.request.contextPath }/js/user/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/jquery.magnific-popup.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/jquery.waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/aos.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/jquery.stellar.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/scrollax.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/user/main.js"></script>
 	
-				$(window).on('resize', function(){
-					ps.update();
-				})
-			});	
-		</script>
-	<!--===============================================================================================-->
-		<script src="${pageContext.request.contextPath }/css/user/mypage/js/main.js"></script>
+<!--===============================================================================================-->
+<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/popper.js"></script>
+<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="${pageContext.request.contextPath }/css/user/mypage/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+$('.js-pscroll').each(function(){
+	var ps = new PerfectScrollbar(this);
+
+	$(window).on('resize', function(){
+		ps.update();
+	});
+});	
+</script>
+<!--===============================================================================================-->
+<script src="${pageContext.request.contextPath }/css/user/mypage/js/main.js"></script>
+
 </body>
 </html>
 <jsp:include page="/common/footer" />
