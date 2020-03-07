@@ -137,7 +137,7 @@ window.addEventListener("click", function() {
 			<div class="pc mo_none">
 				<form action="${pageContext.request.contextPath}/search/searchOk.do" name="myForm" method="POST" autocomplete="off">
 					<input type="text" class="searchTxt" id="userKeyword" name="userKeyword" onkeyup="sendKeyword();" autocomplete="off"/>
-					<button type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
+					<button style="border:0" type="submit" class="searchBtn"><i class="fas fa-search"></i></button>
 					<div id="suggestDiv" class="suggest">
 						<div id="suggestListDiv"></div>
 					</div>

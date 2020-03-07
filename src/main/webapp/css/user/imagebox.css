@@ -1,4 +1,4 @@
-*:focus {
+a:focus, button:focus {
 	outline:none;
 }
 
@@ -156,6 +156,8 @@
 	width:430px;
 	height:150px;
 	margin:0 auto;
+	border: 1px solid #eee;
+    overflow-y: scroll;
 }
 
 .popBtnBox{
