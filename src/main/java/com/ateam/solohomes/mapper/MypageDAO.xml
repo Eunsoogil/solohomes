@@ -33,8 +33,18 @@
 			LIMIT #{fromRow}, #{writePages};
  	</select>
  	
+ 	<select id="selectPurchaseCnt" resultType="int">
+			SELECT COUNT(*) 
+			FROM goods g, goods_info gi, `member` m, payment p
+			WHERE m.mb_uid = #{mb_uid}
+				  and m.mb_uid = p.mb_uid
+				  and p.in_uid = gi.in_uid
+				  and gi.g_uid = g.g_uid;
+ 	</select>
+
+ 	
  	<select id="selectPurchaseByUid" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", FORMAT((g.g_price*p.py_amount),0) "py_price", p.py_confirm "py_confirm", c.co_uid "co_uid"
+			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm", c.co_uid "co_uid"
 			FROM goods g, goods_info gi, `member` m, payment p LEFT OUTER JOIN comment c ON p.py_uid = c.py_uid
 			WHERE p.py_uid = #{py_uid}
 			     and m.mb_uid = p.mb_uid
@@ -44,19 +54,19 @@
  	
  	
  	<select id="searchDate" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price*p.py_amount "py_price", p.py_confirm "py_confirm"
+			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
 			FROM goods g, goods_info gi, `member` m, payment p
 			WHERE m.mb_uid = #{mb_uid}
 				  and m.mb_uid = p.mb_uid
 				  and p.in_uid = gi.in_uid
 				  and gi.g_uid = g.g_uid
-				  and p.py_regdate between date(#{searchStartDate}) and date(#{searchEndDate})
+				  and p.py_regdate between date(#{searchStartDate}) and date(#{searchEndDate})+1
 			ORDER BY p.py_regdate DESC
 			LIMIT #{fromRow}, #{writePages};
  	</select>		
 
  	<select id="searchKeyword" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price*p.py_amount "py_price", p.py_confirm "py_confirm"
+			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
 			FROM goods g, goods_info gi, `member` m, payment p
 			WHERE m.mb_uid = #{mb_uid}
 				  and m.mb_uid = p.mb_uid

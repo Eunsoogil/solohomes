@@ -25,25 +25,24 @@ public class PurchaseDTO {
 	
 	private int co_uid;
 	
-
-	private GoodsDTO goods;
-	private GoodsInfoDTO goodsInfo;
+	private int cnt;
+	
 	
 	
 	public PurchaseDTO() {
 		super();
 	}
 
+
+
 	
-
-
 
 
 
 
 	public PurchaseDTO(int mb_uid, int py_uid, int py_amount, int py_confirm, Timestamp py_regdate, String py_zipcode,
 			String py_addr, String py_addr2, String py_price, int in_uid, String in_img, String in_color, int g_uid,
-			String g_name, int g_price, int co_uid, GoodsDTO goods, GoodsInfoDTO goodsInfo) {
+			String g_name, int g_price, int co_uid, int cnt) {
 		super();
 		this.mb_uid = mb_uid;
 		this.py_uid = py_uid;
@@ -61,8 +60,7 @@ public class PurchaseDTO {
 		this.g_name = g_name;
 		this.g_price = g_price;
 		this.co_uid = co_uid;
-		this.goods = goods;
-		this.goodsInfo = goodsInfo;
+		this.cnt = cnt;
 	}
 
 
@@ -153,9 +151,6 @@ public class PurchaseDTO {
 
 
 
-
-
-
 	public String getPy_price() {
 		return py_price;
 	}
@@ -224,35 +219,11 @@ public class PurchaseDTO {
 	}
 
 
-
-
-
 	public int getG_price() {
 		return g_price;
 	}
 
 
-	public GoodsDTO getGoods() {
-		return goods;
-	}
-
-
-
-	public void setGoods(GoodsDTO goods) {
-		this.goods = goods;
-	}
-
-
-	public GoodsInfoDTO getGoodsInfo() {
-		return goodsInfo;
-	}
-
-
-	public void setGoodsInfo(GoodsInfoDTO goodsInfo) {
-		this.goodsInfo = goodsInfo;
-	}
-	
-	
 	
 	public int getCo_uid() {
 		return co_uid;
@@ -260,12 +231,21 @@ public class PurchaseDTO {
 
 
 
-
-
-
-
 	public void setCo_uid(int co_uid) {
 		this.co_uid = co_uid;
+	}
+
+
+	
+
+	public int getCnt() {
+		return cnt;
+	}
+
+
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 

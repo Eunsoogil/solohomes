@@ -256,7 +256,7 @@ setTimeout(function() {
 					
 			console.log("co_subject: " + co_subject+",  co_content: "+co_content);
 			
-			var urlText =  "${pageContext.request.contextPath}/mypageAjax/reviewWriteOk.ajax";
+			var urlText = "${pageContext.request.contextPath}/mypageAjax/reviewWriteOk.ajax";
 			
 			$.ajax({
 		         url : urlText,
@@ -358,14 +358,17 @@ function updateList(jsonObj){
    result = "";
    if(jsonObj.status == "OK"){
       
+	  alert("updateList.purchaseCnt:" + jsonObj.purchaseCnt);
       var count = jsonObj.count; // 글 개수
+      var rowCnt = jsonObj.purchaseCnt; // 행개수
       var items = jsonObj.list; // 글 목록
       
       var i;
       for(i = 0; i < count; i++){
 	  
          result += "<tr class='text-center'>";
-         result += "<td>" + items[i].py_uid +"</td>";
+         var rowNum = rowCnt - (rowCnt-(i+1));
+         result += "<td>" + rowNum +"</td>";
          
       // Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
          var regDate = new Date(items[i].py_regdate);
@@ -506,7 +509,7 @@ function numberWithCommas(x) {
 								<input type="text" class="form-control floating-label" name="keyword" id="keyword"/>
 							</div>
 						</div>
-						<button type="button" onclick="keyword_search_btn();" name="keyword_search_btn" class="searchBtn mt-3" id="keyword_search_btn">
+						<button type="button" onclick="searchKeyword();" name="keyword_search_btn" class="searchBtn mt-3" id="keyword_search_btn">
 							<i class="fas fa-search"></i>
 						</button>	
 					</div>

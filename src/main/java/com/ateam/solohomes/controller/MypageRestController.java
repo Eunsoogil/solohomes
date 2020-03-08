@@ -38,8 +38,9 @@ public class MypageRestController {
 		// 페이징처리 결과를 리스트로 
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
 		list = dao.selectPurchaseListByUid(mb_uid, (page - 1) * writePages, writePages);
-		
-		
+
+		int cnt = dao.selectPurchaseCnt(mb_uid);
+		result.setPurchaseCnt(cnt);
 		result.setList(list);
 	
 		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
@@ -113,8 +114,7 @@ public class MypageRestController {
 		// 페이징처리 결과를 리스트로 
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
 		list = dao.searchKeyword(mb_uid, keyword, (page - 1) * writePages, writePages);
-		
-		
+	
 		result.setList(list);
 	
 		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리
