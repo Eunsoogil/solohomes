@@ -68,6 +68,11 @@ function CheckForm(Join){
 </head>
 <body>
 	<c:choose>
+	<c:when test="${sessionScope.userUID eq ''}">
+		<script>
+			location.href = "${pageContext.request.contextPath}/user/main.do";
+		</script>
+	</c:when>
 	<c:when test="${empty list || fn.length(list) == 0 }">
 		<script>
 			alert("장바구니가 비어있습니다");
