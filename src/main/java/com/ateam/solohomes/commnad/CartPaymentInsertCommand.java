@@ -35,6 +35,7 @@ public class CartPaymentInsertCommand implements Command {
 			result = dao.insertpayment(dto);
 			if(result==0) break;
 		}
+		dao.deletebyuid(mb_uid);
 		model.addAttribute("result", result);
 	}
 
