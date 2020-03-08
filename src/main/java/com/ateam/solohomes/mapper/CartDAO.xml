@@ -59,4 +59,8 @@
 <delete id="delete">
 	DELETE FROM cart WHERE cr_uid = #{cr_uid}
 </delete>
+
+<delete id="deletebyuid">
+	DELETE FROM cart WHERE mb_uid = #{mb_uid}
+</delete>
 </mapper>
