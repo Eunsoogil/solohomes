@@ -170,17 +170,17 @@
                         <div class="white-box">
                         	<div class="box-title"><b>시리즈목록</b>
                         		<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
-                        			<button onclick="location.href='${pageContext.request.contextPath}/manager/goodsWrite.do'" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">시리즈등록</button>
+                        			<button onclick="location.href='${pageContext.request.contextPath}/manager/seriesWrite.do'" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">시리즈등록</button>
                         		</div>
                         		<div class="clear"></div>
                         	</div>
-                            <form name="frmDelete" id="frmSeriesDelete" onsubmit="return chkDelete()">
+                            <form name="frmSeriesDelete" id="frmSeriesDelete" onsubmit="return chkSeriesDelete()">
 	                            <div class="table-responsive">
 	                                <table class="table" id="seriesTable">
 	                                    <thead>
 	                                        <tr>
 	                                            <th class='series ColumnOfCheckBox'>선택</th>
-	                                            <th>시리즈번호</th>
+	                                            <th>번호</th>
 	                                            <th>시리즈명</th>
 	                                            <th>등록일</th>
 	                                            <th>구성상품</th>
@@ -200,7 +200,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->                
+                <!-- /.row -->
+              	<div id="popupImg">
+			       	<div class="col-md-12 content">
+			       		<img id="goodsImg" style="max-width:300px;" width="100%" height="100%" alt="goods" src="http://placehold.it/150x150">
+			       	</div>
+				</div>             
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2020 &copy; α-team HoloHomes </footer>

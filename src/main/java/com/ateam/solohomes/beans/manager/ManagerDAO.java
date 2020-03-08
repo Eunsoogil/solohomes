@@ -7,6 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 
 import com.ateam.solohomes.beans.GoodsDTO;
 import com.ateam.solohomes.beans.GoodsInfoDTO;
+import com.ateam.solohomes.beans.SeriesDTO;
 
 @MapperScan
 public interface ManagerDAO {
@@ -28,9 +29,18 @@ public interface ManagerDAO {
 	public ArrayList<GoodsInfoDTO> selectGoodsInfosByGuid(@Param("uid") int uid);
 	// update goods by g_uid
 	public Integer updateGoods(@Param("dto") GoodsDTO goodsDTO, @Param("g_uid") int uid);
-	// delete goods_info by_uid
+	// delete goods_info by g_uid
 	public Integer deleteGoodsInfoByUid(int uid);
-	
+	// insert series
+	public Integer insertSeries(SeriesDTO seriesDTO);
+	// insert seriesGoods
+	public Integer insertSeiresGoods(@Param("sr_uid") int sr_uid, @Param("uidList") int[] list);
+	// select series by uid
+	public SeriesComponentsDTO selectSeriesByUid(@Param("uid") int uid);
+	// update series by uid
+	public Integer updateSeries(@Param("dto") SeriesDTO seriesDTO, @Param("sr_uid") int sr_uid);
+	// delete series_goods by sr_uid
+	public Integer deleteSeriesGoodsByUid(int uid);
 	// REST
 	// select all users
 	public ArrayList<MemberRenumDTO> selectAllUserByRow(@Param("startRow") int startRow, @Param("listPage") int listPage);
@@ -75,4 +85,7 @@ public interface ManagerDAO {
 	public ArrayList<SeriesComponentsDTO> selectSerieses();
 	// select Components by sr_uid
 	public ArrayList<GoodsDTO> selectComponentsOfSeries(@Param("sr_uid") int sr_uid);
+	// delete series by uids
+	public int deleteSeriesByUids(@Param("uidList") int[] list);
+	
 }

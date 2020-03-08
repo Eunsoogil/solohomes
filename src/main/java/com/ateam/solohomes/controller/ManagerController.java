@@ -18,6 +18,9 @@ import com.ateam.solohomes.commnad.ManagerGoodsUpdateCommand;
 import com.ateam.solohomes.commnad.ManagerGoodsUploadCommand;
 import com.ateam.solohomes.commnad.ManagerIndexCommand;
 import com.ateam.solohomes.commnad.ManagerSelectGoodsCommmand;
+import com.ateam.solohomes.commnad.ManagerSelectSeriesCommmand;
+import com.ateam.solohomes.commnad.ManagerSeriesUpdateCommand;
+import com.ateam.solohomes.commnad.ManagerSeriesUploadCommand;
 
 @Controller
 @RequestMapping("/manager")
@@ -67,6 +70,8 @@ public class ManagerController {
 		command = new ManagerGoodsUploadCommand();
 		command.execute(model);
 		
+		model.addAttribute("update", 0);
+		
 		return mv;
 	}
 	
@@ -92,6 +97,52 @@ public class ManagerController {
 		command.execute(model);
 		
 		command = new ManagerGoodsUpdateCommand();
+		command.execute(model);
+		
+		model.addAttribute("update", 1);
+		
+		return mv;
+	}
+	
+	@RequestMapping("/seriesWrite.do")
+	public String manageSeriesWrite() {
+		return "manager/seriesWrite";
+	}
+	
+	@RequestMapping(value = "/seriesWriteOk.do", method = RequestMethod.POST)
+	public ModelAndView seriesWriteOk(Model model, MultipartHttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("manager/seriesWriteOk");
+		model.addAttribute("request", request);
+		command = new ManagerSeriesUploadCommand();
+		command.execute(model);
+		
+		model.addAttribute("update", 0);
+		
+		return mv;
+	}
+	
+	@RequestMapping("/seriesUpdate.do")
+	public ModelAndView seriesUpdate(Model model, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("manager/seriesUpdate");
+		int sr_uid = Integer.parseInt(request.getParameter("sr_uid"));
+		model.addAttribute("sr_uid", sr_uid);
+		command = new ManagerSelectSeriesCommmand();
+		command.execute(model);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/seriesUpdateOk.do", method = RequestMethod.POST)
+	public ModelAndView seriesUpdateOk(Model model, MultipartHttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("manager/seriesWriteOk");
+		model.addAttribute("request", request);
+		int sr_uid = Integer.parseInt(request.getParameter("sr_uid"));
+		model.addAttribute("sr_uid", sr_uid);
+		// 원본 가져오기
+		command = new ManagerSelectSeriesCommmand();
+		command.execute(model);
+		
+		command = new ManagerSeriesUpdateCommand();
 		command.execute(model);
 		
 		model.addAttribute("update", 1);

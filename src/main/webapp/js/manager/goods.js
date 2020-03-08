@@ -1,4 +1,5 @@
 
+
 $(document).ready(function(){
 	// 첫 페이지 로딩
 	$("input#goodsPage").val(1);
@@ -43,6 +44,18 @@ $(document).ready(function(){
 			$(this).html("선택삭제");
 		}
 	});
+	$("button#seriesCheckBoxToggle").click(function(){
+		$("td.series.ColumnOfCheckBox").toggle();
+		$("th.series.ColumnOfCheckBox").toggle();
+		$("button#seriesDeleteOk").toggle();
+		
+		if ($(this).html() == "선택삭제") {
+			$(this).html("선택취소");
+		} else {
+			$(this).html("선택삭제");
+		}
+	});
+	
 });
 
 function loadGoodsData(page) {
@@ -73,7 +86,7 @@ function updateTable(jsonObj) {
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
 			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
-			result += "<td><a href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
+			result += "<td><a class='popup' onmouseover='popupImg(" + list[i].g_uid + ")' href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
 			result += "<td>" + list[i].g_price + "</td>";
 			result += "<td>" + list[i].g_likecnt + "</td>";
@@ -90,6 +103,37 @@ function updateTable(jsonObj) {
 		return false;
 	}
 	return false;
+}
+
+function popupImg(uid) {
+	var x;
+	var y;
+	document.onmousemove = function(e){
+	    x = e.pageX;
+	    y= e.pageY;
+	}
+	
+	$.ajax({
+		url : "../managerAjax/goods.ajax/" + uid
+		, type : "GET"
+		, cache : false
+		, success : function(data, status) {
+			if (status == "success") {
+				var imgsrc = "../img/goods/" + data.g_img;
+				$("#goodsImg").attr('src', imgsrc);
+				$("#popupImg").css({
+					"top" : y - 5
+					, "left" : x
+					, "z-index" : 10
+				});
+				$("#popupImg").show();
+			}
+		}
+	});
+	
+	$("a.popup").mouseout(function(){
+		$("#popupImg").hide();
+	});
 }
 
 function moveToUpdate(uid) {
@@ -139,14 +183,43 @@ function chkDelete() {
 				, success : function(data, status) {
 					if (status == "success") {
 						alert(data.count + "개의 상품 삭제 성공");
-						loadRequestTable(curPage);
+						loadGoodsData(curPage);
 					}
 				}
 			});
 		}
 	}
 }
-
+function chkSeriesDelete() {
+	var uids = [];
+	$("#frmSeriesDelete input[name=uid]").each(function(){
+		if ($(this).is(":checked")) {
+			uids.push(parseInt($(this).val()));
+		}
+	});
+	
+	if (uids.length == 0) {
+		alert("시리즈를 하나 이상 선택해 주세요");
+	} else {
+		var confirmResult = confirm("정말 삭제하겠습니까?");
+		if (confirmResult) {
+			$.ajax({
+				url : "../managerAjax/series/deleteOk.do"
+				, type : "POST"
+				, cache : false
+				, data : {
+					uids : JSON.stringify(uids).slice(1).slice(0, -1)
+				}
+				, success : function(data, status) {
+					if (status == "success") {
+						alert(data.count + "개의 상품 삭제 성공");
+						loadSeriesData();
+					}
+				}
+			});
+		}
+	}
+}
 // series table
 function loadSeriesData() {
 	$.ajax({
@@ -178,7 +251,7 @@ function makeSeriesTable(jsonObj) {
 				+ (regdate.getMonth() + 1) + "/"
 				+ regdate.getDate();
 			result += "<td>" + strdate + "</td>";
-			result += "<td>" + "자세히보기" + "</td>";
+			result += "<td>" + "<a href='../series/detail.do?sr_uid=" + list[i].sr_uid + "' target='_blank'>자세히보기</a>" + "</td>";
 			result += "<td><button type='button' class='btn btn-danger btn-rounded' onclick='moveToUpdateSeries(" + list[i].sr_uid + ")'>수정</button></td>";
 			result += "</tr>";
 		}
@@ -186,4 +259,8 @@ function makeSeriesTable(jsonObj) {
 		$("table#seriesTable tbody").html("");
 		$("table#seriesTable tbody").html(result);
 	}
+}
+
+function moveToUpdateSeries(uid) {
+	location.href="../manager/seriesUpdate.do?sr_uid=" + uid;
 }

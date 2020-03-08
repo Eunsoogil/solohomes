@@ -44,12 +44,12 @@ VALUES
 	, (22, 'user21', '1234', 'user21', '테스트20' ,'01011204321', 'test20@test5.com', '45545', '서울 강남구 테헤란로 146', '4층')
 ;
 INSERT INTO MEMBER
-	(mb_uid, mb_id, mb_pw, mb_nn, mb_name ,mb_phone, mb_email, mb_zipcode, mb_addr, mb_addr2, mb_level)
+	(mb_uid, mb_id, mb_pw, mb_nn, mb_name ,mb_phone, mb_email, mb_zipcode, mb_addr, mb_addr2, mb_level, mb_emailsign)
 VALUES 
-	(1001, 'master', '1234',  'master', 'master' ,'01012355678', 'master@master.master', '34343', '서울 강남구 테헤란로 146', '4층', 3)
-	,(1002, 'admin1', '1234',  'admin1', 'admin1' ,'01011111111', 'admin1@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2)
-	,(1003, 'admin2', '1234',  'admin2', 'admin2' ,'01022222222', 'admin2@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2)
-	,(1004, 'admin3', '1234',  'admin3', 'admin3' ,'01033333333', 'admin3@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2)
+	(1001, 'master', '1234',  'master', 'master' ,'01012355678', 'master@master.master', '34343', '서울 강남구 테헤란로 146', '4층', 3, 1)
+	,(1002, 'admin1', '1234',  'admin1', 'admin1' ,'01011111111', 'admin1@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2, 1)
+	,(1003, 'admin2', '1234',  'admin2', 'admin2' ,'01022222222', 'admin2@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2, 1)
+	,(1004, 'admin3', '1234',  'admin3', 'admin3' ,'01033333333', 'admin3@admin.admin', '12345', '서울 강남구 테헤란로 146', '4층', 2, 1)
 ;
 
 SELECT * FROM MEMBER;

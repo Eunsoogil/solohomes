@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ateam.solohomes.C;
+import com.ateam.solohomes.beans.GoodsDTO;
 import com.ateam.solohomes.beans.manager.AjaxCommentList;
 import com.ateam.solohomes.beans.manager.AjaxGoodsList;
 import com.ateam.solohomes.beans.manager.AjaxManagerQryResult;
@@ -348,6 +349,14 @@ public class ManagerRestController {
 		return result;
 	}
 	
+	@RequestMapping("/goods.ajax/{uid}")
+	public GoodsDTO selectGoodsByUid(@PathVariable("uid") int uid) {
+		GoodsDTO dto = new GoodsDTO();
+		ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+		dto = dao.selectGoodsByUid(uid);
+		return dto;
+	}
+	
 	@RequestMapping(value = "/goods/deleteOk.do", method = RequestMethod.POST)
 	public AjaxManagerQryResult goodsDeleteOk(String[] uids) {
 		AjaxManagerQryResult result = new AjaxManagerQryResult();
@@ -385,6 +394,30 @@ public class ManagerRestController {
 			result.setStatus("SUCCESS");
 			result.setCount(list.size());
 		} else {
+			result.setStatus("FAIL");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/series/deleteOk.do", method = RequestMethod.POST)
+	public AjaxManagerQryResult seriesDeleteOk(String[] uids) {
+		AjaxManagerQryResult result = new AjaxManagerQryResult();
+		
+		int cnt = 0;
+		if (uids != null && uids.length > 0) {
+			ManagerDAO dao = C.sqlSession.getMapper(ManagerDAO.class);
+			int[] list = new int[uids.length];
+			for (int i = 0; i < list.length; i ++) {
+				list[i] = Integer.parseInt(uids[i]);
+			}
+			
+			cnt = dao.deleteSeriesByUids(list);
+			
+			result.setCount(cnt);
+			result.setStatus("SUCCESS");
+		} else {
+			result.setCount(cnt);
 			result.setStatus("FAIL");
 		}
 		
