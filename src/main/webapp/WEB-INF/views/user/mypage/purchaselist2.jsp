@@ -28,7 +28,6 @@
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
-<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
 <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/user/bootstrap-material-datetimepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
@@ -73,16 +72,14 @@ $(document).ready(function(){
 	});
 	
 
-   
    $("input#page").val(1); // 페이지 최초 로딩되면 1페이지로
-   
    //TODO : n Page 읽어오기
    loadPage(1, searchStartDate, searchEndDate, keyword);
    
    //[이전] 버튼 눌렀을때
    $("button#prev").click(function(){
       // 현재 페이지 정보
-      var curPage = parseInt($("input#page").val())
+      var curPage = parseInt($("input#page").val());
       // 첫페이지였다면
       if(curPage == 1){
          alert("이전 페이지가 없습니다");
@@ -95,7 +92,6 @@ $(document).ready(function(){
    //[다음] 버튼 눌렀을때 
    $("button#next").click(function(){
       var curPage = parseInt($("input#page").val())
-      
       loadPage(curPage+1, searchStartDate, searchEndDate, keyword);
  
    });
@@ -122,6 +118,7 @@ function popUp(py_uid, option) {
 	var reviewBtn = ""; 
 	var reviewUpdateBtn="";
 	var value = "";
+	 var curPage = parseInt($("input#page").val());
 	
 	var urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseProductInfo.ajax/"+ py_uid;
 	
@@ -206,6 +203,7 @@ setTimeout(function() {
 		         }
 		      });
 			
+			
 			loadPage(1, searchStartDate, searchEndDate, keyword);
 			return true;
 		});
@@ -237,19 +235,13 @@ setTimeout(function() {
 		
 			if(co_subject == ""){
 				
-				$.alert({
-				    title: 'Alert!',
-				    content: '제목을 작성해주세요!'
-				});
+				alrt("제목을 작성해주세요.");
 				
 				return false;
 
 			}else if(co_content == ""){
 				
-				$.alert({
-				    title: 'Alert!',
-				    content: '내용을 작성해주세요!'
-				});
+				alrt("내용을 작성해주세요.");
 				
 				return false;
 			}
@@ -272,7 +264,7 @@ setTimeout(function() {
 		         success : function(data, status){
 		            if(status == "success"){
 		            	alert("리뷰작성 완료");
-		               loadPage(1, searchStartDate, searchEndDate, keyword);
+		               loadPage(curPage, searchStartDate, searchEndDate, keyword);
 		            }else{
 		            	alert("리뷰작성 실패");
 		            }
@@ -338,15 +330,15 @@ function pyConfrim(py_uid){
 	                  	$.alert({
 	      				    title: 'Alert!',
 	      				    content: '구매 확정 완료!',
-	      				});
-	                     loadPage(1, searchStartDate, searchEndDate, keyword);
+	      				});             
+	                     loadPage(curPage, searchStartDate, searchEndDate, keyword);
 	                  }
 	               }
 	            });
 	           
 	        },
 	        cancel: function () {
-	        	loadPage(1, searchStartDate, searchEndDate, keyword);
+	        	loadPage(curPage, searchStartDate, searchEndDate, keyword);
 	        }
 	    }
 	});
@@ -363,7 +355,7 @@ function updateList(jsonObj){
       var rowCnt = jsonObj.purchaseCnt; // 행개수
       var items = jsonObj.list; // 글 목록
       
-      var i;
+      
       for(i = 0; i < count; i++){
 	  
          result += "<tr class='text-center'>";
@@ -418,13 +410,13 @@ function searchDate(){
    var searchStartDate = $('#searchStartDate').val();
    var searchEndDate = $('#searchEndDate').val();
    var keyword = "";
+   var curPage = parseInt($("input#page").val());
 
    if(searchStartDate == '' || searchEndDate == ''){
       alert("검색할 기간을 입력해주세요");
       return;
    }      
-
-   loadPage(1, searchStartDate, searchEndDate, keyword);
+   loadPage(curPage, searchStartDate, searchEndDate, keyword);
 }
 
 function searchKeyword(){
@@ -432,13 +424,13 @@ function searchKeyword(){
    var searchStartDate = "";
    var searchEndDate = "";
    var keyword = $('#keyword').val();  
-
+   var curPage = parseInt($("input#page").val());
+   
    if(keyword == ''){
       alert("검색어를 입력해주세요");
       return;
    }   
-   
-   loadPage(1, searchStartDate, searchEndDate, keyword);
+   loadPage(curPage, searchStartDate, searchEndDate, keyword);
 }
 
 function numberWithCommas(x) {
@@ -449,6 +441,7 @@ function numberWithCommas(x) {
 
 <body>
 <input type="hidden" id="page"/>
+
 	<div class="hero-wrap hero-bread">
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -550,6 +543,8 @@ function numberWithCommas(x) {
 		</svg>
 	</div>	
 	
+	
+	
 <script src="${pageContext.request.contextPath }/js/user/date.js"></script>     
 <script src="${pageContext.request.contextPath }/js/user/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/user/jquery.magnific-popup.min.js"></script>
@@ -559,6 +554,9 @@ function numberWithCommas(x) {
 <script src="${pageContext.request.contextPath }/js/user/scrollax.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/user/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/user/main.js"></script>
+	
+	
+	
 	
 </body>
 </html>
