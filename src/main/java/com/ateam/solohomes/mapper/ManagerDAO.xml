@@ -398,6 +398,9 @@
 			javaType="java.util.ArrayList" ofType="com.ateam.solohomes.beans.GoodsDTO"
 			select="getGoodsListBySrUid"/>
 	</resultMap>
+	<select id="selectSeriesByUid" resultMap="serieses">
+		SELECT * FROM series WHERE sr_uid = #{uid}
+	</select>
 	<select id="selectSerieses" resultMap="serieses">
 		SELECT * FROM series
 	</select>
@@ -410,6 +413,15 @@
 			JOIN series_goods sg ON g.g_uid = sg.g_uid
 		WHERE sg.sr_uid = #{sr_uid};
 	</select>
+	<delete id="deleteSeriesByUids" flushCache="true">
+		DELETE FROM
+			series
+		WHERE
+			sr_uid IN
+		<foreach item="uid" index="index" collection="uidList" open="(" separator="," close=")">
+			#{uid}
+		</foreach>
+	</delete>
 	
 </mapper>       
     

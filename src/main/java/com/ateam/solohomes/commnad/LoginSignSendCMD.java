@@ -44,7 +44,7 @@ public class LoginSignSendCMD implements Command {
 		
 		try {
 			
-			String host = "http://localhost:8080/solohomes/member/";
+			String host = "http://localhost:8091/solohomes/member/";
 			String setfrom = "AteamProject2020@gmail.com";
 			
 			String title = "안녕하세요. Holo Homes 본인 확인을 위한 인증메일 입니다."; // 제목

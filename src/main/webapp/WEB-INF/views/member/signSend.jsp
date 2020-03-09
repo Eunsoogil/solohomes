@@ -25,7 +25,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>이메일 사인 잘 보네짐</title>
+<title>인증 이메일 전송</title>
 <!-- bootstrap css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/animate.css">
@@ -64,7 +64,7 @@ $(document).ready(function(){
 				<h2>메일 인증</h2>
 			<div id="sendtext">
 				<p id="p4">&nbsp&nbsp고객님의 메일함으로</p>
-				<p id="p5">인증 메일을 보넸습니다</p>
+				<p id="p5">인증 메일을 보냈습니다</p>
 				<p id="p6">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp확인해주세요</p>
 			</div>
 		</div>

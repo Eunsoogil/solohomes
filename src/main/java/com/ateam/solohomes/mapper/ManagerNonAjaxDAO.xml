@@ -56,4 +56,35 @@
 		WHERE 
 			in_uid = #{uid}
 	</delete>
+	
+	<insert keyProperty="sr_uid" useGeneratedKeys="true"
+		id="insertSeries" flushCache="true" parameterType="com.ateam.solohomes.beans.SeriesDTO">
+		INSERT INTO series
+			(sr_subject, sr_img)
+		VALUES
+			(#{sr_subject}, #{sr_img})
+	</insert>
+	<insert id="insertSeiresGoods" flushCache="true">
+		INSERT INTO series_goods
+			(g_uid, sr_uid)
+		VALUES
+		<foreach item="uid" index="index" collection="uidList" separator=", ">
+			(#{uid}, #{sr_uid})
+		</foreach>
+	</insert>
+	<update id="updateSeries" flushCache="true">
+		UPDATE
+			series
+		SET 
+			sr_subject = #{dto.sr_subject}, sr_img = #{dto.sr_img}
+		WHERE
+			sr_uid = #{sr_uid}
+	</update>
+	<delete id="deleteSeriesGoodsByUid" flushCache="true">
+		DELETE FROM
+			series_goods
+		WHERE 
+			sr_uid = #{uid}
+	</delete>
+	
 </mapper>

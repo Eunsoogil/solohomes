@@ -517,7 +517,7 @@ function numberWithCommas(x) {
 	
 	
 	 <div id="popUp">
-      <form class="modal-notify" name="writeFrm" action="" method="post">
+      <form class="modal-notify" name="writeFrm" action="" method="post" style="height: auto; margin-top:-250px;">
          <p id="title">
          </p>
       

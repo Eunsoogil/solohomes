@@ -11,3 +11,16 @@ button[id*="DeleteOk"] {
 button.prevPage, button.nextPage {
 	padding-left:9px;
 }
+
+tr.clickableRow:hover {
+	cursor:pointer;
+	background-color:#c0c0c0;
+}
+
+div#popupImg {
+	position:absolute;
+	display:none;
+	width:300px;
+	height:300px;
+	z-index:5;
+}
