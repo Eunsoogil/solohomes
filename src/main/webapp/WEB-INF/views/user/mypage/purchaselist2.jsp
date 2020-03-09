@@ -119,7 +119,7 @@ function popUp(py_uid, option) {
 	var reviewUpdateBtn="";
 	var value = "";
 	 var curPage = parseInt($("input#page").val());
-	
+	alert(py_uid);
 	var urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseProductInfo.ajax/"+ py_uid;
 	
 	 $.ajax({
@@ -301,7 +301,7 @@ function loadPage(page, searchStartDate, searchEndDate, keyword){
       cache : false,
       success : function(data, status){
          if(status == "success"){
-            if(updateList(data)){
+            if(updateList(data, page)){
                // 페이지 로딩 성공하면 현재 페이지 정보 업데이트
                $("input#page").val(page);
             }
@@ -315,6 +315,7 @@ function loadPage(page, searchStartDate, searchEndDate, keyword){
 function pyConfrim(py_uid){
    
 	urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseConfirm.ajax/${sessionScope.userUID}/"+ py_uid;
+	var curPage = $("input#page").val();
 	
 	$.confirm({
 	    title: 'Confirm!',
@@ -346,7 +347,7 @@ function pyConfrim(py_uid){
 }
 
 // TODO
-function updateList(jsonObj){
+function updateList(jsonObj, page){
    result = "";
    if(jsonObj.status == "OK"){
       
@@ -354,13 +355,13 @@ function updateList(jsonObj){
       var count = jsonObj.count; // 글 개수
       var rowCnt = jsonObj.purchaseCnt; // 행개수
       var items = jsonObj.list; // 글 목록
-      
-      
+     
+      var index = (page-1)*5;
+          
       for(i = 0; i < count; i++){
 	  
          result += "<tr class='text-center'>";
-         var rowNum = rowCnt - (rowCnt-(i+1));
-         result += "<td>" + rowNum +"</td>";
+         result += "<td>" + (index + i + 1) +"</td>";
          
       // Timestamp --> yyyy/MM/dd hh:mm:ss 로 표현
          var regDate = new Date(items[i].py_regdate);

@@ -54,7 +54,7 @@
  	
  	
  	<select id="searchDate" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
+			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
 			FROM goods g, goods_info gi, `member` m, payment p
 			WHERE m.mb_uid = #{mb_uid}
 				  and m.mb_uid = p.mb_uid
@@ -66,7 +66,7 @@
  	</select>		
 
  	<select id="searchKeyword" resultType="com.ateam.solohomes.beans.PurchaseDTO">
-			SELECT g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
+			SELECT p.py_uid "py_uid", g.g_uid "g_uid", gi.in_img "in_img", g.g_name "g_name", p.py_regdate "py_regdate", p.py_amount "py_amount", gi.in_color "in_color", g.g_price "g_price", p.py_confirm "py_confirm"
 			FROM goods g, goods_info gi, `member` m, payment p
 			WHERE m.mb_uid = #{mb_uid}
 				  and m.mb_uid = p.mb_uid
