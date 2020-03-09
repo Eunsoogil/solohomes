@@ -110,7 +110,9 @@
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<h1 class="mb-0 bread">회원 정보 수정</h1>
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
+					<h1 class="mb-0 bread">회원 정보 수정</h1>				
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>
