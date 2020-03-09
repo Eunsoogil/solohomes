@@ -39,8 +39,6 @@ public class MypageRestController {
 		MypageDAO dao = C.sqlSession.getMapper(MypageDAO.class);
 		list = dao.selectPurchaseListByUid(mb_uid, (page - 1) * writePages, writePages);
 
-		int cnt = dao.selectPurchaseCnt(mb_uid);
-		result.setPurchaseCnt(cnt);
 		result.setList(list);
 	
 		// 잃어들인 글 내용이 있는 경우와 없는 경우로 나누어 처리

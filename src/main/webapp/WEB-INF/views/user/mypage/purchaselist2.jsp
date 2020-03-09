@@ -119,7 +119,7 @@ function popUp(py_uid, option) {
 	var reviewUpdateBtn="";
 	var value = "";
 	 var curPage = parseInt($("input#page").val());
-	alert(py_uid);
+
 	var urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseProductInfo.ajax/"+ py_uid;
 	
 	 $.ajax({
@@ -311,7 +311,6 @@ function loadPage(page, searchStartDate, searchEndDate, keyword){
 } 
  
 
-
 function pyConfrim(py_uid){
    
 	urlText = "${pageContext.request.contextPath}/mypageAjax/purchaseConfirm.ajax/${sessionScope.userUID}/"+ py_uid;
@@ -351,7 +350,6 @@ function updateList(jsonObj, page){
    result = "";
    if(jsonObj.status == "OK"){
       
-	  alert("updateList.purchaseCnt:" + jsonObj.purchaseCnt);
       var count = jsonObj.count; // 글 개수
       var rowCnt = jsonObj.purchaseCnt; // 행개수
       var items = jsonObj.list; // 글 목록

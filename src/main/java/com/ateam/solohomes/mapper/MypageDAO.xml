@@ -33,14 +33,6 @@
 			LIMIT #{fromRow}, #{writePages};
  	</select>
  	
- 	<select id="selectPurchaseCnt" resultType="int">
-			SELECT COUNT(*) 
-			FROM goods g, goods_info gi, `member` m, payment p
-			WHERE m.mb_uid = #{mb_uid}
-				  and m.mb_uid = p.mb_uid
-				  and p.in_uid = gi.in_uid
-				  and gi.g_uid = g.g_uid;
- 	</select>
 
  	
  	<select id="selectPurchaseByUid" resultType="com.ateam.solohomes.beans.PurchaseDTO">
