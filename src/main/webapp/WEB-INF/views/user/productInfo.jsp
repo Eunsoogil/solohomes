@@ -124,7 +124,11 @@ function popUp(uid) {
 					success:function(data, status){
 						if(data.status == "OK"){
 							alert("신고되었습니다.");
-							loadPage(1);
+							
+							setTimeout(function() {
+								loadPage(1);
+							}, 300);	
+							
 							return true;
 						} else{
 							alert("이미 신고한 게시물입니다.");					
