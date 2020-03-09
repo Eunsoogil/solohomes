@@ -7494,8 +7494,7 @@ h1, h2, h3, h4, h5,
       color: #fff;
       font-weight: 700;
       font-size: 120px;
-      text-transform: uppercase; 
-      -webkit-text-stroke : 1px #f0f0f0;
+      text-transform: uppercase;   
       }
       @media (max-width: 991.98px) {
         .hero-wrap .slider-text h1 {
@@ -9275,6 +9274,11 @@ table select{
 .imageTd, .productTd{
 	width:15%;
 }
+
+.textStroke{
+	-webkit-text-stroke : 1px #f0f0f0;
+}
+
 @media screen and (max-width:599px){
 	.ftco-section-parallax .parallax-img {
 		padding:1em;
@@ -9288,11 +9292,6 @@ table select{
 	*/
 }
 
-a, button{
-	outline:none;
-	border:0;
-}
-
 @media screen and (min-width:769px) and (max-width:989px){
 	#keyword_search_btn{
 		display:block;
@@ -9300,6 +9299,7 @@ a, button{
 		margin:0 auto;
 	}
 }
+
 @media screen and (max-width:768px){
 	.searchBox{
 		float:none;

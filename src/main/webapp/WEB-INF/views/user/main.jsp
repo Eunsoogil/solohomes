@@ -29,7 +29,7 @@
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
 				<div class="col-md-11 ftco-animate text-center">
-					<h1>HoloHomes</h1>
+					<h1 class="textStroke">HoloHomes</h1>
 					<h2>
 						<span>Find Your Furniture</span>
 					</h2>
