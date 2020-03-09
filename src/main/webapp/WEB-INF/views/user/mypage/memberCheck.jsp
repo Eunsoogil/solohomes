@@ -62,7 +62,7 @@ $(document).ready(function(){
 </script>
 
 <body>
-
+<div id="heightBox">
 	<!-- 대문 -->
 	<div class="hero-wrap hero-bread">
 		<div class="container">
@@ -94,7 +94,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</section>
-	
+	</div>
 	
 	
 	<script src="${pageContext.request.contextPath}/js/user/jquery.min.js"></script>

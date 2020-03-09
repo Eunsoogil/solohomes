@@ -194,6 +194,7 @@ function updateList(jsonObj){
 
 </script>		
 <body>
+<div id="heightBox">
 	<input type="hidden" id="page"/>
 
 	
@@ -244,7 +245,7 @@ function updateList(jsonObj){
 			</div>
 		</div>
 	</section>
-
+</div>
 
 	
 
