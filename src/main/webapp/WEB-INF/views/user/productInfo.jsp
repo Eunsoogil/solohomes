@@ -51,6 +51,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user/imagebox.css">
 
 <script>
+function chkSubmit(){
+	frm = document.forms["frm"];
+	
+	var re_type = frm["re_type"].value;
+    if (re_type == "") {
+        alert("신고사유를 선택해주세요.");
+        return false;
+    } else{
+    	return true;
+    }	    	    
+}
+</script>
+
+<script>
 // 이미지 큰 화면
 function doShow(imgSrc) {
 	document.getElementById("bigImg").src = imgSrc;
@@ -94,30 +108,32 @@ function popUp(uid) {
 		var mb_uid = <%= mb_uid%>;	
 
 		$(".accept").click(function() {
-			var re_content = $('#re_content').val();
-			var re_type = $("input[name='re_type']:checked").val(); 
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/user/review/notify.do",
-				type:"POST",
-				data: {
-					"co_uid" : co_uid, 
-					"mb_uid" : mb_uid,
-					"re_content" : re_content,
-					"re_type" : re_type},
-				cache:false,
-				success:function(data, status){
-					if(data.status == "OK"){
-						alert("신고되었습니다.");
-						loadPage(1);
-						return true;
-					} else{
-						alert("이미 신고한 게시물입니다.");					
-						return false;
-					}
+			if(chkSubmit()){
+				var re_content = $('#re_content').val();
+				var re_type = $("input[name='re_type']:checked").val(); 
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/user/review/notify.do",
+					type:"POST",
+					data: {
+						"co_uid" : co_uid, 
+						"mb_uid" : mb_uid,
+						"re_content" : re_content,
+						"re_type" : re_type},
+					cache:false,
+					success:function(data, status){
+						if(data.status == "OK"){
+							alert("신고되었습니다.");
+							loadPage(1);
+							return true;
+						} else{
+							alert("이미 신고한 게시물입니다.");					
+							return false;
+						}
 				}
 					
 			});
+			}
 		});
 	}	
 }
@@ -373,7 +389,7 @@ function goDelete(number) {
 	</section>	
 	
 	<div id="popUp">
-		<form class="modal-notify">
+		<form class="modal-notify" name="frm">
 			<p>
 				한줄평 신고는 이용수칙에 맞지 않는 글을 신고하는 기능이며, 반대 의견을 표시하는 것이 아닙니다.
 				신고는 철회가 안되므로 신중하게 해주세요. 허위 신고의 경우 신고자가 제재받을 수 있음을 유념해주세요.
