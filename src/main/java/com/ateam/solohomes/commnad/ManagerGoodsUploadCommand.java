@@ -18,7 +18,7 @@ import com.ateam.solohomes.beans.manager.ManagerDAO;
 
 public class ManagerGoodsUploadCommand implements Command{
 	
-	private static final String SAVE_PATH = "C:\\tomcat\\apache-tomcat-8.5.49\\wtpwebapps\\solohomes\\img\\goods";
+	private static final String SAVE_PATH = "C:\\tomcat\\apache-tomcat-8.5.49-ateam\\wtpwebapps\\solohomes\\img\\goods";
 
 	@Override
 	public void execute(final Model model) {

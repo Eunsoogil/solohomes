@@ -23,7 +23,7 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class ManagerSeriesUpdateCommand implements Command{
 	
-	private static final String SAVE_PATH = "C:\\tomcat\\apache-tomcat-8.5.49\\wtpwebapps\\solohomes\\img\\goods";
+	private static final String SAVE_PATH = "C:\\tomcat\\apache-tomcat-8.5.49-ateam\\wtpwebapps\\solohomes\\img\\goods";
 
 	@Override
 	public void execute(final Model model) {
