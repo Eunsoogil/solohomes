@@ -368,7 +368,8 @@ function updateList(jsonObj, page){
                   regDate.getDate();
          
          result += "<td>" +strDate + "</td>";         
-         result += "<td class='imageTd'><img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].in_img +"'/></td>"
+         result += "<td class='imageTd'><a href='${pageContext.request.contextPath}/user/productInfo.do/"+ items[i].g_uid +"'>";
+         result += "<img class='img-fluid' src='${pageContext.request.contextPath}/img/goods/"+ items[i].in_img +"'/></a></td>";
          result += "<td class='productTd'>" + items[i].g_name +"</td>";
          result += "<td>" + items[i].in_color +"</td>\n";       
          result += "<td>" + items[i].py_amount +"</td>\n";        
