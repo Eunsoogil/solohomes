@@ -71,12 +71,15 @@ function chkSubmit(){
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
 					<h1 class="mb-0 bread">1:1 문의</h1>
-					<p class="breadcrumbs">
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
+					<p class="breadcrumbs mt-3">
 						<span class="mr-2">
 							<a href="${pageContext.request.contextPath}/user/mypage/requestView.do/<%=mb_uid%>">문의목록 가기</a>
 						</span>
 					</p>
+					
 				</div>
 			</div>
 		</div>
