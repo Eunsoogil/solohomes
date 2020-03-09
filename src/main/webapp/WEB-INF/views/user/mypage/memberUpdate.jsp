@@ -134,12 +134,12 @@
 							
 							<div class="frm_input_set">
 							<label for="mb_pw2" class="col-form-label" id="label_pw2">비밀번호</label>
-							<input type="text" name="mb_pw" id="mb_pw2" class="form-control3"/>
+							<input type="password" name="mb_pw" id="mb_pw2" class="form-control3"/>
 							</div>
 							
 							<div class="frm_input_set">
 							<label for="mb_pwCheck" class="col-form-label" id="label_pwCheck">비밀번호 확인</label>
-							<input type="text" name="mb_pwCheck" id="mb_pwCheck" class="form-control3"/>
+							<input type="password" name="mb_pwCheck" id="mb_pwCheck" class="form-control3"/>
 							</div>
 							
 							<div class="frm_input_set">

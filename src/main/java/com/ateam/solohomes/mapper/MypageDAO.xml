@@ -84,7 +84,7 @@
 			WHERE m.mb_uid = #{mb_uid}
 			 	  and m.mb_uid = gl.mb_uid
 			  	  and g.g_uid = gl.g_uid
-			ORDER BY g.g_name 
+			ORDER BY gl.gl_uid DESC
 			LIMIT #{fromRow}, #{writePages};
  	</select>
  	
