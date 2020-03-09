@@ -46,6 +46,20 @@
 	    return true;
 	} // end chkSubmit()
   </script>
+  
+<!-- height 길이 조절 자바스크립트  -->
+<script>
+$(document).ready(function(){
+	var menu = 90;
+	var dHeight = $(document).height() - menu;
+	
+	$(document).resize(function() {
+		dHeight = $(document).height() - menu;
+	});
+	
+	$("#heightBox").css('min-height', dHeight);
+});
+</script>
 
 <body>
 
@@ -55,7 +69,9 @@
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
+					<span class="quote"><i class="fas fa-quote-left"></i></span>
 					<h1 class="mb-0 bread">회원 정보 수정</h1>
+					<span class="quote"><i class="fas fa-quote-right"></i></span>
 				</div>
 			</div>
 		</div>

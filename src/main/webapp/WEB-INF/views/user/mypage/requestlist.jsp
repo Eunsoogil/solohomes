@@ -52,6 +52,19 @@
 	
 </head>
 
+<!-- height 길이 조절 자바스크립트  -->
+<script>
+$(document).ready(function(){
+	var menu = 90;
+	var dHeight = $(document).height() - menu;
+	
+	$(document).resize(function() {
+		dHeight = $(document).height() - menu;
+	});
+	
+	$("#heightBox").css('min-height', dHeight);
+});
+</script>
 
 <script>
 // TODO
