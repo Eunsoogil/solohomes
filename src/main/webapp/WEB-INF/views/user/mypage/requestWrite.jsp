@@ -76,7 +76,7 @@ function chkSubmit(){
 					<span class="quote"><i class="fas fa-quote-right"></i></span>
 					<p class="breadcrumbs mt-3">
 						<span class="mr-2">
-							<a href="${pageContext.request.contextPath}/user/mypage/requestView.do/<%=mb_uid%>">문의목록 가기</a>
+							<a href="${pageContext.request.contextPath}/user/requestlist.do">문의목록 가기</a>
 						</span>
 					</p>
 					
