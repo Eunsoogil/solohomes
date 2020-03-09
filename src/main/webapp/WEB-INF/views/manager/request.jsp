@@ -157,7 +157,7 @@
 						       	</div>
 		                        <label class="col-md-12">Response</label>
 		                        <div class="col-md-12 requestModalResponse">
-		                        	<textarea rows="5" class="form-control form-control-line" name="response"></textarea>
+		                        	<textarea rows="5" class="form-control" name="response"></textarea>
 		                        </div>
 		                        <div class="clear"></div>
 				       		</div>
