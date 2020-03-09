@@ -86,7 +86,7 @@ $(document).ready(function(){
 							<input type="hidden" name="mb_uid" value="${sessionScope.userUID}"/> 
 							<div class="form-group2">
 								<label for="mb_pw" class="col-form-label pwcheck-form" id="label_pw">비밀번호 확인</label>
-								<input type="text" class="form-control2 pwcheck-form" id="mb_pw" name="mb_pw"/>
+								<input type="password" class="form-control2 pwcheck-form" id="mb_pw" name="mb_pw"/>
 								<input type="submit" class="btn btn-primary pwcheck-form" value="확인" />
 							</div>
 						</form>

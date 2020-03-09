@@ -252,6 +252,11 @@ th, td {
 	margin-bottom: 10px;
 }
 
+.frm_input_set input[type="password"]{
+	width: 60%;
+	margin-bottom: 10px;
+}
+
 #sample6_postcode{
 	width: 30%;
 }
@@ -260,6 +265,7 @@ th, td {
 	width: 60%;
 	margin: 0 auto;
 }
+
 
 #updateInfoBtn{
 	margin: auto;
