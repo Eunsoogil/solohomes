@@ -142,7 +142,7 @@
 	                                            <th class='goods ColumnOfCheckBox'>선택</th>
 	                                            <th>상품명</th>
 	                                            <th>카테고리</th>
-	                                            <th>가격</th>
+	                                            <th>가격(&#8361)</th>
 	                                            <th>좋아요</th>
 	                                            <th>판매수량</th>
 	                                            <th></th>

@@ -76,6 +76,10 @@ function loadGoodsData(page) {
 	});
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function updateTable(jsonObj) {
 	var result = "";
 	
@@ -86,9 +90,9 @@ function updateTable(jsonObj) {
 		for (var i = 0; i < count; i++) {
 			result += "<tr>";
 			result += "<td class='goods ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + list[i].g_uid + "'></td>\n";
-			result += "<td><a class='popup' onmouseover='popupImg(" + list[i].g_uid + ")' href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
+			result += "<td><a class='popup " + list[i].g_uid + "' href='../user/productInfo.do/" + list[i].g_uid + "' target='_blank'>" + list[i].g_name + "</a></td>";
 			result += "<td>" + parseType(list[i].g_type) + "</td>";
-			result += "<td>" + list[i].g_price + "</td>";
+			result += "<td>" + numberWithCommas(list[i].g_price) + "&#8361</td>";
 			result += "<td>" + list[i].g_likecnt + "</td>";
 			result += "<td>" + list[i].salNum + "</td>";
 			result += "<td><button type='button' class='btn btn-danger btn-rounded' onclick='moveToUpdate(" + list[i].g_uid + ")'>수정</button></td>";
@@ -103,37 +107,6 @@ function updateTable(jsonObj) {
 		return false;
 	}
 	return false;
-}
-
-function popupImg(uid) {
-	var x;
-	var y;
-	document.onmousemove = function(e){
-	    x = e.pageX;
-	    y= e.pageY;
-	}
-	
-	$.ajax({
-		url : "../managerAjax/goods.ajax/" + uid
-		, type : "GET"
-		, cache : false
-		, success : function(data, status) {
-			if (status == "success") {
-				var imgsrc = "../img/goods/" + data.g_img;
-				$("#goodsImg").attr('src', imgsrc);
-				$("#popupImg").css({
-					"top" : y - 5
-					, "left" : x
-					, "z-index" : 10
-				});
-				$("#popupImg").show();
-			}
-		}
-	});
-	
-	$("a.popup").mouseout(function(){
-		$("#popupImg").hide();
-	});
 }
 
 function moveToUpdate(uid) {

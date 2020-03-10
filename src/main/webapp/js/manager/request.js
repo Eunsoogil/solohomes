@@ -194,7 +194,7 @@ function updateRequestTable(jsonObj) {
 			result += "<tr>\n";
 			result += "<td class='request ColumnOfCheckBox'><input type='checkbox' name='uid' value='" + items[i].uid + "'></td>\n";
 			result += "<td>" + items[i].id + "</td>";
-			result += "<td>" + items[i].type + "</td>";
+			result += "<td>" + parseRqType(items[i].type) + "</td>";
 			result += "<td>" + items[i].subject + "</td>";
 			var regdate = new Date(items[i].regdate);
 			var strdate = regdate.getFullYear() + "/"
@@ -249,4 +249,18 @@ function chkDelete() {
 			});
 		}
 	}
+}
+
+//parse rq_type
+function parseRqType(num) {
+	var result = "";
+	switch(num) {
+	case 1: result = "상품문의"; break;
+	case 2: result = "배송문의"; break;
+	case 3: result = "결재문의"; break;
+	case 4: result = "환불문의"; break;
+	case 5: result = "기타문의"; break;
+	default: break;
+	}
+	return result;
 }

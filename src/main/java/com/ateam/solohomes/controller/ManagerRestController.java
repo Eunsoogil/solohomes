@@ -68,7 +68,6 @@ public class ManagerRestController {
 		
 		//sort select
 		int s_type = Integer.parseInt(sortType);
-		System.out.println(s_type);
 		String sortColumn = "";
 		
 		if (type.equals("user")) {

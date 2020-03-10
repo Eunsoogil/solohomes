@@ -24,6 +24,10 @@ function loadDailyTable() {
 	});
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function updateDailyTable(jsonObj) {
 	var result = "";
 	var list = jsonObj;
@@ -33,8 +37,8 @@ function updateDailyTable(jsonObj) {
 			result += "<tr>";
 			result += "<td>" + list[i].day + "</td>";
 			result += "<td>" + list[i].quantity + "건</td>";
-			result += "<td>" + list[i].amount + "&#8361</td>";
-			result += "<td>" + list[i].stack_amount + "&#8361</td>";
+			result += "<td>" + numberWithCommas(list[i].amount) + "&#8361</td>";
+			result += "<td>" + numberWithCommas(list[i].stack_amount) + "&#8361</td>";
 			result += "</tr>";
 		}
 	} else {

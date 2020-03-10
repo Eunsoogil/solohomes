@@ -24,7 +24,6 @@ public class ManagerIndexCommand implements Command {
 		//System.out.println(countOfMembers);
 		//System.out.println(countOfSales);
 		//System.out.println(sumOfSales);
-		System.out.println(list.toString());
 		
 		model.addAttribute("countOfMembers", countOfMembers);
 		model.addAttribute("countOfSales", countOfSales);

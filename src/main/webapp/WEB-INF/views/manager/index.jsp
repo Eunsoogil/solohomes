@@ -135,7 +135,7 @@
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
-                                    <h5 class="text-muted vb">Today Sales Amount(10,000)</h5> </div>
+                                    <h5 class="text-muted vb">Today Sales Amount(10,000&#8361)</h5> </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-megna">${sumOfSales}</h3> </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -153,10 +153,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title">Monthly Sales Chart</h3>
+                            <h3 class="box-title"><b>월별 판매현황</b></h3>
                             <ul class="list-inline text-right">
                                 <li>
-                                    <h5><i class="fa fa-circle m-r-5" style="color: #e60012; opacity : 0.5;"></i>Sales Amount</h5>
+                                    <h5><i class="fa fa-circle m-r-5" style="color: #e60012; opacity : 0.5;"></i>Sales Amount(&#8361)</h5>
                                 </li>
                             </ul>
                             <div id="salesChart" style="height: 370px;"></div>
@@ -167,7 +167,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title"><b>월별 판매현황</b>
+                            <h3 class="box-title"><b>일별 판매현황</b>
                                 <div class="col-md-2 col-sm-4 col-xs-12 pull-right">
                                 	<!-- month select -->
                                     <select class="form-control pull-right row b-none" id="selectMonth">
@@ -191,7 +191,6 @@
                                     <tbody>
                                     </tbody>
                                	</table>
-                               	<div class="pull-right">단위 : (&#8361)</div>
                         	</div>
                     	</div>
                 	</div>
